@@ -1,0 +1,70 @@
+.MuiPaper-elevation1-4 {
+    box-shadow: none !important;
+    } 
+    .bg {
+      background: #eee !important;
+       background-color: #eee;
+     }
+     .main_form_login{
+       height: 100%;  
+      border: 0;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,.16);
+      overflow: hidden;
+      position: relative;
+      z-index: 1051;
+      min-height: 630px;
+      margin: 0 auto;
+      width: 620px;
+      text-align: center;
+      margin-top: 48px;
+      margin-bottom: 48px;
+      background: #fff;
+     }
+
+     .title_head {
+    font-family: Bariol Bold,Helvetica Neue,Helvetica,Arial,sans-serif;
+    -ms-transform: rotate(.1deg);
+    background: #1eaecb;
+    color: #fff;
+    font-size: 10px;
+    height: 70px;
+    letter-spacing: 1.6px;
+    line-height: 48px;
+    padding: 10px 0px 0px 0px;
+    position: relative;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 35px;
+  }
+  .title_head h2 {
+    font-size: 15px;
+    font-family: Bariol Bold,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: 900;
+  }
+  .form-control {
+    padding: 25px 20px;
+   }
+   form.form {
+    width: 80%;
+    margin: 0 auto;
+    }
+    .ladda-button {
+    background: linear-gradient(180deg,#fff 0,#fff);
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,.2);
+    border: 1px solid #a9c5ce;
+    color: #a9c5ce !important;
+    opacity: 1;
+    text-transform: uppercase;
+    padding: 20px 40px;
+  }
+  .ladda-button:active{
+    background: linear-gradient(180deg,#fff 0,#fff);
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,.2);
+    color: #a9c5ce !important;
+  }
+  .ladda-button:hover{
+    background: linear-gradient(180deg,#fff 0,#fff);
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,.2);
+    color: #a9c5ce !important;
+  }

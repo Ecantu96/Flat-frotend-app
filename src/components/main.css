@@ -1,0 +1,3557 @@
+/*********
+***Main Home page and Container Styles
+***************/
+@import url('https://fonts.googleapis.com/css?family=Happy+Monkey|Raleway:700|Roboto:900');
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat Bold'), local('Montserrat-Bold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gTD_u50.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat Bold'), local('Montserrat-Bold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3g3D_u50.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat Bold'), local('Montserrat-Bold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gbD_u50.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat Bold'), local('Montserrat-Bold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gfD_u50.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat Bold'), local('Montserrat-Bold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_c5H3gTD_u50.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_c5H3g3D_u50.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_c5H3gbD_u50.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_c5H3gfD_u50.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_c5H3gnD_g.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Montserrat Black'), local('Montserrat-Black'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_epG3gTD_u50.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Montserrat Black'), local('Montserrat-Black'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_epG3g3D_u50.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Montserrat Black'), local('Montserrat-Black'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_epG3gbD_u50.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Montserrat Black'), local('Montserrat-Black'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_epG3gfD_u50.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Montserrat Black'), local('Montserrat-Black'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_epG3gnD_g.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+.SignupSteps-StepperHeader-129{
+	background-color: #fff !important;
+}
+
+@media screen and (min-width: 768px) {
+	
+.togle_mobile_menu {
+   display: none;
+}	
+.mobile_nav {
+    display: none;
+}
+.col-sm-2.side_dashboard_list_mobile{
+	display: none;
+}
+.mobile_sidebar_profile{
+	display: none;
+}
+}
+@media screen and (max-width: 767px){
+.desktop_view{
+	display: none !important;
+}
+.dasboard_header .desktop_view {
+    
+    display: none;
+	
+}
+.MuiPopover-paper-73{
+	 overflow-y: unset;
+    overflow-x: unset;
+}
+}
+
+.mobile_nav {
+    width: 100%;
+}
+.mobile_nav .MuiSvgIcon-root-58{
+	font-size: 50px !important;
+	color: #fff !important;
+} 
+.mobile_nav button {
+     float: right;
+    position: relative;
+    z-index: 99;
+}
+.MuiIconButton-label-54 {
+    width: 100%;
+    display: flex;
+    align-items: inherit;
+    justify-content: inherit;
+    color: #fff;
+}
+.mobile_nav .MuiSvgIcon-root-58 {
+    font-size: 50px !important;
+    color: #fff !important;
+}
+.MuiPaper-root-16.MuiMenu-paper-72.MuiPaper-elevation8-26.MuiPaper-rounded-17.MuiPopover-paper-73{
+	top: 50px !important;
+    left: 155px !important;
+	max-height: 100% !important;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+    max-width: 100%;
+	padding: 0px;
+}
+
+/**************Header top styling*****************/
+.MuiPaper-elevation1-4{
+	padding: 0px !important;
+}
+.MuiPaper-rounded-2{
+	border-radius: 0 !important;
+}
+.MuiToolbar-regular-43{
+	min-height: unset !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+.MuiToolbar-root-43{
+	min-height: unset !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+.MuiToolbar-root-41{
+	align-items: end !important;
+}
+.MuiToolbar-root-43{
+	align-items: end !important;
+}
+.log_sign {
+    margin: 10px 15px 0px 0;
+    text-transform: uppercase;
+}
+a.login_last {
+    border-right: none !important;
+}
+/******************Header top styling end**************/
+ul.main_menu {
+    width: 70%;
+    float: right;
+	height: 46px;
+}
+
+ul.main_menu li {
+    display: inline-block;
+    padding: 0 30px 0 0;
+}
+.MuiPaper-root-12 {
+    background-color: #fff;
+}
+.logo {
+    width: 120px;
+}
+.bg_banner {
+    background: url(./images/banner-1.jpg);
+    display: block;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    position: relative;
+    background-position: 100%;
+    background-size: 100%;
+    bottom: 80px;
+    width: 100%;
+    float: left;
+    /* min-height: 400px; */
+    /* max-height: 100%; */
+    padding: 13em 0;
+}
+.bg_roommate {
+    background: url(./images/5_types.jpg);
+    display: -webkit-box;
+     display: block;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    bottom: 80px;
+    width: 100%;
+    float: left;
+    min-height: 400px;
+	max-height: 100%
+}
+.slider_comfortsofhome {
+    background: url(./images/slider_comfortsofhome.jpg);
+    display: -webkit-box;
+     display: block;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    bottom: 80px;
+    width: 100%;
+    float: left;
+    min-height: 400px;
+	max-height: 100%
+}
+.roommate_profile_banner {
+    background: url(./images/roommate_profile_banner.png);
+    display: -webkit-box;
+     display: block;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    bottom: 80px;
+    width: 100%;
+    float: left;
+    min-height: 400px;
+	max-height: 100%;
+	margin-bottom: -50px;
+}
+.listing_banner {
+    background: url(./images/listing_banner.jpg);
+    display: -webkit-box;
+     display: block;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    bottom: 80px;
+    width: 100%;
+    float: left;
+    min-height: 400px;
+	max-height: 100%
+}
+
+.logo {
+    width: 120px;
+    background: transparent;
+    z-index: 99999;
+}
+ul.main_menu li {
+    display: inline-block;
+    padding: 15px 30px 15px 0;
+    /* background: transparent; */
+    color: #000;
+}
+
+ul.main_menu li a {
+    color: #000;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: Montserrat;
+    list-style: none;
+    text-decoration: none;
+}
+ul.main_menu {
+    width: 70%;
+    float: right;
+    background-color: #fff !important;
+    z-index: 99;
+    position: relative;
+}
+.right_menu button {
+    color: #fff;
+    font-size: 12px;
+	font-weight: 600;
+	font-family: Montserrat;
+}
+.right_menu {
+    background: rgba(249, 121, 14, 1);
+    position: relative;
+    z-index: 999;
+    margin: 0 0px 8px 0;
+    padding: 0;
+    float: left;
+    width: 16%;
+    text-align: left;
+}
+ul.right_menu li {
+    display: inline-block;
+    margin: 10px 0px 0px 0;
+    padding: 0 0px 0px 0px;
+}
+.right_menu a {
+        color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: Montserrat;
+    border-right: 1px solid #fff;
+    overflow: auto;
+    padding: 0 5px 0 5px;
+    margin: 0;
+    border-radius: unset;
+     min-height: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.right_menu li:last-child a {
+    border-right: none;
+}
+.right_menu a:focus{
+	outline: none;
+	text-decoration: none;
+}
+.right_menu a:hover{
+	background: rgba(249, 121, 14, 1);
+}
+.MuiGrid-item-117{
+	max-width: 100% !important;
+}
+ .type_of_person{
+	position: absolute;
+    /* bottom: 0px; */
+    float: left;
+    top: 130px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    font-weight: 600;
+    padding: 10px 0 10px 0;
+    font-family: Montserrat;
+    z-index: 99;
+    box-shadow: 0px 3px 6px #ccc;
+    width: 70%;
+    margin: 0 auto;
+}
+.banner_text {
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    top: 60%;
+    color: #fff;
+    font-size: 30px;
+    left: 0;
+    right: 0;
+    padding: 0px;
+    margin: 0px;
+	width: 100%;
+}
+.banner_text h2 {
+    font-size: 40px;
+    line-height: 45px; 
+    font-weight: 600;
+	font-family: Montserrat;
+	text-shadow: 2px 2px #000000;
+}
+
+.banner_text_roomate_profile {
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    top: 60%;
+    color: #fff;
+    font-size: 30px;
+    left: 0;
+    right: 0;
+    padding: 0px;
+    margin: 0px;
+	width: 100%;
+}
+.banner_text_roomate_profile h2 {
+      font-size: 40px;
+    line-height: 45px;
+    font-weight: 400;
+    font-family: Happy Monkey;
+    text-shadow: 0px 3px 5px #000;
+}
+.banner_text_roomate_profile  .type_of_person button{
+	background-color: #F9790E !important;
+    margin: 0px 10px 0 10px; 
+    border-radius: 20px;
+    padding: 11px 40px 10px 40px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 10px;
+    min-width: 160px;
+    height: 40px;
+}
+.banner_text_roomate_profile .type_of_person{
+	width: 75%
+}
+.MuiButton-label-102{
+	width: auto !important;
+}
+.banner_text_home {
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+    top: 50%;
+    color: #fff;
+    font-size: 30px;
+    left: 0;
+    right: 0;
+	text-shadow: 2px 2px #000000;
+	
+}
+.banner_text_home h2 {
+    font-size: 40px;
+    line-height: 45px;
+    font-weight: 600;
+	font-family: Montserrat;
+}
+
+.start_searct_title {
+    position: absolute;
+    /* bottom: 0px; */
+    float: left;
+    top: 130px;
+    left: 0;
+    right: 0;
+    background-color: rgba(249, 121, 14, 1);
+    font-weight: 600;
+    padding: 10px 0 10px 0;
+    font-family: Happy Monkey;
+    z-index: 99;
+    box-shadow: 0 3px 6px #ccc;
+    font-weight: 400;
+    font-size: 40px;
+}
+
+.type_of_person button {
+   background-color: #F9790E !important;
+    margin: 0px 10px 0 10px;
+    border-radius: 20px;
+    padding: 11px 40px 10px 40px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 10px;
+    min-width: 160px;
+    height: 40px;
+}
+.pre_page:before {
+    content: "<";
+    margin: 0 3px 0 0;
+}
+.next_page:after {
+    content: ">";
+    margin: 0 0px 0 3px;
+}
+.view_more_btn:after{
+ content: ">";
+    margin: 0 0px 0 3px;	
+}
+.listing_banner .type_of_person button .MuiButton-label-102{
+	width: auto;
+}
+.type_of_person button:after{
+	content: "\2228";
+    /* transform: translateX(360%) scale(11); */
+    font-size: 7px;
+    color: #F9790E;
+    background-color: #fff;
+    padding: 0px;
+    width: 13px;
+    border-radius: 50%;
+    /* height: initial; */
+    margin: 0px 0px 0px 2px;
+    padding: 0;
+    display: inherit;
+    /* float: left; */
+    text-align: center;
+    position: relative;
+    bottom: 0px;
+    display: inline-block;
+    height: 13px;
+}
+.type_bedroom_list {
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 20px;
+    position: relative;
+    bottom: 45px;
+	clear: both;
+}
+.home button .numbers {
+        width: 120px;
+    height: 120px;
+    background-color: #F9790E;
+    border-radius: 50%;
+    position: relative;
+    bottom: 0px;
+    /* right: -22px; */
+    top: 0px;
+    text-align: center;
+    left: 20px;
+    padding: 0;
+    margin: 0;
+}
+.home.type_bedroom_list button {
+     padding: 10px 0px 10px 20px;
+    margin: 0px 0px 15px 15px;
+    background-color: #EFEFEF;
+    border-color: #EFEFEF;
+    overflow: hidden;
+    min-width: 200px;
+    max-width: 200px;
+    /* min-height: 153px; */
+ 
+}
+.home span.number {
+           font-size: 9em;
+    font-weight: 800;
+    font-family: Montserrat;
+    position: relative;
+    bottom: 10px !important;
+    right: 0px;
+    color: #ffff;
+    line-height: normal;
+    overflow: hidden;
+	   
+}
+.home_head_title{
+	 margin: 15px 0px 10px 0px;
+    text-align: left;
+    width: 100%;
+}
+
+.home_head_title h2{
+	font-size: 30px;
+    line-height: 30px;
+    font-weight: 600;
+    font-family: Montserrat;
+    color: #F9790E;
+    padding: 5px;
+    margin: 0;
+	text-shadow: 0 3px 6px #ccc;
+}
+.home span.bed_room:focus, span.bed_room:active{
+	color: #fff !important;
+}
+.home span.bed_room {
+    margin: 0 auto;
+    position: relative;
+    top: 5px;
+    right: 0px;
+    font-size: 20px;
+    font-weight: 800;
+    font-family: Montserrat;
+    padding: 0px;
+    text-align: center;
+    margin: 0 auto;
+}
+.home_first_section {
+    margin: 0px 0px 40px 0;
+}
+.home_description {
+    margin: 0;
+    clear: both;
+   margin-bottom: 0px;
+}
+.home_description p {
+   font-size: 13px;
+    line-height: 20px;
+}
+.home_first_sect_img {
+     margin: 0px; 
+    position: relative;
+    top: 10px;
+    left: 0;
+    /* right: 0; */
+    padding: 0 0 0 15px;
+	
+}
+.get_started_title{
+	font-family: Happy Monkey !Important;
+    font-size: 70px !important;
+    color: #EFEFEF !important;
+    position: relative;
+    top: 55px !important;
+    z-index: -9 !important;
+
+}
+
+.first_sect_color { 
+   
+    background: #F9790E;
+	
+	width: 70%;
+    min-height: 475px;
+    position: relative;
+    top: 70px;
+    padding: 0px;
+    margin: 0px;
+    left: 0;
+    right: 0;
+    z-index: -9;
+    float: left;
+   
+    
+}
+
+
+.second_sect_color {
+       
+    background-color: #EFEFEF;
+	 width: 70%;
+    min-height: 475px;
+    position: relative;
+    top: 70px;
+    padding: 0px;
+    margin: 0px;
+    left: 190px;
+    right: 0;
+    z-index: -9;
+    float: left;
+    /* text-align: right; */
+    /* left: 185px; */
+}
+
+.home_second_sect_img {
+    margin: 0px;
+    position: absolute;
+    top: 10px;
+      right: 15px;
+}
+
+.search_btn{
+	 background-color: #F9790E !important;
+    color: #fff !important;
+    font-family: Montserrat !important;
+    font-size: 11px !important;
+    margin: 20px 0px 0px 0px !important;
+    padding: 0 15px 0 15px !important;
+    border-radius: 0px !important;
+	width: 40%;
+	font-weight: 600 !important;
+}
+span.number {
+    font-size: 15em;
+    font-weight: 800;
+    font-family: Montserrat;
+    position: relative;
+    bottom: 30px;
+    right: 10px;
+    color: #BABABA;
+    line-height: normal;
+	overflow: hidden;
+}
+.btn-default:focus{
+	background: #000 !important;
+    color: #fff !important;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.type_bedroom_list button {
+        padding: 0px 20px 0px 20px;
+    margin: 0px 15px 15px 15px;
+    background-color: #EFEFEF;
+    border-color: #EFEFEF;
+    overflow: hidden;
+    min-width: 200px;
+    max-width: 200px; 
+ 
+}
+span.bed_room:focus, span.bed_room:active{
+	color: #fff !important;
+}
+span.bed_room {
+      margin: 0 auto;
+    position: relative;
+    top: 20px;
+    right: 75px;
+    font-size: 20px;
+    font-weight: 800;
+    font-family: Montserrat;
+    padding: 0px;
+    text-align: center;
+    margin: 0 auto;
+}
+.inner_bed{
+	box-shadow: 0px 3px 6px #eee;
+    padding: 5px 0 0 0;
+    text-align: center;
+    width: auto;
+    width: auto;
+    display: inline-block;
+    /* border-top: 1px solid #eee; */
+}
+ul.main_menu:after {
+    content: " ";
+    display: block;
+    width: 0px;
+    height: 100%;
+    border-top: 0px solid transparent;
+    border-bottom: 48px solid transparent;
+    border-right: 20px solid rgba(249, 121, 14, 1);
+    position: absolute;
+    top: 0;
+    margin-top: 0px;
+    margin-left: 0;
+    right: 0px;
+    z-index: 1;
+}
+
+.classic_room{
+	background: url(./images/classic-room.jpg);
+     display: block;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    background-position: center;
+    background-size: 100% 100%;
+    width: 100%;
+    float: left;
+    max-height: 100%;
+    margin: 50px 0px 80px 0px;
+   /*  height: -webkit-fill-available; */
+    clear: both;
+    min-height: 450px;
+	
+	
+}
+.home_second_section {
+    margin: 0px 0px 80px 0;
+	clear: both;
+}
+.classic_room:before {
+     border: 20px solid #F9790E;
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    bottom: 40px;
+ }
+ .classic_room:after {
+        border-bottom: 40px solid #F9790E;
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    top: 409px;
+ }
+.banner_third_section {
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    width: 60%;
+    top: 0%;
+    color: #fff;
+    font-size: 30px;
+    left: 0;
+    right: 0;
+	text-shadow: 2px 2px #000000;
+	
+}
+.banner_third_section h2 {
+    font-size: 40px;
+    line-height: 45px;
+    font-weight: 600;
+	font-family: Montserrat;
+}
+
+.home_looking_list {
+    position: absolute;
+    /* bottom: 0px; */
+    float: left;
+    top: 10px;
+    left: 0;
+    right: 0;
+    background-color: rgba(249, 121, 14, 1);
+    font-weight: 600;
+    padding: 10px 0 10px 0;
+    font-family: Happy Monkey;
+    z-index: 99;
+    box-shadow: 0 3px 6px #ccc;
+    font-weight: 400;
+    font-size: 40px;
+}
+
+.inner_home_looking_list {
+    position: absolute;
+    top: 50px;
+    background-color: #EFEFEF;
+    padding: 0 0px 30px 0;
+     margin: 0 auto;
+    width: 70%;
+    text-align: center;
+    left: 0;
+    right: 0;
+ }
+.list_property_desc{
+	position: relative;
+    top: 60px;
+}
+.list_property_desc p {
+    font-size: 14px;
+    color: #000;
+}
+.inner_home_looking_list h2 {
+    /* margin: 0 0 0; */
+    position: relative;
+    top: 60px;
+}
+.rent_list li {
+	     color: #fff;
+		font-family: Montserrat;
+		font-size: 72px;
+		font-weight: 600;
+		position: relative;
+		padding: 0;
+		text-align: left;
+		content: ".";
+		left: 64px;
+		right: 0;
+		line-height: 45px;
+		margin: 0px 5px 5px 10px;
+}
+/* .rent_list li:before {
+    content: ".";
+    font-size: 147px;
+    vertical-align: middle;
+    line-height: 0;
+    color: #fff;
+    display: contents;
+    margin: 0;
+    padding: 0;
+} */
+ul.rent_list {
+    margin: 50px 0 30px 0;
+    padding: 0px 0 0 0;
+}
+.rent_list span {
+	   margin: 0px 0px 0px 0px;
+		padding: 0;
+		position: absolute;
+		bottom: 0px;
+		font-size: 17px;
+		color: #000;
+		display: -webkit-box;
+		width: 100%;
+		top: 2px;
+}
+
+.fourth_sect_bg {
+     margin: 0 auto;
+     position: relative;
+    z-index: -9;
+    right: 0px;
+     text-align: center;
+}
+.home_fourth_section .forth_sect_left{
+	    position: absolute;
+    left: 0;
+    top: 40px;
+    padding: 30px;
+    float: left;
+}
+.home_fourth_section .forth_sect_right{
+	 position: absolute;
+    top: 40px;
+    padding: 30px;
+    right: 0px;
+    float: left;
+}
+.home_inner_fourth_box{ 
+    padding: 20px;
+    margin: 0 10px 0px 10px;
+}
+.home_inner_fourth_box h2 {
+    color: #F9790E;
+    font-family: Happy Monkey;
+    font-size: 40px;
+}
+.home_inner_fourth_box p {
+    font-size: 14px;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+}
+
+.furth_sect_btn{
+	background-color: #F9790E !important;
+    color: #fff !important;
+    font-family: Montserrat !important;
+    font-size: 11px !important;
+    margin: 20px 0px 0px 0px !important;
+    padding: 0 70px 0 70px !important;
+    border-radius: 0px !important;
+	width: 47%;
+	font-weight: 600 !important;
+}
+/**********RoommatesFinderResult********************/
+.main_roomates {
+    margin: 0 auto;
+    text-align: center;
+    clear: both;
+	margin-bottom: 25px;
+}
+
+.main_roomates .MuiGrid-item-143 {
+    display: flex;
+    width: 200px;
+   margin: 0 15px 30px 18px;
+    text-align: center;
+    background: transparent;
+    float: left;
+    
+}
+.MuiGrid-item-143.MuiGrid-grid-xs-5-175 {
+    margin: 0 45px 0px 45px;
+}
+.main_roomates .MuiPaper-elevation2-20{
+	
+	 box-shadow: none !important;
+       margin: 0;
+}
+.profile_img{
+    border-radius: 70px 70px 0 0;
+	background: transparent;
+	width: 100%;
+}
+.roommatefinder_result .profile_img{
+    border-radius: 0;
+	background: transparent;
+	width: 100%;
+	box-shadow: 0 3px 6px #ccc;
+}
+
+.room_finder_title h5 {
+        font-size: 12px;
+    font-family: Montserrat;
+    color: #F9790E;
+    font-weight: 600;
+    padding: 3px 15px 3px 15px;
+    text-align: center;
+    position: relative;
+     bottom: 55px;
+    background-color: #fff;
+    float: right;
+    overflow: hidden;
+    border-radius: 20px 0px 0px 20px;
+	    max-width: 145px;
+}
+
+.profile_title {
+    background: #787878;
+    position: relative;
+    top: -10px;
+    color: #fff;
+    padding-bottom: 10px;
+}
+.profile_title h5 {
+    font-size: 15px;
+    font-family: Montserrat;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 0 0 0px;
+    text-align: center;
+}
+.roommatefinder_result .profile_title{
+	    background: #000;
+    position: relative;
+    top: -42px;
+    color: #fff;
+    padding-bottom: 10px;
+    text-align: center;
+    float: left;
+}
+.roommatefinder_result .profile_title span {
+     background: #fff;
+    color: #000;
+    font-size: 8px;
+    margin: 10px 2px 0 2px;
+    padding: 3px 3px 3px 3px !important;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-weight: bold;
+    text-align: center !important;
+    display: inline-block;
+    /* float: left; */
+    min-width: 30px;
+}
+.rooms_finder .home_img{
+	border-radius: unset;
+	box-shadow: 0 3px 6px #ccc;
+}
+.rooms_finder .profile_title{
+	background: #000;
+	float: left;
+	top: -52px;
+	
+}
+.rooms_finder .profile_title span{
+	    min-width: 60px;
+		
+}
+.profile_title span {
+        background: #fff;
+    color: #000;
+    font-size: 8px;
+    margin: 0px 2px 0 2px;
+    padding: 3px 3px 3px 3px;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-weight: bold;
+    text-align: center !important;
+    display: inline-block;
+    min-width: 40px;
+    
+}
+
+.next_pre button{
+	background-color: #F9790E !important;
+    margin: 0px 10px 0 10px;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 10px;
+    width: 120px;
+	height: 40px;
+}
+.next_pre button span{
+	color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.view_more button{
+	background-color: #F9790E !important;
+    margin: 0px 10px 0 10px;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 10px;
+    width: 150px;
+	height: 40px;
+}
+
+.next_pre .numbers{
+	
+    margin: 0px 10px 0 10px;
+    border-radius: 50%;
+    padding: 8px 10px 8px 10px;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 14px;
+    border: 2px solid #F9790E;
+    color: #F9790E;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+	text-align: center;
+} 
+
+.next_pre .numbers.active{
+	background-color: #F9790E !important;
+    margin: 0px 10px 0 10px;
+    border-radius: 50%;
+    padding: 8px 10px 8px 10px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 14px;
+     width: 40px;
+    height: 40px;
+    display: inline-block;
+	
+} 
+
+.MuiTypography-noWrap-65{
+	    overflow: unset !important;
+}
+.baer-home {
+    background: url(./images/baer-home.jpg);
+    display: -webkit-box;
+     display: block;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    bottom: 40px;
+    width: 100%;
+    float: left;
+    min-height: 400px;
+	max-height: 100%;
+	margin: 40px 0 30px 0;
+}
+.main_roomates .MuiPaper-root-16 {
+	padding: 0px !important;
+}
+.main_roomates .MuiPaper-root-16:focus{
+	outline: none !important;
+}  
+.check_home_title{
+	margin: 25px 0px 25px 0;
+	text-align: center;
+}
+.check_home_title h2{
+	
+    font-size: 35px;
+    line-height: 45px;
+    font-weight: 600;
+    font-family: Montserrat;
+    color: #F9790E;
+    width: auto;
+    text-shadow: 0 3px 6px #ccc;
+    border-bottom: 1px solid #eee;
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 0 20px 0;
+
+}
+.Connect-RoommateFinderResult--paper-2{
+	padding: 10px !important;
+}
+.home_img{
+	border-radius: 70px 70px 0 0;
+    background: transparent;
+}
+
+.MuiGrid-item-143.MuiPaper-elevation2-20 {
+    width: 250px;
+   margin: 0 21px 0 21px;
+    display: inline-block;
+}
+.MuiGrid-item-143 .profile_title span{
+	    padding: 3px 10px 3px 10px;
+}
+/******Listing Page********/
+
+.main_roomates.listing_page {
+    text-align: left;
+}
+.listing_page .MuiGrid-item-143 {
+     display: inline-block;
+    /* display: flex; */
+    /* width: 100%; */
+    margin: 0 5px 0 0;
+    text-align: center;
+    background: transparent;
+    float: left;
+	width: 250px;
+    
+}
+.listing_page .MuiPaper-elevation2-20{
+	padding: 0px;
+}
+.listing_page .MuiGrid-item-143{
+	  display: inline-block;
+    margin: 0px 40px 0 0px;
+    float: left;
+}
+.listing_page .profile_title{
+	background: #000;
+    position: relative;
+    top: -52px;
+    color: #fff;
+    padding-bottom: 10px;
+    box-shadow: 0 3px 6px #ccc;
+    /* display: inline-block; */
+    float: left;
+}
+.listing_page .profile_title span{
+	 background: #fff;
+    color: #000;
+    font-size: 7px;
+    margin: 0px 5px 5px 5px;
+    padding: 6px 8px 6px 8px;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 50px;
+}
+.listing_page .profile_img{
+	width: 100%;
+}
+.listing_map {
+    position: relative;
+    bottom: 80px;
+}
+.listing_page .next_pre button{
+	 background-color: #F9790E !important;
+    margin: 0 10px 0 10px;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 10px;
+    width: auto;
+    height: 40px;
+}
+.listing_page .next_pre{
+	margin-left: -15px;
+}
+.next_pre span {
+    color: #F9790E;
+    font-weight: 600;
+}
+
+/************Main Roommate Profile Page**************/
+.profile_full .col-sm-9 {
+    margin: 0;
+    padding: 0;
+}
+.MuiAppBar-colorDefault-11{
+	background: transparent !important;
+}
+.MuiPaper-elevation4-20{
+	box-shadow: none !important;
+}
+.roommateProfile .MuiGrid-item-143 {
+    display: inline-block;
+    width: 240px;
+    margin: 0 14px 30px 14px;
+    text-align: center;
+    background: transparent;
+    float: left;
+    
+}
+.roommateProfile {
+    clear: both;
+}
+.roommateProfile .MuiPaper-root-16 {
+    box-shadow: none !important;
+    margin: 0;
+}
+.roommateProfile .MuiPaper-elevation2-20{
+	
+	 box-shadow: none !important;
+       margin: 0;
+}
+.profile_description {
+    margin: 0;
+    clear: both;
+   margin-bottom: 0px;
+}
+.loader-container {
+    clear: both;
+}
+.profile_header .col-sm-10 {
+    padding: 0px;
+	margin:0px;
+}
+.profile_header .col-sm-8 {
+    padding: 0px;
+	margin:0px;
+}
+.profile_head_title{
+	 margin: 15px 0px 10px 30px;
+    text-align: left;
+    border-top: 1px solid #eee;
+       width: 70%;
+}
+
+.profile_head_title h2{
+	font-size: 35px;
+    line-height: 45px;
+    font-weight: 600;
+    font-family: Montserrat;
+    color: #F9790E;
+    padding: 5px;
+    margin: 0;
+	text-shadow: 0 3px 6px #ccc;
+}
+img.profile_suggest_img {
+    border-radius: 50%;
+	box-shadow: 0 8px 8px #ccc;
+}
+.profile_description p {
+        font-size: 12px;
+    font-family: Montserrat;
+    padding: 0px 0 0 30px;
+    line-height: 28px;
+}
+.roommate_profile_text {
+    position: absolute;
+    color: #fff;
+    font-size: 30px;
+    left: 30px;
+    right: 0;
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+    bottom: 20px;
+}
+.profile_header .MuiPaper-elevation4-22{
+	box-shadow: unset;
+}
+.roommate_profile_text h2 {
+    font-size: 40px;
+    line-height: 45px; 
+    font-weight: 600;
+	font-family: Montserrat;
+	text-shadow: 2px 2px #000000;
+}
+.profile_header .MuiToolbar-gutters-71{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.profile_header .MuiAppBar-colorDefault-13{
+	background-color: unset !important;
+}
+.profile_header .MuiPaper-elevation2-20{
+	box-shadow: unset !important;
+}
+.profile_header .MuiToolbar-root-70{
+	    min-height: 0px;
+}
+
+.profile_header .MuiGrid-item-143 {
+    max-width: 100% !important;
+}
+.profile_variants h5 {
+    color: #000;
+    font-family: Montserrat;
+    font-weight: 600;
+	font-size: 22px;
+}
+
+.profile_variants span.squre_box {	
+      color: #000;
+     font-family: Montserrat;
+    font-size: 9px;
+    padding: 5px 15px 5px 15px;
+    margin: 2px 10px 5px 10px;
+    display: inline-block;
+    background: #fff;
+    width: 120px;
+    font-weight: 600;
+    box-shadow: 0 1px 2px #000;
+}
+
+
+.side_profile .MuiPaper-root-16{
+	    background-color: #EFEFEF;
+		box-shadow: none;
+		padding: 2px;
+		    box-shadow: 0 3px 6px #ccc !important;
+}
+span.round_box {
+         background-color: #ffff;
+    color: #000;
+    font-family: Montserrat;
+    border-radius: 30px;
+    padding: 10px 15px 10px 14px;
+    width: auto;
+    margin: 10px 10px 0px 10px;
+    font-size: 12px;
+    text-align: center !important;
+    display: inline-block;
+    font-weight: 600;
+	min-width:100px;
+	box-shadow: 0 3px 6px #ccc;
+}
+.side_profile img {
+    box-shadow: 0 3px 6px #ccc;
+}
+.profile_btn {
+   margin: 0 5px 10px 0 !important;
+    color: #fff !important;
+    border-radius: 20px !important;
+	background: #000 !important;
+	box-shadow: 0 3px 6px #ccc;
+}
+.profile_btn span {
+    color: #fff !important;
+    padding: 5px 5px 5px 0;
+    font-family: Montserrat;
+    font-weight: 600;
+}
+.profile_btns {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 10px auto;
+    display: inline-block;
+    padding: 10px 0 0 0;
+}
+.pro_social_media a {
+    color: #F9790E;
+    font-weight: 600;
+    font-family: Montserrat;
+}
+.pro_social_media ul li {
+        display: inline-block;
+    margin: 0px 10px 0 10px;
+    border: 1px solid #F9790E;
+    border-radius: 50%;
+    padding: 7px 10px 5px 10px;
+    text-align: center;
+    color: #F9790E;
+    background: #fff;
+    height: 35px;
+    width: 35px;
+	    box-shadow: 0 3px 6px #ccc;
+}
+.profile_header .MuiGrid-item-143{
+    position: relative;
+    bottom: 10px;
+}
+.pro_social_media ul {
+    padding: 0px;
+}
+.profile_full{
+	margin: 0px;
+	padding: 0px !important;
+}
+.col-sm-3.side_profile{
+	padding: 0 0 0 8px;
+	margin: 0px;
+}
+.back_btn {
+    position: absolute;
+    top: 90px;
+    /* background: #fff; */
+    bottom: 0;
+    clear: both;
+    float: left;
+    left: 30px;
+    max-height: 50px;
+}
+.back_btn button {
+    background-color: #fff;
+    border-radius: 20px;
+	    min-height: 30px;
+}
+.back_btn button:hover {
+    background-color: #fff;
+    border-radius: 20px;
+}
+.back_btn span {
+    font-family: Montserrat;
+    font-weight: 800;
+    text-transform: capitalize;
+}
+.back_btn .MuiButton-label-102:before {
+    content: "<";
+    padding: 0 2px;
+}
+.MuiToolbar-regular-45{
+	min-height: 0px;
+	padding: 0px;
+}
+
+/***********Start Dashboard Page*****************/
+
+.dashboard_page .col-sm-10{
+	padding: 0px;
+}
+.dashboard_btns {
+    width: 100%;
+    margin: 0 auto;
+}
+.dashboard_btn-active {
+      background-color: #F9790E;
+    color: #fff;
+    font-weight: bold;
+    font-family: Montserrat;
+    text-transform: capitalize;
+    font-size: 15px;
+    padding: 10px 0px 10px 0px;
+}
+.dashboard_btns button { 
+     float: left;
+    width: 100%;
+    background-color: #fff;
+    padding: 5px 0px 5px 0px;
+    margin: 25px 10px 5px 0;
+}
+
+.dashboard_btn.active {
+    background-color: #F9790E;
+    color: #fff;
+    font-weight: bold;
+    font-family: Montserrat;
+    text-transform: capitalize;
+    font-size: 13px;
+}
+.dashboard_bg {
+    background: #F9790E;
+    position: relative;
+    width: 87.9%;
+    bottom: 58px;
+    overflow: hidden; 
+    padding: 0px 0px 0px 0px;
+   
+}
+.dashboard_bg:after{
+	    position: relative;
+    border-right: 65px solid #fff;
+    border-top: 0px solid transparent;
+    border-bottom: 122px solid transparent;
+    content: " ";
+    display: block;
+}
+.dashboard_profile_text {
+    position: absolute;
+    color: #fff;
+    font-size: 30px;
+    left: 30px;
+    right: 0;
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+    bottom: 20px;
+}
+.dashboard_profile_text h2 {
+    font-size: 30px;
+    line-height: 45px; 
+    font-weight: 600;
+	font-family: Montserrat;
+	text-shadow: 2px 2px #000000;
+}
+.col-sm-12.dashboard_page {
+    padding: 0;
+}
+.col-sm-2.side_dashboard_list {
+    background: #EFEFEF;
+    position: relative;
+    bottom: 59px;
+     margin: 0;
+    padding-top: 100px;
+    padding-bottom: 80px;
+    min-height: 750px;
+}
+.dashboardmessage .col-sm-2.side_dashboard_list {
+    background: #EFEFEF;
+    position: relative;
+    bottom: 59px;
+     margin: 0;
+    padding-top: 100px;  
+    padding-bottom: 80px;
+    min-height: 1000px;
+}
+
+.dashboard_page .MuiTypography-body1-85 {
+    color: #00202d;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    line-height: 1.46429em;
+    background: #F9790E;
+    width: 50% !important;
+}
+.dasboard_header .MuiPaper-elevation4-22{
+	    box-shadow: none;
+}
+.dasboard_header .MuiPaper-root-16{
+	background-color: unset;
+	
+}
+.dasboard_header .MuiTypography-body1-85{
+	    background: #F9790E;
+}
+
+.type_bedroom_list {
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 20px;
+    position: relative;
+    bottom: 45px;
+	clear: both;
+}
+span.number {
+    font-size: 15em;
+    font-weight: 800;
+    font-family: Montserrat;
+    position: relative;
+    bottom: 30px;
+    right: 10px;
+    color: #BABABA;
+    line-height: normal;
+	overflow: hidden;
+}
+.btn-default:focus{
+	background: #000 !important;
+    color: #fff !important;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.dashboard_bedroom_list button {
+     padding: 0px 20px 0px 20px;
+    margin: 0px 15px 15px 15px;
+    background-color: #fff;
+    border-top: 1px solid;
+    overflow: hidden;
+    min-width: 180px;
+    max-width: 180px;
+    min-height: 180px;
+    border-top: 3px solid #F9790E;
+    box-shadow: 0px 8px 15px #ccc;
+ 
+}
+span.bed_room:focus, span.bed_room:active{
+	color: #fff !important;
+}
+span.bed_room {
+      margin: 0 auto;
+    position: relative;
+    top: 20px;
+    right: 75px;
+    font-size: 20px;
+    font-weight: 800;
+    font-family: Montserrat;
+    padding: 0px;
+    text-align: center;
+    margin: 0 auto;
+}
+.inner_bed{
+	box-shadow: 0px 3px 6px #eee;
+    padding: 5px 0 0 0;
+    text-align: center;
+    width: auto;
+    width: auto;
+    display: inline-block;
+    /* border-top: 1px solid #eee; */
+}
+
+.dashboard_bedroom_list {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+ .dash_head {
+    position: relative;
+    top: 82px;
+    bottom: 0; 
+}
+
+.welcome_haed h2 {
+     color: #838383;
+    font-size: 40px;
+    font-family: Montserrat;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0px 3px 6px #ccc;
+}
+.welcome_sub_title h2 {
+    color: #000000;
+    text-align: center;
+    margin: 0px 0 20px 0;
+    font-size: 22px;
+    font-family: Montserrat;
+    font-weight: bold;
+	text-shadow: 0px 3px 6px #ccc;
+}
+.dashboard_bedroom_list span.number {
+        font-size: 10em;
+    font-weight: 800;
+    font-family: Montserrat;
+    position: relative;
+    right: 0px;
+    color: #838383;
+    line-height: normal;
+    overflow: hidden;
+    left: 10px;
+    text-align: center;
+	bottom: 20px;
+}
+.dashboard_bedroom_list .inner_bed {
+    box-shadow: none;
+    text-align: center;
+    width: auto;
+    display: inline-block;
+    padding: 15px 0px 0px;
+}
+.dashboard_bedroom_list span.bed_room{
+	
+	 position: relative;
+    top: 25px;
+     font-size: 12px;
+    font-weight: 800;
+    font-family: Montserrat;
+    
+ }
+ 
+.dashboard_btns button span {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Montserrat;
+    text-shadow: 0px 3px 6px #ccc;
+    text-transform: capitalize;
+}
+
+.desktop_view {
+    width: 100%;
+    display: flex;
+	height: 55px;
+}
+.welcome_haed {
+    position: relative;
+    bottom: 25px;
+}
+span.number.five {
+    left: 30px !important;
+        
+}
+span.number.seven {
+    left: 30px !important;
+        
+}
+span.bed_room.msg_five {
+    right: 35px;
+}
+span.bed_room.msg_ten {
+    right: 100px;
+}
+span.bed_room.msg_seven {
+    right: 50px;
+}
+
+/******MessageDashboard**********/
+.side_dashboard_list_desktop .MuiPaper-elevation2-20 {
+    padding: 0;
+}
+
+.msg_profile_section img {
+    float: left;
+    border-radius: 50%;
+}
+
+.msg_dashbaord_sidebar .Connect-DashboardMessage--paper-2 {
+	padding: 5px;
+	
+}
+.msg_profile_section {
+    float: left;
+    width: 25%;
+}
+.msg_profile_section span {
+    float: left;
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 7px;
+    font-weight: 600;
+    text-align: center;
+    margin: 7px 0px 0 5px;
+}
+.msg_details h5 {
+    color: #000;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-align: left;
+	font-size: 10px;
+
+}
+.msg_details p {
+         color: #000;
+    font-family: Montserrat;
+    font-size: 7px;
+    font-weight: 600;
+    text-align: -webkit-auto;
+    display: flex;
+}
+.main_side .MuiPaper-root-16 {
+    background: #eee;
+}
+.msg_dashbaord_sidebar .MuiGrid-item-143 {
+      /*  box-shadow: 1px 1px 6px #ccc; */
+	   border-left: 1px solid #EFEFEF;
+	   border-bottom: 1px solid #EFEFEF;
+	     border-top: 1px solid #EFEFEF;
+}
+.msg_left {
+    margin: 0px 0px 5px 0px;
+    width: 80%;
+    padding: 0px 0;
+    float: left;
+
+}
+.msg_dashbaord_sidebar .col-lg-3{
+	padding: 0px;
+}
+
+.msg_dashbaord_sidebar {
+    padding: 0 10px;
+}
+.msg_left .MuiTypography-root-76 {
+       padding: 10px 0px 10px 10px;
+    /* width: 80%; */
+    border-radius: 30px;
+    margin: 0px 0 0 30px;
+    box-shadow: 0 3px 5px #ccc;
+    font-family: Montserrat;
+    color: #000;
+     font-size: 10px;
+}
+.msg_right .MuiTypography-root-76 {
+       padding: 10px 10px 10px 10px;
+    /* width: 63%; */
+    border-radius: 30px;
+    /* float: right; */
+    margin: 0px 50px 5px 0px;
+    font-family: Montserrat;
+    color: #fff;
+    text-align: left;
+	font-size: 10px;
+}
+.msg_left img.msg_picture {
+    border-radius: 50%;
+  
+}
+
+.msg_right img.msg_picture {
+    border-radius: 50%;
+  
+}
+.msg_right span{
+	    font-size: 9px;
+    font-family: Montserrat;
+    color: #000;
+    font-weight: 600;
+    margin: 0px 10px 0 0;
+}
+.msg_left span {
+    font-size: 9px;
+    font-family: Montserrat;
+    color: #000;
+    font-weight: 600;
+    margin: 0px 0 0px 8px;
+}
+
+.msg_right {
+    float: right;
+	text-align: right;
+	width: 80%;
+}
+
+.msg_right img{
+	float: right;
+}
+span.time_stamp {
+    width: 100%;
+    text-align: center;
+    float: left;
+    font-family: Montserrat;
+    font-size: 8px;
+    color: #000;
+    font-weight: 600;
+    margin: 0px 0px 5px 0;
+}
+
+input.type_msg {
+   width: 80%;
+    margin: 60px auto;
+    padding: 16px 15px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border: 1px solid #EFEFEF;
+    box-shadow: 0 3px 6px #ccc;
+}
+input.type_msg:focus{
+	border: none !important;
+	    outline-offset: 0px;
+		outline: none;
+}
+.message_btns button {
+   width: 20%;
+    height: auto;
+    /* float: left; */
+    background-color: #EFEFEF;
+    padding: 20px 0px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 1px solid #EFEFEF !important;
+    box-shadow: 0 3px 6px #ccc;
+    position: relative;
+    bottom: 1px;
+}
+.message_btns button span {
+    font-size: 18px;
+    color: #F9790E;
+    font-family: Montserrat;
+    font-weight: 600;
+}
+
+input.type_msg::placeholder {
+    font-size: 8px;
+    color: #000000;
+    font-family: Montserrat;
+    font-weight: 600;
+}
+.msg_box {
+        border: 1px solid #eee;
+    position: relative;
+    bottom: 10px;
+    padding: 10px;
+    margin: 0;
+    /* box-shadow: 0 3px 6px #ccc; */
+    border: 1px solid #EFEFEF;
+}
+/*************DashboardProfile*******************/
+.dash_profile_desc h2 {
+    color: #000;
+    font-weight: bold;
+    font-family: Montserrat;
+    font-size: 30px;
+}
+.col-lg-8.dashboard_profile_description {
+    position: relative;
+    bottom: 45px;
+}
+.dash_profile_desc h2{
+	text-align: left;
+}
+.dash_profile_desc {
+    text-align: center;
+}
+.dash_profile_desc aside {
+    font-size: 12px;
+    font-family: Montserrat;
+	color: #5D5D5D;
+}
+.dashboard_btn-h2{
+	    background-color: #fff;
+		color: #000;
+		    font-size: 15px;
+    font-weight: bold;
+    font-family: Montserrat;
+    text-shadow: 0px 3px 6px #ccc;
+    text-transform: capitalize;
+    padding: 10px 0px 10px 0px;
+}
+.dash_picture {
+    border-radius: 50%;
+}
+ .col-lg-3.dashboard_sidebar_profile h5{
+	 color: #000;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 18px;
+ }
+.edit_remove li {
+    list-style: none;
+    display: inline-block;
+     margin: 5px 10px 5px 10px;
+}
+.edit_remove li a {
+    color: #000;
+    font-size: 12px;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: none;
+    text-decoration: none;
+}
+ul.edit_remove {
+    /* float: left; */
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+.profile_pic_section {
+    box-shadow: 0 3px 15px #ccc;
+}
+.profile_cover_section {
+    box-shadow: 0 3px 15px #ccc;
+	margin: 20px 0 20px 0px !important;
+}
+.profile_dash_gallery {
+    box-shadow: 0 3px 15px #ccc;
+	 margin: 15px 0 !important;
+}
+.col-sm-2.side_dashboard_profile_list {
+     background: #EFEFEF;
+    position: relative;
+    bottom: 59px;
+     margin: 0;
+    padding-top: 100px;
+    padding-bottom: 80px;
+    min-height: 130em;
+}
+li.edit_gallery_btn {
+      width: 80px;
+    height: 80px;
+    /* border: 1px solid #000; */
+    padding: 27px 2px 27px 2px;
+    background: #EFEFEF;  
+}
+li.edit_gallery_btn a {
+    text-decoration: none;
+}
+li.edit_gallery_btn span {
+    color: #5D5D5D;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-weight: bold;
+}
+.dashboard_profile_bg {
+    background: #F9790E;
+    position: relative;
+    width: 87.9%;
+    bottom: 58px;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px;
+}
+.dashboard_profile_bg:after{
+	    position: relative;
+    border-right: 65px solid #fff;
+    border-top: 0px solid transparent;
+    border-bottom: 122px solid transparent;
+    content: " ";
+    display: block;
+}
+.col-sm-12.dashboard_profile_page {
+    padding: 0;
+}
+ul.social_media_profile {
+    clear: both;
+    margin: 0px;
+    padding: 0px;
+	text-align: left;
+}
+ul.social_media_profile li {
+    list-style: none;
+      margin: 10px 1px 5px 2px;
+   
+}
+ul.social_media_profile label {
+    color: #000;
+    font-size: 11px;
+    font-family: Montserrat;
+    margin: 0 10px 3px 3px;
+    display: inline-block;
+    width: 55px;
+}
+.social_media_profile li a {
+     color: #5D5D5D;
+    font-size: 10px;
+    box-shadow: 0px 1px 0px 0px #000;
+    border-left: 1px solid #ccc; 
+    padding: 5px 40px 5px 40px;
+    /* margin: 0 4px 6px 0; */
+    display: inline-block;
+    border-bottom: 1px solid #ccc;
+    text-decoration: none;
+    border-right: none;
+}
+ul.profile_galleries {
+    margin: 0px;
+    padding: 0px; 
+}
+ul.profile_galleries li {
+    list-style: none;
+    display: inline-block;
+    margin: 13px 8px 5px 8px;
+}
+.col-lg-3.dashboard_sidebar_profile {
+    margin-bottom: 60px;
+}
+.dashboard_profile_grid .MuiGrid-item-143 {
+       display: inline-flex;
+    width: 31%;
+    margin: 10px 3px 10px 11px;
+    min-height: 170px;
+   
+}
+.dashboard_profile_grid h2{
+    color: #000;
+    font-weight: bold;
+    font-family: Montserrat;
+    font-size: 30px;
+}
+.dashboard_profile_grid {
+    margin: 20px 0px 0 0px;
+}
+.abt_me_grid {
+    box-shadow: 0 3px 6px #ccc;
+    background: #fff;
+    /* width: 286px !important; */
+    height: 150px;
+}
+.abt_me_grid h4 {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: Montserrat;
+}
+.abt_me_grid button {
+    margin: 10px 10px 10px 10px;
+    padding: 0;
+    border-radius: 20px;
+    width: 90px;
+	box-shadow: 0px 1px 6px #ccc;
+}
+.abt_me_grid .type_btn.active {
+    background-color: #F9790E;
+	color: #fff;
+}
+.type_grid span {
+    color: #000;
+    font-size: 11px;
+    font-family: Montserrat;
+    font-weight: 600;
+	 font-size: 10px;
+	 text-transform: capitalize;
+}
+.abt_me_grid .type_btn.active span {
+       color: #fff;
+    font-weight: 800;
+    font-family: Montserrat;
+    font-size: 10px;
+	text-transform: capitalize;
+}
+.drink_grid button {
+    margin: 10px 10px 10px 10px;
+    padding: 0;
+    border-radius: 20px;
+    width: 90px;
+}
+.drink_grid span {
+    color: #000;
+    font-size: 11px;
+    font-family: Montserrat;
+    font-weight: 600;
+}
+.smoke_grid button {
+    margin: 10px 10px 10px 10px;
+    padding: 0;
+    border-radius: 20px;
+    width: 90px;
+}
+.smoke_grid span {
+    color: #000;
+    font-size: 11px;
+    font-family: Montserrat;
+    font-weight: 600;
+}
+.abt_me_grid .MuiPaper-root-16 {
+    text-align: center;  
+    margin: 0 auto;
+}
+.drink_grid button { 
+    display: block;
+    /* margin: 0 0px 20px 0px; */
+}
+.profile_desc_main {
+    box-shadow: 0 3px 6px #ccc;
+    padding: 10px;
+}
+.drink_grid span:focus{
+	color: #fff !Important;
+}
+.btn-default.focus, .btn-default:focus{
+	color: #fff !important;
+}
+.dashboard_profile_description {
+    position: relative;
+    bottom: 40px;
+}
+
+.drink_grid {
+    position: relative;
+    top: 10px;
+}
+
+/**********Favorit Listing**************/
+
+.FavoriteListings .home_img{
+	border-radius: 0;
+}
+.FavoriteListings .profile_title {
+    background: #000;
+    float: left;
+    top: -52px;
+}
+.FavoriteListings .MuiGrid-item-143.MuiGrid-grid-xs-5-175{
+	    margin: 0 36px 0px 36px;
+}
+.FavoriteListings .profile_title h5{
+	padding: 0px;
+}
+.FavoriteListings .profile_title span{
+	width: 65px;
+}
+.FavoriteListings .main_roomates{
+	margin-bottom: 0;
+}
+/*********FavoriteRoommates*********/
+
+.FavoriteRoommates .home_img{
+	border-radius: 0;
+}
+.FavoriteRoommates .profile_title {
+    background: #000;
+    float: left;
+}
+.FavoriteRoommates .MuiGrid-item-143.MuiGrid-grid-xs-5-175{
+	    margin: 0 36px 0px 36px;
+}
+.FavoriteRoommates .profile_title h5{
+	padding: 0px;
+}
+
+.FavoriteRoommates .main_roomates{
+	margin-bottom: 0;
+}
+.FavoriteRoommates .room_finder_title h5{
+	font-size: 11px;
+}
+.FavoriteRoommates .main_roomates .MuiGrid-item-143{
+	    width: 180px;
+		 display: flex;
+     	margin: 0 50px 10px 50px;
+		text-align: center;
+		background: transparent;
+		float: left;
+}
+.FavoriteRoommates .room_finder_title h5{
+	bottom: 40px;
+}
+
+
+/*********Neighborhoods*************/
+
+
+.neighborhoods_banner {
+    background: url(./images/chicago.jpg);
+    display: -webkit-box;
+     display: block;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    bottom: 80px;
+    width: 100%;
+    float: left;
+    min-height: 400px;
+	max-height: 100%
+}
+
+.neighborhoods_title{
+	 margin: 0px;
+    text-align: left;
+      width: 100%%;
+}
+
+.neighborhoods_title h2{
+	font-size: 35px;
+    line-height: 45px;
+    font-weight: 600;
+    font-family: Montserrat;
+    color: #000000;
+    padding: 5px;
+    margin: 0;
+}
+
+.neighborhoods .MuiGrid-item-143 {
+       display: block !important;
+     margin: 0 !important;
+    float: left;
+    float: left;
+    width: 100%;
+    max-width: 99% !important;
+}
+
+.neighborhoods .profile_title {
+       background: #000;
+    position: relative;
+    top: -53px;
+    color: #fff;
+    padding-bottom: 10px;
+    /* box-shadow: 0 3px 6px #ccc; */
+    display: inline-block;
+    /* float: left; */
+    width: 100%;
+}
+
+.neighborhoods .profile_title span {
+      background: #fff;
+    color: #000;
+    font-size: 8px;
+     border-radius: 10px;
+    font-family: Montserrat;
+    font-weight: 600;
+    display: inline-block;
+    width: 70px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.neighborhoods {
+    position: relative;
+    bottom: 80px;
+}
+.neighborhoods .listing_map{
+	bottom: 20px;
+	    padding-left: 20px;
+}
+.neighborhoods #myMap{
+	height: 1116px !important;
+}
+
+.neighborhoods .MuiGrid-item-143.MuiGrid-grid-xs-5-175 img{
+	    width: 100%;
+		    
+}
+.main_roomates.neighborhoods{
+    margin: 0px auto;
+    text-align: center;
+    clear: both;
+    margin-bottom: 140px;
+    padding: 20px 0 0 0px;
+    margin-left: 0px;
+}
+.neighborhoods .MuiGrid-item-143:focus{
+	outline: none !important;
+}
+
+/***********Neighborhoods Slider**************/
+
+.slick-next, .slick-prev{
+	background: #F9790E;
+	color: #fff;
+	top: 37%;
+	z-index: 9;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+.slick-next:focus, .slick-next:hover, .slick-prev:focus, .slick-prev:hover{
+	background: #F9790E;
+	color: #fff;
+}
+.slick-next:before, .slick-prev:before{
+	font-size: 13px;
+	
+}
+.slick-next {
+    right: -10px;
+	z-index: 9;
+}
+.slick-prev {
+    left: -10px;
+	z-index: 9;
+}
+
+/**********AgentDashboard***********************/
+
+.agent_dasboard_header .MuiPaper-elevation4-22{
+	    box-shadow: none;
+}
+.agent_dasboard_header .MuiPaper-root-16{
+	background-color: unset;
+	
+}
+.agent_dasboard_header .MuiTypography-body1-85{
+	    background: #F9790E;
+}
+.agent_dashboard_bg {
+    background: #000;
+    position: relative;
+    width: 87.9%;
+    bottom: 58px;
+    overflow: hidden; 
+    padding: 0px 0px 0px 0px;
+   
+}
+.agent_dashboard_bg:after{
+	    position: relative;
+    border-right: 65px solid #fff;
+    border-top: 0px solid transparent;
+    border-bottom: 122px solid transparent;
+    content: " ";
+    display: block;
+}
+
+/************AgentProfile************/
+
+.agent_profile_dasboard_header .MuiPaper-elevation4-22{
+	    box-shadow: none;
+}
+.agent_profile_dasboard_header .MuiPaper-root-16{
+	background-color: unset;
+	
+}
+.agent_profile_dasboard_header .MuiTypography-body1-85{
+	    background: #F9790E;
+}
+.agent_profile_bg {
+    background: #000;
+    position: relative;
+    width: 84.4%;
+    bottom: 58px;
+    overflow: hidden; 
+    padding: 0px 0px 0px 0px;
+   
+}
+.agent_profile_bg:after{
+	    position: relative;
+    border-right: 65px solid #fff;
+    border-top: 0px solid transparent;
+    border-bottom: 122px solid transparent;
+    content: " ";
+    display: block;
+}
+.agent_profile_dasboard_header .col-sm-2.side_dashboard_profile_list{
+	    min-height: 80em;
+}
+
+/*************AgentMessage******************/
+
+.agent_msg_header .MuiPaper-elevation4-22{
+	    box-shadow: none;
+}
+.agent_msg_header .MuiPaper-root-16{
+	background-color: unset;
+	
+}
+.agent_msg_header .MuiTypography-body1-85{
+	    background: #F9790E;
+}
+.agent_msg_bg {
+    background: #000;
+    position: relative;
+    width: 87.9%;
+    bottom: 58px;
+    overflow: hidden; 
+    padding: 0px 0px 0px 0px;
+   
+}
+.agent_msg_bg:after{
+	    position: relative;
+    border-right: 65px solid #fff;
+    border-top: 0px solid transparent;
+    border-bottom: 122px solid transparent;
+    content: " ";
+    display: block;
+}
+
+.agent_msg_header .col-sm-2.side_dashboard_list{
+	    min-height: 1165px;
+	
+}
+
+/***********Agent Listing**************/
+
+.agent_listing_header .MuiPaper-elevation4-22{
+	    box-shadow: none;
+}
+.agent_listing_header .MuiPaper-root-16{
+	background-color: unset;
+	
+}
+.agent_listing_header .MuiTypography-body1-85{
+	    background: #F9790E;
+}
+.agent_listing_bg {
+    background: #000;
+    position: relative;
+    width: 84.4%;
+    bottom: 58px;
+    overflow: hidden; 
+    padding: 0px 0px 0px 0px;
+   
+}
+.agent_listing_bg:after{
+	    position: relative;
+    border-right: 65px solid #fff;
+    border-top: 0px solid transparent;
+    border-bottom: 122px solid transparent;
+    content: " ";
+    display: block;
+}
+
+.agent_listing_header .col-sm-2.side_dashboard_list{
+	    min-height: 1165px;
+	
+}
+
+/**************AgentInquires****************/
+.agent_inquries_bg {
+    background: #000;
+    position: relative;
+    width: 87.9%;
+    bottom: 58px;
+    overflow: hidden; 
+    padding: 0px 0px 0px 0px;
+   
+}
+.agent_inquries_bg:after{
+	    position: relative;
+    border-right: 65px solid #fff;
+    border-top: 0px solid transparent;
+    border-bottom: 122px solid transparent;
+    content: " ";
+    display: block;
+}
+
+input.search {
+    background-color: #EFEFEF;
+    color: #000000;
+    padding: 7px 5px 10px 10px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    width: 65%;
+    border-top: none;
+    border: none;
+    height: 40px;
+	outline: none !important;
+}
+.left_app_area {
+    margin: 0 5px 25px 30px;
+    float: left;
+    width: 50%;
+} 
+.right_app_area {
+    float: right;
+    margin: 0px 50px 0px 0px;
+}
+.applications_btn {
+    background-color: #F9790E !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    font-family: Montserrat !important;
+    border-top-left-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
+    border-top-right-radius: unset !important;
+    border-bottom-right-radius: unset !important;
+    width: 120px !important;
+	text-transform: uppercase !important;
+	
+}
+.applications_btn:focus{
+	outline: none !important;
+}
+.applications_btn span{
+ font-size: 0.875rem !important;
+}
+input.search::placeholder {
+    color: #000;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 10px;
+}
+.app_btns {
+    position: relative;
+    bottom: 30px;
+}
+.listing_btn {
+    background: #000 !important;
+    color: #fff !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    border: none !important;
+    border-top-left-radius: unset !important;
+    border-bottom-left-radius: unset !important;
+    padding: 0px 0px 0px 0px !important;
+    width: 120px !important;
+    font-family: Montserrat !important;
+    font-weight: 600 !important;
+	text-transform: uppercase !important;
+}
+.listing_btn:focus{
+	outline: none !important;
+}
+.listing_btn span{
+ font-size: 0.875rem !important;
+}
+
+.submit {
+    background-color: #000 !important;
+    color: #fff !important;
+    font-family: Montserrat !important;
+    font-weight: 600 !important;
+    border-radius: unset !important;
+    padding: 10px 5px 10px 5px !important;
+    font-size: 10px !important;
+    width: 20% !important;
+    height: 40px !important;
+    margin: 0 0 0 0px !important;
+	outline: none !important;
+	 border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+}
+
+.agent_inquiry_app_area {
+     top: 12px;
+     position: absolute;
+    right: 0;
+    float: right;
+    left: 0px;
+    text-align: right;
+     width: 125px;
+    left: 52px;
+}
+
+.agent_inquiry_app_area .applications_btn {
+    background-color: #F9790E !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    font-family: Montserrat !important;
+    border-top-left-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    width: 65px !important;
+    text-transform: capitalize !important;
+    padding: 0;
+    margin: 3px 0;
+    font-size: 10px;
+    min-height: 23px;
+	
+} 
+.agent_inquiry_app_area .inq_view_btn:focus{
+	outline: none;
+}
+.agent_inquiry_app_area .inq_view_btn {
+    background-color: #EFEFEF !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+    font-family: Montserrat !important;
+    border-top-left-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    width: 65px !important;
+    text-transform: capitalize !important;
+    padding: 0;
+    margin: 3px 0;
+    font-size: 10px; 
+    min-height: 23px;
+}
+
+.agent_inquiry_app_area .listing_btn {
+    background-color: #000 !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    font-family: Montserrat !important;
+    border-top-left-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    width: 65px !important;
+    text-transform: capitalize !important;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    min-height: 23px;
+}
+
+/*************Agent View Profile*****/
+.agent_view_app_area {
+    position: absolute;
+    top: 35%;
+    left: 20px;
+}
+
+/**************Footer*******************/
+.Footer {
+     position: relative;
+    bottom: 0px;
+    width: 100%;
+    clear: both;
+    min-height: 70px;
+	padding-top: 10px;
+}
+.left_footer {
+    float: left;
+    display: block;
+    width: 100%;
+    margin: 15px 0 0 15px;
+}
+.footer_menu ul {
+    margin: 15px 0;
+}
+.left_footer span {
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: bold;
+	font-size: 12px;
+}
+
+.footer_menu {
+      width: 100%;
+    text-align: right;
+} 
+
+.footer_menu ul li {
+    display: inline-block;
+	list-style: none;
+}
+.footer_menu ul li a {
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 10px 0px 0px;
+    font-size: 12px;
+    text-decoration: none;
+    border-right: 1px solid #fff;
+}
+.footer_menu ul li:last-child a{  
+	border-right: none;
+}
+.footer_menu ul li {
+    display: inline-block;
+    /* float: right; */
+    margin: 0px 5px 0px 5px;
+}
+.btn-default.focus, .btn-default span:focus{
+	color: #fff !important;
+}
+/***********responsive********/
+
+@media screen and (max-width: 767px) {
+	
+.banner_text_home{
+	    top: 45%;
+}
+	
+svg.MuiSvgIcon-root-56 {
+    font-size: 50px;
+	font-weight: bold;
+	color: #fff;
+}	
+.MuiMenuItem-root-387{
+	font-size: 15px;
+	color: #000;
+}
+.MuiPaper-root-14.MuiMenu-paper-70.MuiPaper-elevation8-24.MuiPaper-rounded-15.MuiPopover-paper-71 {
+    margin: 45px 0;
+}
+	.bg_banner{
+		    background-size: cover;
+	}
+.type_bedroom_list{
+	    text-align: center;
+    padding: 0px;
+    margin-bottom: -33px;
+    position: relative;
+    bottom: 0;
+    clear: both;
+	top: 10px;
+}
+.start_searct_title{
+	right: -18px;
+}
+.MuiGrid-container-140{
+	display: block !important;
+}
+.search_btn{
+	width: auto;
+}
+.first_sect_color{
+	    width: 100%;
+    min-height: 240px;
+}
+.home_first_sect_img img{
+	 height: auto;
+    width: 100% !important;
+}
+.second_sect_color{
+	width: 100%;
+    min-height: 240px;
+	left: 0;
+	margin: 20px 0;
+}
+.home_second_sect_img img{
+	 height: auto;
+    width: 100% !important;
+}
+
+.home_head_title h2{
+	font-size: 20px;
+}
+.home_looking_list{
+	    font-size: 28px;
+    top: 15px;
+}
+
+.inner_home_looking_list{
+	top: 140px;
+	padding: 0 0px 25px 0;
+}
+.col-lg-12.home_fourth_section {
+        float: left;
+    display: block;
+    margin: 0;
+    width: 100%;
+}
+.home_fourth_section .forth_sect_left{
+	position: relative;
+    left: 0;
+     padding: 0px;
+    float: left;
+    display: block;
+    min-height: 100%;
+    top: 0;
+     margin: 0px;
+}
+.rent_list li{
+	color: #fff;
+    font-family: Montserrat;
+    font-size: 65px;
+    font-weight: 600;
+    position: relative;
+    padding: 0;
+    text-align: left;
+    content: ".";
+    left: 45px;
+    right: 0;
+    line-height: 23px;
+    margin: 0px 5px 5px 5px;
+    top: 10px;
+	
+}
+.rent_list li:before{
+	font-size: 60px;
+}
+ul.rent_list {
+    margin: 20px 0 0;
+    padding: 0px 0 0 0;
+}
+.rent_list span {
+    margin: 0px 0px 0px 0px;
+    padding: 0;
+    position: absolute;
+    bottom: 0px;
+    font-size: 11px;
+    color: #000;
+    display: -webkit-box;
+    width: 100%;
+    top: 2px;
+}
+.list_property_desc p{
+	display: none;
+}
+.list_property_desc button {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    bottom: 60px;
+}
+.fourth_sect_bg{
+	  position: relative;
+    z-index: -9;
+    right: 0px;
+    text-align: left;
+    float: left;
+    width: 100%;
+    right: 0;
+    left: 0;
+    /* display: none; */
+    height: 25px;
+    /* display: none; */
+    visibility: hidden;
+}
+.fourth_sect_bg img {
+    float: left;
+    width: 100%;
+}
+.home_fourth_section .forth_sect_right{
+	 padding: 0px;
+    right: 0px;
+    float: left;
+    width: 100%;
+    position: relative;
+    top: 0;
+    display: block;
+     margin: 0px 0 50px 0;
+    
+}
+.home_inner_fourth_box p{
+	    font-size: 12px;
+    color: #000;
+    text-align: center;
+}
+.get_started_title{
+	font-size: 42px !important;
+}
+.search_btn{
+	    width: 100% !important;
+		text-align: center !important;
+}
+.start_searct_title{
+	font-size: 35px;
+     top: 115px;
+}
+.home_head_title{
+	    margin: 20px 0px 10px 0px;
+}
+.roommate_profile_text h2{
+	    font-size: 21px;
+		float: left;
+}
+.col-sm-3.side_profile {
+    padding: 0 0 0 8px;
+    margin: 30px 0;
+}
+.profile_head_title h2{
+    font-size: 21px;
+    line-height: 30px;
+    
+}
+.roommateProfile .MuiPaper-elevation2-20 img {
+    width: 100%;
+}
+.roommateProfile .MuiGrid-item-143{
+	 display: block;
+    width: auto;
+    margin: 0 25px 10px 15px;
+    text-align: center;
+    background: transparent;
+    float: left;
+}
+.roommateProfile .MuiPaper-elevation2-20 img {
+    width: 150px;
+}
+.profile_description p{
+	padding: 10px;
+}
+.check_home_title h2{
+	 font-size: 21px;
+    line-height: 23px;
+}
+img.profile_suggest_img {
+    border-radius: 50%;
+    box-shadow: 0 8px 8px #ccc;
+    width: 100%;
+    margin: 0 25px 0 25px;
+}
+.banner_text_roomate_profile{
+	top: 25%;
+}
+.banner_text_roomate_profile h2{
+	    font-size: 21px;
+    line-height: 22px;
+    font-weight: 400;
+    font-family: Happy Monkey;
+    text-shadow: 0px 3px 5px #000;
+    padding: 15px;   
+}
+.type_of_person{
+	top: 175px;
+}
+.main_roomates{
+	   margin: 0px auto;
+    text-align: center;
+    clear: both;
+    margin-bottom: 140px;
+    padding: 25px 0 0 23px; 
+    margin-left: 20px;
+}
+.room_finder_title h5{
+	font-size: 10px;
+}
+.MuiGrid-item-143.MuiGrid-grid-xs-5-175{
+	    margin: 0 25px 0px 22px;
+}
+.next_pre .numbers{
+	margin: 0px 10px 10px 10px;
+}
+.next_pre button {
+       background-color: #F9790E !important;
+    margin: 10px 10px 23px 0px;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 13px;
+    width: 100%;
+    height: 42px;
+}
+
+
+.next_pre {
+    margin: 0 35px 0 0;
+}
+.view_more {
+    width: 100%;
+    margin: 0 0 100px 0;
+}
+.view_more button{
+	 margin: 0 auto;
+    width: 85%;
+    float: left;
+}
+.roommatefinder_result .MuiGrid-item-143{
+	margin: 15px 17px 34px 18px; 
+}
+
+.banner_text h2{
+	font-size: 25px;
+    line-height: 22px;
+    font-weight: 600;
+    font-family: Happy Monkey;
+    text-shadow: 0px 3px 5px #000;
+    padding: 15px;
+	
+}
+.listing_banner .banner_text{
+	top: 25%;
+}
+.listing_banner .MuiGrid-item-143{
+	margin: 15px auto;
+}
+.listing_page .MuiPaper-elevation2-20{
+	 width: 230px !important;
+    display: block !important;
+	margin: 0 auto !important;
+}
+.main_roomates.listing_page {
+    text-align: left;
+    width: 100%;
+    clear: both;
+    margin: 15px auto;
+    padding: 0px;
+}
+.listing_page img {
+    width: 100%;
+}
+
+.listing_map {
+       position: relative;
+    bottom: 80px;
+    clear: both;
+    width: -webkit-fill-available;
+    top: 30px;
+}
+
+.listing_page .next_pre .numbers{
+	margin: 10px 10px 10px 20px;
+}
+.listing_page .next_pre button {
+       background-color: #F9790E !important;
+    margin: 10px 0px 10px 0px;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 13px;
+    width: 100%;
+    height: 42px;
+}
+div#myMap {
+    width: 100% !important;
+}
+
+.listing_page .next_pre {
+    margin: 0 35px 0 0;
+	display: block;
+    width: 100%;
+}
+
+.listing_page .MuiGrid-item-143{
+	    margin: 0 auto;
+    clear: both;
+    width: 100% !important;
+    display: contents;
+}
+.welcome_haed h2{
+	font-size: 21px;
+	padding: 5px;
+}
+.dashboard_profile_grid .MuiGrid-item-143{
+	 display: block;
+    width: 90%;
+    margin: 16px auto;
+    min-height: 170px;
+}
+.drink_grid button {
+    display: block;
+    margin: 15px auto;
+}
+
+.dash_profile_desc h2 {
+    text-align: center;
+    font-size: 25px;
+}                                                
+
+.dashboard_profile_grid h2 {
+    color: #000;                   
+    font-weight: bold;
+    font-family: Montserrat;
+    font-size: 25px;
+    text-align: center;
+} 
+.dashboard_bg {
+    background: #F9790E;
+    position: relative;
+    width: 100%;
+    bottom: 58px;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px;
+    margin: 0 auto;
+}  
+.agent_dashboard_bg{
+    background: #000;
+    position: relative;
+    width: 100%;
+    bottom: 58px;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px;
+    margin: 0 auto;
+}  
+.agent_profile_bg{
+    background: #000;
+    position: relative;
+    width: 100%;
+    bottom: 58px;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px;
+    margin: 0 auto;
+}  
+
+
+.welcome_sub_title h2{
+	font-size: 18px;
+}
+.dashboard_bedroom_list .inner_bed{
+    margin: 0 0 120px 0;
+    padding: 0 0 100px 0;	
+}
+.col-sm-2.side_dashboard_list_mobile{
+	    background: #EFEFEF;
+    position: relative;
+    bottom: 0px;
+   padding-top: 15px;
+    padding-bottom: 0;
+    min-height: 400px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+	top: 20px;
+}
+
+.dashboard_profile_page .col-sm-2.side_dashboard_list_mobile{
+	    bottom: 65px;
+}
+.mobile_sidebar_profile {
+    bottom: 40px;
+}
+.dashboard_profile_description {
+    position: relative;
+    bottom: 80px;
+}
+.side_dashboard_list_desktop{
+	display: none;
+}
+
+.dashboard_profile_bg{
+	width: 100%;
+}
+.desktop_dashboard_sidebar_profile{
+	display: none;
+}
+
+.desktop_sidebar_profile{
+	display: none;
+}
+.type_of_person button{
+	padding: 0px;
+	min-width: 165px;
+}
+.MuiButton-label-102{
+	width: auto !important;
+}
+
+.msg_profile_section span{
+	float: left;
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 7px;
+    font-weight: 600;
+    text-align: center;
+    margin: 2px 0px 0px 8px;
+}
+.msg_profile_section {
+    float: left;
+    width: 18%;
+}
+.msg_dashbaord_sidebar .MuiGrid-item-143{
+	    border-right: 1px solid #EFEFEF;
+}
+.msg_box{
+	    border: 1px solid #eee;
+    position: relative;
+    bottom: 10px;
+    padding: 10px;
+    margin: 10px;
+    /* box-shadow: 0 3px 6px #ccc; */
+    border: 1px solid #EFEFEF
+}
+input.type_msg{
+	width: 75%;
+} 
+.side_dashboard_list_mobile .MuiPaper-elevation2-20 {
+    padding: 0;
+}
+
+.dashboardmessage .col-sm-2.side_dashboard_list_mobile {
+    background: #EFEFEF;
+    position: relative;
+    bottom: 40px;
+    padding-top: 15px; 
+    padding-bottom: 0;
+    min-height: 375px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+ .FavoriteListings .col-sm-2.side_dashboard_list_mobile{
+	     background: #EFEFEF;
+    position: relative;
+    bottom: 30px;
+    padding-top: 15px;
+    padding-bottom: 0;
+    min-height: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+ }
+ 
+ .FavoriteRoommates .col-sm-2.side_dashboard_list_mobile{
+	   
+    bottom: 30px;
+   
+    margin: 5px auto;
+}
+ 
+.neighborhoods .MuiGrid-item-143.MuiGrid-grid-xs-5-175{
+	max-width: 100%;
+	display: block;
+			padding: 0;
+			margin: 0;
+}
+.neighborhoods .MuiGrid-item-143.MuiGrid-grid-xs-5-175 img{
+	    width: -webkit-fill-available;
+		    
+}
+.neighborhoods_title h2{
+	font-size: 22px;
+	text-align: center;
+}
+.neighborhoods .profile_title h5{
+	font-size: 11px;
+    font-family: Montserrat;
+    color: #fff;
+    font-weight: 600;
+    padding: 0px;
+    text-align: center;
+    margin: 5px;
+}
+.neighborhoods .profile_title span {
+    background: #fff;
+    color: #000;
+    font-size: 5px;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-weight: 600;
+    display: inline-block;
+    width: 60px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin: 0 5px 2px 0;
+}
+.slick-next, .slick-prev {
+    background: #F9790E;
+    color: #fff;
+    top: 33%;
+    z-index: 9;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+.agent_profile_dasboard_header .col-sm-2.side_dashboard_list_mobile{
+	    bottom: 60px;
+		min-height: 400px;
+}
+.agent_msg_header .col-sm-2.side_dashboard_list_mobile {
+    background: #EFEFEF;
+    position: relative;
+    bottom: 40px;
+    padding-top: 15px; 
+    padding-bottom: 0;
+    min-height: 375px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}  
+.agent_msg_bg{
+	width: 100%;
+}
+
+.agent_listing_header .col-sm-2.side_dashboard_list_mobile{
+	    bottom: 60px;
+		min-height: 400px;
+}
+
+.agent_listing_header .col-sm-2.side_dashboard_list_mobile {
+    background: #EFEFEF;
+    position: relative;
+    bottom: 40px;
+    padding-top: 15px; 
+    padding-bottom: 0;
+    min-height: 375px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+.agent_listing_bg{
+	width: 100%;
+}
+
+.left_app_area {
+    margin: 10px 5px 25px 30px;
+    float: left;
+    width: 100%;
+}
+.right_app_area {
+    float: right;
+    margin: 0 auto;
+    width: 85%;
+}
+.agent_inquries_bg{
+	width: 100%;
+}
+.togle_mobile_menu {
+    position: absolute;
+    /* bottom: 16px; */
+    z-index: 99999999999999;
+    top: 30px;
+	display: block;
+}
+.side_dashboard_list_mobile .MuiPaper-root-16 {
+    padding: 0;
+}
+
+.agent_dasboard_header span.MuiSwitch-root-239 {
+    background: #eee;
+	border-radius: 50%;
+}
+.FavoriteRoommates span.MuiSwitch-root-239 {
+    background: #eee;
+	border-radius: 50%;
+}
+.agent_msg_header span.MuiSwitch-root-239 {
+    background: #eee;
+	border-radius: 50%;
+}
+#long-menu ul li {
+    background-color: #F9790E;
+    color: #fff;
+    padding: 5px 0px 5px 10px;
+    margin: 0px 0px 5px 0;
+     text-align: left;
+	 text-transform: uppercase;
+}
+#long-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    float: left;
+    font-size: 11px;
+    font-family: Montserrat;
+    font-weight: 600;
+	min-width: auto;
+}
+#long-menu ul li button{
+	color: #fff;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    float: left;
+    font-size: 11px;
+    font-family: Montserrat; 
+    font-weight: 600;
+	min-width: auto;
+}    
+ul.MuiList-root-265.MuiList-padding-266 {
+    padding: 0px;
+}
+.MuiPaper-root-14.MuiMenu-paper-70 {
+    min-height: 290px !important;
+    height: auto;
+}
+.MuiDialog-paper-132{
+	margin: 20px !important;
+}
+.footer_menu {
+    width: 100%;
+    text-align: center;
+    float: left;
+}
+.Footer .footer_inner {
+    min-height: 150px !important;
+	display: block !important;
+}
+.left_footer {
+    float: left;
+    display: block;
+    width: 100%;
+    margin: 15px 0 0 15px;
+    text-align: center;
+}
+.main_roomates.neighborhoods{
+	    margin: 0px auto;
+    text-align: center;
+    clear: both;
+    margin-bottom: 0;
+    padding: 20px 0 0 0px;
+    margin-left: 0px;
+}
+
+.neighborhoods {
+    position: relative; 
+    bottom: 40px;
+}
+.neighborhoods .Footer{ 
+	margin: 0px !important;
+}
+ 
+  
+}
