@@ -1,9 +1,10 @@
 {
-  "version": 2,
+  "version": 3,
   "name": "realestate",
-  "builds": [
-    {"src": "package.json", "use": "@now/static-build", "config": {"distDir": "build"}}
-  ],
+  "env": {
+      "NODE_PATH": "src",
+    },
+    "alias": "flat-app",
   "routes": [
     {"src": "/static/(.*)", "headers": {"cache-control": "s-maxage=31536000,immutable"}, "dest": "/static/$1"},
     {"src": "/favicon.ico", "dest": "/favicon.ico"},
