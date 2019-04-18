@@ -1,8 +1,13 @@
 {
-  "version": 2,
-  "name": "flat-app",
-  "alias": "flat-app",
-  "routes": [
+    "version": 2,
+    "name": "flat-app",
+    "env": {
+        "NODE_PATH": "src",
+        "REACT_APP_DEV_API_HOST": "https://arrangement-server.herokuapp.com",
+        "REACT_APP_PROD_API_HOST": "https://arrangement-server.herokuapp.com"
+    },
+    "alias": "arrange.space",
+    "routes": [
         {
             "src": "^/static/(.*)",
             "headers": { "cache-control": "s-maxage=31536000,immutable" },
