@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { register_user } from '../actions/user';
+// import { register_user } from '../actions/user';
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 
@@ -95,11 +95,11 @@ class SignupProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-    loggedInUser: state.app.user,
-    message:state.app.message
+    // loggedInUser: state.app.user,
+    // message:state.app.message
 });
 const mapDispatchToProps = {
-    register: register_user.request
+    // register: register_user.request
 };
 SignupProvider = withRouter(connect(mapStateToProps, mapDispatchToProps)(SignupProvider));
 

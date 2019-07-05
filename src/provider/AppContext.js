@@ -13,29 +13,29 @@ class AppProvider extends Component {
         loggedInUser: null,
         isLoading: true,
     }
-  
+
     componentDidMount = () => {
         // if(localStorage.getItem("kc_username")!==""){
-       // this.props.getUserByEmail({ 'payload': localStorage.getItem("email") });
+        // this.props.getUserByEmail({ 'payload': localStorage.getItem("email") });
         // }
     }
     static getDerivedStateFromProps(props, state) {
-        
-            if (props.loggedInUser !== state.loggedInUser) {
-                
-                return {
-                    loggedInUser: props.loggedInUser,
-                    isLoading: false
 
-                };
-            }
+        if (props.loggedInUser !== state.loggedInUser) {
+
+            return {
+                loggedInUser: props.loggedInUser,
+                isLoading: false
+
+            };
+        }
         return null;
     }
     render() {
         return (
             <AppContext.Provider value={{
                 state: this.state
-             }}>
+            }}>
                 {this.props.children}
             </AppContext.Provider>
         )
@@ -43,12 +43,20 @@ class AppProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-    loggedInUser:state.app.user
+    // loggedInUser: state.authentication
+    loggedInUser:state.authentication.user
 });
+// function mapStateToProps(state) {
+//     const { user } = state.authentication;
+//     // const { type, message } = state.alert;
+//     return {
+//         user
+//     };
+// }
 
 AppProvider = withRouter(connect(mapStateToProps, {
-   // getUserByEmail: get_user_by_email.request
- 
+    // getUserByEmail: get_user_by_email.request
+
 })(AppProvider));
 
 export default AppProvider
