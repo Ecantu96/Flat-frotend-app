@@ -4,11 +4,12 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { theme } from "../constants/styles";
 import LoginPage  from "../components/login/LoginPage";
 import  RegisterPage  from "../components/login/RegisterPage";
+import  RelatorsRegsiter  from "../components/login/RelatorsRegsiter";
 import  LookingRoommate  from "../components/login/LookingRoommate";
 import  LookingInRoommates  from "../components/login/LookingInRoommates";
 import  DoYouDrink  from "../components/login/DoYouDrink";
@@ -47,6 +48,7 @@ const AppRoutes = () => {
               <Route exact path="/" component={  AppContainer} />
               <Route  path="/login" component={  LoginPage} />
               <Route  path="/register" component={  RegisterPage } />
+              <Route  path="/RelatorsRegsiter" component={  RelatorsRegsiter } />
               <Route  path="/LookingRoommate" component={  LookingRoommate } />
               <Route  path="/LookingInRoommates" component={  LookingInRoommates } />
               <Route  path="/DoYouDrink" component={  DoYouDrink } />
@@ -71,8 +73,8 @@ const AppRoutes = () => {
 			   <Route  path="/AgentListings" component={  AgentListings } />
 			   <Route  path="/AgentInquiries" component={  AgentInquiries } />
 			   <Route  path="/AgentViewProfile" component={  AgentViewProfile } />
-		 	   <Route path="/allUser" component={ allUser } /> 
-			</Switch>
+			   <Route  path="/allUser" component={  allUser } />  
+			 </Switch>
         </Router>
         <ToastContainer />
 

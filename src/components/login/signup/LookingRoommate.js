@@ -1,12 +1,12 @@
 import React from 'react';
 import {styles} from '../../../constants/styles';
 import { withStyles } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
+//import Chip from '@material-ui/core/Chip';
 //import Paper from '@material-ui/core/Paper';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
+//import TagFacesIcon from '@material-ui/icons/TagFaces';
+//import { Link } from 'react-router-dom';
+//import { connect } from 'react-redux';
+//import Button from '@material-ui/core/Button';
 
 class LookingRoommate extends React.Component {
 	
@@ -41,7 +41,7 @@ class LookingRoommate extends React.Component {
       } 
     
     render(){
-        const { classes } = this.props;
+        //const { classes } = this.props;
 
         return (
          <div>   

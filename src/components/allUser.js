@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
 
-import {register_user, login} from  '../actions/user';
+import {register_user} from  '../actions/user';
 
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -12,10 +12,10 @@ import ButtonAppBar from '../components/TopBar';
 import FooterBar from "../components/FooterBar";
 import AppProvider from "../provider/AppContext";
 import { AppContext } from '../provider/AppContext';
-import {Welcome} from "../components/Welcome";
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
+//import {Welcome} from "../components/Welcome";
+//import Button from '@material-ui/core/Button';
+//import PropTypes from 'prop-types';
+//import IconButton from '@material-ui/core/IconButton';
 //import SignupProvider, { SignupContext } from '../provider/SignupContext';
 //import  { user_register } from '../provider/user';
 
@@ -65,9 +65,9 @@ class allUser extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { fetching,user } = state.app;
+    const { user } = state.app;
     return {
-        fetching,
+        
         user,
 		
     };

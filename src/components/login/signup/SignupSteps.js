@@ -1,7 +1,7 @@
 import {styles} from '../../../constants/styles';
 import React from 'react';
-import PropTypes from 'prop-types';
-import DialogTitle from '@material-ui/core/DialogTitle';
+//import PropTypes from 'prop-types';
+//import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,8 +13,10 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SignupProvider, { SignupContext } from '../../../provider/SignupContext';
 //import { LoginPage } from './LoginPage';
 //import RegisterPage from '../RegisterPage';
-import LookingRoommate from '../signup/LookingRoommate';
-function SignupSteps(props) {
+
+//import LookingRoommate from '../signup/LookingRoommate';
+//import allUser from '../../../components/allUser';
+function SignupSteps(props) { 
   
         const { classes, theme,...other } = props;
       // const { activeStep } = this.state;

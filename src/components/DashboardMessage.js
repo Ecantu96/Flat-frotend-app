@@ -4,16 +4,13 @@ import { AppContext } from '../provider/AppContext';
 import AppProvider from "../provider/AppContext";
 import ButtonAppBar from '../components/TopBar';
 import FooterBar from '../components/FooterBar';
-//import './font-awesome.min.css';
-import {Welcome} from "../components/Welcome";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
-import Fade from '@material-ui/core/Fade';
 import Zoom from '@material-ui/core/Zoom';
   
 const styles = theme => ({
@@ -38,7 +35,7 @@ class DashboardMessage extends React.Component {
 	
 	render() {
 	 
-    const {classes, fetching , errorMessage, loggedInUser} = this.props;
+    const {classes} = this.props;
     const { checked } = this.state;
     return (
 	
@@ -114,7 +111,7 @@ class DashboardMessage extends React.Component {
 								<Grid className="main_side" item xs={1}>
 									<Paper className={classes.paper}>
 									<div className="msg_profile_section">
-									<img style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
+									<img alt="" style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
 									<span>NOW</span>
 									</div>
 									<div className="msg_details">
@@ -127,7 +124,7 @@ class DashboardMessage extends React.Component {
 								<Grid className="main_side_shild" item xs={1}>
 									<Paper className={classes.paper}>
 									<div className="msg_profile_section">
-									<img style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/profile-3.jpg')} />
+									<img alt="" style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/profile-3.jpg')} />
 									<span>11/8/2018</span>
 									</div>
 									<div className="msg_details">
@@ -141,7 +138,7 @@ class DashboardMessage extends React.Component {
 								<Grid className="main_side_shild" item xs={1}>
 									<Paper className={classes.paper}>
 									<div className="msg_profile_section">
-									<img style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
+									<img alt="" style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
 									<span></span>
 									</div>
 									<div className="msg_details">
@@ -154,7 +151,7 @@ class DashboardMessage extends React.Component {
 								<Grid className="main_side_shild" item xs={1}>
 									<Paper className={classes.paper}>
 									<div className="msg_profile_section">
-									<img style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/profile-3.jpg')} />
+									<img alt="" style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/profile-3.jpg')} />
 									<span></span>
 									</div>
 									<div className="msg_details">
@@ -167,7 +164,7 @@ class DashboardMessage extends React.Component {
 								<Grid className="main_side_shild" item xs={1}>
 									<Paper className={classes.paper}>
 									<div className="msg_profile_section">
-									<img style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
+									<img alt="" style={{ width: '50px', height: '50px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
 									<span></span>
 									</div>
 									<div className="msg_details">
@@ -187,7 +184,7 @@ class DashboardMessage extends React.Component {
 							<div className="msg_left">
 								<Typography variant="body2" style={{ backgroundColor: '#EFEFEF', }} >cidunt pellentesque. Duis tortor metus, lobortis sit amet justo a, mollis gravida justo. Nam consequat suscipit dui…
 								</Typography>
-							<img style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
+							<img alt="" style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
 							<span>Jeffrey</span>
 						    </div>
 							<span className="time_stamp">Timestap each day</span>
@@ -195,14 +192,14 @@ class DashboardMessage extends React.Component {
 								<Typography variant="body2" style={{ backgroundColor: '#F9790E', }} >cidunt pellentesque. Duis tortor metus, lobortis sit amet justo a, mollis gravida justo. Nam consequat suscipit dui…
 								</Typography>
 								<span>Me</span>
-								<img style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile2.png')} />
+								<img alt="" style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile2.png')} />
 								
 						    </div>
 							<span className="time_stamp">Timestap each day</span>
 							<div className="msg_left">
 								<Typography variant="body2" style={{ backgroundColor: '#EFEFEF', }} >cidunt pellentesque. Duis tortor metus, lobortis sit amet justo a, mollis gravida justo. Nam consequat suscipit dui…
 								</Typography>
-								<img style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
+								<img alt="" style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
 								<span>Jeffrey</span>
 						    </div>
 							
@@ -210,13 +207,13 @@ class DashboardMessage extends React.Component {
 								<Typography variant="body2" style={{ backgroundColor: '#F9790E', }} >cidunt pellentesque. Duis tortor metus, lobortis sit amet justo a, mollis gravida justo. Nam consequat suscipit dui…
 								</Typography>
 								<span>Me</span>
-								<img style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile2.png')} />
+								<img alt="" style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile2.png')} />
 						    </div>
 							
 							<div className="msg_left">
 								<Typography variant="body2" style={{ backgroundColor: '#EFEFEF', }} >cidunt pellentesque. Duis tortor metus, lobortis sit amet justo a, mollis gravida justo. Nam consequat suscipit dui…
 								</Typography>
-								<img style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
+								<img alt="" style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
 								<span>Jeffrey</span>
 						    </div>
 							
@@ -224,13 +221,13 @@ class DashboardMessage extends React.Component {
 								<Typography variant="body2" style={{ backgroundColor: '#F9790E', }}>cidunt pellentesque. Duis tortor metus, lobortis sit amet justo a, mollis gravida justo. Nam consequat suscipit dui…
 								</Typography>
 								<span>Me</span>
-								<img style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile2.png')} />
+								<img alt="" style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile2.png')} />
 						    </div>
 							
 							<div className="msg_left">
 								<Typography variant="body2" style={{ backgroundColor: '#EFEFEF', }}>cidunt pellentesque. Duis tortor metus, lobortis sit amet justo a, mollis gravida justo. Nam consequat suscipit dui…
 								</Typography>
-								<img style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
+								<img alt="" style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile_1.png')} />
 								<span>Jeffrey</span>
 						    </div>
 							
@@ -238,7 +235,7 @@ class DashboardMessage extends React.Component {
 								<Typography variant="body2" style={{ backgroundColor: '#F9790E', }}>cidunt pellentesque. Duis tortor metus, lobortis sit amet justo a, mollis gravida justo. Nam consequat suscipit dui…
 								</Typography>
 								<span>Me</span>
-								<img style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile2.png')} />
+								<img alt="" style={{ width: '30px', height: '30px' }} className="msg_picture"  src={require('./images/msg_profile2.png')} />
 						    </div>
 							
 						<div className="message_btns">
@@ -270,8 +267,8 @@ class DashboardMessage extends React.Component {
 }
 
 const mapStateToPropsN = state => ({
-  fetching: state.app.fetching,
-  errorMessage: state.app.error
+  //fetching: state.app.fetching,
+ // errorMessage: state.app.error
   //loggedInUser:state.app.user
 });
 

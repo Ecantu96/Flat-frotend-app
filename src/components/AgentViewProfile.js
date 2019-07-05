@@ -4,11 +4,8 @@ import { AppContext } from '../provider/AppContext';
 import AppProvider from "../provider/AppContext";
 import ButtonAppBar from '../components/TopBar';
 import FooterBar from '../components/FooterBar';
-//import './font-awesome.min.css';
-import {Welcome} from "../components/Welcome";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
@@ -29,7 +26,7 @@ class AgentViewProfile extends React.Component {
 		
 	render() {
 	 
-    const {classes, fetching , errorMessage, loggedInUser} = this.props;
+    const {classes} = this.props;
     debugger;
     return (
 	
@@ -90,7 +87,7 @@ class AgentViewProfile extends React.Component {
 		</div>
 			<div className="col-sm-3 side_profile">
 			<Grid item xs={1}>
-							<Paper className={classes.paper}><a href="#"><img style={{ width: '320px' }}  src={require('./images/Wildlike2.png')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" style={{ width: '320px' }}  src={require('./images/Wildlike2.png')} /></a>
 							<div className="profile_variants">
 							<h5>Joe White</h5>
 							<span className="squre_box">Age: 24</span>
@@ -109,9 +106,9 @@ class AgentViewProfile extends React.Component {
 							</div>
 							<div className="pro_social_media">
 							<ul>
-								<li><a href="#">f</a></li>
-								<li><a href="#">t</a></li>
-								<li><a href="#">L</a></li>
+								<li><a href="/">f</a></li>
+								<li><a href="/">t</a></li>
+								<li><a href="/">L</a></li>
 							</ul> 
 							
 							
@@ -166,28 +163,28 @@ class AgentViewProfile extends React.Component {
 				
 					<div className="row">
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img  src={require('./images/roommate_pr_picture.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
 							
 							</Paper>
 							
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img  src={require('./images/roommate_pr_picture.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
 														
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img  src={require('./images/roommate_pr_picture.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
 							
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img  src={require('./images/roommate_pr_picture.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
 							
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img  src={require('./images/roommate_pr_picture.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
 							
 							</Paper>
 						   </Grid>
@@ -238,28 +235,28 @@ class AgentViewProfile extends React.Component {
 				<React.Fragment>
 					<div className="row">
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 							
 							</Paper>
 							
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 														
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 							
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 							
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 							
 							</Paper>
 						   </Grid>
@@ -289,16 +286,11 @@ class AgentViewProfile extends React.Component {
 
 }
 
-const mapStateToPropsN = state => ({
-  fetching: state.app.fetching,
-  errorMessage: state.app.error
-  //loggedInUser:state.app.user
-});
 
 
 //export default withTheme()(RoommateFinderResultVariationTwo);
 
 
-AgentViewProfile = connect(mapStateToPropsN)(AgentViewProfile);
+AgentViewProfile = connect(AgentViewProfile);
 
 export default withStyles(styles)(AgentViewProfile);

@@ -1,14 +1,12 @@
 import React from 'react';
-import Neighborhoods  from "../components/Neighborhoods";
-import Listing  from "../components/Listing";
 import PropTypes from 'prop-types';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppContainer from "../container/AppContainer";
-import './main.css';
+import './css/footer.css';
 
-const ITEM_HEIGHT = 48;
+//const ITEM_HEIGHT = 48;
 
 const styles = {
   root: {
@@ -34,14 +32,14 @@ const styles = {
 
 class FooterBar extends React.Component {
   state = {
-    open: false,
+    //open: false,
    // selectedValue: emails[1],
-   anchorEl: null,
+   //anchorEl: null,
   };
 
    render() {
-	 const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+	 //const { anchorEl } = this.state;
+    //const open = Boolean(anchorEl);
 	const { classes } = this.props;
   
     return (

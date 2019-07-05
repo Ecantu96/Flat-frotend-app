@@ -5,15 +5,15 @@ import AppProvider from "../provider/AppContext";
 import ButtonAppBar from '../components/TopBar';
 import FooterBar from '../components/FooterBar';
 //import './font-awesome.min.css';
-import {Welcome} from "../components/Welcome";
+//import {Welcome} from "../components/Welcome";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
-import Fade from '@material-ui/core/Fade';
+//import Fade from '@material-ui/core/Fade';
 import Zoom from '@material-ui/core/Zoom';
   
 const styles = theme => ({
@@ -37,7 +37,7 @@ class AgentInquiries extends React.Component {
 	  };
 	render() {
 	 
-    const {classes, fetching , errorMessage, loggedInUser} = this.props;
+    const {classes} = this.props;
     const { checked } = this.state;
     return (
 	
@@ -124,7 +124,7 @@ class AgentInquiries extends React.Component {
 				<React.Fragment>
 					<div className="row">
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
 							<div className="agent_inquiry_app_area">
 								<Button data-toggle="tab" data-target="#page3" className="dashboard_btn active btn btn-default btn-sm applications_btn">Accept</Button>
 				                <Button data-toggle="tab" data-target="#page4" className="dashboard_btn active btn btn-default btn-sm listing_btn"> Decline</Button>
@@ -142,7 +142,7 @@ class AgentInquiries extends React.Component {
 							
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
 							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
 							<div className="profile_title">
 							
@@ -156,7 +156,7 @@ class AgentInquiries extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
 							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
 							<div className="profile_title">
 						
@@ -170,7 +170,7 @@ class AgentInquiries extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
 							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
 							<div className="profile_title">
 							
@@ -189,7 +189,7 @@ class AgentInquiries extends React.Component {
 					<div className="row">
 						  
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
 							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
 							<div className="profile_title">
 							
@@ -204,7 +204,7 @@ class AgentInquiries extends React.Component {
 						  </Grid>
 						  
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
 							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
 							<div className="profile_title">
 							
@@ -219,7 +219,7 @@ class AgentInquiries extends React.Component {
 						  </Grid>
 						  
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
 							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
 							<div className="profile_title">
 							
@@ -234,7 +234,7 @@ class AgentInquiries extends React.Component {
 						  </Grid>
 						  
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
 							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
 							<div className="profile_title">
 							
@@ -279,8 +279,8 @@ class AgentInquiries extends React.Component {
 }
 
 const mapStateToPropsN = state => ({
-  fetching: state.app.fetching,
-  errorMessage: state.app.error
+ // fetching: state.app.fetching,
+  //errorMessage: state.app.error
   //loggedInUser:state.app.user
 });
 

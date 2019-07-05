@@ -1,6 +1,7 @@
 import React from 'react';
+//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {login} from '../../actions/user'; 
+import {register_user} from  '../../actions/user';
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonAppBar from '../../components/TopBar';
@@ -8,20 +9,18 @@ import FooterBar from "../../components/FooterBar";
 import AppProvider from "../../provider/AppContext";
 import { AppContext } from '../../provider/AppContext';
 //import Button from '@material-ui/core/Button';
-//import IconButton from '@material-ui/core/IconButton';
 import '../css/guest.css';
 
-class LoginPage extends React.Component {
+class RelatorsRegsiter extends React.Component {
     constructor(props) {
         super(props);
 
-        // reset login status
-      //  this.props.dispatch(userActions.logout());
-
         this.state = {
-            username: '',
-            password: '',
-            submitted: false
+             
+                username: '',
+                password: '',
+				licenseNumber: '',
+                submitted: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -37,16 +36,18 @@ class LoginPage extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { username, password } = this.state;
-        if (username && password) {
-            this.props.login({'payload':{username, password}})
+       const { username, password, licenseNumber } = this.state;
+        //const { dispatch } = this.props;
+        if ( username && password && licenseNumber ) {
+            //dispatch(register_user.register(user));
+			this.props.register_user({'payload':{username, password, licenseNumber}})
         }
     }
 
     render() {
         const { user } = this.props;
 		
-        const { username, password, submitted } = this.state;
+       const { username, password, licenseNumber, submitted } = this.state;
 	
         return (
 		
@@ -54,39 +55,52 @@ class LoginPage extends React.Component {
          <AppProvider>
        
 			  
-            <Paper style={{padding:'5px'}} elevation={1} className="login_bg">
+            <Paper style={{padding:'5px'}} elevation={1} className="register_bg">
 			 <AppContext.Consumer>
           {(context) => ( 
           <ButtonAppBar></ButtonAppBar>   
 		  )}
 		</AppContext.Consumer>
              
-			 <div className="col-md-4 login_form " style={{ background: '#fff', margin: '0 auto' }}>
+			 <div className="col-md-4 reg_form " style={{ background: '#fff', margin: '0 auto' }}>
                 
-				<p class="MuiTypography-root-74 MuiTypography-body1-83 main_title">Login</p>
+				<br/>
+				<br/>
+				<div className="main_title">CREATE ACCOUNT</div>
+					
+				
 				
                 <form name="form" onSubmit={this.handleSubmit}>
-                 
-                    <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
+				
+				    <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username"></label>
-                        <input type="text" className="form-control" placeholder="Username/Email Address" name="username" value={username} onChange={this.handleChange} />
+                        <input type="text" className="form-control"  placeholder="Username/Email Address" name="username" name="username" value={username} onChange={this.handleChange} />
                         {submitted && !username &&
                             <div className="help-block">Username is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+					
+					<div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
                         <label htmlFor="password"></label>
                         <input type="password" className="form-control" placeholder="Password" name="password" value={password} onChange={this.handleChange} />
                         {submitted && !password &&
                             <div className="help-block">Password is required</div>
                         }
                     </div>
-                    <div className="form-group text-center">
-                        <button className="btn btn-primary reg_btn">SIGN IN</button>
-						<div>
-						<a className="click_signup_btn" href="/register">Don’t have an account? Click to sign up</a>
-						</div>
-                  
+					
+					<div className={'form-group' + (submitted && !licenseNumber ? ' has-error' : '')}>
+                        <label htmlFor="licenseNumber"></label>
+                        <input type="text" className="form-control" placeholder="License Number" name="licenseNumber" value={licenseNumber} onChange={this.handleChange} />
+                        {submitted && !licenseNumber &&
+                            <div className="help-block">LicenseNumber is required</div>
+                        }
+                    </div>
+                   
+                    		
+										
+                    <div  className="form-group text-center">
+                        <button  className="btn btn-primary reg_btn">Create Account</button>
+                      
                     </div>
                 </form>
             </div>
@@ -104,11 +118,13 @@ class LoginPage extends React.Component {
 function mapStateToProps(state) {
     const { user } = state.app;
     return {
-         user,
-		
+        
+        user,
+		 
     };
 }
 const mapDispatchToProps = {
-    login:login.request
+    register_user:register_user.request
 };
-export default withTheme()( connect(mapStateToProps,mapDispatchToProps)(LoginPage)); 
+
+export default withTheme()( connect(mapStateToProps, mapDispatchToProps)(RelatorsRegsiter)); 
