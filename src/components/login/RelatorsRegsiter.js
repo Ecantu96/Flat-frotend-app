@@ -1,24 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-
-
-import {register_user, login} from  '../../actions/user';
-
+import {register_user} from  '../../actions/user';
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonAppBar from '../../components/TopBar';
 import FooterBar from "../../components/FooterBar";
 import AppProvider from "../../provider/AppContext";
 import { AppContext } from '../../provider/AppContext';
-import {Welcome} from "../../components/Welcome";
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-//import SignupProvider, { SignupContext } from '../provider/SignupContext';
-//import  { user_register } from '../provider/user';
-import './login.css';
+//import Button from '@material-ui/core/Button';
+import '../css/guest.css';
 
 class RelatorsRegsiter extends React.Component {
     constructor(props) {
@@ -54,7 +45,7 @@ class RelatorsRegsiter extends React.Component {
     }
 
     render() {
-        const {classes, fetching, user } = this.props;
+        const { user } = this.props;
 		
        const { username, password, licenseNumber, submitted } = this.state;
 	
@@ -125,9 +116,9 @@ class RelatorsRegsiter extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { fetching,user } = state.app;
+    const { user } = state.app;
     return {
-        fetching,
+        
         user,
 		 
     };

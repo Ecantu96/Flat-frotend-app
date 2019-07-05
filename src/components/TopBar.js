@@ -2,12 +2,13 @@ import React from 'react';
 import login  from "../components/login/LoginPage";
 import register  from "../components/login/RegisterPage";
 import RelatorsRegsiter  from "../components/login/RelatorsRegsiter";
-import RoommateProfile  from "../components/RoommateProfile";
+//import RoommateProfile  from "../components/RoommateProfile";
 import RoommateFinderResult  from "../components/RoommateFinderResult";
 import Neighborhoods  from "../components/Neighborhoods";
 import Listing  from "../components/Listing";
+import AppContainer from "../container/AppContainer";
 import PropTypes from 'prop-types';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,6 +23,7 @@ import logo from './images/logo.png';
 import './css/header.css';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+
 
 
 const ITEM_HEIGHT = 48;
@@ -74,7 +76,7 @@ class ButtonAppBar extends React.Component {
   render() {
 	 const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-	const { classes } = this.props;
+	const { classes } = this.props; 
   
     return (
 
@@ -89,11 +91,11 @@ class ButtonAppBar extends React.Component {
         <Toolbar>
 		
 		<div className="logo">
-		   <CardMedia
+		 <Link to='/' component={ AppContainer }>  <CardMedia
           className={classes.media}
           image= {logo}
           title="Logo"
-        />
+        /> </Link>
 		</div> 
 		
 		<div className="mobile_nav">
@@ -144,7 +146,7 @@ class ButtonAppBar extends React.Component {
 			
         <Typography  className={classes.grow}>
 		
-		
+		 
 		    <ul className={classes.menuButton} aria-label="Menu" className="main_menu" >
 		       <li><Link to='/Neighborhoods' component={ Neighborhoods }>NEIGHBORHOODS</Link></li>
 		       <li><Link to='/RoommateFinderResult' component={ RoommateFinderResult }>ROOMMATES</Link></li>
@@ -159,7 +161,7 @@ class ButtonAppBar extends React.Component {
 		
           {(context) => (<div className="right_menu"> 
 		  
-		  <div className="abt"><Button href="#">About</Button></div>
+		  <div className="abt"><Button href="/">About</Button></div>
               {context.state.loggedInUser.username!==undefined?<div style={{ color: '#fff', fontWeight: "600" }}>
 			    {<Button href="/login" onClick={()=>{localStorage.removeItem('user')}} color="inherit">Logout</Button>}</div>:
 		       <div className="log_sign">

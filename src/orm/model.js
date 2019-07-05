@@ -1,4 +1,4 @@
-import { ORM, /*fk, many,*/ attr, Model } from 'redux-orm';
+import { ORM, /*fk, many,*/ } from 'redux-orm';
 
 
 export const orm = new ORM();

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {login} from '../../actions/user'; 
 import { withTheme } from '@material-ui/core/styles';
@@ -8,12 +7,8 @@ import ButtonAppBar from '../../components/TopBar';
 import FooterBar from "../../components/FooterBar";
 import AppProvider from "../../provider/AppContext";
 import { AppContext } from '../../provider/AppContext';
-import {Welcome} from "../../components/Welcome";
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-//import SignupProvider, { SignupContext } from '../provider/SignupContext';
-import './login.css';
+//import Button from '@material-ui/core/Button';
+import '../css/guest.css';
 
 class BedTime extends React.Component {
     constructor(props) {
@@ -22,11 +17,7 @@ class BedTime extends React.Component {
         // reset login status
       //  this.props.dispatch(userActions.logout());
 
-        this.state = {
-            username: '',
-            password: '',
-            submitted: false
-        };
+       
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,16 +32,13 @@ class BedTime extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { username, password } = this.state;
-        if (username && password) {
-            this.props.login({'payload':{username, password}})
+        //const { username, password } = this.state;
         }
-    }
 
     render() {
-        const {classes, fetching, user } = this.props;
+        //const { user } = this.props;
 		
-        const { username, password, submitted } = this.state;
+        //const { username, password, submitted } = this.state;
 	
         return (
 		
@@ -74,7 +62,7 @@ class BedTime extends React.Component {
 				<button data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">10-11pm</button>
 				<button data-toggle="tab" data-target="#page2" className="btn btn-default active btn-sm">12-1am</button>
 				</div>
-				<a href="#" className="prv_question" >Previous Question</a>
+				<a href="/" className="prv_question" >Previous Question</a>
             </div>
 			 
             </Paper>
@@ -87,15 +75,8 @@ class BedTime extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { fetching,user } = state.app;
-    return {
-        fetching,
-        user,
-		
-    };
-}
+
 const mapDispatchToProps = {
     login:login.request
 };
-export default withTheme()( connect(mapStateToProps,mapDispatchToProps)(BedTime)); 
+export default withTheme()( connect(mapDispatchToProps)(BedTime)); 

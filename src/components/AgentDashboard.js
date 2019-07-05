@@ -34,7 +34,7 @@ class AgentDashboard extends React.Component {
 	  };	
 	render() {
 	 
-    const {classes, fetching , errorMessage, loggedInUser} = this.props;
+    const {classes} = this.props;
     const { checked } = this.state;
     return (
 	
@@ -149,8 +149,8 @@ class AgentDashboard extends React.Component {
 }
 
 const mapStateToPropsN = state => ({
-  fetching: state.app.fetching,
-  errorMessage: state.app.error
+  //fetching: state.app.fetching,
+  //errorMessage: state.app.error
   //loggedInUser:state.app.user
 });
 

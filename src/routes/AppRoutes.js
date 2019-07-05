@@ -4,7 +4,7 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { theme } from "../constants/styles";
 import LoginPage  from "../components/login/LoginPage";

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { get_user_by_email } from '../actions/user';
+//import { get_user_by_email } from '../actions/user';
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 

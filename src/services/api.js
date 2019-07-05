@@ -7,12 +7,12 @@ import axios from 'axios';
 const API_ROOT = "https://nooklyn-flats-backend-apis.herokuapp.com";
 
 
-const jsonFlag = false;
+
 const LOGIN ='/users/authenticate';
 const REGISTER_USER = '/users/register';
-const GET_USER_BYEMAIL = '/userByEmailId';
+//const GET_USER_BYEMAIL = '/userByEmailId';
 
-const GET_USER_BYID = '/user';
+//const GET_USER_BYID = '/user';
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.

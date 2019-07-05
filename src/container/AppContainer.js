@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {connect} from "react-redux";
-import CircularProgress from '@material-ui/core/CircularProgress';
+//import CircularProgress from '@material-ui/core/CircularProgress';
 import {AppContext} from '../provider/AppContext'
 import AppProvider from "../provider/AppContext";
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,7 +8,7 @@ import ButtonAppBar from "../components/TopBar";
 import FooterBar from "../components/FooterBar";
 import  '../components/login/signup/signup.css';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
+//import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import '../components/main.css'
 import Grid from '@material-ui/core/Grid';
@@ -19,7 +19,7 @@ class AppContainer extends Component {
 		    
   render() {
 	 
-    const {classes, fetching , errorMessage,loggedInUser} = this.props;
+   // const { errorMessage} = this.props;
     debugger;
     return (
       <AppProvider>
@@ -124,7 +124,7 @@ class AppContainer extends Component {
 					<div className="first_sect_color">
 						<div className="home_first_sect_img">
 		  			
-						<img style={{ width: 'auto',  height: 'auto' }} src={require('../components/images/first_sect_img_two.png')} />
+						<img style={{ width: 'auto',  height: 'auto' }} alt="" src={require('../components/images/first_sect_img_two.png')} />
 										 
 						</div>
 					</div>					
@@ -148,7 +148,7 @@ class AppContainer extends Component {
 					<div className="second_sect_color">
 						<div className="home_second_sect_img">
 		  			
-						<img style={{ width: 'auto',  height: 'auto' }} src={require('../components/images/second_sect_img_two.png')} />
+						<img style={{ width: 'auto',  height: 'auto' }} alt="" src={require('../components/images/second_sect_img_two.png')} />
 										
 						</div>
 					</div>					
@@ -273,7 +273,7 @@ class AppContainer extends Component {
 						</div>
 				</div>
 				<div className="fourth_sect_bg">
-				<img src={require('../components/images/bg_color_image.png')} />
+				<img alt="" src={require('../components/images/bg_color_image.png')} />
 				</div>
 				<div className="col-lg-6 forth_sect_right">
 				
@@ -308,8 +308,8 @@ class AppContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  fetching: state.app.fetching,
-  errorMessage: state.app.error
+  //fetching: state.app.fetching,
+  //errorMessage: state.app.error
   //loggedInUser:state.app.user
 });
 

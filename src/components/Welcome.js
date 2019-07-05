@@ -1,6 +1,6 @@
 import React from "react";
 import { withTheme } from '@material-ui/core/styles';
-import { styles } from "../constants/styles";
+//import { styles } from "../constants/styles";
 import { AppContext } from '../provider/AppContext';
 import { WelcomeContent } from './WelcomeContent';
 

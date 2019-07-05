@@ -34,7 +34,7 @@ class Neighborhoods extends React.Component {
 	render() {
 	
 		
-    const {classes, fetching , errorMessage, loggedInUser} = this.props;
+    const {classes} = this.props;
     debugger;
     return (
 	
@@ -105,7 +105,7 @@ class Neighborhoods extends React.Component {
 				  		  <Slider {...settings}>
 								
 								            <Grid item xs={5}>
-													<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+													<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 													<div className="profile_title">
 													<h5>City Name</h5>
@@ -119,7 +119,7 @@ class Neighborhoods extends React.Component {
 							
 							
 						                <Grid item xs={5}>
-													<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+													<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 													<div className="profile_title">
 													<h5>City Name</h5>
@@ -132,7 +132,7 @@ class Neighborhoods extends React.Component {
 										</Grid>
 								
 								 <Grid item xs={5}>
-													<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+													<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 													<div className="profile_title">
 													<h5>City Name</h5>
@@ -145,7 +145,7 @@ class Neighborhoods extends React.Component {
 												  </Grid>
 								
 								<Grid item xs={5}>
-								  <Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+								  <Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 													<div className="profile_title">
 													<h5>City Name</h5>
@@ -188,7 +188,7 @@ class Neighborhoods extends React.Component {
 			                <Slider {...settings}>
 							
             					   <Grid item xs={5}>
-											<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+											<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 											<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 											<div className="profile_title">
 											<h5>City Name</h5>
@@ -202,7 +202,7 @@ class Neighborhoods extends React.Component {
 					
 							
 									<Grid item xs={5}>
-												<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+												<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 												<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 												<div className="profile_title">
 												<h5>City Name</h5>
@@ -215,7 +215,7 @@ class Neighborhoods extends React.Component {
 									</Grid>
 								
 								   <Grid item xs={5}>
-										<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+										<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 										<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 										<div className="profile_title">
 										<h5>City Name</h5>
@@ -228,7 +228,7 @@ class Neighborhoods extends React.Component {
 									  </Grid>
 								
 									<Grid item xs={5}>
-									  <Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+									  <Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 														<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 														<div className="profile_title">
 														<h5>City Name</h5>
@@ -267,7 +267,7 @@ class Neighborhoods extends React.Component {
 					<Slider {...settings}>
 					
 						<Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 							<div className="profile_title">
 							<h5>Area/Location</h5>
@@ -278,7 +278,7 @@ class Neighborhoods extends React.Component {
 							</Paper>
 						 </Grid>
 						<Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 							<div className="profile_title">
 							<h5>Area/Location</h5>
@@ -290,7 +290,7 @@ class Neighborhoods extends React.Component {
 						</Grid>
 						
 						<Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 							<div className="profile_title">
 							<h5>Area/Location</h5>
@@ -302,7 +302,7 @@ class Neighborhoods extends React.Component {
 						 </Grid>
 						 
 						 <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 							<div className="profile_title">
 							<h5>Area/Location</h5>
@@ -337,11 +337,11 @@ class Neighborhoods extends React.Component {
 						  zoom: 8
 						}}
 						onMapLoad={map => {
-						  var marker = new window.google.maps.Marker({
-							position: { lat: 41.0082, lng: 28.9784 },
-							map: map,
-							title: 'Hello Istanbul!'
-						  });
+						 // var marker = new window.google.maps.Marker({
+						//	position: { lat: 41.0082, lng: 28.9784 },
+						//	map: map,
+						//	title: 'Hello Istanbul!'
+						 // });
 						}}
 					  />
 					</div>
@@ -376,8 +376,8 @@ class Neighborhoods extends React.Component {
 }
 
 const mapStateToPropsN = state => ({
-  fetching: state.app.fetching,
-  errorMessage: state.app.error
+  //fetching: state.app.fetching,
+  //errorMessage: state.app.error
   //loggedInUser:state.app.user
 });
 

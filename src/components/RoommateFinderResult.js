@@ -25,7 +25,7 @@ class RoommateFinderResult extends React.Component {
 		
 	render() {
 	 
-    const {classes, fetching , errorMessage, loggedInUser} = this.props;
+    const {classes, errorMessage} = this.props;
     debugger;
     return (
 	
@@ -79,7 +79,7 @@ class RoommateFinderResult extends React.Component {
 				<React.Fragment>
 					<div className="row">
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							<span>Messy</span>
@@ -92,7 +92,7 @@ class RoommateFinderResult extends React.Component {
 							
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -106,7 +106,7 @@ class RoommateFinderResult extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 						
@@ -120,7 +120,7 @@ class RoommateFinderResult extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -133,7 +133,7 @@ class RoommateFinderResult extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -151,7 +151,7 @@ class RoommateFinderResult extends React.Component {
 					<div className="row">
 						  
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -166,7 +166,7 @@ class RoommateFinderResult extends React.Component {
 						  </Grid>
 						  
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -181,7 +181,7 @@ class RoommateFinderResult extends React.Component {
 						  </Grid>
 						  
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -196,7 +196,7 @@ class RoommateFinderResult extends React.Component {
 						  </Grid>
 						  
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -210,7 +210,7 @@ class RoommateFinderResult extends React.Component {
 						   </Grid>
 						   
 						   <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -225,7 +225,7 @@ class RoommateFinderResult extends React.Component {
 					</div>					
 					<div className="row">
 						<Grid item xs={4}>
-						<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+						<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 						<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 						<div className="profile_title">
 						
@@ -240,7 +240,7 @@ class RoommateFinderResult extends React.Component {
 					  </Grid>
 					  
 					    <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -254,7 +254,7 @@ class RoommateFinderResult extends React.Component {
 						  </Grid>
 					  
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -268,7 +268,7 @@ class RoommateFinderResult extends React.Component {
 							
 						  </Grid>
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -283,7 +283,7 @@ class RoommateFinderResult extends React.Component {
 						  </Grid>
 						  					 
 						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="#"><img className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
 							<div className="profile_title">
 							
@@ -358,7 +358,7 @@ class RoommateFinderResult extends React.Component {
 				<React.Fragment>
 					<div className="row">
 						  <Grid item xs={5}>
-	<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+	<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 	        <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -372,7 +372,7 @@ class RoommateFinderResult extends React.Component {
 							
 						  </Grid>
 						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -385,7 +385,7 @@ class RoommateFinderResult extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -398,7 +398,7 @@ class RoommateFinderResult extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -437,7 +437,7 @@ class RoommateFinderResult extends React.Component {
 }
 
 const mapStateToPropsN = state => ({
-  fetching: state.app.fetching,
+  //fetching: state.app.fetching,
   errorMessage: state.app.error
   //loggedInUser:state.app.user
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {login} from '../../actions/user'; 
 import { withTheme } from '@material-ui/core/styles';
@@ -8,12 +8,8 @@ import ButtonAppBar from '../../components/TopBar';
 import FooterBar from "../../components/FooterBar";
 import AppProvider from "../../provider/AppContext";
 import { AppContext } from '../../provider/AppContext';
-import {Welcome} from "../../components/Welcome";
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-//import SignupProvider, { SignupContext } from '../provider/SignupContext';
-import './login.css';
+//import Button from '@material-ui/core/Button';
+import '../css/guest.css';
 
 class LikeGoOut extends React.Component {
     constructor(props) {
@@ -48,7 +44,7 @@ class LikeGoOut extends React.Component {
     }
 
     render() {
-        const {classes, fetching, user } = this.props;
+        const {user } = this.props;
 		
         const { username, password, submitted } = this.state;
 	
@@ -73,7 +69,7 @@ class LikeGoOut extends React.Component {
 				<button data-toggle="tab" data-target="#page0" className="btn btn-default active btn-sm">Yes</button>
 		        <button data-toggle="tab" data-target="#page1" className="btn btn-default  btn-sm">No</button>
 				</div>
-				<a href="#" className="prv_question" >Previous Question</a>
+				<a href="/" className="prv_question" >Previous Question</a>
             </div>
 			 
             </Paper>
@@ -87,10 +83,9 @@ class LikeGoOut extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { fetching,user } = state.app;
+    const { user } = state.app;
     return {
-        fetching,
-        user,
+         user,
 		
     };
 }

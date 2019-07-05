@@ -6,7 +6,7 @@ import ButtonAppBar from '../components/TopBar';
 import FooterBar from '../components/FooterBar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
@@ -37,7 +37,7 @@ class DashboardProfile extends React.Component {
 		
 	render() {
 	 
-    const {classes, fetching , errorMessage, loggedInUser} = this.props;
+    const {classes } = this.props;
     const { checked } = this.state;
     return (
 	
@@ -115,10 +115,10 @@ class DashboardProfile extends React.Component {
 					<Grid className="profile_pic_section" item xs={1}>
 							<Paper className={classes.paper}>
 							<h5>Profile Picture</h5>
-							<img style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
+							<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
 							<ul className="edit_remove">
-							<li><a href="#">Edit</a></li>
-							<li><a href="#">Remove</a></li>
+							<li><a href="/">Edit</a></li>
+							<li><a href="/">Remove</a></li>
 							</ul>
 							</Paper>
 							
@@ -128,10 +128,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Update Info</h5>
 							<ul className="social_media_profile">
-							<li><label>Name</label><a href="#">Link Goes in Here</a></li>
-							<li><label>Password</label><a href="#">Link Goes in Here</a></li>
-							<li><label>DOB</label><a href="#">Link Goes in Here</a></li>
-							<li><label>Gender</label><a href="#">Link Goes in Here</a></li>
+							<li><label>Name</label><a href="/">Link Goes in Here</a></li>
+							<li><label>Password</label><a href="/">Link Goes in Here</a></li>
+							<li><label>DOB</label><a href="/">Link Goes in Here</a></li>
+							<li><label>Gender</label><a href="/">Link Goes in Here</a></li>
 							</ul>
 							</Paper>
 							
@@ -140,10 +140,10 @@ class DashboardProfile extends React.Component {
 					<Grid className="profile_cover_section" item xs={1}>
 							<Paper className={classes.paper}>
 							<h5>Cover Photo</h5>
-							<img style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
+							<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
 							<ul className="edit_remove">
-							<li><a href="#">Edit</a></li>
-							<li><a href="#">Remove</a></li>
+							<li><a href="/">Edit</a></li>
+							<li><a href="/">Remove</a></li>
 							</ul>
 							</Paper>
 							
@@ -152,10 +152,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Social Media</h5>
 							<ul className="social_media_profile">
-							<li><label>Facebook</label><a href="#">Link Goes in Here</a></li>
-							<li><label>Twitter</label><a href="#">Link Goes in Here</a></li>
-							<li><label>Instagram</label><a href="#">Link Goes in Here</a></li>
-							<li><label>LinkedIN</label><a href="#">Link Goes in Here</a></li>
+							<li><label>Facebook</label><a href="/">Link Goes in Here</a></li>
+							<li><label>Twitter</label><a href="/">Link Goes in Here</a></li>
+							<li><label>Instagram</label><a href="/">Link Goes in Here</a></li>
+							<li><label>LinkedIN</label><a href="/">Link Goes in Here</a></li>
 							</ul>
 							</Paper>
 							
@@ -164,12 +164,12 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Photo Gallery</h5>
 							<ul className="profile_galleries">
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li className="edit_gallery_btn"><a href="#"><span>Edit Gallery</span></a></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li className="edit_gallery_btn"><a href="/"><span>Edit Gallery</span></a></li>
 													
 							</ul>
 							</Paper>
@@ -419,10 +419,10 @@ class DashboardProfile extends React.Component {
 					<Grid className="profile_pic_section" item xs={1}>
 							<Paper className={classes.paper}>
 							<h5>Profile Picture</h5>
-							<img style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
+							<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
 							<ul className="edit_remove">
-							<li><a href="#">Edit</a></li>
-							<li><a href="#">Remove</a></li>
+							<li><a href="/">Edit</a></li>
+							<li><a href="/">Remove</a></li>
 							</ul>
 							</Paper>
 							
@@ -432,10 +432,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Update Info</h5>
 							<ul className="social_media_profile">
-							<li><label>Name</label><a href="#">Link Goes in Here</a></li>
-							<li><label>Password</label><a href="#">Link Goes in Here</a></li>
-							<li><label>DOB</label><a href="#">Link Goes in Here</a></li>
-							<li><label>Gender</label><a href="#">Link Goes in Here</a></li>
+							<li><label>Name</label><a href="/">Link Goes in Here</a></li>
+							<li><label>Password</label><a href="/">Link Goes in Here</a></li>
+							<li><label>DOB</label><a href="/">Link Goes in Here</a></li>
+							<li><label>Gender</label><a href="/">Link Goes in Here</a></li>
 							</ul>
 							</Paper>
 							
@@ -444,10 +444,10 @@ class DashboardProfile extends React.Component {
 					<Grid className="profile_cover_section" item xs={1}>
 							<Paper className={classes.paper}>
 							<h5>Cover Photo</h5>
-							<img style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
+							<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
 							<ul className="edit_remove">
-							<li><a href="#">Edit</a></li>
-							<li><a href="#">Remove</a></li>
+							<li><a href="/">Edit</a></li>
+							<li><a href="/">Remove</a></li>
 							</ul>
 							</Paper>
 							
@@ -456,10 +456,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Social Media</h5>
 							<ul className="social_media_profile">
-							<li><label>Facebook</label><a href="#">Link Goes in Here</a></li>
-							<li><label>Twitter</label><a href="#">Link Goes in Here</a></li>
-							<li><label>Instagram</label><a href="#">Link Goes in Here</a></li>
-							<li><label>LinkedIN</label><a href="#">Link Goes in Here</a></li>
+							<li><label>Facebook</label><a href="/">Link Goes in Here</a></li>
+							<li><label>Twitter</label><a href="/">Link Goes in Here</a></li>
+							<li><label>Instagram</label><a href="/">Link Goes in Here</a></li>
+							<li><label>LinkedIN</label><a href="/">Link Goes in Here</a></li>
 							</ul>
 							</Paper>
 							
@@ -468,12 +468,12 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Photo Gallery</h5>
 							<ul className="profile_galleries">
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li className="edit_gallery_btn"><a href="#"><span>Edit Gallery</span></a></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+							<li className="edit_gallery_btn"><a href="/"><span>Edit Gallery</span></a></li>
 													
 							</ul>
 							</Paper>
@@ -500,8 +500,8 @@ class DashboardProfile extends React.Component {
 }
 
 const mapStateToPropsN = state => ({
-  fetching: state.app.fetching,
-  errorMessage: state.app.error
+  //fetching: state.app.fetching,
+  //errorMessage: state.app.error
   //loggedInUser:state.app.user
 });
 

@@ -33,7 +33,7 @@ class AgentListings extends React.Component {
   };
 	render() {
 	 
-    const {classes, fetching , errorMessage, loggedInUser} = this.props;
+    const {classes } = this.props;
     const { checked } = this.state;
     return (
 	
@@ -109,7 +109,7 @@ class AgentListings extends React.Component {
 					<React.Fragment>
 					<div className="row">
 						  <Grid item xs={5}>
-				             <Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+				             <Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 						    <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -123,7 +123,7 @@ class AgentListings extends React.Component {
 							
 						  </Grid>
 						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"> <img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -136,7 +136,7 @@ class AgentListings extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -149,7 +149,7 @@ class AgentListings extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -173,7 +173,7 @@ class AgentListings extends React.Component {
 					<React.Fragment>
 					<div className="row">
 						  <Grid item xs={5}>
-				             <Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+				             <Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 						    <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -187,7 +187,7 @@ class AgentListings extends React.Component {
 							
 						  </Grid>
 						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -200,7 +200,7 @@ class AgentListings extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -213,7 +213,7 @@ class AgentListings extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="#"><img  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -260,8 +260,8 @@ class AgentListings extends React.Component {
 }
 
 const mapStateToPropsN = state => ({
-  fetching: state.app.fetching,
-  errorMessage: state.app.error
+  //fetching: state.app.fetching,
+  //errorMessage: state.app.error
   //loggedInUser:state.app.user
 });
 

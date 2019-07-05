@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {login} from '../../actions/user'; 
 import { withTheme } from '@material-ui/core/styles';
@@ -8,11 +7,9 @@ import ButtonAppBar from '../../components/TopBar';
 import FooterBar from "../../components/FooterBar";
 import AppProvider from "../../provider/AppContext";
 import { AppContext } from '../../provider/AppContext';
-import {Welcome} from "../../components/Welcome";
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-import './login.css';
+//import Button from '@material-ui/core/Button';
+//import IconButton from '@material-ui/core/IconButton';
+import '../css/guest.css';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -47,7 +44,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const {classes, fetching, user } = this.props;
+        const { user } = this.props;
 		
         const { username, password, submitted } = this.state;
 	
@@ -105,10 +102,9 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { fetching,user } = state.app;
+    const { user } = state.app;
     return {
-        fetching,
-        user,
+         user,
 		
     };
 }
