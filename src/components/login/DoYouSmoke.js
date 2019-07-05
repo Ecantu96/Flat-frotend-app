@@ -1,7 +1,7 @@
 import React from 'react';
 //import { 	 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {login} from '../../actions/user'; 
+// import {login} from '../../actions/user'; 
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonAppBar from '../../components/TopBar';
@@ -83,14 +83,14 @@ class DoYouSmoke extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { user } = state.app;
+    // const { user } = state.app;
     return {
         
-        user,
+        // user,
 		
     };
 }
 const mapDispatchToProps = {
-    login:login.request
+    // login:login.request
 };
 export default withTheme()( connect(mapStateToProps,mapDispatchToProps)(DoYouSmoke)); 

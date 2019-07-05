@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {login} from '../../actions/user'; 
+// import {login} from '../../actions/user'; 
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonAppBar from '../../components/TopBar';
@@ -77,6 +77,6 @@ class BedTime extends React.Component {
 
 
 const mapDispatchToProps = {
-    login:login.request
+    // login:login.request
 };
 export default withTheme()( connect(mapDispatchToProps)(BedTime)); 

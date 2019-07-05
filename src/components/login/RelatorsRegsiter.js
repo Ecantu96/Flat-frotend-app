@@ -1,7 +1,7 @@
 import React from 'react';
 //import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {register_user} from  '../../actions/user';
+// import {register_user} from  '../../actions/user';
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonAppBar from '../../components/TopBar';
@@ -116,15 +116,15 @@ class RelatorsRegsiter extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { user } = state.app;
+    // const { user } = state.app;
     return {
         
-        user,
+        // user,
 		 
     };
 }
 const mapDispatchToProps = {
-    register_user:register_user.request
+    // register_user:register_user.request
 };
 
 export default withTheme()( connect(mapStateToProps, mapDispatchToProps)(RelatorsRegsiter)); 
