@@ -41,7 +41,6 @@
     "redux-saga-thunk": "^0.7.3",
     "redux-thunk": "^2.3.0"
   },
-  {
   "scripts": {
     "now-dev": "react-scripts start",
     "start": "react-scripts start",
