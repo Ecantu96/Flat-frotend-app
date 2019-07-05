@@ -13,10 +13,10 @@ class LoginProvider extends Component {
     state = {
 
         user: {
-            firstName: '',
-            lastName: '',
             username: '',
-            password: '',
+			password: '',
+			questionsNecessary: '',
+			interestedRoommate: '',
             apartmentChoice: '',
             budget: '',
             location: '',
@@ -42,7 +42,7 @@ class LoginProvider extends Component {
                     event.preventDefault();
                     this.setState({ submitted: true });
                     const { user } = this.state;
-                    if (user.firstName && user.lastName && user.username && user.password) {
+                    if (user.username && user.password && user.questionsNecessary && user.interestedRoommate) {
 
                         this.props.register({ 'payload': this.state.user }).then((response) => {
                             if (response.success === true) {

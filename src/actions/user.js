@@ -14,3 +14,5 @@ export const register_user = {
     success: (message, response) => action(REGISTER_USER[ActionTypes.SUCCESS], {message, response}),
     failure: (message, error) => action(REGISTER_USER[ActionTypes.FAILURE], {message, error}),
 }
+
+

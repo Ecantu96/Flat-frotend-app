@@ -35,7 +35,7 @@ import AgentInquiries from "../components/AgentInquiries";
 import AgentViewProfile from "../components/AgentViewProfile";
 import AppContainer from "../container/AppContainer";
 import history from '../helpers/history';
-import SignupSteps from "../components/login/signup/SignupSteps";
+//import SignupSteps from "../components/login/signup/SignupSteps";
 import { ToastContainer } from 'react-toastify';
 
 const AppRoutes = () => {

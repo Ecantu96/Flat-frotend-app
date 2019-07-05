@@ -127,10 +127,12 @@ class ButtonAppBar extends React.Component {
 			<MenuItem><Link to='#'>REALTORS</Link></MenuItem>
             
             <AppContext.Consumer>
+			
 			  {(context) => (<div className="mob"> 
+			  <MenuItem><Button  href="#">About</Button></MenuItem>
 				  {context.state.loggedInUser.username!==undefined?<div>{'Welcome '+context.state.loggedInUser.username} 
 				  {<Button href="/login" onClick={()=>{localStorage.removeItem('user')}} color="inherit">Logout</Button>}</div>:
-				   <div><MenuItem><Button href="#">About</Button></MenuItem>
+				   <div>
 				  <MenuItem> <Link to='/login' className="login_last" component={ login }>Login</Link></MenuItem>
 			    <MenuItem><Link to='/register' component={ register }>Sign-up</Link></MenuItem></div>}</div>
 			  )}
@@ -155,10 +157,13 @@ class ButtonAppBar extends React.Component {
         </Typography>
          
         <AppContext.Consumer>
+		
           {(context) => (<div className="right_menu"> 
-              {context.state.loggedInUser.username!==undefined?<div>{'Welcome '+context.state.loggedInUser.username} 
-              {<Button href="/login" onClick={()=>{localStorage.removeItem('user')}} color="inherit">Logout</Button>}</div>:
-		       <div className="log_sign"><Button href="#">About</Button>
+		  
+		  <div className="abt"><Button href="#">About</Button></div>
+              {context.state.loggedInUser.username!==undefined?<div style={{ color: '#fff', fontWeight: "600" }}>
+			    {<Button href="/login" onClick={()=>{localStorage.removeItem('user')}} color="inherit">Logout</Button>}</div>:
+		       <div className="log_sign">
 			   <Link to='/register' component={ register }>Sign-up</Link>
 		    <Link to='/login' className="login_last" component={ login }>Login</Link>
 		 

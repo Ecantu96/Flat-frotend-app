@@ -65,7 +65,7 @@ class AgentMessages extends React.Component {
 					</div>
 						
 					<div className="col-sm-10">	
-						{fetching &&<div className="loader-container">
+						<div className="loader-container">
 						
 						   			    <div className="agent_msg_bg banner_text">
 											<div className="dash_head" style={{display:"block"}}>
@@ -106,7 +106,7 @@ class AgentMessages extends React.Component {
 								</div>
 										
 									</div>
-						}	
+						
 										
 												
 						<div className="msg_dashbaord_sidebar">	
@@ -267,7 +267,7 @@ class AgentMessages extends React.Component {
 	 
     );
   }
-
+ 
 }
 
 const mapStateToPropsN = state => ({

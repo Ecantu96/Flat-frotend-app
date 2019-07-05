@@ -38,7 +38,7 @@ class RoommateFinderResult extends React.Component {
             
             <div>
                 <ButtonAppBar></ButtonAppBar> 
-            {fetching && <div className="loader-container bg_roommate">
+            <div className="loader-container bg_roommate">
 			                <div className="banner_text_roomate_profile">
 			   
 							   <div style={{display:"block"}}>
@@ -66,7 +66,7 @@ class RoommateFinderResult extends React.Component {
 			            </div>
 			
 					
-			}
+		
 			            
 			{errorMessage && <div className="error-message">{errorMessage}</div>}
 			
@@ -334,7 +334,7 @@ class RoommateFinderResult extends React.Component {
 		</div>
     
 		
-		{fetching && <div className="loader-container">
+		<div className="loader-container">
 		
 				
 			                <div className="check_home_title">
@@ -353,7 +353,7 @@ class RoommateFinderResult extends React.Component {
 			            </div>
 			
 					
-		}
+	
 		
 		
 		<div className="container">
@@ -433,7 +433,7 @@ class RoommateFinderResult extends React.Component {
 		<FooterBar></FooterBar>
 		
       </AppProvider>
-	 
+	  
     );
   }
 

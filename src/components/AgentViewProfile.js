@@ -41,7 +41,7 @@ class AgentViewProfile extends React.Component {
             <ButtonAppBar></ButtonAppBar> 
 			<div className="col-sm-12 profile_full">	
 			<div className="col-sm-9">	
-            {fetching && <div className="loader-container roommate_profile_banner">
+             <div className="loader-container roommate_profile_banner">
 			
 							 <div className="back_btn">
 								 <Button>Back to all Results</Button>					   
@@ -64,7 +64,7 @@ class AgentViewProfile extends React.Component {
 						
 							
 			            </div>
-			}	
+			
 			
 			<div className="profile_description">
 					<Typography variant="body1" >
@@ -126,7 +126,7 @@ class AgentViewProfile extends React.Component {
 				
 					
 						
-			{fetching && <div className="loader-container">
+			 <div className="loader-container">
 
 		
 					<div className="profile_head_title">
@@ -145,12 +145,10 @@ class AgentViewProfile extends React.Component {
 				</div>
 	
 			
-            }	
+        
 			</div>		
 			
 			
-			            
-			{errorMessage && <div className="error-message">{errorMessage}</div>}
 			
             </div>
 			
@@ -213,7 +211,7 @@ class AgentViewProfile extends React.Component {
 		</div>
     
 		
-		{fetching && <div className="loader-container">
+		<div className="loader-container">
 		
 				
 			                <div className="check_home_title">
@@ -232,7 +230,7 @@ class AgentViewProfile extends React.Component {
 			            </div>
 			
 					
-		}
+	
 		
 		
 		<div className="container">

@@ -65,7 +65,7 @@ class AgentInquiries extends React.Component {
 					</div>
 						
 					<div className="col-sm-10">	
-						{fetching &&<div className="loader-container">
+						<div className="loader-container">
 						
 						   			    <div className="agent_inquries_bg banner_text">
 											<div className="dash_head" style={{display:"block"}}>
@@ -105,8 +105,7 @@ class AgentInquiries extends React.Component {
 										
 										
 									</div>
-						}	
-									
+								
 						
 			<div className="col-sm-12">			
 			<div className="app_btns">
