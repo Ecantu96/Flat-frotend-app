@@ -1,7 +1,7 @@
 import React from 'react';
 import login  from "../components/login/LoginPage";
 import register  from "../components/login/RegisterPage";
-import allUser  from "../components/allUser";
+import RelatorsRegsiter  from "../components/login/RelatorsRegsiter";
 import RoommateProfile  from "../components/RoommateProfile";
 import RoommateFinderResult  from "../components/RoommateFinderResult";
 import Neighborhoods  from "../components/Neighborhoods";
@@ -16,15 +16,13 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {AppContext} from '../provider/AppContext'
-import AppProvider from "../provider/AppContext";
 import SignupSteps from './login/signup/SignupSteps';
-import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import logo from './images/logo.png';
-import './main.css';
+import './css/header.css';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 
 const ITEM_HEIGHT = 48;
 
@@ -125,7 +123,7 @@ class ButtonAppBar extends React.Component {
 			<MenuItem> <Link to='/Neighborhoods' component={ Neighborhoods }>NEIGHBORHOODS</Link></MenuItem>
 			<MenuItem> <Link to='/RoommateFinderResult' component={ RoommateFinderResult }>ROOMMATES</Link></MenuItem>
 			<MenuItem><Link to='/Listing' component={ Listing }>LISTINGS</Link></MenuItem>
-			<MenuItem><Link to='#'>REALTORS</Link></MenuItem>
+			<MenuItem><Link to='/RelatorsRegsiter' component={ RelatorsRegsiter }>REALTORS</Link></MenuItem>
             
             <AppContext.Consumer>
 			
@@ -151,7 +149,7 @@ class ButtonAppBar extends React.Component {
 		       <li><Link to='/Neighborhoods' component={ Neighborhoods }>NEIGHBORHOODS</Link></li>
 		       <li><Link to='/RoommateFinderResult' component={ RoommateFinderResult }>ROOMMATES</Link></li>
 		       <li><Link to='/Listing' component={ Listing }>LISTINGS</Link></li>
-		       <li><a href="#">REALTORS</a></li>
+		       <li><Link to='/RelatorsRegsiter' component={ RelatorsRegsiter }>REALTORS</Link></li>
 		        
 		    </ul>
 		 

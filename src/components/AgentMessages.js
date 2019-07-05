@@ -4,7 +4,6 @@ import { AppContext } from '../provider/AppContext';
 import AppProvider from "../provider/AppContext";
 import ButtonAppBar from '../components/TopBar';
 import FooterBar from '../components/FooterBar';
-//import './font-awesome.min.css';
 import {Welcome} from "../components/Welcome";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';

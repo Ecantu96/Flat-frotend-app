@@ -5,11 +5,7 @@ import AppProvider from "../provider/AppContext";
 import ButtonAppBar from '../components/TopBar';
 import FooterBar from '../components/FooterBar';
 import Map from '../components/map';
-//import './font-awesome.min.css';
-import {Welcome} from "../components/Welcome";
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
@@ -87,7 +83,7 @@ class Neighborhoods extends React.Component {
 				<div className="col-sm-12">
 					<div className="col-sm-6">
 					    <div className="row">
-							{fetching && <div className="loader-container">
+							 <div className="loader-container">
 
 				
 								<div className="neighborhoods_title">
@@ -104,7 +100,7 @@ class Neighborhoods extends React.Component {
 						
 							
 						    </div>
-					        }
+					      
 							
 				  		  <Slider {...settings}>
 								
