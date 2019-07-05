@@ -1,6 +1,6 @@
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
-    
+
 export function configureFakeBackend() {
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
@@ -24,8 +24,8 @@ export function configureFakeBackend() {
                         let responseJson = {
                             id: user.id,
                             username: user.username,
-                            firstName: user.firstName,
-                            lastName: user.lastName,
+                            questionsNecessary: user.questionsNecessary,
+                            interestedRoommate: user.interestedRoommate,
                             token: 'fake-jwt-token'
                         };
                         resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(responseJson)) });
