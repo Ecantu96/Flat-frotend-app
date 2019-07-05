@@ -13,7 +13,9 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SignupProvider, { SignupContext } from '../../../provider/SignupContext';
 //import { LoginPage } from './LoginPage';
 //import RegisterPage from '../RegisterPage';
+
 import LookingRoommate from '../signup/LookingRoommate';
+import allUser from '../../../components/allUser';
 function SignupSteps(props) {
   
         const { classes, theme,...other } = props;

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 //const API_ROOT = process.env.REACT_APP_DEV;
-const API_ROOT = "http://localhost:4000";
+const API_ROOT = "https://nooklyn-flats-backend-apis.herokuapp.com";
 
 
 const jsonFlag = false;

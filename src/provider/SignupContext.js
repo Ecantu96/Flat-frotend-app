@@ -20,11 +20,7 @@ class SignupProvider extends Component {
 			password: '',
 			questionsNecessary: '',
 			interestedRoommate: '',
-            apartmentChoice: '',
-            budget: '',
-            location: '',
-            userPersonalType: '',
-
+           
         }, submitted: false,
         steps:[{
             label: 'Register',

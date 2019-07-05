@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import {connect} from "react-redux";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {Welcome} from "../components/Welcome";
 import {AppContext} from '../provider/AppContext'
 import AppProvider from "../provider/AppContext";
-import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ButtonAppBar from "../components/TopBar";
 import FooterBar from "../components/FooterBar";
 import  '../components/login/signup/signup.css';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-//import '../resources/css/index.css';
 import Typography from '@material-ui/core/Typography';
 import '../components/main.css'
 import Grid from '@material-ui/core/Grid';
@@ -30,7 +27,6 @@ class AppContainer extends Component {
           {(context) => (
             
             <div>
-                
             <div className="loader-container bg_banner">
 			
 						<ButtonAppBar></ButtonAppBar>

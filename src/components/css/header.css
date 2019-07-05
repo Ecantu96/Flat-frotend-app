@@ -1,0 +1,128 @@
+
+/**************Header top styling*****************/
+.MuiPaper-elevation1-4{
+	padding: 0px !important;
+}
+.MuiPaper-rounded-2{
+	border-radius: 0 !important;
+}
+.MuiToolbar-regular-43{
+	min-height: unset !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+.MuiToolbar-root-43{
+	min-height: unset !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+.MuiToolbar-root-41{
+	align-items: end !important;
+}
+.MuiToolbar-root-43{
+	align-items: end !important;
+}
+.log_sign {
+        margin: 0;
+    text-transform: uppercase;
+    width: auto;
+    float: left;
+    text-align: right;
+}  
+.abt {
+       float: left;
+    text-align: right;
+    width: auto;
+}
+a.login_last {
+    border-right: none !important;
+}
+
+ul.main_menu {
+    width: 70%;
+    float: right;
+	height: 46px;
+}
+
+ul.main_menu li {
+    display: inline-block;
+    padding: 0 30px 0 0;
+}
+.MuiPaper-root-12 {
+    background-color: #fff;
+}
+
+.logo {
+    width: 120px;
+    background: transparent;
+    z-index: 99999;
+}
+ul.main_menu li {
+    display: inline-block;
+    padding: 15px 30px 15px 0;
+    /* background: transparent; */
+    color: #000;
+}
+
+ul.main_menu li a {
+    color: #000;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: Montserrat;
+    list-style: none;
+    text-decoration: none;
+}
+ul.main_menu {
+    width: 70%;
+    float: right;
+    background-color: #fff !important;
+    z-index: 99;
+    position: relative;
+}
+.right_menu button {
+    color: #fff;
+    font-size: 12px;
+	font-weight: 600;
+	font-family: Montserrat;
+}
+.right_menu {
+    background: rgba(249, 121, 14, 1);
+    position: relative;     
+    z-index: 999;
+    margin: 0 0px 8px 0px;
+    padding: 10px 5px;
+    float: left;
+     width: 190px;
+    text-align: left;
+}
+ul.right_menu li {
+    display: inline-block; 
+    margin: 10px 0px 0px 0;
+    padding: 0 0px 0px 0px;
+}
+.right_menu a {
+        color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: Montserrat;
+    border-right: 1px solid #fff;
+    overflow: auto;
+    padding: 0 5px 0 5px;
+    margin: 0;
+    border-radius: unset;
+     min-height: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.right_menu li:last-child a {
+    border-right: none;
+}
+.right_menu a:focus{
+	outline: none;
+	text-decoration: none;
+}
+.right_menu a:hover{
+	background: rgba(249, 121, 14, 1);
+}
+
+/******************Header top styling end**************/

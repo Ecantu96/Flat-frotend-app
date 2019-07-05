@@ -270,7 +270,7 @@ body {
 a.login_last {
     border-right: none !important;
 }
-/******************Header top styling end**************/
+
 ul.main_menu {
     width: 70%;
     float: right;
@@ -287,6 +287,8 @@ ul.main_menu li {
 .logo {
     width: 120px;
 }
+/******************Header top styling end**************/
+
 .bg_banner {
     background: url(./images/banner-1.jpg);
     display: block;
@@ -364,78 +366,6 @@ ul.main_menu li {
 	max-height: 100%
 }
 
-.logo {
-    width: 120px;
-    background: transparent;
-    z-index: 99999;
-}
-ul.main_menu li {
-    display: inline-block;
-    padding: 15px 30px 15px 0;
-    /* background: transparent; */
-    color: #000;
-}
-
-ul.main_menu li a {
-    color: #000;
-    font-size: 12px;
-    font-weight: 600;
-    font-family: Montserrat;
-    list-style: none;
-    text-decoration: none;
-}
-ul.main_menu {
-    width: 70%;
-    float: right;
-    background-color: #fff !important;
-    z-index: 99;
-    position: relative;
-}
-.right_menu button {
-    color: #fff;
-    font-size: 12px;
-	font-weight: 600;
-	font-family: Montserrat;
-}
-.right_menu {
-    background: rgba(249, 121, 14, 1);
-    position: relative;
-    z-index: 999;
-    margin: 0 0px 8px 0px;
-    padding: 10px 5px;
-    float: left;
-     width: 190px;
-    text-align: left;
-}
-ul.right_menu li {
-    display: inline-block; 
-    margin: 10px 0px 0px 0;
-    padding: 0 0px 0px 0px;
-}
-.right_menu a {
-        color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    font-family: Montserrat;
-    border-right: 1px solid #fff;
-    overflow: auto;
-    padding: 0 5px 0 5px;
-    margin: 0;
-    border-radius: unset;
-     min-height: 0;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-.right_menu li:last-child a {
-    border-right: none;
-}
-.right_menu a:focus{
-	outline: none;
-	text-decoration: none;
-}
-.right_menu a:hover{
-	background: rgba(249, 121, 14, 1);
-}
 .MuiGrid-item-117{
 	max-width: 100% !important;
 }
@@ -1620,7 +1550,7 @@ span.round_box {
 .dashboard_bg {
     background: #F9790E;
     position: relative;
-    width: 87.9%;
+    width: 88.5%;
     bottom: 58px;
     overflow: hidden; 
     padding: 0px 0px 0px 0px;
@@ -2134,7 +2064,7 @@ li.edit_gallery_btn span {
 .dashboard_profile_bg {
     background: #F9790E;
     position: relative;
-    width: 87.9%;
+    width: 88.5%;
     bottom: 58px;
     overflow: hidden;
     padding: 0px 0px 0px 0px;
@@ -2497,7 +2427,7 @@ ul.profile_galleries li {
 .agent_dashboard_bg {
     background: #000;
     position: relative;
-    width: 87.9%;
+    width: 88.5%;
     bottom: 58px;
     overflow: hidden; 
     padding: 0px 0px 0px 0px;
@@ -2527,7 +2457,7 @@ ul.profile_galleries li {
 .agent_profile_bg {
     background: #000;
     position: relative;
-    width: 84.4%;
+    width: 88.5%;
     bottom: 58px;
     overflow: hidden; 
     padding: 0px 0px 0px 0px;
@@ -2560,7 +2490,7 @@ ul.profile_galleries li {
 .agent_msg_bg {
     background: #000;
     position: relative;
-    width: 87.9%;
+    width: 88.5%;
     bottom: 58px;
     overflow: hidden; 
     padding: 0px 0px 0px 0px;
@@ -2595,7 +2525,7 @@ ul.profile_galleries li {
 .agent_listing_bg {
     background: #000;
     position: relative;
-    width: 84.4%;
+    width: 88.5%;
     bottom: 58px;
     overflow: hidden; 
     padding: 0px 0px 0px 0px;
@@ -2619,7 +2549,7 @@ ul.profile_galleries li {
 .agent_inquries_bg {
     background: #000;
     position: relative;
-    width: 87.9%;
+    width: 88.5%;
     bottom: 58px;
     overflow: hidden; 
     padding: 0px 0px 0px 0px;
@@ -2793,61 +2723,6 @@ input.search::placeholder {
     left: 20px;
 }
 
-/**************Footer*******************/
-.Footer {
-     position: relative;
-    bottom: 0px;
-    width: 100%;
-    clear: both;
-    min-height: 70px;
-	padding-top: 10px;
-}
-.left_footer {
-    float: left;
-    display: block;
-    width: 100%;
-    margin: 15px 0 0 15px;
-}
-.footer_menu ul {
-    margin: 15px 0;
-}
-.left_footer span {
-    color: #fff;
-    font-family: Montserrat;
-    font-weight: bold;
-	font-size: 12px;
-}
-
-.footer_menu {
-      width: 100%;
-    text-align: right;
-} 
-
-.footer_menu ul li {
-    display: inline-block;
-	list-style: none;
-}
-.footer_menu ul li a {
-    color: #fff;
-    font-family: Montserrat;
-    font-weight: bold;
-    margin: 0;
-    padding: 0 10px 0px 0px;
-    font-size: 12px;
-    text-decoration: none;
-    border-right: 1px solid #fff;
-}
-.footer_menu ul li:last-child a{  
-	border-right: none;
-}
-.footer_menu ul li {
-    display: inline-block;
-    /* float: right; */
-    margin: 0px 5px 0px 5px;
-}
-.btn-default.focus, .btn-default span:focus{
-	color: #fff !important;
-}
 /***********responsive********/
 
 @media screen and (max-width: 767px) {

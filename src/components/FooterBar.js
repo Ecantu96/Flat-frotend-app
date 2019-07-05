@@ -1,12 +1,10 @@
 import React from 'react';
-import Neighborhoods  from "../components/Neighborhoods";
-import Listing  from "../components/Listing";
 import PropTypes from 'prop-types';
 import { Link, Route } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppContainer from "../container/AppContainer";
-import './main.css';
+import './css/footer.css';
 
 const ITEM_HEIGHT = 48;
 
