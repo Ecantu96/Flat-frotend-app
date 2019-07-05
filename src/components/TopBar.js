@@ -1,6 +1,7 @@
 import React from 'react';
 import login  from "../components/login/LoginPage";
 import register  from "../components/login/RegisterPage";
+import allUser  from "../components/allUser";
 import RoommateProfile  from "../components/RoommateProfile";
 import RoommateFinderResult  from "../components/RoommateFinderResult";
 import Neighborhoods  from "../components/Neighborhoods";
