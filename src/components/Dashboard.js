@@ -71,7 +71,7 @@ class Dashboard extends React.Component {
 					</div>
 						
 					<div className="col-sm-10">	
-						{fetching &&<div className="loader-container">
+						<div className="loader-container">
 										
 						
 						   			    <div className="dashboard_bg banner_text">
@@ -122,7 +122,7 @@ class Dashboard extends React.Component {
 							</div>
 										
 									</div>
-						}	
+						
 							
 						
 										

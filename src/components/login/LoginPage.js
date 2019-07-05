@@ -70,24 +70,24 @@ class LoginPage extends React.Component {
 				
                 <form name="form" onSubmit={this.handleSubmit}>
                  
-                    <div className={'form-group' + (submitted && !user.username ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username"></label>
-                        <input type="text" className="form-control" placeholder="Username/Email Address" name="username" value={user.username} onChange={this.handleChange} />
-                        {submitted && !user.username &&
+                        <input type="text" className="form-control" placeholder="Username/Email Address" name="username" value={username} onChange={this.handleChange} />
+                        {submitted && !username &&
                             <div className="help-block">Username is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
                         <label htmlFor="password"></label>
-                        <input type="password" className="form-control" placeholder="Password" name="password" value={user.password} onChange={this.handleChange} />
-                        {submitted && !user.password &&
+                        <input type="password" className="form-control" placeholder="Password" name="password" value={password} onChange={this.handleChange} />
+                        {submitted && !password &&
                             <div className="help-block">Password is required</div>
                         }
                     </div>
                     <div className="form-group text-center">
                         <button className="btn btn-primary reg_btn">SIGN IN</button>
 						<div>
-						<a className="click_signup_btn" href="#">Don’t have an account? Click to sign up</a>
+						<a className="click_signup_btn" href="/register">Don’t have an account? Click to sign up</a>
 						</div>
                   
                     </div>

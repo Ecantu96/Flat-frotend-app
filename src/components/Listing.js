@@ -39,7 +39,7 @@ class RoommateProfile extends React.Component {
             
             <div>
                 <ButtonAppBar></ButtonAppBar> 
-            {fetching && <div className="loader-container listing_banner">
+             <div className="loader-container listing_banner">
 			                <div className="banner_text">
 			   
 							   <div style={{display:"block"}}>
@@ -67,7 +67,7 @@ class RoommateProfile extends React.Component {
 			            </div>
 			
 					
-			}
+			
 			            
 			{errorMessage && <div className="error-message">{errorMessage}</div>}
 			

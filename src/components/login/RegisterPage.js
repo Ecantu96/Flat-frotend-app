@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {login} from '../../actions/user'; 
+
+
+
+import {register_user, login} from  '../../actions/user';
+
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonAppBar from '../../components/TopBar';
@@ -13,19 +17,20 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 //import SignupProvider, { SignupContext } from '../provider/SignupContext';
+//import  { user_register } from '../provider/user';
 import './login.css';
 
 class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
 
-        // reset login status
-      //  this.props.dispatch(userActions.logout());
-
         this.state = {
-            username: '',
-            password: '',
-            submitted: false
+            
+                username: '',
+                password: '',
+				questionsNecessary: '',
+                interestedRoommate: '',
+                submitted: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -41,16 +46,18 @@ class RegisterPage extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { username, password } = this.state;
-        if (username && password) {
-            this.props.login({'payload':{username, password}})
+       const { username, password, questionsNecessary, interestedRoommate } = this.state;
+        //const { dispatch } = this.props;
+        if ( username && password && questionsNecessary && interestedRoommate ) {
+            //dispatch(register_user.register(user));
+			this.props.register_user({'payload':{username, password, questionsNecessary, interestedRoommate}})
         }
     }
 
     render() {
         const {classes, fetching, user } = this.props;
 		
-        const { username, password, submitted } = this.state;
+       const { username, password, questionsNecessary, interestedRoommate, submitted } = this.state;
 	
         return (
 		
@@ -69,34 +76,45 @@ class RegisterPage extends React.Component {
                 
 				<div className="main_title">CREATE ACCOUNT</div>
 				<h3>or sign in with Facebook</h3>
-                <form name="form">
-                    
-                    <div className="form-group" >
+                <form name="form" onSubmit={this.handleSubmit}>
+				
+				    <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username"></label>
-                        <input type="text" className="form-control" placeholder="Username/Email Address" name="username"  />
-                            
-                    </div>
-                    <div >
-                        <label htmlFor="password"></label>
-                        <input type="password" className="form-control" placeholder="Password" name="password"  />
-                                           
+                        <input type="text" className="form-control"  placeholder="Username/Email Address" name="username" name="username" value={username} onChange={this.handleChange} />
+                        {submitted && !username &&
+                            <div className="help-block">Username is required</div>
+                        }
                     </div>
 					
-					<div className="form-group">
-                        <label htmlFor="firstName"></label>
-                        <input type="text" className="form-control" placeholder="Lots of questions that are necessary" name="firstName"  />
-                       
+					<div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+                        <label htmlFor="password"></label>
+                        <input type="password" className="form-control" placeholder="Password" name="password" value={password} onChange={this.handleChange} />
+                        {submitted && !password &&
+                            <div className="help-block">Password is required</div>
+                        }
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="lastName"></label>
-                        <input type="text" className="form-control" placeholder="Are you interested in a roommate" name="lastName" />
-                        
-                           
+					
+					<div className={'form-group' + (submitted && !questionsNecessary ? ' has-error' : '')}>
+                        <label htmlFor="questionsNecessary"></label>
+                        <input type="text" className="form-control" placeholder="Lots of questions that are necessary" name="questionsNecessary" value={questionsNecessary} onChange={this.handleChange} />
+                        {submitted && !questionsNecessary &&
+                            <div className="help-block">Questions is required</div>
+                        }
                     </div>
+                   
+                    					
+					<div className={'form-group' + (submitted && !interestedRoommate ? ' has-error' : '')}>
+                        <label htmlFor="interestedRoommate"></label>
+                        <input type="text" className="form-control" placeholder="Are you interested in a roommate" name="interestedRoommate" value={interestedRoommate} onChange={this.handleChange} />
+                        {submitted && !interestedRoommate &&
+                            <div className="help-block">Interested is required</div>
+                        }
+                    </div>
+                    
 					
                     <div  className="form-group text-center">
                         <button  className="btn btn-primary reg_btn">Create Account</button>
-                       
+                      
                     </div>
                 </form>
             </div>
@@ -120,6 +138,7 @@ function mapStateToProps(state) {
     };
 }
 const mapDispatchToProps = {
-    login:login.request
+    register_user:register_user.request
 };
-export default withTheme()( connect(mapStateToProps,mapDispatchToProps)(RegisterPage)); 
+
+export default withTheme()( connect(mapStateToProps, mapDispatchToProps)(RegisterPage)); 

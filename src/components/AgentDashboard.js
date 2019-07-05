@@ -66,7 +66,7 @@ class AgentDashboard extends React.Component {
 					</div>
 						
 					<div className="col-sm-10">	
-						{fetching &&<div className="loader-container">
+						<div className="loader-container">
 						
 						   			    <div className="agent_dashboard_bg banner_text">
 											<div className="dash_head" style={{display:"block"}}>
@@ -121,8 +121,7 @@ class AgentDashboard extends React.Component {
 										</div>
 										
 									</div>
-						}	
-							
+				
 						
 						<div className="dashboard_bedroom_list">
 							<div className="inner_bed">

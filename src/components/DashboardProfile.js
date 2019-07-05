@@ -69,7 +69,7 @@ class DashboardProfile extends React.Component {
 					</div>
 						
 					<div className="col-sm-10">	
-						{fetching &&<div className="loader-container">
+						<div className="loader-container">
 						
 						   			    <div className="dashboard_profile_bg banner_text">
 											<div className="dash_head" style={{display:"block"}}>
@@ -110,7 +110,7 @@ class DashboardProfile extends React.Component {
 									
 										
 									</div>
-						}	
+						
 					</div>
 												
 					

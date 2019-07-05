@@ -16,6 +16,8 @@ import Typography from '@material-ui/core/Typography';
 import '../components/main.css'
 import Grid from '@material-ui/core/Grid';
 
+
+
 class AppContainer extends Component {
 		    
   render() {
@@ -28,8 +30,10 @@ class AppContainer extends Component {
           {(context) => (
             
             <div>
-                <ButtonAppBar></ButtonAppBar>
-            {fetching && <div className="loader-container bg_banner">
+                
+            <div className="loader-container bg_banner">
+			
+						<ButtonAppBar></ButtonAppBar>
 			                <div className="banner_text_home">
 			   
 							   <div style={{display:"block"}}>
@@ -53,9 +57,7 @@ class AppContainer extends Component {
 			            </div>
 			
 					
-			}
-			            
-			{errorMessage && <div className="error-message">{errorMessage}</div>}
+			
 			
             </div>
 			
@@ -77,7 +79,7 @@ class AppContainer extends Component {
 		<div className="col-lg-12 home_first_section">
 		
 			<div className="col-lg-6">
-			{fetching && <div className="loader-container">
+			<div className="loader-container">
 			
 					<Typography className="get_started_title" variant="title" color="inherit" noWrap>
 					GET STARTED
@@ -118,11 +120,11 @@ class AppContainer extends Component {
 						
 					</div>
 			
-				}
+				
 			</div>
 			
 			<div className="col-lg-6">
-			{fetching && <div className="loader-container">
+		<div className="loader-container">
 					<div className="first_sect_color">
 						<div className="home_first_sect_img">
 		  			
@@ -133,7 +135,6 @@ class AppContainer extends Component {
 						
 					</div>
 			
-				}
 			</div>
 			
 			
@@ -147,7 +148,7 @@ class AppContainer extends Component {
 		<div className="col-lg-12 home_second_section">
 		
 			<div className="col-lg-6">
-			{fetching && <div className="loader-container">
+			 <div className="loader-container">
 					<div className="second_sect_color">
 						<div className="home_second_sect_img">
 		  			
@@ -158,11 +159,11 @@ class AppContainer extends Component {
 						
 					</div>
 			
-				}
+			
 			</div>
 			
 			<div className="col-lg-6">
-			{fetching && <div className="loader-container">
+			 <div className="loader-container">
 			
 					<Typography className="get_started_title" variant="title" color="inherit" noWrap>
 					OUR PROCESS
@@ -201,7 +202,7 @@ class AppContainer extends Component {
 						
 					</div>
 			
-				}
+		
 			</div>
 		</div>	
 		</Grid>
@@ -212,7 +213,7 @@ class AppContainer extends Component {
 		<div className="row classic_room">
 		    <div className="col-lg-12 home_third_section">
 		
-			{fetching && <div className="loader-container">
+		<div className="loader-container">
 			                <div className="banner_third_section">
 			   
 							   <div style={{display:"block"}}>
@@ -251,7 +252,7 @@ class AppContainer extends Component {
 			            </div>
 			
 				</div>	
-			    }
+		
 		    
 			</div>
 		</div>

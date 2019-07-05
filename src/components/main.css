@@ -256,8 +256,16 @@ body {
 	align-items: end !important;
 }
 .log_sign {
-    margin: 10px 15px 0px 0;
+        margin: 0;
     text-transform: uppercase;
+    width: auto;
+    float: left;
+    text-align: right;
+}  
+.abt {
+       float: left;
+    text-align: right;
+    width: auto;
 }
 a.login_last {
     border-right: none !important;
@@ -287,12 +295,12 @@ ul.main_menu li {
     position: relative;
     background-position: 100%;
     background-size: 100%;
-    bottom: 80px;
+    /* bottom: 80px; */
     width: 100%;
     float: left;
-    /* min-height: 400px; */
+    min-height: 330px;
     /* max-height: 100%; */
-    padding: 13em 0;
+    /* padding: 8em 0; */
 }
 .bg_roommate {
     background: url(./images/5_types.jpg);
@@ -393,14 +401,14 @@ ul.main_menu {
     background: rgba(249, 121, 14, 1);
     position: relative;
     z-index: 999;
-    margin: 0 0px 8px 0;
-    padding: 0;
+    margin: 0 0px 8px 0px;
+    padding: 10px 5px;
     float: left;
-    width: 16%;
+     width: 190px;
     text-align: left;
 }
 ul.right_menu li {
-    display: inline-block;
+    display: inline-block; 
     margin: 10px 0px 0px 0;
     padding: 0 0px 0px 0px;
 }
@@ -770,7 +778,9 @@ span.number {
     overflow: hidden;
     text-decoration: none;
 }
-
+.type_bedroom_list  .btn-default:focus{
+	background: #F9790E !important;
+}
 .type_bedroom_list button {
         padding: 0px 20px 0px 20px;
     margin: 0px 15px 15px 15px;
@@ -797,13 +807,13 @@ span.bed_room {
     margin: 0 auto;
 }
 .inner_bed{
-	box-shadow: 0px 3px 6px #eee;
+	  box-shadow: 0 3px 6px #eee;
     padding: 5px 0 0 0;
     text-align: center;
     width: auto;
     width: auto;
     display: inline-block;
-    /* border-top: 1px solid #eee; */
+       /* border-top: 1px solid #eee; */
 }
 ul.main_menu:after {
     content: " ";
@@ -1685,13 +1695,15 @@ span.round_box {
 }
 
 .type_bedroom_list {
-    text-align: center;
-    padding: 0px;
+        text-align: center;
+    padding: 47px 0;
     margin-bottom: 20px;
     position: relative;
-    bottom: 45px;
-	clear: both;
+    bottom: 0;
+    clear: both;
+    margin: 0;
 }
+
 span.number {
     font-size: 15em;
     font-weight: 800;
@@ -1740,12 +1752,12 @@ span.bed_room {
 }
 .inner_bed{
 	box-shadow: 0px 3px 6px #eee;
-    padding: 5px 0 0 0;
+    padding: 5px 15px 0 0;
     text-align: center;
     width: auto;
     width: auto;
     display: inline-block;
-    /* border-top: 1px solid #eee; */
+    border-right: 1px solid #eee;
 }
 
 .dashboard_bedroom_list {
@@ -2860,13 +2872,13 @@ svg.MuiSvgIcon-root-56 {
 		    background-size: cover;
 	}
 .type_bedroom_list{
-	    text-align: center;
-    padding: 0px;
-    margin-bottom: -33px;
+	       text-align: center;
+    padding: 0;
+    margin-bottom: 65px;
     position: relative;
     bottom: 0;
     clear: both;
-	top: 10px;
+    top: 110px;
 }
 .start_searct_title{
 	right: -18px;
@@ -3142,7 +3154,7 @@ img.profile_suggest_img {
     width: 100%;
     clear: both;
     margin: 15px auto;
-    padding: 0px;
+    padding: 45px 0px;
 }
 .listing_page img {
     width: 100%;

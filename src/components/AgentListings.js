@@ -65,7 +65,7 @@ class AgentListings extends React.Component {
 					</div>
 						
 					<div className="col-sm-10">	
-						{fetching &&<div className="loader-container">
+						    <div className="loader-container">
 						
 						   			    <div className="agent_listing_bg banner_text">
 											<div className="dash_head" style={{display:"block"}}>
@@ -106,8 +106,7 @@ class AgentListings extends React.Component {
 																			
 										
 									</div>
-						}	
-																
+															
 						
 			<div className="col-sm-12">
 				<div className="main_roomates favorit_list_rooms">

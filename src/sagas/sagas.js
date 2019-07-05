@@ -14,7 +14,7 @@ function* registerUser(action) {
             payload: message,
             meta:action.meta
         });
-      //  history.push('/login');
+        history.push('/login');
 
             } catch (e) {
         yield put({

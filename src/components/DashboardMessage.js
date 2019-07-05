@@ -66,7 +66,7 @@ class DashboardMessage extends React.Component {
 					</div>
 						
 					<div className="col-sm-10">	
-						{fetching &&<div className="loader-container">
+						<div className="loader-container">
 						
 						   			    <div className="dashboard_bg banner_text">
 											<div className="dash_head" style={{display:"block"}}>
@@ -107,7 +107,7 @@ class DashboardMessage extends React.Component {
 																			
 										
 									</div>
-						}	
+						
 						<div className="msg_dashbaord_sidebar">	
 						
 								<div className="col-lg-3">

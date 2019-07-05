@@ -47,8 +47,9 @@ class Neighborhoods extends React.Component {
           {(context) => ( 
             
             <div>
-                <ButtonAppBar></ButtonAppBar> 
-            {fetching && <div className="loader-container neighborhoods_banner">
+             <ButtonAppBar></ButtonAppBar>    
+            <div className="loader-container neighborhoods_banner">
+			
 			                <div className="banner_text">
 			   
 							   <div style={{display:"block"}}>
@@ -65,9 +66,9 @@ class Neighborhoods extends React.Component {
 			            </div>
 			
 					
-			}
+		
 			            
-			{errorMessage && <div className="error-message">{errorMessage}</div>}
+			
 			
             </div>
 			
@@ -167,7 +168,7 @@ class Neighborhoods extends React.Component {
 								
 						<div className="row">
 						
-						{fetching && <div className="loader-container">
+						<div className="loader-container">
 
 				
 								<div className="neighborhoods_title">
@@ -184,7 +185,7 @@ class Neighborhoods extends React.Component {
 						
 							
 						    </div>
-					        }
+					   
 							
 							
 							
@@ -249,7 +250,7 @@ class Neighborhoods extends React.Component {
 						</div>
 						<div className="row">
 						
-						{fetching && <div className="loader-container">
+						<div className="loader-container">
 
 				
 								<div className="neighborhoods_title">
@@ -266,7 +267,7 @@ class Neighborhoods extends React.Component {
 						
 							
 						    </div>
-					        }
+					  
 					<Slider {...settings}>
 					
 						<Grid item xs={5}>
@@ -349,7 +350,7 @@ class Neighborhoods extends React.Component {
 					  />
 					</div>
 					
-										
+										 
 					 <div className="view_more">
 								
 					</div>

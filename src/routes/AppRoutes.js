@@ -33,9 +33,10 @@ import AgentMessages from "../components/AgentMessages";
 import AgentListings from "../components/AgentListings";
 import AgentInquiries from "../components/AgentInquiries";
 import AgentViewProfile from "../components/AgentViewProfile";
+import allUser from "../components/allUser";
 import AppContainer from "../container/AppContainer";
 import history from '../helpers/history';
-import SignupSteps from "../components/login/signup/SignupSteps";
+//import SignupSteps from "../components/login/signup/SignupSteps";
 import { ToastContainer } from 'react-toastify';
 
 const AppRoutes = () => {
@@ -70,7 +71,8 @@ const AppRoutes = () => {
 			   <Route  path="/AgentListings" component={  AgentListings } />
 			   <Route  path="/AgentInquiries" component={  AgentInquiries } />
 			   <Route  path="/AgentViewProfile" component={  AgentViewProfile } />
-			 </Switch>
+		 	   <Route path="/allUser" component={ allUser } /> 
+			</Switch>
         </Router>
         <ToastContainer />
 
