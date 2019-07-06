@@ -1,8 +1,8 @@
 import { userConstants } from '../_constant';
-import { userService } from '../services';
+  //import { userService } from '../services';
 import { alertActions } from './';
-// import { history } from '../_helpers/history';
-import history from '../_helpers/history';
+// import { history } from '../_hanzen/history';
+import history from '../_hanzen/history';
 
 export const userActions = {
     login,
@@ -17,7 +17,7 @@ function login(username, password) {
         dispatch(request({ username }));
         userService.login(username, password)
             .then(
-                user => { 
+                user => {
                     console.log('return error==user'+JSON.stringify(user))
                     dispatch(success(user));
                     dispatch(alertActions.success('Loggein in successfully'));
@@ -46,7 +46,7 @@ function register(user) {
         dispatch(request(user));
         userService.register(user)
             .then(
-                user => { 
+                user => {
                     dispatch(success());
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));

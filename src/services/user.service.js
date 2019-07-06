@@ -30,7 +30,7 @@
 
 //   return axios({
 //     method,
-//     url, 
+//     url,
 //     data
 //   })
 //   .then(function ({data}) {
@@ -48,7 +48,7 @@
 // //export const getUserById = (payload) => callApi(GET_USER_BYID+'/'+payload, 'get');
 
 import config from 'config';
-import { authHeader } from '../_helpers';
+import { authHeader } from '../_hanzen';
 
 export const userService = {
   login,
@@ -164,4 +164,3 @@ function handleResponse(response) {
     return data;
   });
 }
-

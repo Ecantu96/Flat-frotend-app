@@ -36,7 +36,7 @@ import AgentInquiries from "../components/AgentInquiries";
 import AgentViewProfile from "../components/AgentViewProfile";
 import allUser from "../components/allUser";
 import AppContainer from "../container/AppContainer";
-import history from '../_helpers/history';
+import history from '../_hanzen/history';
 //import SignupSteps from "../components/login/signup/SignupSteps";
 import { ToastContainer } from 'react-toastify';
 
