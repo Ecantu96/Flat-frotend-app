@@ -24,7 +24,6 @@
     "middleware": "^1.0.0",
     "moment": "^2.24.0",
     "node": "^12.4.0",
-    "now": "^15.7.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.6",
     "react-redux": "^6.0.1",
@@ -41,9 +40,7 @@
     "redux-saga-thunk": "^0.7.3",
     "redux-thunk": "^2.3.0"
   },
-  {
   "scripts": {
-    "now-dev": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
