@@ -25,45 +25,65 @@ class RegisterPage extends React.Component {
 
             username: '',
             password: '',
-            questionsNecessary: '',
-            interestedRoommate: '',
-            submitted: false
+            interestedRoommate: false,
+           submitted: false,
+		   addClass: false
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+   toggle() {
+        this.setState({addClass: !this.state.addClass});
+    }
     handleChange(e) {
-        const { name, value } = e.target;
+		// alert(e.target.checked);
+		 const target = e.target;
+        const { name } = e.target;
+		 const { interestedRoommate } = e.target;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ [name]: value });
     }
 
     handleSubmit(e) {
         e.preventDefault();
-
         this.setState({ submitted: true });
-        const { username, password, questionsNecessary, interestedRoommate } = this.state;
+        const { username, password, interestedRoommate } = this.state;
         const { dispatch } = this.props;
-        if (username && password && questionsNecessary && interestedRoommate) {
-            let Role = 'Agent'
+
+        if (username && password || interestedRoommate) {
+            let Role = 'User'
             let DOB = '01-05-1990'
             let gender = 'male'
             let user = {
-                username, password, questionsNecessary, interestedRoommate, Role, DOB, gender
+                username, password,  Role, DOB, gender,  interestedRoommate
             }
+			
+			//alert(user);
+
+         if(interestedRoommate == true){
+			// dispatch(userActions.register(user));
+            this.props.history.push('/BedTime', { user });
+         }else {
+			 console.log(user);
             dispatch(userActions.register(user));
+         }
+
+          
+            // dispatch(userActions.register(user));
+
         }
     }
 
     render() {
+		let boxClass = ["box"];
+		 if(this.state.addClass) { boxClass.push('orange'); }
         const { registering, type, message } = this.props;
-        const { username, password, questionsNecessary, interestedRoommate, submitted } = this.state;
+        const { username, password, interestedRoommate, submitted } = this.state;
 
         return (
             <AppProvider>
-
-
                 <Paper style={{ padding: '5px' }} elevation={1} className="register_bg">
                     <AppContext.Consumer>
                         {(context) => (
@@ -92,25 +112,15 @@ class RegisterPage extends React.Component {
                                     <div className="help-block">Password is required</div>
                                 }
                             </div>
+							
+							<div className= { 'form-group reg_checkbox '}>
+                        <label htmlFor="interestedRoommate" className={'form-control ' + (boxClass.join(' '))}>
+							<input id="interestedRoommate" type="checkbox" value={interestedRoommate}  placeholder="Are you interested in a roommate" name="interestedRoommate"  onChange={this.handleChange} checked={this.state.interestedRoommate}   onClick={this.toggle.bind(this)} />
+							Are you interested in a roommate
+						</label>
+                        </div>
 
-                            <div className={'form-group' + (submitted && !questionsNecessary ? ' has-error' : '')}>
-                                <label htmlFor="questionsNecessary"></label>
-                                <input type="text" className="form-control" placeholder="Lots of questions that are necessary" name="questionsNecessary" value={questionsNecessary} onChange={this.handleChange} />
-                                {submitted && !questionsNecessary &&
-                                    <div className="help-block">Questions is required</div>
-                                }
-                            </div>
-
-
-                            <div className={'form-group' + (submitted && !interestedRoommate ? ' has-error' : '')}>
-                                <label htmlFor="interestedRoommate"></label>
-                                <input type="text" className="form-control" placeholder="Are you interested in a roommate" name="interestedRoommate" value={interestedRoommate} onChange={this.handleChange} />
-                                {submitted && !interestedRoommate &&
-                                    <div className="help-block">Interested is required</div>
-                                }
-                            </div>
-
-
+                                                      
                             <div className="form-group text-center">
                                 <button className="btn btn-primary reg_btn">Create Account</button>
 

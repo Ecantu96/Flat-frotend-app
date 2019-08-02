@@ -241,6 +241,6 @@ const mapStateToPropsN = state => ({
 //export default withTheme()(RoommateFinderResultVariationTwo);
 
 
-RoommateProfile = connect(mapStateToPropsN)(RoommateProfile);
+//RoommateProfile = connect(mapStateToPropsN)(RoommateProfile);
 
 export default withStyles(styles)(RoommateProfile);

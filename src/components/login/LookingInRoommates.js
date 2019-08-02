@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 // import {login} from '../../actions/user'; 
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import ButtonAppBar from '../../components/TopBar';
-import FooterBar from "../../components/FooterBar";
+import ButtonAppBar from '../TopBar';
+import FooterBar from "../FooterBar";
 import AppProvider from "../../provider/AppContext";
 import { AppContext } from '../../provider/AppContext';
 //import Button from '@material-ui/core/Button';
@@ -16,16 +16,19 @@ class LookingInRoommates extends React.Component {
         super(props);
 
         // reset login status
-      //  this.props.dispatch(userActions.logout());
+        //  this.props.dispatch(userActions.logout());
 
         this.state = {
+            data: this.props.location.state.data,
             username: '',
             password: '',
-            submitted: false
+            submitted: false,
+            LookingInRoommates: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        console.log('data===LookingInRoommates' + JSON.stringify(this.state.data))
     }
 
     handleChange(e) {
@@ -39,47 +42,62 @@ class LookingInRoommates extends React.Component {
         this.setState({ submitted: true });
         const { username, password } = this.state;
         if (username && password) {
-            this.props.login({'payload':{username, password}})
+            this.props.login({ 'payload': { username, password } })
         }
+    }
+
+    updateState = (data) => {
+        this.setState({
+            LookingInRoommates: data
+        })
+    }
+
+    goToNext = () => {
+        const { data, LookingInRoommates } = this.state;
+        let tempData = data;
+        tempData.questions.LookingInRoommates = LookingInRoommates;
+        tempData.questions.typeofperson = LookingInRoommates;
+        this.props.history.push('TypeOfPerson', { data: tempData });
     }
 
     render() {
         const { user } = this.props;
-		
+
         const { username, password, submitted } = this.state;
-	
+
         return (
-		
-          
-         <AppProvider>
-       
-			  
-            <Paper style={{padding:'5px'}} elevation={1} className="lookingInroomate">
-			 <AppContext.Consumer>
-          {(context) => ( 
-          <ButtonAppBar></ButtonAppBar>   
-		  )}
-		</AppContext.Consumer>
-             
-			<div className="col-md-4 reg_form" style={{ background: '#fff', margin: '0 auto' }}>
-                
-				<div className="main_title">Tell me about what you are looking for in a roommate?</div>
-				
-				<div className="type_list">
-				<button data-toggle="tab" data-target="#page0" className="btn btn-default btn-sm">QUIET</button>
-				<button data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">LOUD</button>
-				<button data-toggle="tab" data-target="#page2" className="btn btn-default active btn-sm">TIDY</button>
-				<button data-toggle="tab" data-target="#page3" className="btn btn-default btn-sm">MESSY</button>
-				</div>
-				<a href="/" className="prv_question" >Previous Question</a>
-            </div>
-			 
-            </Paper>
-			
-			<FooterBar></FooterBar>
-			
-      	   </AppProvider>	
-		
+
+
+            <AppProvider>
+
+
+                <Paper style={{ padding: '5px' }} elevation={1} className="lookingInroomate">
+                    <AppContext.Consumer>
+                        {(context) => (
+                            <ButtonAppBar></ButtonAppBar>
+                        )}
+                    </AppContext.Consumer>
+
+                    <div className="col-md-4 reg_form" style={{ background: '#fff', margin: '0 auto' }}>
+
+                        <div className="main_title">Tell me about what you are looking for in a roommate?</div>
+
+                        <div className="type_list">
+                            <button onClick={() => this.updateState('Quiet')} data-toggle="tab" data-target="#page0" className="btn btn-default btn-sm">QUIET</button>
+                            <button onClick={() => this.updateState('Loud')} data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">LOUD</button>
+                            <button onClick={() => this.updateState('Tidy')} data-toggle="tab" data-target="#page2" className="btn btn-default  btn-sm">TIDY</button>
+                            <button onClick={() => this.updateState('Messy')} data-toggle="tab" data-target="#page3" className="btn btn-default btn-sm">MESSY</button>
+                        </div>
+                        <a href="/" className="prv_question" >Previous Question</a>
+                        <button onClick={() => this.goToNext()} className="btn btn-default btn-sm">Next Question</button>
+                    </div>
+
+                </Paper>
+
+                <FooterBar></FooterBar>
+
+            </AppProvider>
+
         );
     }
 }
@@ -87,12 +105,12 @@ class LookingInRoommates extends React.Component {
 function mapStateToProps(state) {
     // const { user } = state.app;
     return {
-        
+
         // user,
-		
+
     };
 }
 const mapDispatchToProps = {
     // login:login.request
 };
-export default withTheme()( connect(mapStateToProps,mapDispatchToProps)(LookingInRoommates)); 
+export default withTheme()(connect(mapStateToProps, mapDispatchToProps)(LookingInRoommates)); 

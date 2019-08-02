@@ -19,13 +19,16 @@ class LikeGoOut extends React.Component {
       //  this.props.dispatch(userActions.logout());
 
         this.state = {
+            data: this.props.location.state.data,
             username: '',
             password: '',
-            submitted: false
+            submitted: false,
+            LikeGoOut:''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        console.log('data===LikeGoOut' + JSON.stringify(this.state.data))
     }
 
     handleChange(e) {
@@ -41,6 +44,19 @@ class LikeGoOut extends React.Component {
         if (username && password) {
             this.props.login({'payload':{username, password}})
         }
+    }
+
+    updateState = (data) => {
+        this.setState({
+            LikeGoOut: data
+        })
+    }
+
+    goToNext = () => {
+        const { data, LikeGoOut } = this.state;
+        let tempData = data;
+        tempData.questions.LikeGoOut = LikeGoOut;
+        this.props.history.push('/LookingRoommate', { data: tempData });
     }
 
     render() {
@@ -61,15 +77,16 @@ class LikeGoOut extends React.Component {
 		  )}
 		</AppContext.Consumer>
              
-			<div className="col-md-4 login_form" style={{ background: '#fff', margin: '0 auto' }}>
+			<div className="col-md-4 login_form reg_form" style={{ background: '#fff', margin: '0 auto' }}>
                 
 				<div className="main_title">Likes to go out ?</div>
 				
 				<div className="type_list"> 
-				<button data-toggle="tab" data-target="#page0" className="btn btn-default active btn-sm">Yes</button>
-		        <button data-toggle="tab" data-target="#page1" className="btn btn-default  btn-sm">No</button>
+				<button  onClick={() => this.updateState('true')} data-toggle="tab" data-target="#page0" className="btn btn-default  btn-sm">Yes</button>
+		        <button  onClick={() => this.updateState('false')} data-toggle="tab" data-target="#page1" className="btn btn-default  btn-sm">No</button>
 				</div>
 				<a href="/" className="prv_question" >Previous Question</a>
+                <button onClick={() => this.goToNext()} className="btn btn-default btn-sm">Next Question</button>
             </div>
 			 
             </Paper>

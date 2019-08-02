@@ -39,6 +39,9 @@
     padding: 70px 0 75px 0;
     min-height: 360px;
 }
+.reg_checkbox {
+    margin: 20px 0;
+}
 .lookingInroomate .reg_form{
 	
 	 text-align: center;
@@ -50,6 +53,20 @@
    
     min-height: 360px;
 	
+}
+
+ .form-group.reg_checkbox input[type="checkbox"] {
+    -webkit-appearance: none;
+	z-index: 9;
+    background: transparent;
+    position: relative;
+}
+
+.form-control.box.orange {
+    
+    background-color: #F9790E !important;
+    border-color: #F9790E;
+	 -webkit-text-fill-color: #fff !important;
 }
 
 .help-block {

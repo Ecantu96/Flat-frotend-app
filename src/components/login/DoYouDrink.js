@@ -17,16 +17,19 @@ class DoYouDrink extends React.Component {
         super(props);
 
         // reset login status
-      //  this.props.dispatch(userActions.logout());
+        //  this.props.dispatch(userActions.logout());
 
         this.state = {
+            data: this.props.location.state.data,
             username: '',
             password: '',
-            submitted: false
+            submitted: false,
+            DoYouDrink: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+       
     }
 
     handleChange(e) {
@@ -34,51 +37,67 @@ class DoYouDrink extends React.Component {
         this.setState({ [name]: value });
     }
 
+    updateState = (data) => {
+        this.setState({
+            DoYouDrink: data
+        })
+    }
+
+    goToNext = () => {
+        const { data, DoYouDrink } = this.state;
+        let tempData = data;
+        tempData.questions.DoYouDrink = DoYouDrink;
+        this.props.history.push('/DoYouSmoke', { data: tempData });
+    }
+
+
     handleSubmit(e) {
         e.preventDefault();
 
         this.setState({ submitted: true });
         const { username, password } = this.state;
         if (username && password) {
-            this.props.login({'payload':{username, password}})
+            this.props.login({ 'payload': { username, password } })
         }
     }
 
     render() {
         const { user } = this.props;
-		
+
         const { username, password, submitted } = this.state;
-	
+
         return (
-		
-          
-         <AppProvider>
-       
-			  
-            <Paper style={{padding:'5px'}} elevation={1} className="lookingInroomate">
-			 <AppContext.Consumer>
-          {(context) => ( 
-          <ButtonAppBar></ButtonAppBar>   
-		  )}
-		</AppContext.Consumer>
-             
-			<div className="col-md-4 login_form" style={{ background: '#fff', margin: '0 auto' }}>
-                
-				<div className="main_title">Do you drink ?</div>
-				
-				<div className="type_list">
-				<button data-toggle="tab" data-target="#page0" className="btn btn-default active btn-sm">Yes</button>
-		        <button data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">No</button>
-				</div>
-				<a href="/" className="prv_question" >Previous Question</a>
-            </div>
-			 
-            </Paper>
-			
-			<FooterBar></FooterBar>
-			
-      	   </AppProvider>	
-		
+
+
+            <AppProvider>
+
+
+                <Paper style={{ padding: '5px' }} elevation={1} className="lookingInroomate">
+                    <AppContext.Consumer>
+                        {(context) => (
+                            <ButtonAppBar></ButtonAppBar>
+                        )}
+                    </AppContext.Consumer>
+
+                    <div className="col-md-4 login_form reg_form" style={{ background: '#fff', margin: '0 auto' }}>
+
+                        <div className="main_title">Do you drink ?</div>
+
+                        <div className="type_list">
+                            <button onClick={() => this.updateState('true')} data-toggle="tab" data-target="#page0" className="btn btn-default btn-sm">Yes</button>
+                            <button onClick={() => this.updateState('false')} data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">No</button>
+                        </div>
+                        <a href="/" className="prv_question" >Previous Question</a>
+                        <button onClick={() => this.goToNext()} className="btn btn-default btn-sm">Next Question</button>
+
+                    </div>
+
+                </Paper>
+
+                <FooterBar></FooterBar>
+
+            </AppProvider>
+
         );
     }
 }
@@ -86,12 +105,12 @@ class DoYouDrink extends React.Component {
 function mapStateToProps(state) {
     // const { user } = state.app;
     return {
-        
+
         // user,
-		
+
     };
 }
 const mapDispatchToProps = {
     // login:login.request
 };
-export default withTheme()( connect(mapStateToProps,mapDispatchToProps)(DoYouDrink)); 
+export default withTheme()(connect(mapStateToProps, mapDispatchToProps)(DoYouDrink)); 
