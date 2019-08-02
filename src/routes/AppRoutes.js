@@ -12,6 +12,7 @@ import RegisterPage from "../components/login/RegisterPage";
 import RelatorsRegsiter from "../components/login/RelatorsRegsiter";
 import LookingRoommate from "../components/login/LookingRoommate";
 import LookingInRoommates from "../components/login/LookingInRoommates";
+import TypeOfPerson from "../components/login/TypeOfPerson";  
 import DoYouDrink from "../components/login/DoYouDrink";
 import DoYouSmoke from "../components/login/DoYouSmoke";
 import LikeGoOut from "../components/login/LikeGoOut";
@@ -51,6 +52,7 @@ const AppRoutes = () => {
           <Route path="/RelatorsRegsiter" component={RelatorsRegsiter} />
           <Route path="/LookingRoommate" component={LookingRoommate} />
           <Route path="/LookingInRoommates" component={LookingInRoommates} />
+          <Route path="/TypeOfPerson" component={TypeOfPerson} />
           <Route path="/DoYouDrink" component={DoYouDrink} />
           <Route path="/DoYouSmoke" component={DoYouSmoke} />
           <Route path="/LikeGoOut" component={LikeGoOut} />

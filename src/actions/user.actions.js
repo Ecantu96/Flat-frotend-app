@@ -21,7 +21,7 @@ function login(username, password) {
                     console.log('return error==user'+JSON.stringify(user))
                     dispatch(success(user));
                     dispatch(alertActions.success('Loggein in successfully'));
-                    history.push('/');
+                    history.push('/RoommateFinderResult');
                 },
                 error => {
                     console.log('return error=='+error)

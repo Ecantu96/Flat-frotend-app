@@ -1,5 +1,5 @@
 import React from 'react';
-//import { 	 } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import {login} from '../../actions/user'; 
 import { withTheme } from '@material-ui/core/styles';
@@ -11,10 +11,10 @@ import { AppContext } from '../../provider/AppContext';
 //import Button from '@material-ui/core/Button';
 import '../css/guest.css';
 
-class DoYouSmoke extends React.Component {
+class TypeOfPerson extends React.Component {
     constructor(props) {
         super(props);
- 
+
         // reset login status
       //  this.props.dispatch(userActions.logout());
 
@@ -23,12 +23,12 @@ class DoYouSmoke extends React.Component {
             username: '',
             password: '',
             submitted: false,
-            DoYouSmoke:''
+            TypeOfPerson:''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        console.log('data===DoYouSmoke' + JSON.stringify(this.state.data))
+        console.log('data===TypeOfPerson' + JSON.stringify(this.state.data))
     }
 
     handleChange(e) {
@@ -36,21 +36,9 @@ class DoYouSmoke extends React.Component {
         this.setState({ [name]: value });
     }
 
-    updateState = (data) => {
-        this.setState({
-            DoYouSmoke: data
-        })
-    }
-
-    goToNext = () => {
-        const { data, DoYouSmoke } = this.state;
-        let tempData = data;
-        tempData.questions.DoYouSmoke = DoYouSmoke;
-        this.props.history.push('/LikeGoOut', { data: tempData });
-    }
-
     handleSubmit(e) {
         e.preventDefault();
+
         this.setState({ submitted: true });
         const { username, password } = this.state;
         if (username && password) {
@@ -58,31 +46,47 @@ class DoYouSmoke extends React.Component {
         }
     }
 
+
+    updateState = (data) => {
+        this.setState({
+            LookingRoommate: data
+        })
+    }
+
+    goToNext = () => {
+        const { data, LookingRoommate } = this.state;
+        let tempData = data;
+        tempData.questions.LookingRoommate = LookingRoommate;
+        this.props.history.push('Workhours', { data: tempData });
+    }
+
     render() {
         const { user } = this.props;
 		
         const { username, password, submitted } = this.state;
-	 
+	
         return (
 		
           
          <AppProvider>
        
 			  
-            <Paper style={{padding:'5px'}} elevation={1} className="lookingInroomate">
+            <Paper style={{padding:'5px'}} elevation={1} className="lookingroomate">
 			 <AppContext.Consumer>
           {(context) => ( 
           <ButtonAppBar></ButtonAppBar>   
 		  )}
 		</AppContext.Consumer>
              
-			<div className="col-md-4 login_form reg_form" style={{ background: '#fff', margin: '0 auto' }}>
+			<div className="col-md-4 reg_form" style={{ background: '#fff', margin: '0 auto' }}>
                 
-				<div className="main_title">Do you smoke ?</div>
+				<div className="main_title">Tell me about you, what describes you best?</div>
 				
-				<div className="type_list"> 
-				<button onClick={() => this.updateState('true')} data-toggle="tab" data-target="#page0" className="btn btn-default  btn-sm">Yes</button>
-		        <button onClick={() => this.updateState('false')} data-toggle="tab" data-target="#page1" className="btn btn-default  btn-sm">No</button>
+				<div className="type_list">
+				<button onClick={() => this.updateState('Quiet')} data-toggle="tab" data-target="#page0" className="btn btn-default btn-sm">QUIET</button>
+				<button onClick={() => this.updateState('Loud')} data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">LOUD</button>
+				<button onClick={() => this.updateState('Tidy')} data-toggle="tab" data-target="#page2" className="btn btn-default  btn-sm">TIDY</button>
+				<button onClick={() => this.updateState('Messy')} data-toggle="tab" data-target="#page3" className="btn btn-default btn-sm">MESSY</button>
 				</div>
 				<a href="/" className="prv_question" >Previous Question</a>
                 <button onClick={() => this.goToNext()} className="btn btn-default btn-sm">Next Question</button>
@@ -101,7 +105,6 @@ class DoYouSmoke extends React.Component {
 function mapStateToProps(state) {
     // const { user } = state.app;
     return {
-        
         // user,
 		
     };
@@ -109,4 +112,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     // login:login.request
 };
-export default withTheme()( connect(mapStateToProps,mapDispatchToProps)(DoYouSmoke)); 
+export default withTheme()( connect(mapStateToProps,mapDispatchToProps)(TypeOfPerson)); 

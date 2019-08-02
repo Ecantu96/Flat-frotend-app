@@ -19,13 +19,16 @@ class LookingRoommate extends React.Component {
       //  this.props.dispatch(userActions.logout());
 
         this.state = {
+            data: this.props.location.state.data,
             username: '',
             password: '',
-            submitted: false
+            submitted: false,
+            LookingRoommate:''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        console.log('data===LookingRoommate' + JSON.stringify(this.state.data))
     }
 
     handleChange(e) {
@@ -41,6 +44,20 @@ class LookingRoommate extends React.Component {
         if (username && password) {
             this.props.login({'payload':{username, password}})
         }
+    }
+
+
+    updateState = (data) => {
+        this.setState({
+            LookingRoommate: data
+        })
+    }
+
+    goToNext = () => {
+        const { data, LookingRoommate } = this.state;
+        let tempData = data;
+        tempData.questions.LookingRoommate = LookingRoommate;
+        this.props.history.push('LookingInRoommates', { data: tempData });
     }
 
     render() {
@@ -66,12 +83,13 @@ class LookingRoommate extends React.Component {
 				<div className="main_title">Tell me about you, what describes you best?</div>
 				
 				<div className="type_list">
-				<button data-toggle="tab" data-target="#page0" className="btn btn-default btn-sm">QUIET</button>
-				<button data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">LOUD</button>
-				<button data-toggle="tab" data-target="#page2" className="btn btn-default active btn-sm">TIDY</button>
-				<button data-toggle="tab" data-target="#page3" className="btn btn-default btn-sm">MESSY</button>
+				<button onClick={() => this.updateState('Quiet')} data-toggle="tab" data-target="#page0" className="btn btn-default btn-sm">QUIET</button>
+				<button onClick={() => this.updateState('Loud')} data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">LOUD</button>
+				<button onClick={() => this.updateState('Tidy')} data-toggle="tab" data-target="#page2" className="btn btn-default  btn-sm">TIDY</button>
+				<button onClick={() => this.updateState('Messy')} data-toggle="tab" data-target="#page3" className="btn btn-default btn-sm">MESSY</button>
 				</div>
 				<a href="/" className="prv_question" >Previous Question</a>
+                <button onClick={() => this.goToNext()} className="btn btn-default btn-sm">Next Question</button>
             </div>
 			 
             </Paper>
