@@ -1,4 +1,5 @@
 import React from "react";
+import _ from 'lodash';
 import {connect} from "react-redux";
 import { AppContext } from '../provider/AppContext';
 import AppProvider from "../provider/AppContext";
@@ -9,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
+import { userActions } from '../actions';
+//import { matchRoommate } from '../actions';
   
 const styles = theme => ({
 	  root: {
@@ -22,18 +25,98 @@ const styles = theme => ({
 	});
 
 class RoommateFinderResult extends React.Component {
+	
+	constructor(props) {
+        super(props);
+
+        // reset login status
+        //  this.props.dispatch(userActions.logout());
+
+        this.state = {
+			data: this.props.location.state.data,
+			RoommateFinderResult: '',
+			roomMateLists: []
+           
+           
+        };
+		
+		 console.log('data===RoommateFinderResult' + JSON.stringify(this.state.data))
+
+  
+	}
+
+	updateState = (data) => {
+        this.setState({
+            RoommateFinderResult: data
+        })
+    }
+
+	
+	
+	
+	componentWillMount = () => {
+		const { data, RoommateFinderResult } = this.state;
+        const { dispatch } = this.props;
+		let tempData = data;
+		tempData.questions.RoommateFinderResult = RoommateFinderResult;
+	 	
+	 	console.log('data===RoommateFinderResult' + JSON.stringify(tempData.questions)) 		
+		 this.props.dispatch(userActions.matchRoommate(tempData.questions));
+		 
+		// this.props.history.push('RoommateFinderResult', { data: tempData });
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+	console.log('Here component will update');
+	var response = nextProps.message;
+	console.log("My response");
+	console.log(response);
+	this.setState({
+		roomMateLists:response
+	});
+
+		
+  }
 		
 	render() {
 	 
-    const {classes, errorMessage} = this.props;
+	const {classes, errorMessage} = this.props;
+	var { roomMateLists } = this.state;
+	var items = roomMateLists;
+	const { registering, type, message } = this.props;
+	
+
+	console.log("Render funcytioo");
+	if(this.state.roomMateLists){
+		items = this.state.roomMateLists.map((item, key) =>
+		<Grid className="MuiGrid-item-143" item xs={4}  key={key}>
+			<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
+			<div className="room_finder_title">	<h5>{item.username}</h5></div>
+			<div className="profile_title">
+			<span>Messy</span>
+			<span>Part-time</span>
+			<span>Drink Partner</span>
+			<span>Bedtime at 11pm</span>
+			<span>Not a Smoke Partner</span>
+			</div>
+			</Paper>
+	  	</Grid>
+		);
+	}
+	
     debugger;
+	
     return (
+
+		
 	
       <AppProvider>
         <AppContext.Consumer>
           {(context) => ( 
-            
-            <div>
+
+
+			 <div>
                 <ButtonAppBar></ButtonAppBar> 
             <div className="loader-container bg_roommate">
 			                <div className="banner_text_roomate_profile">
@@ -78,243 +161,18 @@ class RoommateFinderResult extends React.Component {
 			<div className="main_roomates roommatefinder_result">
 				<React.Fragment>
 					<div className="row">
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-							
-						  </Grid>
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Quiet</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							
-							</Paper>
-						  </Grid>
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-						
-							<span>Loud</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							
-							</Paper>
-						  </Grid>
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						  </Grid>
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Tidy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						   </Grid>
-						  
+						{items}
 					</div>
-					
-					<div className="row">
-						  
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							
-							</Paper>
-						  </Grid>
-						  
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Quiet</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-							
-						  </Grid>
-						  
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							
-							</Paper>
-						  </Grid>
-						  
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						   </Grid>
-						   
-						   <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						  </Grid>
-					</div>					
-					<div className="row">
-						<Grid item xs={4}>
-						<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-						<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-						<div className="profile_title">
-						
-						<span>Loud</span>
-						<span>Part-time</span>
-						<span>Drink Partner</span>
-						<span>Bedtime at 11pm</span>
-						<span>Not a Smoke Partner</span>
-						</div>
-						
-						</Paper>
-					  </Grid>
-					  
-					    <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Loud</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						  </Grid>
-					  
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-							
-						  </Grid>
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Tidy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							
-							</Paper>
-						  </Grid>
-						  					 
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Selena Gomez</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						   </Grid>
-						   
-						    
-					</div>
-					
-					
 					<div className="next_pre">
-								  
-								  <Button className="pre_page" variant="title" color="#F9790E">Previous</Button>
-								  <span className="numbers active">1</span>
-								  <span className="numbers">2</span>
-								  <span className="numbers">3</span>
-								  <span className="numbers">4</span>
-								  <span variant="title" color="#F9790E">....</span>
-								  <span className="numbers">18</span>
-								  <Button className="next_page">Last</Button>
-								  
-						   
-								  							   
+						<Button className="pre_page" variant="title" color="#F9790E">Previous</Button>
+						<span className="numbers active">1</span>
+						<span className="numbers">2</span>
+						<span className="numbers">3</span>
+						<span className="numbers">4</span>
+						<span variant="title" color="#F9790E">....</span>
+						<span className="numbers">18</span>
+						<Button className="next_page">Last</Button>
 				    </div>
-									
 				</React.Fragment>
 			</div>
 			
@@ -357,9 +215,9 @@ class RoommateFinderResult extends React.Component {
 			<div className="main_roomates rooms_finder">
 				<React.Fragment>
 					<div className="row">
-						  <Grid item xs={5}>
-	<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
-	        <div className="room_finder_title"><h5>Address goes here</h5></div>
+						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+	                       <Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+	                        <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
 							<span>1 BD</span>
@@ -371,8 +229,8 @@ class RoommateFinderResult extends React.Component {
 							</Paper>
 							
 						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -384,8 +242,8 @@ class RoommateFinderResult extends React.Component {
 							</div>
 							</Paper>
 						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -397,8 +255,8 @@ class RoommateFinderResult extends React.Component {
 							</div>
 							</Paper>
 						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
+						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
 							 <div className="room_finder_title"><h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -419,6 +277,9 @@ class RoommateFinderResult extends React.Component {
 								<Button className="view_more_btn" variant="title" color="#F9790E">View More</Button>
 					</div>
 					
+					{registering &&
+                                <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            }
 					
 				</React.Fragment>
 			</div>
@@ -442,10 +303,19 @@ const mapStateToPropsN = state => ({
   //loggedInUser:state.app.user
 });
 
+function mapStateToProps(state) {
+    const { registering } = state.roommateMatch;
+    const { type, message } = state.alert;
+    return {
+        registering, type, message
+
+    };
+}
 
 //export default withTheme()(RoommateFinderResultVariationTwo);
 
 
 //RoommateFinderResult = connect(mapStateToPropsN)(RoommateFinderResult);
 
-export default withStyles(styles)(RoommateFinderResult);
+export default withStyles(styles)(connect(mapStateToProps)(RoommateFinderResult));
+//export default withTheme()(connect(mapStateToProps)(WorkHours)); 

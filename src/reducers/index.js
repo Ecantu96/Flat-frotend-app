@@ -19,12 +19,14 @@ import { orm } from '../orm/model';
 import { authentication } from './authentication.reducer';
 import { createReducer } from 'redux-orm';
 import { registration } from './registration.reducer';
+import { roommateMatch } from './roommatmatch.reducer';
 import { users } from './users.reducer';
 import { alert } from './alert.reducer';
 
 const rootReducer = combineReducers({
     orm: createReducer(orm),
     authentication,
+	roommateMatch,
     registration,
     users,
     alert
