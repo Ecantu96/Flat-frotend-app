@@ -2,26 +2,34 @@ import { userConstants } from '../_constant';
 import { userService } from '../services';
 import { alertActions } from './';
 // import { history } from '../_helpers/history';
+import { interestedRoommate } from '../components/login/LoginPage.js';
+
 import history from '../_helpers/history';
+
 
 export const userActions = {
     login,
     logout,
     register,
-    getAll,
-    delete: _delete
+	matchRoommate,
+	getAll,
+	delete: _delete
 };
 
 function login(username, password) {
+	
     return dispatch => {
         dispatch(request({ username }));
         userService.login(username, password)
             .then(
                 user => { 
-                    console.log('return error==user'+JSON.stringify(user))
-                    dispatch(success(user));
-                    dispatch(alertActions.success('Loggein in successfully'));
-                    history.push('/RoommateFinderResult');
+				   					
+                    console.log('return error==user'+JSON.stringify(user));
+					dispatch(success(user));
+					dispatch(alertActions.success('Loggein in successfully'));
+										
+						//history.push('/RoommateFinderResult')
+					
                 },
                 error => {
                     console.log('return error=='+error)
@@ -42,13 +50,19 @@ function logout() {
 }
 
 function register(user) {
+	//var interestedRoommate = document.getElementById("interestedRoommate").checked; 
+	//alert(user.interestedRoommate);
+	const interstedRoommate = user.interestedRoommate;
     return dispatch => {
         dispatch(request(user));
         userService.register(user)
             .then(
                 user => { 
+				 console.log('return error==user'+JSON.stringify(user));
                     dispatch(success());
-                    history.push('/login');
+					//if(interstedRoommate){
+                     //  history.push('/RoommateFinderResult');
+					//}
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {
@@ -61,6 +75,46 @@ function register(user) {
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
     function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+}
+
+function matchRoommate(user) {
+	console.log('Ths is matchRoommate');
+	console.log(user);
+	    return dispatch => {
+			//const token = localStorage.token;
+			//alert(token);
+	  //  if (token) {
+        dispatch(request(user));
+		//alert(user);
+        userService.matchRoommates(user)
+		
+        .then(user => {
+			     // alert(1);
+				  
+			      console.log('return error==user'+JSON.stringify(user));
+                    dispatch(alertActions.success(user));
+			       dispatch(success());
+                 localStorage.removeItem("token")
+			     return user;
+				 
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+         
+            // An error will occur if the token is invalid.
+            // If this happens, you may want to remove the invalid token.
+			     
+                           
+         );
+            
+	  //  }
+    };
+
+    function request(user) { return { type: userConstants.USER_REQUEST, user } }
+    function success(user) { return { type: userConstants.USER_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.USER_FAILURE, error } }
 }
 
 function getAll() {

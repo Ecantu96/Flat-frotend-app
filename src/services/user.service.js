@@ -54,6 +54,7 @@ export const userService = {
   login,
   logout,
   register,
+  matchRoommates,
   getAll,
   getById,
   update,
@@ -63,6 +64,7 @@ export const userService = {
 const API_ROOT = "https://nooklyn-flats-backend-apis.herokuapp.com";
 const LOGIN = '/users/authenticate';
 const REGISTER = '/users/register';
+const MATCHROOMMATES = '/users/matchRoommates';
 
 function login(username, password) {
   const requestOptions = {
@@ -124,7 +126,7 @@ function register(user) {
     }).catch(error => {
       return Promise.reject(error);;
 
-    });;
+    });
 }
 
 function update(user) {
@@ -135,6 +137,31 @@ function update(user) {
   };
 
   return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
+}
+
+function matchRoommates(user){
+	console.log('This is roommates');
+	console.log(user);
+	const requestOptions = {
+		method: 'GET',  
+		headers: authHeader()
+		// body: JSON.stringify(user)
+	};
+	console.log('this is request body');
+    console.log(requestOptions);
+  return fetch(API_ROOT + MATCHROOMMATES, requestOptions)
+    .then(handleResponse).then(user => {
+	   //	console.log(user);
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      return user;
+	 
+    }).catch(error => {
+      return Promise.reject(error);;
+
+    });
+
+  //return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);;
+	
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -148,6 +175,9 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
+	//console.log('my response');
+	//console.log(response);
+	
   return response.text().then(text => {
     const data = text && JSON.parse(text);
     console.log('error data' + JSON.stringify(response))
