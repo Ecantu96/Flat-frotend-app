@@ -25,7 +25,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 
-
 const ITEM_HEIGHT = 48;
 
 const styles = {
@@ -88,7 +87,7 @@ class ButtonAppBar extends React.Component {
         <AppBar position="static" color="default">
 
 
-          <Toolbar>
+          <Toolbar className="MuiToolbar-regular-43">
 
             <div className="logo">
               <Link to='/' component={AppContainer}>  <CardMedia
@@ -160,10 +159,8 @@ class ButtonAppBar extends React.Component {
               <AppContext.Consumer>
 
                 {(context) => (<div className="right_menu">
-                  {/* alert(JSON.stringify(context.state.loggedInUser.username.user.username)) */}
-                  <div className="abt"><Button href="/">{context.state.loggedInUser !== undefined?<div>{context.state.loggedInUser.username}</div>:'About'}</Button></div>
-                  
-                  {context.state.loggedInUser !== undefined ? <div style={{ color: '#fff', fontWeight: "600" }}>
+					<div className="abt"><Button href="/Dashboard">{context.state.loggedInUser !== undefined?<div>{context.state.loggedInUser.username}</div>:'About'}</Button></div>
+                    {context.state.loggedInUser !== undefined ? <div style={{ color: '#fff', fontWeight: "600" }}>
                     {<Button href="/login" onClick={() => { localStorage.removeItem('user') }} color="inherit">Logout</Button>}</div> :
                     <div className="log_sign">
                       <Link to='/register' component={register}>Sign-up</Link>

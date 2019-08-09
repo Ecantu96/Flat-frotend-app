@@ -83,8 +83,8 @@ class RoommateProfile extends React.Component {
 					<div className="col-sm-6">
 					    <div className="row">
 						  
-				  		  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt="" src={require('./images/lsiting_room.jpg')} /></a>
+				  		  <Grid className="MuiGrid-item-143" item xs={5}>
+							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt="" src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -97,8 +97,8 @@ class RoommateProfile extends React.Component {
 							</Paper>
 							</Grid>
 							
-							<Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+							<Grid className="MuiGrid-item-143" item xs={5}>
+							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -115,8 +115,8 @@ class RoommateProfile extends React.Component {
 								
 						<div className="row">
 						
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+						  <Grid className="MuiGrid-item-143" item xs={5}>
+							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -128,8 +128,8 @@ class RoommateProfile extends React.Component {
 							</div>
 							</Paper>
 						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+						  <Grid className="MuiGrid-item-143" item xs={5}>
+							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartments</h5>
@@ -144,8 +144,8 @@ class RoommateProfile extends React.Component {
 						</div>
 						<div className="row">
 					
-						<Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+						<Grid className="MuiGrid-item-143" item xs={5}>
+							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
@@ -157,8 +157,8 @@ class RoommateProfile extends React.Component {
 							</div>
 							</Paper>
 						   </Grid>
-						<Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+						<Grid className="MuiGrid-item-143" item xs={5}>
+							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Address goes here</h5></div>
 							<div className="profile_title">
 							<h5>Beautiful Mod Apartment</h5>
