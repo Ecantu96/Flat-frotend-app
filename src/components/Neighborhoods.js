@@ -104,8 +104,8 @@ class Neighborhoods extends React.Component {
 							
 				  		  <Slider {...settings}>
 								
-								            <Grid item xs={5}>
-													<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+								            <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+													<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 													<div className="profile_title">
 													<h5>City Name</h5>
@@ -118,8 +118,8 @@ class Neighborhoods extends React.Component {
 											</Grid>
 							
 							
-						                <Grid item xs={5}>
-													<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+						                <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+													<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 													<div className="profile_title">
 													<h5>City Name</h5>
@@ -131,8 +131,8 @@ class Neighborhoods extends React.Component {
 													</Paper>
 										</Grid>
 								
-								 <Grid item xs={5}>
-													<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+								 <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+													<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 													<div className="profile_title">
 													<h5>City Name</h5>
@@ -144,8 +144,8 @@ class Neighborhoods extends React.Component {
 													</Paper>
 												  </Grid>
 								
-								<Grid item xs={5}>
-								  <Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+								<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+								  <Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 													<div className="profile_title">
 													<h5>City Name</h5>
@@ -187,8 +187,8 @@ class Neighborhoods extends React.Component {
 							
 			                <Slider {...settings}>
 							
-            					   <Grid item xs={5}>
-											<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+            					   <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+											<Paper className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 											<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 											<div className="profile_title">
 											<h5>City Name</h5>
@@ -201,8 +201,8 @@ class Neighborhoods extends React.Component {
 									</Grid>
 					
 							
-									<Grid item xs={5}>
-												<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+									<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+												<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 												<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 												<div className="profile_title">
 												<h5>City Name</h5>
@@ -214,8 +214,8 @@ class Neighborhoods extends React.Component {
 												</Paper>
 									</Grid>
 								
-								   <Grid item xs={5}>
-										<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+								   <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+										<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 										<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 										<div className="profile_title">
 										<h5>City Name</h5>
@@ -227,8 +227,8 @@ class Neighborhoods extends React.Component {
 										</Paper>
 									  </Grid>
 								
-									<Grid item xs={5}>
-									  <Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+									<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+									  <Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 														<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 														<div className="profile_title">
 														<h5>City Name</h5>
@@ -266,8 +266,8 @@ class Neighborhoods extends React.Component {
 					  
 					<Slider {...settings}>
 					
-						<Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+						<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+							<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 							<div className="profile_title">
 							<h5>Area/Location</h5>
@@ -277,8 +277,8 @@ class Neighborhoods extends React.Component {
 							</div>
 							</Paper>
 						 </Grid>
-						<Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+						<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+							<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 							<div className="profile_title">
 							<h5>Area/Location</h5>
@@ -289,8 +289,8 @@ class Neighborhoods extends React.Component {
 							</Paper>
 						</Grid>
 						
-						<Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+						<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+							<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 							<div className="profile_title">
 							<h5>Area/Location</h5>
@@ -301,8 +301,8 @@ class Neighborhoods extends React.Component {
 							</Paper>
 						 </Grid>
 						 
-						 <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+						 <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
+							<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
 							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
 							<div className="profile_title">
 							<h5>Area/Location</h5>
