@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import { userActions } from '../actions';
-//import { matchRoommate } from '../actions';
   
 const styles = theme => ({
 	  root: {
@@ -36,42 +35,52 @@ class RoommateFinderResult extends React.Component {
 			data: this.props.location.state.data,
 			RoommateFinderResult: '',
 			roomMateLists: []
-           
-           
         };
 		
 		 console.log('data===RoommateFinderResult' + JSON.stringify(this.state.data))
 
+		
   
 	}
-
-	updateState = (data) => {
-        this.setState({
-            RoommateFinderResult: data
-        })
-    }
-
-	
 	
 	
 	componentWillMount = () => {
-		const { data, RoommateFinderResult } = this.state;
+
+			const { data, RoommateFinderResult } = this.state;
         const { dispatch } = this.props;
 		let tempData = data;
-		tempData.questions.RoommateFinderResult = RoommateFinderResult;
+		//tempData.questions.RoommateFinderResult = RoommateFinderResult;
 	 	
-	 	console.log('data===RoommateFinderResult' + JSON.stringify(tempData.questions)) 		
-		 this.props.dispatch(userActions.matchRoommate(tempData.questions));
-		 
-		// this.props.history.push('RoommateFinderResult', { data: tempData });
+		 console.log('data===RoommateFinderResult' + JSON.stringify(tempData.questions)) 
+		
+		 if(tempData != ""){
+			setTimeout(() => dispatch(userActions.register(tempData)), 500);
+		 }
 
-  }
+		 if(tempData.username && tempData.password){
+				
+			setTimeout(() => dispatch(userActions.login(tempData.username, tempData.password)), 1000);
+			setTimeout(() => dispatch(userActions.matchRoommate(tempData.questions)), 2000);
+			
+		}
+		 
+		localStorage.setItem('MyData', JSON.stringify(tempData));
+		 
+	
+    }
+
+   componentDidMount = () => {
+
+	// let user = JSON.parse(localStorage.getItem('user'));
+   
+	// const initialState = user ? {loggedIn: true, user } : {};
+
+}
 
   componentWillReceiveProps(nextProps) {
-	console.log('Here component will update');
+
 	var response = nextProps.message;
-	console.log("My response");
-	console.log(response);
+//	console.log(response);
 	this.setState({
 		roomMateLists:response
 	});
@@ -85,27 +94,27 @@ class RoommateFinderResult extends React.Component {
 	var { roomMateLists } = this.state;
 	var items = roomMateLists;
 	const { registering, type, message } = this.props;
-	
 
-	console.log("Render funcytioo");
-	if(this.state.roomMateLists){
-		items = this.state.roomMateLists.map((item, key) =>
+	
+	  if(_.some(roomMateLists, _.isObject)){
+	  	items = roomMateLists.map((item, key) =>
 		<Grid className="MuiGrid-item-143" item xs={4}  key={key}>
 			<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} /></a>
 			<div className="room_finder_title">	<h5>{item.username}</h5></div>
 			<div className="profile_title">
-			<span>Messy</span>
-			<span>Part-time</span>
-			<span>Drink Partner</span>
-			<span>Bedtime at 11pm</span>
-			<span>Not a Smoke Partner</span>
+			<span>{item.questions.LookingRoommate}</span>
+			<span>{item.questions.LookingInRoommates}</span>
+			<span>{item.questions.typeofperson}</span>
+			<span>{item.questions.BedTime}</span>
+			<span>{item.questions.RelationshipStatus}</span>
+			<span>{item.questions.Workhours}</span>
 			</div>
 			</Paper>
-	  	</Grid>
-		);
-	}
+		</Grid>
+	 	);
+	 }
 	
-    debugger;
+    // debugger;
 	
     return (
 
@@ -160,8 +169,11 @@ class RoommateFinderResult extends React.Component {
 		<div className="container">
 			<div className="main_roomates roommatefinder_result">
 				<React.Fragment>
-					<div className="row">
-						{items}
+				<div className="row">
+
+					{items}
+						 
+						  
 					</div>
 					<div className="next_pre">
 						<Button className="pre_page" variant="title" color="#F9790E">Previous</Button>
@@ -312,10 +324,6 @@ function mapStateToProps(state) {
     };
 }
 
-//export default withTheme()(RoommateFinderResultVariationTwo);
-
-
-//RoommateFinderResult = connect(mapStateToPropsN)(RoommateFinderResult);
 
 export default withStyles(styles)(connect(mapStateToProps)(RoommateFinderResult));
-//export default withTheme()(connect(mapStateToProps)(WorkHours)); 
+

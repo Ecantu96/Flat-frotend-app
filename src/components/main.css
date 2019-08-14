@@ -403,7 +403,23 @@ ul.main_menu li {
     line-height: 45px; 
     font-weight: 600;
 	font-family: Montserrat;
-	text-shadow: 2px 2px #000000;
+    text-shadow: 2px 2px #000000;
+    text-transform: capitalize;
+}
+.social_media_profile input.pswd{
+    color: #5D5D5D;
+    font-size: 10px;
+    box-shadow: 0px 1px 0px 0px #000;
+    border-left: 1px solid #ccc;
+    padding: 5px 40px 5px 40px;
+    /* margin: 0 4px 6px 0; */
+    display: inline-block;
+    border-bottom: 1px solid #ccc;
+    text-decoration: none;
+    border-right: none;
+    border-top: none;
+    width: 160px;
+    background: #fff;
 }
 
 .banner_text_roomate_profile {
@@ -709,6 +725,9 @@ span.number {
     text-decoration: none;
 }
 .type_bedroom_list  .btn-default:focus{
+	background: #F9790E !important;
+}
+.dashboard_profile_grid  .btn-default:focus{
 	background: #F9790E !important;
 }
 .type_bedroom_list button {
@@ -2110,6 +2129,7 @@ ul.social_media_profile label {
     border-bottom: 1px solid #ccc;
     text-decoration: none;
     border-right: none;
+    text-transform: capitalize;
 }
 ul.profile_galleries {
     margin: 0px;

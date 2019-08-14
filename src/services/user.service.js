@@ -75,18 +75,14 @@ function login(username, password) {
   return fetch(API_ROOT + LOGIN, requestOptions)
     .then(handleResponse)
     .then(user => {
-      // store user details and jwt token in local storage to keep user logged in between page refreshes
-      console.log('success log'+JSON.stringify(user))
+        
       localStorage.setItem('user', JSON.stringify(user));
-      // localStorage.setItem('userName', JSON.stringify(user['username']));
-      return user;
+         return user;
     }).catch(error => {
       return Promise.reject(error);;
 
     });
-  // .catch(error => {
-  //   console.log('error error' + JSON.stringify(error))
-  // });
+  
 }
 
 function logout() {
@@ -140,30 +136,26 @@ function update(user) {
 }
 
 function matchRoommates(user){
-	console.log('This is roommates');
-	console.log(user);
+
 	const requestOptions = {
 		method: 'GET',  
 		headers: authHeader()
-		// body: JSON.stringify(user)
+		
 	};
-	console.log('this is request body');
-    console.log(requestOptions);
-  return fetch(API_ROOT + MATCHROOMMATES, requestOptions)
-    .then(handleResponse).then(user => {
-	   //	console.log(user);
-      // store user details and jwt token in local storage to keep user logged in between page refreshes
-      return user;
-	 
-    }).catch(error => {
-      return Promise.reject(error);;
+     console.log('this is request body');
+      console.log(requestOptions);
+     return fetch(API_ROOT + MATCHROOMMATES, requestOptions)
+      .then(handleResponse).then(user => {
+      
+        return user;
+    
+      }).catch(error => {
+        return Promise.reject(error);;
 
-    });
+      });
 
-  //return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);;
-	
+  
 }
-
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
   const requestOptions = {
@@ -175,9 +167,6 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
-	//console.log('my response');
-	//console.log(response);
-	
   return response.text().then(text => {
     const data = text && JSON.parse(text);
     console.log('error data' + JSON.stringify(response))

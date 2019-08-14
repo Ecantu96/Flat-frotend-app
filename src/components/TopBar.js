@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from "react-redux";
+import _ from 'lodash';
 import login from "../components/login/LoginPage";
 import register from "../components/login/RegisterPage";
 import RelatorsRegsiter from "../components/login/RelatorsRegsiter";
@@ -23,6 +25,9 @@ import logo from './images/logo.png';
 import './css/header.css';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { authHeader } from '../_helpers';   
+
+import DashboardProfile from "../components/DashboardProfile";
 
 
 const ITEM_HEIGHT = 48;
@@ -50,11 +55,16 @@ const styles = {
 
 
 class ButtonAppBar extends React.Component {
-  state = {
-    open: false,
-    // selectedValue: emails[1],
-    anchorEl: null,
-  };
+   constructor(props) {
+		super(props);
+		this.state = {
+        open: false,
+        anchorEl: null,
+        error: null,
+          Role: []
+		};
+	}
+	
 
   handleClickOpen = () => {
     this.setState({
@@ -72,19 +82,58 @@ class ButtonAppBar extends React.Component {
     this.setState({ open: false });
   };
 
+ 
+  componentDidMount() {
+     
+    let AuthToken = authHeader();
+    var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/userRole";
+    var bearer = AuthToken.Authorization;
+    fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': bearer,
+          'Content-Type': 'application/json'
+        }
+      }).then(response => response.json()).then(result => { 
+          this.setState({
+            Role: result
+            
+           })
+       
+        return result;
+    })
+    .catch(error => this.setState({
+        isLoading: false,
+        message: 'Something bad happened' + error
+    }));
+    
+}
+
+
   render() {
-    const { anchorEl } = this.state;
+    const { anchorEl, Role, User } = this.state;
     const open = Boolean(anchorEl);
     const { classes } = this.props;
 
+  function IsUsersRoles(state) {
+        var isUserRole = Role.role;
+        if(isUserRole == "User"){
+          return "/Dashboard";
+        }
+        if (isUserRole == "Agent") {
+          return "/AgentDashboard";
+        }
+          
+    }
+    
+      
     return (
-
-
-
 
       <div className={classes.root}>
 
-        <AppBar position="static" color="default">
+
+
+          <AppBar position="static" color="default">
 
 
           <Toolbar className="MuiToolbar-regular-43">
@@ -157,12 +206,16 @@ class ButtonAppBar extends React.Component {
               </Typography>
 
               <AppContext.Consumer>
-
-                {(context) => (<div className="right_menu">
-					<div className="abt"><Button href="/Dashboard">{context.state.loggedInUser !== undefined?<div>{context.state.loggedInUser.username}</div>:'About'}</Button></div>
+             
+                {(context) => (
+                <div className="right_menu">
+                 
+					        <div className="abt">{context.state.loggedInUser !== undefined?<Button href={IsUsersRoles()}>{context.state.loggedInUser.username}</Button>:<Link to='/'>About</Link>}</div>
                     {context.state.loggedInUser !== undefined ? <div style={{ color: '#fff', fontWeight: "600" }}>
-                    {<Button href="/login" onClick={() => { localStorage.removeItem('user') }} color="inherit">Logout</Button>}</div> :
+                    
+                    {<a href="/login" onClick={() => { localStorage.removeItem('user') }} color="inherit">Logout</a>}</div>  :
                     <div className="log_sign">
+                     
                       <Link to='/register' component={register}>Sign-up</Link>
                       <Link to='/login' className="login_last" component={login}>Login</Link>
 
@@ -193,4 +246,4 @@ ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default withStyles(styles)(connect()(ButtonAppBar));

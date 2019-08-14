@@ -1,18 +1,22 @@
 import React from "react";
+import _ from 'lodash';
 import {connect} from "react-redux";
 import { AppContext } from '../provider/AppContext';
 import AppProvider from "../provider/AppContext";
 import ButtonAppBar from '../components/TopBar';
 import FooterBar from '../components/FooterBar';
-import Map from '../components/map';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-//import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
+import { userActions } from '../actions';
+import Map from '../components/map';
+import { authHeader } from '../_helpers';      
   
 const styles = theme => ({
+
+
 	  root: {
 		flexGrow: 1,
 	  },
@@ -24,16 +28,78 @@ const styles = theme => ({
 	});
 
 class RoommateProfile extends React.Component {
-		
+
+	constructor(props) {
+		super(props);
+		this.state = {
+		  error: null,
+		  isLoaded: false,
+		  propertyLists: []
+		};
+	}
+	
+	componentDidMount() {
+
+				let AuthToken = authHeader();
+				var url = "https://nooklyn-flats-backend-apis.herokuapp.com/property";
+				var bearer = AuthToken.Authorization;
+				fetch(url, {
+						method: 'GET',
+						headers: {
+							'Authorization': bearer,
+							'Content-Type': 'application/json'
+						}
+					}).then(response => response.json()).then(res => { 
+						
+						this.setState({
+							propertyLists: res
+						})
+						return res;
+				})
+				.catch(error => this.setState({
+						isLoading: false,
+						message: 'Something bad happened' + error
+				}));
+
+									
+	}
 	render() {
-	 
-    const {classes,  errorMessage} = this.props;
-    debugger;
+
+	const { propertyLists } = this.state;
+	const {classes,  errorMessage, ListLoading, type, message } = this.props;
+	var PropertyListing = propertyLists;
+
+	
+	if(_.find(propertyLists)) {
+		PropertyListing = propertyLists.map((item, key) =>
+		<Grid className="MuiGrid-item-143" item xs={5}  key={key}>
+			<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+			<div className="room_finder_title">	<h5>{item.Address}</h5></div>
+			<div className="profile_title">
+			<h5>{item.Name}</h5>
+				<span>{item.Beds}Beds</span>
+				<span>{item.Baths}Bath</span>
+				<span>{item.squareFeet}</span>
+				<span>{item.region}</span>
+				<span>{item.rentPrice}/mo</span>
+			</div>
+			</Paper>
+		</Grid>
+		);
+	}
+	var Length = propertyLists.length;
+	if(Length > 6){
+		return true;
+	}
+ 
+// debugger;
     return (
 	
       <AppProvider>
         <AppContext.Consumer>
           {(context) => ( 
+
+			   
             
             <div>
                 <ButtonAppBar></ButtonAppBar> 
@@ -74,6 +140,8 @@ class RoommateProfile extends React.Component {
           )}
 		        		  
         </AppContext.Consumer>
+
+	
 			
 		
 		<div className="container">
@@ -82,98 +150,12 @@ class RoommateProfile extends React.Component {
 				<div className="col-sm-12">
 					<div className="col-sm-6">
 					    <div className="row">
-						  
-				  		  <Grid className="MuiGrid-item-143" item xs={5}>
-							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt="" src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>Tidy</span>
-							<span>Full-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 1pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-							</Grid>
-							
-							<Grid className="MuiGrid-item-143" item xs={5}>
-							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>1 BD</span>
-							<span>1 Bath</span>
-							<span>1200 sq ft</span>
-							<span>casselton</span>
-							<span>$800/mo</span>
-							</div>
-							</Paper>
-						  </Grid>
+
+						{ PropertyListing }   
+				  		  
 							
 						</div>
-								
-						<div className="row">
-						
-						  <Grid className="MuiGrid-item-143" item xs={5}>
-							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>Tidy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						  </Grid>
-						  <Grid className="MuiGrid-item-143" item xs={5}>
-							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartments</h5>
-							<span>Messy</span>
-							<span>Full-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						  </Grid>
-						</div>
-						<div className="row">
 					
-						<Grid className="MuiGrid-item-143" item xs={5}>
-							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>Tidy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						   </Grid>
-						<Grid className="MuiGrid-item-143" item xs={5}>
-							<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>Tidy</span>
-							<span>Full-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 1pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						</Grid>
-						
-						</div>
-						
-						
 					<div className="next_pre">
 								  
 								  <Button className="pre_page" variant="title" color="#F9790E">Previous</Button>
@@ -183,9 +165,9 @@ class RoommateProfile extends React.Component {
 								  <span className="numbers">18</span>
 								  <Button className="next_page">Last</Button>
 								  
-						
-								  							
+						 						  							
 				    </div>
+				
 						
 					</div>
 					
@@ -197,11 +179,7 @@ class RoommateProfile extends React.Component {
 						  zoom: 8
 						}}
 						onMapLoad={map => {
-						 // var marker = new window.google.maps.Marker({
-						//	position: { lat: 41.0082, lng: 28.9784 },
-							//map: map,
-							//title: 'Hello Istanbul!'
-						  //});
+						
 						}}
 					  />
 					</div>
@@ -213,7 +191,9 @@ class RoommateProfile extends React.Component {
 					
 				</div>	
 				
-				
+				{ListLoading &&
+                                <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            }
 				
 				</React.Fragment>
 			</div>
@@ -230,17 +210,15 @@ class RoommateProfile extends React.Component {
   }
 
 }
+ 
+//   function mapStateToProps(state) {
+// 	  const { ListLoading } = state.PropertyList;
+// 	  const { type, message } = state.alert;
+// 	  return {
+// 		  ListLoading, type, message
+  
+// 	  };
+//   }
 
-const mapStateToPropsN = state => ({
- // fetching: state.app.fetching,
-  errorMessage: state.app.error
-  //loggedInUser:state.app.user
-});
+export default withStyles(styles)(connect()(RoommateProfile));
 
-
-//export default withTheme()(RoommateFinderResultVariationTwo);
-
-
-//RoommateProfile = connect(mapStateToPropsN)(RoommateProfile);
-
-export default withStyles(styles)(RoommateProfile);

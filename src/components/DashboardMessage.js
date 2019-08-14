@@ -48,16 +48,29 @@ class DashboardMessage extends React.Component {
 				<div className="col-sm-12 dashboard_page">
 			        <div className="col-sm-2 side_dashboard_list side_dashboard_list_desktop">
 						<Grid item xs={1}>
-										<Paper className={classes.paper}> 
+						<Grid item xs={1}>
+						    <Paper className={classes.paper}> 
 										<div className="dashboard_btns">
-										<Button data-toggle="tab" data-target="#page0" className="dashboard_btn btn btn-default btn-sm">My Dashboard</Button>
-										<Button data-toggle="tab" data-target="#page1" className="dashboard_btn btn btn-default btn-sm">Profile Page</Button>
-										<Button data-toggle="tab" data-target="#page2" className="dashboard_btn active btn btn-default btn-sm">Messages</Button>
-										<Button data-toggle="tab" data-target="#page3" className="dashboard_btn btn btn-default btn-sm">Favorite Listings</Button>
-										<Button data-toggle="tab" data-target="#page4" className="dashboard_btn btn btn-default btn-sm">Favorite Roommates</Button>
+										<Button onClick={() => {
+										this.props.history.push("/Dashboard");
+										}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">My Dashboard</Button>
+										<Button onClick={() => {
+										this.props.history.push("/DashboardProfile");
+										}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Profile Page</Button>
+										<Button onClick={() => {
+										this.props.history.push("/DashboardMessage");
+										}} data-toggle="tab"  className="dashboard_btn active btn btn-default btn-sm">Messages</Button>
+										<Button onClick={() => {
+										this.props.history.push("/FavoriteListings");
+										}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Favorite Listings</Button>
+										<Button onClick={() => {
+										this.props.history.push("/FavoriteRoommates");
+										}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Favorite Roommates</Button>
 										</div>
 										
-										</Paper>
+								</Paper>
+										
+						    </Grid>
 										
 									  </Grid>
 					</div>

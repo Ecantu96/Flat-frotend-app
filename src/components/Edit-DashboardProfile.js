@@ -3,8 +3,8 @@ import Moment from 'moment';
 import {connect} from "react-redux";
 import { AppContext } from '../provider/AppContext';
 import AppProvider from "../provider/AppContext";
-import ButtonAppBar from '../components/TopBar';
-import FooterBar from '../components/FooterBar';
+import ButtonAppBar from './TopBar';
+import FooterBar from './FooterBar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 //import PropTypes from 'prop-types';
@@ -27,7 +27,7 @@ const styles = theme => ({
 	  },
 	});
 
-class DashboardProfile extends React.Component {
+class EditDashboardProfile extends React.Component {
 
 	 constructor(props) {
 		super(props);
@@ -62,15 +62,40 @@ class DashboardProfile extends React.Component {
     .catch(error => this.setState({
         isLoading: false,
         message: 'Something bad happened' + error
-    }));
+	}));
+	
+
+	function ProfileUserData(data) {
+
+		let AuthToken = authHeader();
+		var url = "http://localhost:4000/users/update";
+		var bearer = AuthToken.Authorization;
+	   fetch(url,
+		   {
+			method: 'PUT',
+			headers: {
+			  'Authorization': bearer,
+			  'Content-Type': 'application/json'
+			}
+		}).then(res => {
+			return res;
+		}).catch(err => err);
+	}
+	  
     
 }
-  
-	
+
+handleSubmit(data) {
+	alert("hello");
+   var {ProfileUserData} = this.state;
+	ProfileUserData(this.state.ProfileView, data);
+}
+
+
 	render() {
 	 
     const {classes } = this.props;
-	const { checked, ProfileView } = this.state;
+	const { checked, ProfileView, ProfileUserData, data } = this.state;
 	var UserProfile = ProfileView;
 	var user_DOB = ProfileView.DOB;
 	var User_questions = ProfileView.questions;
@@ -96,7 +121,7 @@ class DashboardProfile extends React.Component {
 	   }
 		
 	 if(_.find(ProfileView)) {
-	  var bedTime = User_questions.BedTime;
+		var bedTime = User_questions.BedTime;
 	   var DoYouDrink = User_questions.DoYouDrink;
 	   var DoYouSmoke = User_questions.DoYouSmoke;
 	   var LikeGoOut = User_questions.LikeGoOut;
@@ -353,6 +378,8 @@ class DashboardProfile extends React.Component {
       <AppProvider>
         <AppContext.Consumer>
           {(context) => ( 
+
+		
             
             <div className="profile_header dasboard_header">
 				<ButtonAppBar></ButtonAppBar> 
@@ -360,7 +387,7 @@ class DashboardProfile extends React.Component {
 			        <div className="col-sm-2 side_dashboard_profile_list side_dashboard_list_desktop"> 
 						<Grid item xs={1}>
 						    <Paper className={classes.paper}> 
-										<div className="dashboard_btns">
+										<div className="dashboard_btns hide">
 										<Button onClick={() => {
 										this.props.history.push("/Dashboard");
 										}} data-toggle="tab"  className="dashboard_btn  btn btn-default btn-sm">My Dashboard</Button>
@@ -404,9 +431,9 @@ class DashboardProfile extends React.Component {
 												<div className={classes.container}>
 												  <Zoom in={checked}>
 													<div className="col-sm-2 side_dashboard_list_mobile">
-														<Grid item xs={1}>
+														<Grid  item xs={1}>
 																	<Paper elevation={4} className={classes.paper}> 
-																	<div className="dashboard_btns">
+																	<div className="dashboard_btns hide">
 																	<Button data-toggle="tab" data-target="#page0" className="dashboard_btn btn btn-default btn-sm">My Dashboard</Button>
 																	<Button data-toggle="tab" data-target="#page1" className="dashboard_btn active btn btn-default btn-sm">Profile Page</Button>
 																	<Button data-toggle="tab" data-target="#page2" className="dashboard_btn btn btn-default btn-sm">Messages</Button>
@@ -448,10 +475,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Update Info</h5>
 							<ul className="social_media_profile">
-							<li><label>Name</label><a href="/Edit-DashboardProfile">{UserProfile.username}</a></li>
+							<li><label>Name</label><a href="/">{UserProfile.username}</a></li>
 							<li><label>Password</label><input  type="password" disabled class="pswd" value="......" /></li>
-							<li><label>DOB</label><a href="/Edit-DashboardProfile">{Moment(dt).format('d MMM YYYY')}</a></li>
-							<li><label>Gender</label><a href="/Edit-DashboardProfile">{UserProfile.gender}</a></li>
+							<li><label>DOB</label><a href="/">{Moment(dt).format('d MMM YYYY')}</a></li>
+							<li><label>Gender</label><a href="/">{UserProfile.gender}</a></li>
 							</ul>
 							</Paper>
 							
@@ -472,10 +499,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Social Media</h5>
 							<ul className="social_media_profile">
-								<li><label>Facebook</label><a href="/Edit-DashboardProfile">{User_socials ? User_Facebook : ''}</a></li>
-								<li><label>Twitter</label><a href="/Edit-DashboardProfile">{User_socials ? User_Twitter : ''}</a></li>
-								<li><label>Instagram</label><a href="/Edit-DashboardProfile">{User_socials ? User_Instagram: '' }</a></li>
-								<li><label>LinkedIN</label><a href="/Edit-DashboardProfile">{User_socials ? User_LinkedIN: ''}</a></li>
+								<li><label>Facebook</label><a href={User_socials ? User_Facebook : ''}>{User_Facebook}</a></li>
+								<li><label>Twitter</label><a href={User_socials ? User_Twitter : ''}>{User_Twitter}</a></li>
+								<li><label>Instagram</label><a href={User_socials ? User_Instagram: '' }>{User_Instagram}</a></li>
+								<li><label>LinkedIN</label><a href={User_socials ? User_LinkedIN: ''}>{User_LinkedIN}</a></li>
 							</ul>
 							</Paper>
 							
@@ -489,7 +516,7 @@ class DashboardProfile extends React.Component {
 							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
 							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
 							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li className="edit_gallery_btn"><a href="/Edit-DashboardProfile"><span>Edit Gallery</span></a></li>
+							<li className="edit_gallery_btn"><a href="/"><span>Edit Gallery</span></a></li>
 													
 							</ul>
 							</Paper>
@@ -725,7 +752,12 @@ class DashboardProfile extends React.Component {
 					
 					</div>
 					
-					
+					{/* <form onSubmit={this.handleSubmit}
+					Facebook={this.state.ProfileView.User_Facebook}
+					body={this.state.ProfileView.body}>
+                  <input type="text" value={data} />
+                  <Button type="submit">Facebook</Button> 
+					</form> */}
 					
 					<div className="col-lg-3 dashboard_sidebar_profile desktop_sidebar_profile">
 					
@@ -745,10 +777,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Update Info</h5>
 							<ul className="social_media_profile">
-							<li><label>Name</label><a href="/Edit-DashboardProfile">{UserProfile.username}</a></li>
+							<li><label>Name</label><a href="/">{UserProfile.username}</a></li>
 							<li><label>Password</label><input  type="password" disabled class="pswd" value="......" /></li>
-							<li><label>DOB</label><a href="/Edit-DashboardProfile">{Moment(dt).format('d MMM YYYY')}</a></li>
-							<li><label>Gender</label><a href="/Edit-DashboardProfile">{UserProfile.gender}</a></li>
+							<li><label>DOB</label><a href="/">{Moment(dt).format('d MMM YYYY')}</a></li>
+							<li><label>Gender</label><a href="/">{UserProfile.gender}</a></li>
 							</ul>
 							</Paper>
 							
@@ -759,7 +791,7 @@ class DashboardProfile extends React.Component {
 							<h5>Cover Photo</h5>
 							<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
 							<ul className="edit_remove">
-							<li><a href="/Edit-DashboardProfile">Edit</a></li>
+							<li><a href="/">Edit</a></li>
 							<li><a href="/">Remove</a></li>
 							</ul>
 							</Paper>
@@ -769,10 +801,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h5>Social Media</h5> 
 							<ul className="social_media_profile">
-							    <li><label>Facebook</label><a href="/Edit-DashboardProfile">{User_socials ? User_Facebook : ''}</a></li>
-								<li><label>Twitter</label><a href="/Edit-DashboardProfile">{User_socials ? User_Twitter : ''}</a></li>
-								<li><label>Instagram</label><a href="/Edit-DashboardProfile">{User_socials ? User_Instagram: '' }</a></li>
-								<li><label>LinkedIN</label><a href="/Edit-DashboardProfile">{User_socials ? User_LinkedIN: ''}</a></li>
+								<li><label>Facebook</label><a href={User_socials ? User_Facebook : ''}>{User_Facebook}</a></li>
+								<li><label>Twitter</label><a href={User_socials ? User_Twitter : ''}>{User_Twitter}</a></li>
+								<li><label>Instagram</label><a href={User_socials ? User_Instagram: '' }>{User_Instagram}</a></li>
+								<li><label>LinkedIN</label><a href={User_socials ? User_LinkedIN: ''}>{User_LinkedIN}</a></li>
 							</ul>
 							</Paper>
 							
@@ -786,7 +818,7 @@ class DashboardProfile extends React.Component {
 							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
 							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
 							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li className="edit_gallery_btn"><a href="/Edit-DashboardProfile"><span>Edit Gallery</span></a></li>
+							<li className="edit_gallery_btn"><a href="/"><span>Edit Gallery</span></a></li>
 													
 							</ul>
 							</Paper>
@@ -822,6 +854,6 @@ const mapStateToPropsN = state => ({
 //export default withTheme()(RoommateFinderResultVariationTwo);
 
 
-DashboardProfile = connect(mapStateToPropsN)(DashboardProfile);
+EditDashboardProfile = connect(mapStateToPropsN)(EditDashboardProfile);
 
-export default withStyles(styles)(DashboardProfile);
+export default withStyles(styles)(EditDashboardProfile);
