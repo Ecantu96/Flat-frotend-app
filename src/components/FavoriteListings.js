@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Zoom from '@material-ui/core/Zoom';
+import { authHeader } from '../_helpers'; 
+import _ from 'lodash';
   
 const styles = theme => ({
 	  root: {
@@ -25,19 +27,73 @@ const styles = theme => ({
 	});
 
 class FavoriteListings extends React.Component {
-		
-		state = {
-    checked: false,
-  };
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			checked: false,
+		    FavLists: []
+		};
+	}
+
+	componentDidMount() {
+
+		let AuthToken = authHeader();
+		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/property";
+		var bearer = AuthToken.Authorization;
+		fetch(url, {
+				method: 'GET',
+				headers: {
+					'Authorization': bearer,
+					'Content-Type': 'application/json'
+				}
+			}).then(response => response.json()).then(res => { 
+				
+				this.setState({
+					FavLists: res
+				})
+				return res;
+		})
+		.catch(error => this.setState({
+				isLoading: false,
+				message: 'Something bad happened' + error
+		}));
+
+							
+}
+	
   handleChange = () => {
     this.setState(state => ({ checked: !state.checked }));
   };
 	
-	render() {
-	 
+render() {
+	
+	const { FavLists } = this.state;
     const {classes } = this.props;
   const { checked } = this.state;
+
+  var FavListing = FavLists;
+
+  if(_.find(FavLists)) {
+	FavListing = FavLists.map((item, key) =>
+	<Grid className="MuiGrid-item-143" item xs={5}  key={key}>
+		<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+		<div className="room_finder_title">	<h5>{item.Address}</h5></div>
+		<div className="profile_title">
+		<h5>{item.Name}</h5>
+			<span>{item.Beds}Beds</span>
+			<span>{item.Baths}Bath</span>
+			<span>{item.squareFeet}</span>
+			<span>{item.region}</span>
+			<span>{item.rentPrice}/mo</span>
+		</div>
+		</Paper>
+	</Grid>
+	);
+}
+
+  console.log(FavListing);
+
     return (
 	
       <AppProvider>
@@ -49,18 +105,28 @@ class FavoriteListings extends React.Component {
 				<div className="col-sm-12 dashboard_page">
 			        <div className="col-sm-2 side_dashboard_list side_dashboard_list_desktop">
 						<Grid item xs={1}>
-										<Paper className={classes.paper}> 
+						    <Paper className={classes.paper}> 
 										<div className="dashboard_btns">
-										<Button data-toggle="tab" data-target="#page0" className="dashboard_btn btn btn-default btn-sm">My Dashboard</Button>
-										<Button data-toggle="tab" data-target="#page1" className="dashboard_btn btn btn-default btn-sm">Profile Page</Button>
-										<Button data-toggle="tab" data-target="#page2" className="dashboard_btn btn btn-default btn-sm">Messages</Button>
-										<Button data-toggle="tab" data-target="#page3" className="dashboard_btn active btn btn-default btn-sm">Favorite Listings</Button>
-										<Button data-toggle="tab" data-target="#page4" className="dashboard_btn btn btn-default btn-sm">Favorite Roommates</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/Dashboard");
+								}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">My Dashboard</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/DashboardProfile");
+								}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Profile Page</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/DashboardMessage");
+								}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Messages</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/FavoriteListings");
+								}} data-toggle="tab"  className="dashboard_btn active btn btn-default btn-sm">Favorite Listings</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/FavoriteRoommates");
+								}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Favorite Roommates</Button>
 										</div>
 										
-										</Paper>
+							</Paper>
 										
-									  </Grid>
+						</Grid>
 					</div>
 						
 					<div className="col-sm-10">	
@@ -114,60 +180,7 @@ class FavoriteListings extends React.Component {
 				<div className="main_roomates favorit_list_rooms">
 					<React.Fragment>
 					<div className="row">
-						  <Grid item xs={5}>
-				             <Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
-						    <div className="room_finder_title"><h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>1 BD</span>
-							<span>1 Bath</span>
-							<span>1200 sq ft</span>
-							<span>casselton</span>
-							<span>$800/mo</span>
-							</div>
-							</Paper>
-							
-						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
-							 <div className="room_finder_title"><h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>1 BD</span>
-							<span>1 Bath</span>
-							<span>1200 sq ft</span>
-							<span>casselton</span>
-							<span>$800/mo</span>
-							</div>
-							</Paper>
-						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
-							 <div className="room_finder_title"><h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>1 BD</span>
-							<span>1 Bath</span>
-							<span>1200 sq ft</span>
-							<span>casselton</span>
-							<span>$800/mo</span>
-							</div>
-							</Paper>
-						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
-							 <div className="room_finder_title"><h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>1 BD</span>
-							<span>1 Bath</span>
-							<span>1200 sq ft</span>
-							<span>casselton</span>
-							<span>$800/mo</span>
-							</div>
-							</Paper>
-						  </Grid>
-						  
+						  {FavListing}						  
 						  
 					</div>
 										
@@ -175,82 +188,19 @@ class FavoriteListings extends React.Component {
 			    </div>
 				
 				
-				<div className="main_roomates favorit_list_rooms">
-					<React.Fragment>
-					<div className="row">
-						  <Grid item xs={5}>
-				             <Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
-						    <div className="room_finder_title"><h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>1 BD</span>
-							<span>1 Bath</span>
-							<span>1200 sq ft</span>
-							<span>casselton</span>
-							<span>$800/mo</span>
-							</div>
-							</Paper>
-							
-						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
-							 <div className="room_finder_title"><h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>1 BD</span>
-							<span>1 Bath</span>
-							<span>1200 sq ft</span>
-							<span>casselton</span>
-							<span>$800/mo</span>
-							</div>
-							</Paper>
-						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
-							 <div className="room_finder_title"><h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>1 BD</span>
-							<span>1 Bath</span>
-							<span>1200 sq ft</span>
-							<span>casselton</span>
-							<span>$800/mo</span>
-							</div>
-							</Paper>
-						  </Grid>
-						  <Grid item xs={5}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  className="home_img" src={require('./images/lsiting_room.jpg')} /></a>
-							 <div className="room_finder_title"><h5>Address goes here</h5></div>
-							<div className="profile_title">
-							<h5>Beautiful Mod Apartment</h5>
-							<span>1 BD</span>
-							<span>1 Bath</span>
-							<span>1200 sq ft</span>
-							<span>casselton</span>
-							<span>$800/mo</span>
-							</div>
-							</Paper>
-						  </Grid>
-						  
-						  
-					</div>
-					
-					
-				  </React.Fragment>
-			    </div>
-			
+             
 				
 			
-		    </div>	
+		     </div>	
 					    
 						
 							
-					</div>
+	     </div>
 					
 					
 					
-				</div>	
-			</div>
+		</div>	
+		</div>
 			
           )}
 		        		  

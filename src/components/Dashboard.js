@@ -12,9 +12,13 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Zoom from '@material-ui/core/Zoom';
+import { withTheme } from '@material-ui/core/styles';
 
-  
+
+import { userActions } from '../actions';
+            
 const styles = theme => ({
+	
 	  root: {
 		flexGrow: 1,
 	  },
@@ -28,23 +32,34 @@ const styles = theme => ({
 	});
 
 class Dashboard extends React.Component {
-	state = {
-    checked: false,
-  };
-
+	constructor(props){
+	  super(props)
+	  this.state = {
+		checked: false
+		
+	  }
+	}
+	
   handleChange = () => {
     this.setState(state => ({ checked: !state.checked }));
   };
 		
 	render() {
-	 
-    const {classes, errorMessage } = this.props;
-    const { checked } = this.state;
+
+		
+    const {classes, errorMessage, persons } = this.props;
+	const { checked } = this.state;
+	
+
+
 	
     return (
 	
       <AppProvider>
+	  
+	   	  
         <AppContext.Consumer>
+		
           {(context) => ( 
             
             <div className="profile_header dasboard_header">
@@ -55,16 +70,26 @@ class Dashboard extends React.Component {
 						<Grid item xs={1}>
 										<Paper className={classes.paper}> 
 										<div className="dashboard_btns">
-										<Button data-toggle="tab" data-target="#page0" className="dashboard_btn active btn btn-default btn-sm">My Dashboard</Button>
-										<Button data-toggle="tab" data-target="#page1" className="dashboard_btn btn btn-default btn-sm">Profile Page</Button>
-										<Button data-toggle="tab" data-target="#page2" className="dashboard_btn btn btn-default btn-sm">Messages</Button>
-										<Button data-toggle="tab" data-target="#page3" className="dashboard_btn btn btn-default btn-sm">Favorite Listings</Button>
-										<Button data-toggle="tab" data-target="#page4" className="dashboard_btn btn btn-default btn-sm">Favorite Roommates</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/Dashboard");
+								}} data-toggle="tab"  className="dashboard_btn active btn btn-default btn-sm">My Dashboard</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/DashboardProfile");
+								}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Profile Page</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/DashboardMessage");
+								}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Messages</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/FavoriteListings");
+								}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Favorite Listings</Button>
+										<Button onClick={() => {
+								  this.props.history.push("/FavoriteRoommates");
+								}} data-toggle="tab"  className="dashboard_btn btn btn-default btn-sm">Favorite Roommates</Button>
 										</div>
 										
 										</Paper>
 										
-									  </Grid>
+						</Grid>
 					</div>
 						
 					<div className="col-sm-10">	
@@ -109,7 +134,18 @@ class Dashboard extends React.Component {
 										
 										<div className="welcome_haed">	
 							<Typography variant="title" color="inherit">	
-							 Hey Joe, welcome to your dashboard
+							 <AppContext.Consumer>
+
+                  {(context) => (<div>
+                       {context.state.loggedInUser !== undefined ? <div style={{ textTransform: "capitalize"}}>{'' + context.state.loggedInUser.username}
+                      { ' welcome to your dashboard' }</div> :
+                      <div>
+                       
+                       </div>}</div>
+                  )}
+				  
+                </AppContext.Consumer>
+							 
 							 </Typography>
 							</div>
 							<div className="welcome_sub_title">	
@@ -153,16 +189,18 @@ class Dashboard extends React.Component {
 
 }
 
-const mapStateToPropsN = state => ({
-  //fetching: state.app.fetching,
-  errorMessage: state.app.error
-  //loggedInUser:state.app.user
-});
 
 
-//export default withTheme()(RoommateFinderResultVariationTwo);
+function mapStateToProps(state) {
+    // const { user } = state.app;
+    return {
 
+        // user,
 
-Dashboard = connect(mapStateToPropsN)(Dashboard);
+    };
+}
+const mapDispatchToProps = {
+    // login:login.request
+};
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Dashboard)); 
 
-export default withStyles(styles)(Dashboard);

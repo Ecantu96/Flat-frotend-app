@@ -10,9 +10,16 @@ import { AppContext } from '../../provider/AppContext';
 import { userActions } from '../../actions';
 //import Button from '@material-ui/core/Button';
 //import IconButton from '@material-ui/core/IconButton';
+//import Page 
+import Page from "../../components/Page.jsx";
+import Button from '@material-ui/core/Button';
+
 import '../css/guest.css';
+//let globalHistory = null
 
 class LoginPage extends React.Component {
+	
+	
     constructor(props) {
         super(props);
 
@@ -22,7 +29,8 @@ class LoginPage extends React.Component {
         this.state = {
             username: '',
             password: '',
-            submitted: false
+            submitted: false,
+			 loading: true,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -39,20 +47,72 @@ class LoginPage extends React.Component {
 
         this.setState({ submitted: true });
         const { username, password } = this.state;
-        const { dispatch } = this.props;
+         const { dispatch } = this.props;
         // if (username && password) {
         //     this.props.login({ 'payload': { username, password } })
         // }
 
         if (username && password) {
-            dispatch(userActions.login(username, password));
+            setTimeout(() =>  dispatch(userActions.login(username, password)), 100);
+           
         }
+		// this.props.history.push('RoommateFinderResult', { data: tempData });
+	   
+		//Listing = () => this.props.history.push("/Listing");
+        setTimeout(() => this.props.history.push("/Listing"), 2000);
+       
     }
 
+  
+	
+	 componentDidMount() {
+
+		
+		setTimeout(() => this.setState({ loading: false }), 800); // simulates loading of data
+	  }
+	  
+	  //  goBack = () => this.props.history.push("/register");
+	 // Listing = () => this.props.history.push("/Listing");
+	  
+	  
+	    componentWillMount() {
+		const { history } = this.props;
+		//globalHistory = history; 
+		//console.log(globalHistory);
+	  }
+
+	  componentWillReceiveProps(nextProps) {
+		//globalHistory = nextProps.history;
+	  }
+
     render() {
+		const { loading } = this.state; 
         const { loggingIn, type, message } = this.props;
         const { username, password, submitted } = this.state;
+		
+		 if (loading) {
+      return (
+        <Page
+          pageTitle=""
+          history
+          goBack={this.goBack}
+          Listing={this.Listing}
+        >
+          <div className="loading-page">
+            <i
+              className="fa fa-spinner fa-spin fa-3x fa-fw"
+              aria-hidden="true"
+            />
+            <br /> <br />
+            <span>Loading...</span>
+          </div>
+        </Page>
+      );
+    }
+	
+	
         return (
+		 <Page history goBack={this.goBack} LookingInRoommates={this.LookingInRoommates}>
             <AppProvider>
                 <Paper style={{ padding: '5px' }} elevation={1} className="login_bg">
                     <AppContext.Consumer>
@@ -90,8 +150,17 @@ class LoginPage extends React.Component {
                                     }
                                 </div>
                                 <div>
-                                    <a className="click_signup_btn" href="/register">Don’t have an account? Click to sign up</a>
+                                    <br></br>
+                                    
+									<Button
+								onClick={() => {
+								  this.props.history.push("/register");
+								}}
+								 >
+							  Don’t have an account? Click to sign up
+							  </Button>
                                 </div>
+								
 
                             </div>
                         </form>
@@ -102,6 +171,8 @@ class LoginPage extends React.Component {
                 <FooterBar></FooterBar>
 
             </AppProvider>
+			
+			</Page>
 
         );
     }

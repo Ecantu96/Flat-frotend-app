@@ -25,6 +25,7 @@ import Listing from "../components/Listing";
 import RoommateProfile from "../components/RoommateProfile";
 import Dashboard from "../components/Dashboard";
 import DashboardProfile from "../components/DashboardProfile";
+import EditDashboardProfile from "../components/Edit-DashboardProfile";
 import DashboardMessage from "../components/DashboardMessage";
 import FavoriteListings from "../components/FavoriteListings";
 import FavoriteRoommates from "../components/FavoriteRoommates";
@@ -65,6 +66,7 @@ const AppRoutes = () => {
           <Route path="/RoommateProfile" component={RoommateProfile} />
           <Route path="/Dashboard" component={Dashboard} />
           <Route path="/DashboardProfile" component={DashboardProfile} />
+          <Route path="/Edit-DashboardProfile" component={EditDashboardProfile} />
           <Route path="/DashboardMessage" component={DashboardMessage} />
           <Route path="/FavoriteListings" component={FavoriteListings} />
           <Route path="/FavoriteRoommates" component={FavoriteRoommates} />

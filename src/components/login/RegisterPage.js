@@ -51,29 +51,35 @@ class RegisterPage extends React.Component {
         this.setState({ submitted: true });
         const { username, password, interestedRoommate } = this.state;
         const { dispatch } = this.props;
-
-        if (username && password || interestedRoommate) {
+		
+       
             let Role = 'User'
-            let DOB = '01-05-1990'
-            let gender = 'male'
-            let user = {
-                username, password,  Role, DOB, gender,  interestedRoommate
+              let user = {
+                username, password,  Role, interestedRoommate
             }
 			
-			//alert(user);
+			
 
          if(interestedRoommate == true){
 			// dispatch(userActions.register(user));
             this.props.history.push('/BedTime', { user });
-         }else {
+         }if(interestedRoommate == false) {
+             console.log('my user details');
 			 console.log(user);
-            dispatch(userActions.register(user));
+			 setTimeout(() =>  dispatch(userActions.register(user)), 500);
+            
+            if (username && password) {
+             
+             setTimeout(() =>  dispatch(userActions.login(username, password)), 1000);
+             setTimeout(() =>   this.props.history.push("/Listing"), 2000);
+            }
+			
          }
 
           
             // dispatch(userActions.register(user));
 
-        }
+        
     }
 
     render() {

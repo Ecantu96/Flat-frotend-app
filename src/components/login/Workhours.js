@@ -24,6 +24,7 @@ class WorkHours extends React.Component {
             username: '',
             password: '',
             submitted: false,
+          loggedIn: null,
             Workhours: ''
         };
 
@@ -54,18 +55,19 @@ class WorkHours extends React.Component {
         })
     }
 
-    goToNext = () => {
-        const { data, Workhours } = this.state;
+    goToNext = () => {  
+        const { data, Workhours, loggedIn} = this.state;
         const { dispatch } = this.props;
         let tempData = data;
         tempData.questions.Workhours = Workhours;
         console.log('data===Workhours' + JSON.stringify(tempData))
-        dispatch(userActions.register(tempData));
-        // this.props.history.push('Workhours', { data: tempData });
-		
-            dispatch(userActions.login(tempData.username, tempData.password));
-       
+                   
+             this.props.history.push('RoommateFinderResult', { data: tempData });
+        
+     
     }
+	
+	
 
     render() {
         const { user } = this.props;

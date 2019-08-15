@@ -49,16 +49,26 @@ class AgentMessages extends React.Component {
 				<div className="col-sm-12 dashboard_page">
 			        <div className="col-sm-2 side_dashboard_list side_dashboard_list_desktop">
 						<Grid item xs={1}>
-										<Paper className={classes.paper}> 
-										<div className="dashboard_btns">
-										<Button data-toggle="tab" data-target="#page0" className="dashboard_btn btn btn-default btn-sm">My Dashboard</Button>
-										<Button data-toggle="tab" data-target="#page1" className="dashboard_btn btn btn-default btn-sm">Profile Page</Button>
-										<Button data-toggle="tab" data-target="#page2" className="dashboard_btn active btn btn-default btn-sm">Messages</Button>
-										<Button data-toggle="tab" data-target="#page3" className="dashboard_btn btn btn-default btn-sm">Listings</Button>
-										<Button data-toggle="tab" data-target="#page4" className="dashboard_btn btn btn-default btn-sm">Applications</Button>
-										</div>
+						<Paper className={classes.paper}> 
+							  <div className="dashboard_btns">
+										<Button data-toggle="tab"  onClick={() => {
+										this.props.history.push("/AgentDashboard");
+										}} data-target="#page0" className="dashboard_btn  btn btn-default btn-sm">My Dashboard</Button>
+												<Button data-toggle="tab"  onClick={() => {
+										this.props.history.push("/AgentProfile");
+										}} data-target="#page1" className="dashboard_btn  btn btn-default btn-sm">Profile Page</Button>
+												<Button data-toggle="tab"  onClick={() => {
+										this.props.history.push("/AgentMessages");
+										}} data-target="#page2" className="dashboard_btn active btn btn-default btn-sm">Messages</Button>
+												<Button data-toggle="tab"  onClick={() => {
+										this.props.history.push("/AgentListings");
+										}} data-target="#page3" className="dashboard_btn btn btn-default btn-sm">Listings</Button>
+												<Button data-toggle="tab"  onClick={() => {
+										this.props.history.push("/AgentInquiries");
+										}} data-target="#page4" className="dashboard_btn btn btn-default btn-sm">Applications</Button>
+								</div>
 										
-										</Paper>
+					        </Paper>
 										
 									  </Grid>
 					</div>
