@@ -3,6 +3,7 @@ import Moment from 'moment';
 import {connect} from "react-redux";
 import { AppContext } from '../provider/AppContext';
 import AppProvider from "../provider/AppContext";
+import { userActions } from '../actions';
 import ButtonAppBar from './TopBar';
 import FooterBar from './FooterBar';
 import Typography from '@material-ui/core/Typography';
@@ -33,14 +34,82 @@ class EditDashboardProfile extends React.Component {
 		super(props);
 		this.state = {
 			checked: false,
-			ProfileView: {}
+			username: '',
+            password: '',
+            gender: '',
+			DOB: '',
+			Bio: '',
+			submitted: false,
+			ProfileView: {},
+			Facebook: '',
+			Socials:{
+				Facebook: '',
+				Twitter: '',
+				Instagram: '',
+				LinkedIN: '',
+			}
 		};
+
+		this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	
- 
+ handleChange(e) {
+       // alert(e.target);
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
 
-  componentDidMount() {
+//     handleSubmit(data) {
+// 	alert("hello");
+//    var {ProfileUserData} = this.state;
+// 	ProfileUserData(this.state.ProfileView, data);
+// }
+
+
+
+ handleSubmit(e) {
+        e.preventDefault();
+        this.setState({ submitted: true });
+        const { username, password, gender, Bio, DOB,  Facebook, Twitter, Instagram, LinkedIN} = this.state;
+     	const { dispatch } = this.props;
+     	let Socials = {
+			Facebook:Facebook,
+			Twitter:Twitter,
+			Instagram:Instagram,
+			LinkedIN:LinkedIN
+     	};
+
+      	let user = {
+            username, password, gender, DOB, Bio, Socials
+    	}
+
+          //console.log(user) ;
+         setTimeout(() =>  dispatch(userActions.userupdate(user)), 100);
+
+         setTimeout(() => this.props.history.push("/DashboardProfile"), 1000);
+  }
+
+ //  function ProfileUserData(data) {
+
+	// 	let AuthToken = authHeader();
+	// 	var url = "http://localhost:4000/users/update";
+	// 	var bearer = AuthToken.Authorization;
+	//    fetch(url,
+	// 	   {
+	// 		method: 'PUT',
+	// 		headers: {
+	// 		  'Authorization': bearer,
+	// 		  'Content-Type': 'application/json'
+	// 		}
+	// 	}).then(res => {
+	// 		return res;
+	// 	}).catch(err => err);
+	// }
+
+
+  componentWillMount() {
      
     let AuthToken = authHeader();
     var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/current";
@@ -53,9 +122,19 @@ class EditDashboardProfile extends React.Component {
         }
       }).then(response => response.json()).then(Userprofile => { 
           this.setState({
-            ProfileView: Userprofile
+            ProfileView: Userprofile,
+                username:Userprofile.username,
+                Bio:Userprofile.Bio,
+            	gender: Userprofile.gender,
+            	DOB: Userprofile.DOB,
+            	gender: Userprofile.gender,
+            	Facebook: Userprofile.Socials.Facebook,
+            	Twitter: Userprofile.Socials.Twitter,
+            	Instagram: Userprofile.Socials.Instagram,
+            	LinkedIN: Userprofile.Socials.LinkedIN
+            	            	 
           
-           })
+           });
        //console.log(Userprofile);
         return Userprofile;
     })
@@ -65,37 +144,18 @@ class EditDashboardProfile extends React.Component {
 	}));
 	
 
-	function ProfileUserData(data) {
-
-		let AuthToken = authHeader();
-		var url = "http://localhost:4000/users/update";
-		var bearer = AuthToken.Authorization;
-	   fetch(url,
-		   {
-			method: 'PUT',
-			headers: {
-			  'Authorization': bearer,
-			  'Content-Type': 'application/json'
-			}
-		}).then(res => {
-			return res;
-		}).catch(err => err);
-	}
-	  
-    
+	   
 }
 
-handleSubmit(data) {
-	alert("hello");
-   var {ProfileUserData} = this.state;
-	ProfileUserData(this.state.ProfileView, data);
-}
 
 
 	render() {
 	 
     const {classes } = this.props;
-	const { checked, ProfileView, ProfileUserData, data } = this.state;
+    const { updating, type, message } = this.props;
+	const { checked, ProfileView, data } = this.state;
+	const { username, password, Bio, submitted, gender, DOB, questions, Facebook, Socials, Twitter, Instagram, LinkedIN  } = this.state;
+	
 	var UserProfile = ProfileView;
 	var user_DOB = ProfileView.DOB;
 	var User_questions = ProfileView.questions;
@@ -105,6 +165,7 @@ handleSubmit(data) {
 	  
 		if(User_socials.Facebook != ""){
             var User_Facebook = User_socials.Facebook;
+           
 		}
 		if(User_socials.Twitter != ""){
 			var User_Twitter = User_socials.Twitter;
@@ -384,6 +445,7 @@ handleSubmit(data) {
             <div className="profile_header dasboard_header">
 				<ButtonAppBar></ButtonAppBar> 
 				<div className="col-12 dashboard_profile_page">
+				<form name="form" onSubmit={this.handleSubmit}>
 			        <div className="col-sm-2 side_dashboard_profile_list side_dashboard_list_desktop"> 
 						<Grid item xs={1}>
 						    <Paper className={classes.paper}> 
@@ -532,7 +594,7 @@ handleSubmit(data) {
 						</Typography>
 						<div className="profile_desc_main">
 							<Typography variant="body2" >
-								{bio ? bio : ''}
+								<input type="text-area" className="form-control" placeholder="Please Enter your Bio" name="Bio" value={this.state.Bio} onChange={this.handleChange} />
 							</Typography>
 						</div>
 					</div>
@@ -758,76 +820,141 @@ handleSubmit(data) {
                   <input type="text" value={data} />
                   <Button type="submit">Facebook</Button> 
 					</form> */}
+
+
 					
-					<div className="col-lg-3 dashboard_sidebar_profile desktop_sidebar_profile">
 					
-					<Grid className="profile_pic_section" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>{ProfileView.username}</h5>
-							<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
-							<ul className="edit_remove">
-							<li><a href="/">Edit</a></li>
-							<li><a href="/">Remove</a></li>
-							</ul>
-							</Paper>
+							<div className="col-lg-3 dashboard_sidebar_profile desktop_sidebar_profile">
 							
-				    </Grid>
+							<Grid className="profile_pic_section" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>{ProfileView.username}</h5>
+									<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
+									<ul className="edit_remove">
+									<li><a href="/">Edit</a></li>
+									<li><a href="/">Remove</a></li>
+									</ul>
+									</Paper>
+									
+							</Grid>
+							
+							<Grid className="profile_dash_gallery" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>Update Info</h5>
+
+
+									<ul className="social_media_profile">
+										<li>
+										<label>Name</label>
+										
+										<input 
+										type="text" 
+										className="form-control" 
+										placeholder="Please enter your name"
+										name="username" 
+										value={this.state.username} 
+										onChange={this.handleChange} 
+										/>
+
+									
+										</li>
+										<li>
+										      <label>Password</label>
+											  
+											  <input type="password" className="form-control" placeholder="......" name="password" value={password} onChange={this.handleChange} />
+										</li>
+										<li>
+										   <label>DOB</label>
+										   										   
+										    <input type="text" className="form-control" placeholder="Please enter your DOB" name="DOB" value={this.state.DOB}
+                                            onChange={this.handleChange} />
+										   
+										 </li>
+										<li>
+										
+										    <label>Gender</label>
+											
+											 <input type="text" className="form-control" placeholder="Please enter your Gender" name="gender" value={this.state.gender}
+                                            onChange={this.handleChange} />
+										   
+										   </li>
+										</ul>
+									
+									</Paper>
+									
+							</Grid>
+							
+							<Grid className="profile_cover_section" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>Cover Photo</h5>
+									<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
+									<ul className="edit_remove">
+									<li><a href="/">Edit</a></li>
+									<li><a href="/">Remove</a></li>
+									</ul>
+									</Paper>
+									
+							</Grid>
+							<Grid className="profile_dash_gallery" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>Social Media</h5> 
+									<ul className="social_media_profile">
+										<li>
+										    <label>Facebook</label>
+										    <input type="text" className="form-control" placeholder="Please Enter the Facebook Link" name="Facebook" value={this.state.Facebook} onChange={this.handleChange} />
+
+										 </li>
+										<li><label>Twitter</label>
+
+										 <input type="text" className="form-control" placeholder="Please Enter the Twitter Link" name="Twitter" value={this.state.Twitter} onChange={this.handleChange} />
+										</li>
+										<li><label>Instagram</label>
+											<input type="text" className="form-control" placeholder="Please Enter the Instagram Link" name="Instagram" value={this.state.Instagram} onChange={this.handleChange} />
+										</li>
+										<li><label>LinkedIN</label>
+										<input type="text" className="form-control" placeholder="Please Enter the LinkedIN Link" name="LinkedIN" value={this.state.LinkedIN} onChange={this.handleChange} />
+										</li>
+									</ul>
+									</Paper>
+									
+							</Grid>
+							<Grid className="profile_dash_gallery" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>Photo Gallery</h5>
+									<ul className="profile_galleries">
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li className="edit_gallery_btn"><a href="/"><span>Edit Gallery</span></a></li>
+															
+									</ul>
+									</Paper>
+									
+							</Grid>
+							</div>
 					
-					<Grid className="profile_dash_gallery" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>Update Info</h5>
-							<ul className="social_media_profile">
-							<li><label>Name</label><a href="/">{UserProfile.username}</a></li>
-							<li><label>Password</label><input  type="password" disabled class="pswd" value="......" /></li>
-							<li><label>DOB</label><a href="/">{Moment(dt).format('d MMM YYYY')}</a></li>
-							<li><label>Gender</label><a href="/">{UserProfile.gender}</a></li>
-							</ul>
-							</Paper>
-							
-				    </Grid>
-					
-					<Grid className="profile_cover_section" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>Cover Photo</h5>
-							<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
-							<ul className="edit_remove">
-							<li><a href="/">Edit</a></li>
-							<li><a href="/">Remove</a></li>
-							</ul>
-							</Paper>
-							
-				    </Grid>
-					<Grid className="profile_dash_gallery" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>Social Media</h5> 
-							<ul className="social_media_profile">
-								<li><label>Facebook</label><a href={User_socials ? User_Facebook : ''}>{User_Facebook}</a></li>
-								<li><label>Twitter</label><a href={User_socials ? User_Twitter : ''}>{User_Twitter}</a></li>
-								<li><label>Instagram</label><a href={User_socials ? User_Instagram: '' }>{User_Instagram}</a></li>
-								<li><label>LinkedIN</label><a href={User_socials ? User_LinkedIN: ''}>{User_LinkedIN}</a></li>
-							</ul>
-							</Paper>
-							
-				    </Grid>
-					<Grid className="profile_dash_gallery" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>Photo Gallery</h5>
-							<ul className="profile_galleries">
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li className="edit_gallery_btn"><a href="/"><span>Edit Gallery</span></a></li>
-													
-							</ul>
-							</Paper>
-							
-				    </Grid>
-					</div>
+						 <div className="form-group text-center">
+                                <button className="btn btn-primary reg_btn">Update</button>
+                                
+                                {updating &&
+                                    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                }
+
+                                <div>
+                                    {submitted && type=='alert-danger' &&
+                                        <div className="help-block">{message}</div>
+                                    }
+                                </div>
+                            </div>
+                        </form>		
 					
 					
 				</div>	
+
+
+
 			</div>
 			
           )}
@@ -844,16 +971,17 @@ handleSubmit(data) {
 
 }
 
-const mapStateToPropsN = state => ({
-  //fetching: state.app.fetching,
-  //errorMessage: state.app.error
-  //loggedInUser:state.app.user
-});
+
+function mapStateToProps(state) {
+    const { updating } = state.authentication;
+    const { type, message } = state.alert;
+    return {
+        updating, type, message
+    };
+}
 
 
-//export default withTheme()(RoommateFinderResultVariationTwo);
 
-
-EditDashboardProfile = connect(mapStateToPropsN)(EditDashboardProfile);
+EditDashboardProfile = connect(mapStateToProps)(EditDashboardProfile);
 
 export default withStyles(styles)(EditDashboardProfile);

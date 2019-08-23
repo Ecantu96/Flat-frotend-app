@@ -1,52 +1,3 @@
-// import 'isomorphic-fetch'
-// import axios from 'axios';
-
-
-
-// //const API_ROOT = process.env.REACT_APP_DEV;
-// const API_ROOT = "https://nooklyn-flats-backend-apis.herokuapp.com";
-
-
-
-// const LOGIN ='/users/authenticate';
-// const REGISTER_USER = '/users/register';
-// //const GET_USER_BYEMAIL = '/userByEmailId';
-
-// //const GET_USER_BYID = '/user';
-
-// // Fetches an API response and normalizes the result JSON according to schema.
-// // This makes every API response have the same shape, regardless of how nested it was.
-// function callApi(url, method, data) {
-//   if(url === '/files'){
-//     let formData = new FormData();
-//       formData.append('file', data.file);
-//       data = formData;
-//   }
-
-//   // if(url !== GET_INBOX_COMMUNICATIONS_PATH && url !== GET_INBOX_CONVERSATIONS_PATH){
-//   //   url = API_ROOT + url
-//   // }
-//   url = (url.indexOf(API_ROOT) === -1) ? API_ROOT + url : url
-
-//   return axios({
-//     method,
-//     url, 
-//     data
-//   })
-//   .then(function ({data}) {
-//     debugger;
-//     if (data.error && data.error.errorMessage !== 'Email Id does not exist in repository') {
-//       throw(data.error);
-//     }
-//     return data;
-//   });
-// }
-
-// export const registerUser = (payload) => callApi(REGISTER_USER, 'post', payload);
-// export const login = (payload) => callApi(LOGIN, 'post', payload);
-// //export const getUserByEmail = (payload) => callApi(GET_USER_BYEMAIL+'?emailId='+payload, 'get');
-// //export const getUserById = (payload) => callApi(GET_USER_BYID+'/'+payload, 'get');
-
 import config from 'config';
 import { authHeader } from '../_helpers';
 
@@ -57,7 +8,7 @@ export const userService = {
   matchRoommates,
   getAll,
   getById,
-  update,
+  UserUpdate,
   delete: _delete
 };
 
@@ -65,6 +16,7 @@ const API_ROOT = "https://nooklyn-flats-backend-apis.herokuapp.com";
 const LOGIN = '/users/authenticate';
 const REGISTER = '/users/register';
 const MATCHROOMMATES = '/users/matchRoommates';
+const USERUPDATE = '/users/update';
 
 function login(username, password) {
   const requestOptions = {
@@ -75,14 +27,14 @@ function login(username, password) {
   return fetch(API_ROOT + LOGIN, requestOptions)
     .then(handleResponse)
     .then(user => {
-        
+
       localStorage.setItem('user', JSON.stringify(user));
          return user;
     }).catch(error => {
       return Promise.reject(error);;
 
     });
-  
+
 }
 
 function logout() {
@@ -135,26 +87,49 @@ function update(user) {
   return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
 }
 
-function matchRoommates(user){
+function UserUpdate(user){
+   console.log("Seriver User Update response" +user);
+  const requestOptions = {
+    method: 'PUT',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    body: JSON.stringify(user)
 
-	const requestOptions = {
-		method: 'GET',  
-		headers: authHeader()
-		
-	};
-     console.log('this is request body');
+  };
+     //console.log('this is request body');
       console.log(requestOptions);
-     return fetch(API_ROOT + MATCHROOMMATES, requestOptions)
+     return fetch(API_ROOT + USERUPDATE, requestOptions)
       .then(handleResponse).then(user => {
-      
+
         return user;
-    
+
       }).catch(error => {
         return Promise.reject(error);;
 
       });
 
-  
+
+}
+
+function matchRoommates(user){
+
+	const requestOptions = {
+		method: 'GET',
+		headers: authHeader()
+
+	};
+     console.log('this is request body');
+      console.log(requestOptions);
+     return fetch(API_ROOT + MATCHROOMMATES, requestOptions)
+      .then(handleResponse).then(user => {
+
+        return user;
+
+      }).catch(error => {
+        return Promise.reject(error);;
+
+      });
+
+
 }
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
@@ -183,4 +158,3 @@ function handleResponse(response) {
     return data;
   });
 }
-
