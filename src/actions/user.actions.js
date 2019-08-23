@@ -11,7 +11,8 @@ export const userActions = {
     login,
     logout,
     register,
-	matchRoommate,
+    userupdate,
+    matchRoommate,
 	getAll,
 	delete: _delete
 };
@@ -28,7 +29,7 @@ function login(username, password) {
 					dispatch(success(user));
 					dispatch(alertActions.success('Loggein in successfully'));
 										
-						//history.push('/RoommateFinderResult')
+					//	history.push('/Listing')
 					
                 },
                 error => {
@@ -58,7 +59,7 @@ function register(user) {
         userService.register(user)
             .then(
                 user => { 
-				 console.log('return error==user'+JSON.stringify(user));
+				 //console.log('return error==user'+JSON.stringify(user));
                     dispatch(success());
 					//if(interstedRoommate){
                      //  history.push('/RoommateFinderResult');
@@ -78,20 +79,16 @@ function register(user) {
 }
 
 function matchRoommate(user) {
-	console.log('Ths is matchRoommate');
-	console.log(user);
+	
 	    return dispatch => {
-			//const token = localStorage.token;
-			//alert(token);
-	  //  if (token) {
-        dispatch(request(user));
+	     dispatch(request(user));
 		//alert(user);
         userService.matchRoommates(user)
 		
         .then(user => {
 			     // alert(1);
 				  
-			      console.log('return error==user'+JSON.stringify(user));
+			      //console.log('return error==user'+JSON.stringify(user));
                     dispatch(alertActions.success(user));
 			       dispatch(success());
                  localStorage.removeItem("token")
@@ -103,10 +100,7 @@ function matchRoommate(user) {
                     dispatch(alertActions.error(error.toString()));
                 }
          
-            // An error will occur if the token is invalid.
-            // If this happens, you may want to remove the invalid token.
-			     
-                           
+                                       
          );
             
 	  //  }
@@ -116,6 +110,38 @@ function matchRoommate(user) {
     function success(user) { return { type: userConstants.USER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.USER_FAILURE, error } }
 }
+
+function userupdate(user) {
+     console.log("Nadeem User Details"  +user);
+        return dispatch => {
+         dispatch(request(user));
+        //alert(user);
+        userService.UserUpdate(user)
+        
+        .then(user => {
+                
+                    dispatch(alertActions.success(user));
+                   dispatch(success());
+                 localStorage.removeItem("token")
+                 return user;
+                 
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+         
+                                       
+         );
+            
+      //  }
+    };
+
+    function request(user) { return { type: userConstants.USER_REQUEST, user } }
+    function success(user) { return { type: userConstants.USER_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.USER_FAILURE, error } }
+}
+
 
 function getAll() {
     return dispatch => {
