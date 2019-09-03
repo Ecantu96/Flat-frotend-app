@@ -27,26 +27,21 @@ const styles = theme => ({
 	  },
 	});
 
-class RoommateProfile extends React.Component {
+class Listing extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
 		  error: null,
-		  isLoaded: false,
-		  propertyLists: []
+		 propertyLists: []
 		};
 	}
-	
-	componentDidMount() {
+	componentWillMount() {
 
-				let AuthToken = authHeader();
-				var url = "https://nooklyn-flats-backend-apis.herokuapp.com/property";
-				var bearer = AuthToken.Authorization;
+				var url = "https://nooklyn-flats-backend-apis.herokuapp.com/properties";
 				fetch(url, {
 						method: 'GET',
 						headers: {
-							'Authorization': bearer,
 							'Content-Type': 'application/json'
 						}
 					}).then(response => response.json()).then(res => { 
@@ -54,26 +49,31 @@ class RoommateProfile extends React.Component {
 						this.setState({
 							propertyLists: res
 						})
+						
 						return res;
 				})
 				.catch(error => this.setState({
-						isLoading: false,
 						message: 'Something bad happened' + error
 				}));
-
-									
+					
 	}
-	render() {
 
+	onClickListId = (list_id, e) => {
+			this.props.history.push('ListingDetailPage', { list_id: list_id });
+		
+	 }
+render() {
 	const { propertyLists } = this.state;
-	const {classes,  errorMessage, ListLoading, type, message } = this.props;
+	const {classes,  errorMessage } = this.props;
 	var PropertyListing = propertyLists;
-
+	
+	
+	 //console.log(PropertyListing._id);
 	
 	if(_.find(propertyLists)) {
 		PropertyListing = propertyLists.map((item, key) =>
-		<Grid className="MuiGrid-item-143" item xs={5}  key={key}>
-			<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+		<Grid className="MuiGrid-item-143" item xs={5}  key={key}  data-id={item.id} onClick={() => this.onClickListId(item.id)}>
+			<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><img alt=""  src={require('./images/lsiting_room.jpg')} />
 			<div className="room_finder_title">	<h5>{item.Address}</h5></div>
 			<div className="profile_title">
 			<h5>{item.Name}</h5>
@@ -87,27 +87,23 @@ class RoommateProfile extends React.Component {
 		</Grid>
 		);
 	}
-	var Length = propertyLists.length;
-	if(Length > 6){
-		return true;
-	}
- 
-// debugger;
+	// var Length = propertyLists.length;
+	// if(Length > 6){
+	// 	return true;
+	// }
+   //debugger;
     return (
 	
       <AppProvider>
         <AppContext.Consumer>
           {(context) => ( 
-
-			   
-            
             <div>
-                <ButtonAppBar></ButtonAppBar> 
+            <ButtonAppBar></ButtonAppBar> 
              <div className="loader-container listing_banner">
 			                <div className="banner_text">
 			   
 							   <div style={{display:"block"}}>
-								  <Typography variant="title" color="inherit" >
+								  <Typography variant="title" color="inherit">
 									Or, want to find a house and who is
 								  </Typography>
 								  <Typography variant="title" color="inherit">
@@ -118,7 +114,7 @@ class RoommateProfile extends React.Component {
 								
 								<div className="type_of_person">
 								  
-								  <Button variant="title" color="#F9790E">Bedrooms</Button>
+								  <Button>Bedrooms</Button>
 								  <Button>Bathrooms</Button>
 								  <Button>Area of Chicago</Button>
 								  <Button>Budget</Button>
@@ -129,34 +125,20 @@ class RoommateProfile extends React.Component {
 						
 							
 			            </div>
-			
-					
-			
-			            
-			{errorMessage && <div className="error-message">{errorMessage}</div>}
-			
             </div>
-			
           )}
 		        		  
         </AppContext.Consumer>
-
-	
-			
-		
 		<div className="container">
 			<div className="main_roomates listing_page">
 				<React.Fragment>
 				<div className="col-sm-12">
 					<div className="col-sm-6">
 					    <div className="row">
-
 						{ PropertyListing }   
-				  		  
-							
 						</div>
 					
-					<div className="next_pre">
+					{/* <div className="next_pre">
 								  
 								  <Button className="pre_page" variant="title" color="#F9790E">Previous</Button>
 								  <span className="numbers active">1</span>
@@ -166,8 +148,7 @@ class RoommateProfile extends React.Component {
 								  <Button className="next_page">Last</Button>
 								  
 						 						  							
-				    </div>
-				
+				    </div> */}
 						
 					</div>
 					
@@ -183,42 +164,28 @@ class RoommateProfile extends React.Component {
 						}}
 					  />
 					</div>
-					
 										
 					 <div className="view_more">
-								
 					</div>
-					
 				</div>	
-				
-				{ListLoading &&
-                                <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                            }
-				
 				</React.Fragment>
 			</div>
-			
-				
-			
 		</div>
-			
 		<FooterBar></FooterBar>
 		
       </AppProvider>
-	  
     );
   }
-
 }
- 
-//   function mapStateToProps(state) {
-// 	  const { ListLoading } = state.PropertyList;
-// 	  const { type, message } = state.alert;
-// 	  return {
-// 		  ListLoading, type, message
+  function mapStateToProps(state) {
+	  const { ListLoading } = state.PropertyList;
+	  const { type, message } = state.alert;
+	  return {
+		  ListLoading, type, message
   
-// 	  };
-//   }
+	  };
+  }
 
-export default withStyles(styles)(connect()(RoommateProfile));
+Listing = connect()(Listing);
+export default withStyles(styles)(Listing);
 
