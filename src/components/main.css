@@ -350,6 +350,22 @@ ul.main_menu li {
 	max-height: 100%;
 	margin-bottom: -50px;
 }
+.ListingDetailPage_banner {
+    background: url(./images/roommate_profile_banner.png);
+    display: -webkit-box;
+     display: block;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    bottom: 0px;
+    width: 100%;
+    float: left;
+    min-height: 400px;
+	max-height: 100%;
+	margin-bottom: -50px;
+}
 .listing_banner {
     background: url(./images/listing_banner.jpg);
     display: -webkit-box;
@@ -397,6 +413,9 @@ ul.main_menu li {
     padding: 0px;
     margin: 0px;
 	width: 100%;
+}
+.profile_btns .active {
+    background-color: #F9790E !important;
 }
 .banner_text h2 {
     font-size: 40px;
@@ -1016,7 +1035,24 @@ ul.rent_list {
     float: right;
     overflow: hidden;
     border-radius: 20px 0px 0px 20px;
-	    max-width: 145px;
+    max-width: 145px;
+    
+}
+.listing_page .room_finder_title h5 {
+    font-size: 12px;
+font-family: Montserrat;
+color: #F9790E;
+font-weight: 600;
+padding: 3px 15px 3px 15px;
+text-align: center;
+position: relative;
+ bottom: 55px;
+background-color: #fff;
+float: right;
+overflow: hidden;
+border-radius: 20px 0px 0px 20px;
+max-width: 145px;
+min-height: 32px;    
 }
 
 .profile_title {
@@ -1231,7 +1267,8 @@ ul.rent_list {
     
 }
 .listing_page .MuiPaper-elevation2-20{
-	padding: 0px;
+    padding: 0px;
+    cursor: pointer;
 }
 .listing_page .MuiGrid-item-143{
 	  display: inline-block;
@@ -1321,7 +1358,7 @@ ul.rent_list {
        margin: 0;
 }
 .profile_description {
-    margin: 0;
+    margin: 8px;
     clear: both;
    margin-bottom: 0px;
 }
@@ -1374,6 +1411,31 @@ img.profile_suggest_img {
     width: auto;
     bottom: 20px;
 }
+.listing_details_text button {
+    background-color: #F9790E !important;
+    margin: 30px 10px 0 10px;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 10px;
+    width: auto;
+    height: 40px;
+}
+.listing_details_text {
+        position: absolute;
+    color: #fff;
+    font-size: 30px;
+    left: 0;
+    right: 0;
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+    /* bottom: 0; */
+    top: 30%;
+}
 .profile_header .MuiPaper-elevation4-22{
 	box-shadow: unset;
 }
@@ -1406,6 +1468,14 @@ img.profile_suggest_img {
     font-family: Montserrat;
     font-weight: 600;
 	font-size: 22px;
+}
+
+.list_address {
+     color: #707070;
+    font-size: 17px;
+    width: 70%;
+    text-align: center;
+    margin: 10px auto;
 }
 
 .profile_variants span.squre_box {	
@@ -1453,23 +1523,86 @@ span.round_box {
 	background: #000 !important;
 	box-shadow: 0 3px 6px #ccc;
 }
+.schedule_btn {
+   margin: 20px 5px 10px 0 !important;
+    color: #000 !important;
+    border-radius: 20px !important;
+	background: #fff !important;
+	box-shadow: 0 3px 6px #ccc;
+	font-weight: 600;
+}
+
+.schedule_btn span {
+    font-weight: bold;
+    font-family: Montserrat;
+    font-size: 16px;
+    text-transform: capitalize;
+}
 .profile_btn span {
     color: #fff !important;
     padding: 5px 5px 5px 0;
     font-family: Montserrat;
     font-weight: 600;
 }
+.listProfileTopImg ul li {
+    display: inline-block;
+    margin: 0 15px 15px 2px;
+}
 .profile_btns {
-    border-top: 1px solid #ccc;
+  
     border-bottom: 1px solid #ccc;
     margin: 10px auto;
     display: inline-block;
     padding: 10px 0 0 0;
+	width: 85%;
+}
+.profile_part p {
+    font-size: 10px;
+    color: #707070;
+    width: 90%;
+    clear: both;
+    text-align: initial;
+    margin: 0 auto;
+    padding: 5px 0 0 0;
+}
+.profile_part {
+    margin: 0 auto;
+    width: 85%;
+    border-top: 1px solid #ccc;
+     margin: 10px auto;
+    display: inline-block;
+    padding: 10px 0 0 0;
+ }
+.profile_part img {
+    float: left;
+    margin: 0 0 0 10px;
 }
 .pro_social_media a {
     color: #F9790E;
     font-weight: 600;
     font-family: Montserrat;
+}
+.profile_btn.btn.btn-default.btn-sm.box.orange {
+    background-color: #F9790E !important;
+}
+.agent_name {
+    color: #000;
+    font-family: Montserrat;
+   
+}
+.agent_name h6 {
+    font-size: 14px;
+    font-family: Montserrat;
+    color: #000;
+    font-weight: 800;
+    /* float: left; */
+}
+.agent_name h5 {
+    font-size: 20px;
+    margin: 15px 0 0 15px;
+}
+.agent_name h5 {
+    font-size: 20px;
 }
 .pro_social_media ul li {
         display: inline-block;
@@ -2019,12 +2152,23 @@ input.type_msg::placeholder {
 .dash_picture {
     border-radius: 50%;
 }
- .col-lg-3.dashboard_sidebar_profile h5{
+ .col-lg-3.dashboard_sidebar_profile h5{ 
 	 color: #000;
     font-family: Montserrat;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 14px;
+    padding: 7px 0px 7px 0;
  }
+ .dashboard_sidebar_profile a h5:hover {
+    text-decoration: unset;
+    background-color: #F9790E;
+    color: #fff;
+    padding: 7px 0px 7px 0;
+    font-size: 14px;
+}
+.col-lg-3.dashboard_sidebar_profile a:hover{
+    text-decoration: none;
+}
 .edit_remove li {
     list-style: none;
     display: inline-block;

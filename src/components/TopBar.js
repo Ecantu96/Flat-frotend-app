@@ -27,9 +27,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { authHeader } from '../_helpers';   
 
-import DashboardProfile from "../components/DashboardProfile";
-
-
 const ITEM_HEIGHT = 48;
 
 const styles = {
@@ -52,8 +49,6 @@ const styles = {
 
 };
 
-
-
 class ButtonAppBar extends React.Component {
    constructor(props) {
 		super(props);
@@ -61,10 +56,10 @@ class ButtonAppBar extends React.Component {
         open: false,
         anchorEl: null,
         error: null,
+        loggedIn: false,
           Role: []
 		};
 	}
-	
 
   handleClickOpen = () => {
     this.setState({
@@ -82,36 +77,54 @@ class ButtonAppBar extends React.Component {
     this.setState({ open: false });
   };
 
- 
-  componentDidMount() {
-     
-    let AuthToken = authHeader();
-    var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/userRole";
-    var bearer = AuthToken.Authorization;
-    fetch(url, {
-        method: 'GET',
-        headers: {
-          'Authorization': bearer,
-          'Content-Type': 'application/json'
-        }
-      }).then(response => response.json()).then(result => { 
-          this.setState({
-            Role: result
-            
-           })
-       
-        return result;
-    })
-    .catch(error => this.setState({
-        isLoading: false,
-        message: 'Something bad happened' + error
-    }));
-    
+  removeItems = () => {
+   localStorage.removeItem('user');
+  localStorage.removeItem('userCompleteProfile');
 }
 
+componentWillReceiveProps(nextProps) {
+      this.setState({
+      loggedIn: nextProps.loggedIn
+    });
+    
+}
+ 
+componentWillMount() {
 
-  render() {
-    const { anchorEl, Role, User } = this.state;
+  const {loggedIn} = this.props;
+  var home_uri = window.location.href;
+  if(loggedIn == true){
+      let AuthToken = authHeader();
+      var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/userRole";
+      var bearer = AuthToken.Authorization;
+      fetch(url, {
+          method: 'GET',
+          headers: {
+            'Authorization': bearer,
+            'Content-Type': 'application/json'
+          }
+        }).then(response => response.json()).then(result => { 
+        
+            this.setState({
+              Role: result
+            
+            })
+          var user_id = result.id;
+
+          this.props.history.push('ListingDetailPage', {user_id: user_id });
+        
+
+          return result;
+      })
+      .catch(error => this.setState({
+          isLoading: false,
+          message: 'Something bad happened' + error
+      }));
+  }
+    
+}
+render() {
+    const { anchorEl, Role } = this.state;
     const open = Boolean(anchorEl);
     const { classes } = this.props;
 
@@ -123,21 +136,13 @@ class ButtonAppBar extends React.Component {
         if (isUserRole == "Agent") {
           return "/AgentDashboard";
         }
-          
     }
-    
-      
+
     return (
 
       <div className={classes.root}>
-
-
-
           <AppBar position="static" color="default">
-
-
           <Toolbar className="MuiToolbar-regular-43">
-
             <div className="logo">
               <Link to='/' component={AppContainer}>  <CardMedia
                 className={classes.media}
@@ -167,9 +172,6 @@ class ButtonAppBar extends React.Component {
                   },
                 }}
               >
-
-
-
                 <MenuItem> <Link to='/Neighborhoods' component={Neighborhoods}>NEIGHBORHOODS</Link></MenuItem>
                 <MenuItem> <Link to='/RoommateFinderResult' component={RoommateFinderResult}>ROOMMATES</Link></MenuItem>
                 <MenuItem><Link to='/Listing' component={Listing}>LISTINGS</Link></MenuItem>
@@ -180,7 +182,7 @@ class ButtonAppBar extends React.Component {
                   {(context) => (<div className="mob">
                     <MenuItem><Button href="#">About</Button></MenuItem>
                     {context.state.loggedInUser !== undefined ? <div>{'Welcome ' + context.state.loggedInUser.username}
-                      {<Button href="/login" onClick={() => { localStorage.removeItem('user') }} color="inherit">Logout</Button>}</div> :
+                      {<Button href="/login" onClick={this.removeItems} color="inherit">Logout</Button>}</div> :
                       <div>
                         <MenuItem> <Link to='/login' className="login_last" component={login}>Login</Link></MenuItem>
                         <MenuItem><Link to='/register' component={register}>Sign-up</Link></MenuItem></div>}</div>
@@ -193,48 +195,36 @@ class ButtonAppBar extends React.Component {
             <div className="desktop_view">
 
               <Typography className={classes.grow}>
-
-
                 <ul className={classes.menuButton} aria-label="Menu" className="main_menu" >
                   <li><Link to='/Neighborhoods' component={Neighborhoods}>NEIGHBORHOODS</Link></li>
                   <li><Link to='/RoommateFinderResult' component={RoommateFinderResult}>ROOMMATES</Link></li>
                   <li><Link to='/Listing' component={Listing}>LISTINGS</Link></li>
                   <li><Link to='/RelatorsRegsiter' component={RelatorsRegsiter}>REALTORS</Link></li>
-
                 </ul>
-
               </Typography>
-
               <AppContext.Consumer>
-             
                 {(context) => (
                 <div className="right_menu">
-                 
-					        <div className="abt">{context.state.loggedInUser !== undefined?<Button href={IsUsersRoles()}>{context.state.loggedInUser.username}</Button>:<Link to='/'>About</Link>}</div>
+                  <div className="abt">
+                  <Button className="hide"></Button>
+                  {context.state.loggedInUser !== undefined?<a href={IsUsersRoles()} >{context.state.loggedInUser.username}</a>:<Link to='/'>About</Link>}</div>
+
                     {context.state.loggedInUser !== undefined ? <div style={{ color: '#fff', fontWeight: "600" }}>
-                    
-                    {<a href="/login" onClick={() => { localStorage.removeItem('user') }} color="inherit">Logout</a>}</div>  :
+                    {<a href="/login" onClick={this.removeItems} color="inherit">Logout</a>}</div>  :
                     <div className="log_sign">
-                     
                       <Link to='/register' component={register}>Sign-up</Link>
                       <Link to='/login' className="login_last" component={login}>Login</Link>
-
                     </div>}</div>
                 )}
               </AppContext.Consumer>
 
             </div>
-
-
-          </Toolbar>
+        </Toolbar>
         </AppBar>
         <SignupSteps
           open={this.state.open}
           onClose={this.handleClose}
         />
-
-
-
 
       </div>
 
@@ -246,4 +236,10 @@ ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(connect()(ButtonAppBar));
+function mapStateToProps(state) {
+	const { loggedIn } = state.authentication;
+    return {
+      loggedIn
+    };
+}
+export default withStyles(styles)(connect(mapStateToProps)(ButtonAppBar));

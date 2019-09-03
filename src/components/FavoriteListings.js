@@ -39,7 +39,7 @@ class FavoriteListings extends React.Component {
 	componentDidMount() {
 
 		let AuthToken = authHeader();
-		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/property";
+		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/FindFavrouiteMarkPropertyList";
 		var bearer = AuthToken.Authorization;
 		fetch(url, {
 				method: 'GET',
