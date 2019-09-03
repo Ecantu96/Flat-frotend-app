@@ -12,7 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Zoom from '@material-ui/core/Zoom';
-
+import { authHeader } from '../_helpers'; 
+import _ from 'lodash';
   
 const styles = theme => ({
 	  root: {
@@ -26,17 +27,74 @@ const styles = theme => ({
 	});
 
 class FavoriteRoommates extends React.Component {
-	state = {
-    checked: false,
-  };
-
+	constructor(props) {
+		super(props);
+		this.state = {
+			checked: false,
+		    FavRoommates: []
+		};
+	}
   handleChange = () => {
     this.setState(state => ({ checked: !state.checked }));
   };
+
+  componentWillMount() {
+
+	let AuthToken = authHeader();
+	var url = "https://nooklyn-flats-backend-apis.herokuapp.com/FavMarkedRoommateMatchResult";
+	var bearer = AuthToken.Authorization;
+	fetch(url, {
+			method: 'GET',
+			headers: {
+				'Authorization': bearer,
+				'Content-Type': 'application/json'
+			}
+		}).then(response => response.json()).then(res => { 
+			
+			this.setState({
+				FavRoommates: res
+			})
+			return res;
+			
+	})
+	.catch(error => this.setState({
+			isLoading: false,
+			message: 'Something bad happened' + error
+	}));
+
+						
+}
+
+onClickRoommateId = (Roommate_Id, e) => {
+	this.props.history.push('RoommateProfile', { Roommate_Id: Roommate_Id });
+}
+
+
 	render() {
 	 
     const {classes } = this.props;
-    const { checked } = this.state;
+	const { checked, FavRoommates } = this.state;
+	var FavRoommate = FavRoommates;
+
+	
+	if(_.some(FavRoommates, _.isObject)){
+		FavRoommate = FavRoommates.map((item, key) =>
+		<Grid className="MuiGrid-item-143" item xs={4}  key={key} data-id={item._id} onClick={() => this.onClickRoommateId(item._id)}>
+			<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} />
+			<div className="room_finder_title">	<h5>{item.username}</h5></div>
+			<div className="profile_title">
+			<span>{item.questions.LookingRoommate}</span>
+			<span>{item.questions.LookingInRoommates}</span>
+			<span>{item.questions.typeofperson}</span>
+			<span>{item.questions.BedTime}</span>
+			<span>{item.questions.RelationshipStatus}</span>
+			<span>{item.questions.Workhours}</span>
+			</div>
+			</Paper>
+		</Grid>
+		);
+	  }
+     
     return (
 	
       <AppProvider>
@@ -123,126 +181,8 @@ class FavoriteRoommates extends React.Component {
 			<div className="main_roomates roommatefinder_result">
 				<React.Fragment>
 					<div className="row">
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
-							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
-							<div className="profile_title">
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-							
-						  </Grid>
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
-							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
-							<div className="profile_title">
-							
-							<span>Quiet</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							
-							</Paper>
-						  </Grid>
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
-							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
-							<div className="profile_title">
-						
-							<span>Loud</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							
-							</Paper>
-						  </Grid>
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
-							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						  </Grid>
-						  
-						  
-					</div>
-					
-					<div className="row">
-						  
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
-							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							
-							</Paper>
-						  </Grid>
-						  
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
-							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
-							<div className="profile_title">
-							
-							<span>Quiet</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-							
-						  </Grid>
-						  
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
-							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							
-							</Paper>
-						  </Grid>
-						  
-						  <Grid item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_img" src={require('./images/roommate_profile.jpeg')} /></a>
-							<div className="room_finder_title">	<h5>Jeffrey Armstrong</h5></div>
-							<div className="profile_title">
-							
-							<span>Messy</span>
-							<span>Part-time</span>
-							<span>Drink Partner</span>
-							<span>Bedtime at 11pm</span>
-							<span>Not a Smoke Partner</span>
-							</div>
-							</Paper>
-						   </Grid>
-						   
-						   
+						  {FavRoommate}
+												   
 					</div>					
 					
 										
