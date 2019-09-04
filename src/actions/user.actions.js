@@ -12,7 +12,10 @@ export const userActions = {
     logout,
     register,
     userupdate,
+    SaveUpdateUserInterest,
     matchRoommate,
+    MarkFavListing,
+    MarkFavRoommate,
 	getAll,
 	delete: _delete
 };
@@ -25,15 +28,15 @@ function login(username, password) {
             .then(
                 user => { 
 				   					
-                    console.log('return error==user'+JSON.stringify(user));
+                    //console.log('return error==user'+JSON.stringify(user));
 					dispatch(success(user));
-					dispatch(alertActions.success('Loggein in successfully'));
+					//dispatch(alertActions.success('Loggein in successfully'));
 										
 					//	history.push('/Listing')
 					
                 },
                 error => {
-                    console.log('return error=='+error)
+                    //console.log('return error=='+error)
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                 }
@@ -46,7 +49,7 @@ function login(username, password) {
 }
 
 function logout() {
-    userService.logout();
+     userService.logout();
     return { type: userConstants.LOGOUT };
 }
 
@@ -64,7 +67,7 @@ function register(user) {
 					//if(interstedRoommate){
                      //  history.push('/RoommateFinderResult');
 					//}
-                    dispatch(alertActions.success('Registration successful'));
+                   // dispatch(alertActions.success('Registration successful'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -86,13 +89,10 @@ function matchRoommate(user) {
         userService.matchRoommates(user)
 		
         .then(user => {
-			     // alert(1);
-				  
-			      //console.log('return error==user'+JSON.stringify(user));
-                    dispatch(alertActions.success(user));
-			       dispatch(success());
-                 localStorage.removeItem("token")
-			     return user;
+			    dispatch(alertActions.success(user));
+			    dispatch(success());
+                localStorage.removeItem("token")
+			    return user;
 				 
                 },
                 error => {
@@ -111,8 +111,64 @@ function matchRoommate(user) {
     function failure(error) { return { type: userConstants.USER_FAILURE, error } }
 }
 
+
+function MarkFavListing(user) {
+	    return dispatch => {
+	     dispatch(request(user));
+		//alert(user);
+        userService.MarkFavListings(user)
+		
+        .then(user => {
+			    dispatch(alertActions.success(user));
+			    dispatch(success());
+                localStorage.removeItem("token")
+			    return user;
+				 
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+                                       
+         );
+     
+    };
+
+    function request(user) { return { type: userConstants.USER_REQUEST, user } }
+    function success(user) { return { type: userConstants.USER_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.USER_FAILURE, error } }
+}
+
+function MarkFavRoommate(user) {
+	console.log(user);
+	    return dispatch => {
+	     dispatch(request(user));
+		//alert(user);
+        userService.MarkFavRoommates(user)
+		
+        .then(user => {
+			    dispatch(alertActions.success(user));
+			    dispatch(success());
+                localStorage.removeItem("token")
+			    return user;
+				 
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+                                       
+         );
+     
+    };
+
+    function request(user) { return { type: userConstants.USER_REQUEST, user } }
+    function success(user) { return { type: userConstants.USER_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.USER_FAILURE, error } }
+}
+
 function userupdate(user) {
-     console.log("Nadeem User Details"  +user);
+     //console.log("Nadeem User Details"  +user);
         return dispatch => {
          dispatch(request(user));
         //alert(user);
@@ -133,13 +189,43 @@ function userupdate(user) {
          
                                        
          );
-            
-      //  }
+     
     };
 
     function request(user) { return { type: userConstants.USER_REQUEST, user } }
     function success(user) { return { type: userConstants.USER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.USER_FAILURE, error } }
+}
+
+function SaveUpdateUserInterest(user) {
+      // console.log("Nadeem User Details"  +JSON.stringify(user));
+       return dispatch => {
+        dispatch(request(user));
+       //alert(user);
+       userService.SaveUpdateUserInterested(user)
+       
+       .then(user => {
+               
+                   dispatch(alertActions.success(user));
+                  dispatch(success());
+                localStorage.removeItem("token")
+                return user;
+                
+               },
+               error => {
+                   dispatch(failure(error.toString()));
+                   dispatch(alertActions.error(error.toString()));
+               }
+        
+                                      
+        );
+           
+     //  }
+   };
+
+   function request(user) { return { type: userConstants.USER_UPDATE_REQUEST, user } }
+   function success(user) { return { type: userConstants.USER_UPDATE_SUCCESS, user } }
+   function failure(error) { return { type: userConstants.USER_UPDATE_FAILURE, error } }
 }
 
 

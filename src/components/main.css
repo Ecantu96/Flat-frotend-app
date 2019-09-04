@@ -1019,7 +1019,12 @@ ul.rent_list {
     border-radius: 0;
 	background: transparent;
 	width: 100%;
-	box-shadow: 0 3px 6px #ccc;
+    box-shadow: 0 3px 6px #ccc;
+    cursor: pointer;
+}
+
+.rooms_finder img {
+    cursor: pointer;
 }
 
 .room_finder_title h5 {
@@ -1036,7 +1041,25 @@ ul.rent_list {
     overflow: hidden;
     border-radius: 20px 0px 0px 20px;
     max-width: 145px;
-    
+     
+}
+
+.favorit_list_rooms .room_finder_title h5 {
+    font-size: 12px;
+font-family: Montserrat;
+color: #F9790E;
+font-weight: 600;
+padding: 3px 15px 3px 15px;
+text-align: center;
+position: relative;
+ bottom: 55px;
+background-color: #fff;
+float: right;
+overflow: hidden;
+border-radius: 20px 0px 0px 20px;
+max-width: 145px;
+min-height: 32px;
+ 
 }
 .listing_page .room_finder_title h5 {
     font-size: 12px;
@@ -1300,6 +1323,7 @@ min-height: 32px;
 .listing_page .profile_img{
 	width: 100%;
 }
+
 .listing_map {
     position: relative;
     bottom: 80px;
@@ -1506,13 +1530,14 @@ span.round_box {
     padding: 10px 15px 10px 14px;
     width: auto;
     margin: 10px 10px 0px 10px;
-    font-size: 12px;
+    font-size: 10px;
     text-align: center !important;
     display: inline-block;
     font-weight: 600;
 	min-width:100px;
 	box-shadow: 0 3px 6px #ccc;
 }
+
 .side_profile img {
     box-shadow: 0 3px 6px #ccc;
 }
@@ -2415,6 +2440,11 @@ ul.profile_galleries li {
 .FavoriteListings .main_roomates{
 	margin-bottom: 0;
 }
+
+.FavoriteListings .MuiPaper-elevation2-20 img {
+    padding: 0px;
+    cursor: pointer;
+}
 /*********FavoriteRoommates*********/
 
 .FavoriteRoommates .home_img{
@@ -3167,6 +3197,12 @@ img.profile_suggest_img {
 .roommatefinder_result .MuiGrid-item-143{
 	margin: 15px 17px 34px 18px; 
 }
+
+.roommatefinder_result .MuiGrid-item-143{
+	margin: 15px 17px 34px 18px; 
+}
+
+
 
 .banner_text h2{
 	font-size: 25px;

@@ -33,11 +33,52 @@ class DashboardProfile extends React.Component {
 		super(props);
 		this.state = {
 			checked: false,
-			ProfileView: {}
+			ProfileView: {},
+			ImInterestedView: [],
+			Imtypeofperson: '',
+			ImBedTime: '',
+			ImDoYouDrink: '',
+			ImDoYouSmoke: '',
+			ImLikeGoOut: '',
+			ImWorkhours: '',
+			ImRelationshipStatus: ''
+
 		};
+
+		
+			
 	}
 
 	
+
+	componentWillMount() {
+		const {loggedIn} = this.props;
+
+		let AuthToken = authHeader();
+		var { ImInterestedView  } = this.state;
+		var findUrl = "https://nooklyn-flats-backend-apis.herokuapp.com/FindCurrentUserList";
+		var bearer = AuthToken.Authorization;
+				fetch(findUrl, {
+				method: 'GET',
+				headers: {
+				'Authorization': bearer,
+				'Content-Type': 'application/json'
+				}
+			}).then(response => response.json()).then(InterestedProfile => { 
+				this.setState({
+					ImInterestedView: InterestedProfile
+													
+				
+				});
+			
+				return InterestedProfile;
+			})
+			.catch(error => this.setState({
+				isLoading: false,
+				message: 'Something bad happened' + error
+			}));
+
+	}
  
 
   componentDidMount() {
@@ -64,17 +105,250 @@ class DashboardProfile extends React.Component {
         message: 'Something bad happened' + error
     }));
     
-}
-  
+  }  
 	
 	render() {
 	 
     const {classes } = this.props;
-	const { checked, ProfileView } = this.state;
+	const { checked, ProfileView, ImInterestedView } = this.state;
 	var UserProfile = ProfileView;
 	var user_DOB = ProfileView.DOB;
 	var User_questions = ProfileView.questions;
 
+	var ImInterestQuestion = ImInterestedView.questions;
+
+	// Functiond defined for I m interested User
+	function ImTypeofPersonQuiet() {
+		if(_.find(ImInterestedView)) {
+
+				var ImQuiet = ImInterestQuestion.typeofperson;
+				if(ImQuiet == "Quiet"){
+				return "active";
+				}
+						
+	   }
+	}
+
+	function ImTypeofPersonLoud() {
+		if(_.find(ImInterestedView)) {
+
+				var ImLoud = ImInterestQuestion.typeofperson;
+				
+				if (ImLoud == "Loud") {
+				return "active";
+				}
+			
+		
+	   }
+	}
+	function ImTypeofPersonTidy() {
+		if(_.find(ImInterestedView)) {
+
+			var ImTidy = ImInterestQuestion.typeofperson;
+				
+				if (ImTidy == "Tidy") {
+					return "active";
+					}
+				
+		
+	   }
+	}
+	function ImTypeofPersonMessy() {
+		if(_.find(ImInterestedView)) {
+
+			var ImMessy = ImInterestQuestion.typeofperson;
+				
+				if (ImMessy == "Messy") {
+				return "active";
+				}
+		
+	   }
+	}
+
+	function ImDoYouDrinktrue() {
+		if(_.find(ImInterestedView)) {
+
+			var ImdoYouDrink = ImInterestQuestion.DoYouDrink;
+				if(ImdoYouDrink == true){
+				return "active";
+				}
+						
+	   }
+	}
+
+	function ImDoYouDrinkfalse() {
+		if(_.find(ImInterestedView)) {
+
+			var ImdoYouDrink = ImInterestQuestion.DoYouDrink;
+				if(ImdoYouDrink == false){
+				return "active";
+				}
+						
+	   }
+	}
+
+	function ImDoYouSmoketrue() {
+		if(_.find(ImInterestedView)) {
+
+			var DoYouSmoke = ImInterestQuestion.DoYouSmoke;
+				if(DoYouSmoke == true){
+				return "active";
+				}
+						
+	   }
+	}
+
+	function ImDoYouSmokefalse() {
+		if(_.find(ImInterestedView)) {
+
+			var DoYouSmoke = ImInterestQuestion.DoYouSmoke;
+				if(DoYouSmoke == false){
+				return "active";
+				}
+						
+	   }
+	}
+
+	function ImLikeGoOuttrue() {
+		if(_.find(ImInterestedView)) {
+
+			var LikeGoOut = ImInterestQuestion.LikeGoOut;
+				if(LikeGoOut == true){
+				return "active";
+				}
+						
+	   }
+	}
+
+	function ImLikeGoOutfalse() {
+		if(_.find(ImInterestedView)) {
+
+			var LikeGoOut = ImInterestQuestion.LikeGoOut;
+				if(LikeGoOut == false){
+				return "active";
+				}
+						
+	   }
+	}
+
+	function ImWorkHoursFullTime() {
+		if(_.find(ImInterestedView)) {
+
+			var Workhours = ImInterestQuestion.Workhours;
+				if(Workhours == "FullTime"){
+				return "active";
+				}
+						
+	   }
+	}
+	function ImWorkHoursPartTime() {
+		if(_.find(ImInterestedView)) {
+
+			var Workhours = ImInterestQuestion.Workhours;
+				
+				if (Workhours == "PartTime") {
+				return "active";
+				}
+			
+		
+	   }
+	}
+	function ImWorkHoursStudentFullTime() {
+		if(_.find(ImInterestedView)) {
+
+			var Workhours = ImInterestQuestion.Workhours;
+				
+				if (Workhours == "StudentFullTime") {
+					return "active";
+					}
+				
+		
+	   }
+	}
+	function ImWorkHoursStudentPartTime() {
+		if(_.find(ImInterestedView)) {
+
+			var Workhours = ImInterestQuestion.Workhours;
+				
+				if (Workhours == "StudentPartTime") {
+				return "active";
+				}
+		
+	   }
+	}
+
+	function ImbedTime9() {
+		if(_.find(ImInterestedView)) {
+
+			var bedTime = ImInterestQuestion.BedTime;
+				if(bedTime == "9-10pm"){
+				return "active";
+				}
+						
+	   }
+	}
+	function  ImbedTime10() {
+		if(_.find(ImInterestedView)) {
+
+			var bedTime = ImInterestQuestion.BedTime;
+				
+				if (bedTime == "10-11pm") {
+				return "active";
+				}
+			
+		
+	   }
+	}
+	function  ImbedTime12() {
+		if(_.find(ImInterestedView)) {
+
+			var bedTime = ImInterestQuestion.BedTime;
+				
+				if (bedTime == "12-1am") {
+					return "active";
+					}
+				
+		
+	   }
+	}
+
+	function ImRelationshipSingle() {
+		if(_.find(ImInterestedView)) {
+
+			var RelationshipStatus = ImInterestQuestion.RelationshipStatus;
+				if(RelationshipStatus == "Single"){
+				return "active";
+				}
+						
+	   }
+	}
+	function ImRelationshiponRelationship() {
+		if(_.find(ImInterestedView)) {
+
+			var RelationshipStatus = ImInterestQuestion.RelationshipStatus;
+				
+				if (RelationshipStatus == "onRelationship") {
+				return "active";
+				}
+			
+		
+	   }
+	}
+	function ImRelationshipMarried() {
+		if(_.find(ImInterestedView)) {
+
+			var RelationshipStatus = ImInterestQuestion.RelationshipStatus;
+				
+				if (RelationshipStatus == "Married") {
+					return "active";
+					}
+				
+		
+	   }
+	}
+	
+
+// Functions Defined For About Me
 	if(_.find(ProfileView)) {
 	   var User_socials = ProfileView.Socials;
 	  
@@ -619,7 +893,7 @@ class DashboardProfile extends React.Component {
 					
 					<div className="dashboard_profile_grid">
 					<Typography className="dash_profile_title"  component="h2" variant="h1" gutterBottom>
-							I’m interested in…
+							I’m interested in…   
 						</Typography>
 					<div className="row">
 					    
@@ -627,20 +901,20 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Type of Person</h4>
 							<div className="type_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Quiet</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Loud</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Tidy</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Messy</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImTypeofPersonQuiet()} btn btn-default btn-sm`}>Quiet</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImTypeofPersonLoud()} btn btn-default btn-sm`}>Loud</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImTypeofPersonTidy()} btn btn-default btn-sm`}>Tidy</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImTypeofPersonMessy()} btn btn-default btn-sm`}>Messy</Button>
 							</div>
 						    </Paper>
 							
 						  </Grid>
 						  <Grid className="abt_me_grid" item xs={3}>
 							<Paper className={classes.paper}>
-							<h4>Do you drink?</h4>
+							<h4>Do you drink?</h4> 
 							<div className="drink_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Yes</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">No</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImDoYouDrinktrue()} btn btn-default btn-sm`}>Yes</Button>
+							<Button data-toggle="tab" data-target="#page0"className={`type_btn ${ ImDoYouDrinkfalse()} btn btn-default btn-sm`}>No</Button>
 							
 							</div>
 						    </Paper>
@@ -650,8 +924,8 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Do you smoke?</h4>
 							<div className="drink_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Yes</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">No</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImDoYouSmoketrue()} btn btn-default btn-sm`}>Yes</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImDoYouSmokefalse()} btn btn-default btn-sm`}>No</Button>
 							</div>
 						    </Paper>
 							
@@ -665,8 +939,8 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Likes to go out?</h4>
 							<div className="drink_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Yes</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">No</Button>
+							<Button data-toggle="tab" data-target="#page0"  className={`type_btn ${ ImLikeGoOuttrue()} btn btn-default btn-sm`}>Yes</Button>
+							<Button data-toggle="tab" data-target="#page0"  className={`type_btn ${ ImLikeGoOutfalse()} btn btn-default btn-sm`}>No</Button>
 							
 							</div>
 						    </Paper>
@@ -677,10 +951,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Work Hours</h4>
 							<div className="type_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Full-time</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Part-time</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Student <br/> (Full-time)</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Student<br/>(Part-time)</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImWorkHoursFullTime()} btn btn-default btn-sm`}>Full-time</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImWorkHoursPartTime()} btn btn-default btn-sm`}>Part-time</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImWorkHoursStudentFullTime()} btn btn-default btn-sm`}>Student <br/> (Full-time)</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImWorkHoursStudentPartTime()} btn btn-default btn-sm`}>Student<br/>(Part-time)</Button>
 							</div> 
 						    </Paper>
 							
@@ -690,10 +964,10 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Bed Time</h4>
 							<div className="type_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">9-10pm</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">10-11pm</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">12-1am</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">I work <br/>nights</Button>
+							<Button data-toggle="tab" data-target="#page0"  className={`type_btn ${ ImbedTime9()} btn btn-default btn-sm`}>9-10pm</Button>
+							<Button data-toggle="tab" data-target="#page0"  className={`type_btn ${ ImbedTime10()} btn btn-default btn-sm`}>10-11pm</Button>
+							<Button data-toggle="tab" data-target="#page0"  className={`type_btn ${ ImbedTime12()} btn btn-default btn-sm`}>12-1am</Button>
+							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">I work <br/>nights</Button>
 							</div>
 						    </Paper>
 							
@@ -707,9 +981,9 @@ class DashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Relationship Status</h4>
 							<div className="type_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Single</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">In a <br/>Relationship</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Married</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImRelationshipSingle()} btn btn-default btn-sm`}>Single</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImRelationshiponRelationship()} btn btn-default btn-sm`}>In a <br/>Relationship</Button>
+							<Button data-toggle="tab" data-target="#page0" className={`type_btn ${ ImRelationshipMarried()} btn btn-default btn-sm`}>Married</Button>
 							
 							</div>
 						    </Paper>
@@ -731,7 +1005,7 @@ class DashboardProfile extends React.Component {
 					
 					<Grid className="profile_pic_section" item xs={1}>
 							<Paper className={classes.paper}>
-							<h5>{ProfileView.username}</h5>
+							<a href="/Edit-DashboardProfile"><h5> Edit Your Profile</h5></a>
 							<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
 							<ul className="edit_remove">
 							<li><a href="/">Edit</a></li>
@@ -812,16 +1086,19 @@ class DashboardProfile extends React.Component {
 
 }
 
-const mapStateToPropsN = state => ({
-  //fetching: state.app.fetching,
-  //errorMessage: state.app.error
-  //loggedInUser:state.app.user
-});
+
+function mapStateToProps(state) {
+	const { loggedIn, user } = state.authentication;
+    
+    return {
+         loggedIn, user
+    };
+}
 
 
 //export default withTheme()(RoommateFinderResultVariationTwo);
 
 
-DashboardProfile = connect(mapStateToPropsN)(DashboardProfile);
+DashboardProfile = connect(mapStateToProps)(DashboardProfile);
 
 export default withStyles(styles)(DashboardProfile);
