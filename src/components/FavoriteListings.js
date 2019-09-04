@@ -39,7 +39,7 @@ class FavoriteListings extends React.Component {
 	componentDidMount() {
 
 		let AuthToken = authHeader();
-		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/FindFavrouiteMarkPropertyList";
+		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/FetchFavMarked";
 		var bearer = AuthToken.Authorization;
 		fetch(url, {
 				method: 'GET',
@@ -65,6 +65,11 @@ class FavoriteListings extends React.Component {
   handleChange = () => {
     this.setState(state => ({ checked: !state.checked }));
   };
+
+  onClickListId = (list_id, e) => {
+	this.props.history.push('ListingDetailPage', { list_id: list_id });
+
+}
 	
 render() {
 	
@@ -76,8 +81,8 @@ render() {
 
   if(_.find(FavLists)) {
 	FavListing = FavLists.map((item, key) =>
-	<Grid className="MuiGrid-item-143" item xs={5}  key={key}>
-		<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
+	<Grid className="MuiGrid-item-143" item xs={5}  key={key} data-id={item.id} onClick={() => this.onClickListId(item.id)}>
+		<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><img alt=""  src={require('./images/lsiting_room.jpg')} />
 		<div className="room_finder_title">	<h5>{item.Address}</h5></div>
 		<div className="profile_title">
 		<h5>{item.Name}</h5>
@@ -91,8 +96,6 @@ render() {
 	</Grid>
 	);
 }
-
-  console.log(FavListing);
 
     return (
 	

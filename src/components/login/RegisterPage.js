@@ -1,7 +1,5 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import {register_user} from  '../../actions/user';
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonAppBar from '../../components/TopBar';
@@ -9,12 +7,6 @@ import FooterBar from "../../components/FooterBar";
 import AppProvider from "../../provider/AppContext";
 import { AppContext } from '../../provider/AppContext';
 import { userActions } from '../../actions';
-//import {Welcome} from "../../components/Welcome";
-//import Button from '@material-ui/core/Button';
-//import PropTypes from 'prop-types';
-//import IconButton from '@material-ui/core/IconButton';
-//import SignupProvider, { SignupContext } from '../provider/SignupContext';
-//import  { user_register } from '../provider/user';
 import '../css/guest.css';
 
 class RegisterPage extends React.Component {
@@ -25,7 +17,7 @@ class RegisterPage extends React.Component {
 
             username: '',
             password: '',
-            interestedRoommate: false,
+           interestedRoommate: false,
            submitted: false,
 		   addClass: false
         };
@@ -51,15 +43,11 @@ class RegisterPage extends React.Component {
         this.setState({ submitted: true });
         const { username, password, interestedRoommate } = this.state;
         const { dispatch } = this.props;
-		
-       
-            let Role = 'User'
+		    let Role = 'User'
               let user = {
                 username, password,  Role, interestedRoommate
             }
-			
-			
-
+		
          if(interestedRoommate == true){
 			// dispatch(userActions.register(user));
             this.props.history.push('/BedTime', { user });
@@ -76,10 +64,6 @@ class RegisterPage extends React.Component {
 			
          }
 
-          
-            // dispatch(userActions.register(user));
-
-        
     }
 
     render() {
@@ -97,7 +81,7 @@ class RegisterPage extends React.Component {
                         )}
                     </AppContext.Consumer>
 
-                    <div className="col-md-4 reg_form " style={{ background: '#fff', margin: '0 auto' }}>
+                    <div className="col-md-offset-4 col-md-4 reg_form " style={{ background: '#fff' }}>
 
                         <div className="main_title">CREATE ACCOUNT</div>
                         <h3>or sign in with Facebook</h3>
@@ -121,7 +105,7 @@ class RegisterPage extends React.Component {
 							
 							<div className= { 'form-group reg_checkbox '}>
                         <label htmlFor="interestedRoommate" className={'form-control ' + (boxClass.join(' '))}>
-							<input id="interestedRoommate" type="checkbox" value={interestedRoommate}  placeholder="Are you interested in a roommate" name="interestedRoommate"  onChange={this.handleChange} checked={this.state.interestedRoommate}   onClick={this.toggle.bind(this)} />
+							<input id="interestedRoommate" type="checkbox" value={interestedRoommate}  placeholder="Are you interested in a roommate" name="interestedRoommate"  onChange={this.handleChange} checked={this.state.interestedRoommate}  onClick={this.toggle.bind(this)}  />
 							Are you interested in a roommate
 						</label>
                         </div>
