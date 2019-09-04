@@ -62,6 +62,7 @@ class Listing extends React.Component {
 			this.props.history.push('ListingDetailPage', { list_id: list_id });
 		
 	 }
+
 render() {
 	const { propertyLists } = this.state;
 	const {classes,  errorMessage } = this.props;

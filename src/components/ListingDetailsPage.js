@@ -35,9 +35,10 @@ class ListingDetailsPage extends React.Component {
 		  error: null,
 		  isLoaded: false,
 		  propertyDetails: [],
-		  FavMarked: []
+		  FavMarked: [],
+		  MarkActive: "active"
 		};
-				
+
 	}
 
 	backPage = () => {
@@ -114,19 +115,30 @@ class ListingDetailsPage extends React.Component {
 		}));
 
 	}
-	
-	onClickMarkFavorite = (mark, e) => {
+
+			
+	onClickMarkFavorite = (MarkActive) => {
+	  
 		this.setState({addClass: !this.state.addClass});
+		if(MarkActive == "inactive"){
+            var MarkTrue = true;
+		}else{
+			var MarkTrue = false;
+		}
+			
 		const {list_id, Role} = this.state;
 		const { dispatch } = this.props;
 		var user_id = Role.id;
 		var lists_id = list_id;
 		let user = {
-				favMark : mark,
+				favMark : MarkTrue,
 				PropertyList_id: lists_id,
 				agentId: user_id
 			}
 			dispatch(userActions.MarkFavListing(user));
+
+			
+		 
 		
 	}
 
@@ -139,7 +151,7 @@ class ListingDetailsPage extends React.Component {
 				
 				if(_.some(FavMarked, _.isObject)){
 				var MarkActive = FavMarked.map(function(item){
-						if(list_id == item.PropertyList_id){
+						if(list_id){
 							
 								var favMark = item.favMark;
 								if(favMark == true){
@@ -458,8 +470,10 @@ class ListingDetailsPage extends React.Component {
 							
 							<div className="profile_btns">
 								<Button className="profile_btn">Send Message</Button>
-								<Button data-toggle="tab" className={'profile_btn btn '+ MarkActive +' btn-default btn-sm ' + (buttonClass.join(' '))}   onClick={() => this.onClickMarkFavorite('true')} >Favorite</Button>
+								<Button data-toggle="tab" className={'profile_btn btn '+ MarkActive +' btn-default btn-sm ' + (buttonClass.join(' '))}   onClick={(event) => this.onClickMarkFavorite(MarkActive)} >Favorite</Button>
 							</div>
+							
+
 							<div className="pro_social_media">
 							<ul>
 								<li><a href="/">f</a></li>
