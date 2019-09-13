@@ -1,3 +1,3 @@
 module.exports = {
-    SERVICEURL: 'https://nooklyn-flats-backend-apis.herokuapp.com'
+    SERVICEURL: 'http://localhost:4000'
 }
