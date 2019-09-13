@@ -15,6 +15,14 @@ import Zoom from '@material-ui/core/Zoom';
 import { authHeader } from '../_helpers'; 
 import _ from 'lodash';
 import { SERVICEURL } from '../config/config.js';
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
+
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`; 
   
 const styles = theme => ({
 	  root: {
@@ -32,7 +40,8 @@ class FavoriteRoommates extends React.Component {
 		super(props);
 		this.state = {
 			checked: false,
-		    FavRoommates: []
+			FavRoommates: [],
+			loading: true,
 		};
 	}
   handleChange = () => {
@@ -53,13 +62,14 @@ class FavoriteRoommates extends React.Component {
 		}).then(response => response.json()).then(res => { 
 			
 			this.setState({
-				FavRoommates: res
+				FavRoommates: res,
+				loading: false
 			})
 			return res;
 			
 	})
 	.catch(error => this.setState({
-			isLoading: false,
+		   loading: true,
 			message: 'Something bad happened' + error
 	}));
 
@@ -99,6 +109,15 @@ onClickRoommateId = (Roommate_Id, e) => {
     return (
 	
       <AppProvider>
+		   <div className='sweet-loading'>
+				<ClipLoader
+				css={override}
+				sizeUnit={"px"}
+				size={150}
+				color={'#123abc'}
+				loading={this.state.loading}
+				/>
+		</div> 
         <AppContext.Consumer>
           {(context) => ( 
             

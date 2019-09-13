@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { login } from '../../actions';
 import { withTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonAppBar from '../../components/TopBar';
@@ -8,89 +7,56 @@ import FooterBar from "../../components/FooterBar";
 import AppProvider from "../../provider/AppContext";
 import { AppContext } from '../../provider/AppContext';
 import { userActions } from '../../actions';
-//import Button from '@material-ui/core/Button';
-//import IconButton from '@material-ui/core/IconButton';
-//import Page 
 import Page from "../../components/Page.jsx";
 import Button from '@material-ui/core/Button';
-
 import '../css/guest.css';
-//let globalHistory = null
-
 class LoginPage extends React.Component {
-	
-	
     constructor(props) {
         super(props);
-
-        // reset login status
-        //  this.props.dispatch(userActions.logout());
-
         this.state = {
             username: '',
             password: '',
             submitted: false,
-			 loading: true,
+            loading: null
+           
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
     }
-
     handleSubmit(e) {
         e.preventDefault();
-
-        this.setState({ submitted: true });
-        const { username, password } = this.state;
-         const { dispatch } = this.props;
-        // if (username && password) {
-        //     this.props.login({ 'payload': { username, password } })
-        // }
-
+            this.setState({ submitted: true });
+            const { username, password } = this.state;
+            const { dispatch } = this.props;
         if (username && password) {
             setTimeout(() =>  dispatch(userActions.login(username, password)), 100);
-           
         }
-		// this.props.history.push('RoommateFinderResult', { data: tempData });
-	   
-		//Listing = () => this.props.history.push("/Listing");
-        setTimeout(() => this.props.history.push("/Listing"), 2000);
-       
     }
-
-  
-	
-	 componentDidMount() {
-
-		
-		setTimeout(() => this.setState({ loading: false }), 800); // simulates loading of data
+    
+    componentDidMount() {
+		setTimeout(() => this.setState({ loading: false }), 800);
 	  }
-	  
-	  //  goBack = () => this.props.history.push("/register");
-	 // Listing = () => this.props.history.push("/Listing");
-	  
-	  
-	    componentWillMount() {
-		const { history } = this.props;
-		//globalHistory = history; 
-		//console.log(globalHistory);
-	  }
+	componentWillMount() {
+         const { history } = this.props;
+	 }
 
 	  componentWillReceiveProps(nextProps) {
-		//globalHistory = nextProps.history;
+         const {loggedIn} = this.state;
+        var loggedIN = nextProps.loggedIn;
+        if(loggedIN == true){
+            setTimeout(() => this.props.history.push("/Listing"), 500);
+        }
 	  }
 
     render() {
 		const { loading } = this.state; 
-        const { loggingIn, type, message } = this.props;
+        const { loggedIn, loggingIn, type, message } = this.props;
         const { username, password, submitted } = this.state;
-		
-		 if (loading) {
+	if (loading) {
       return (
         <Page
           pageTitle=""
@@ -109,9 +75,7 @@ class LoginPage extends React.Component {
         </Page>
       );
     }
-	
-	
-        return (
+    return (
 		 <Page history goBack={this.goBack} LookingInRoommates={this.LookingInRoommates}>
             <AppProvider>
                 <Paper style={{ padding: '5px' }} elevation={1} className="login_bg">
@@ -120,7 +84,7 @@ class LoginPage extends React.Component {
                             <ButtonAppBar></ButtonAppBar>
                         )}
                     </AppContext.Consumer>
-                    <div className="col-md-4 login_form " style={{ background: '#fff', margin: '0 auto' }}>
+                    <div className="col-md-offset-4 col-md-4 login_form " style={{ background: '#fff' }}>
                         <p class="MuiTypography-root-74 MuiTypography-body1-83 main_title">Login</p>
                         <form name="form" onSubmit={this.handleSubmit}>
 
@@ -179,10 +143,10 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { loggingIn } = state.authentication;
+    const { loggedIn, loggingIn, user } = state.authentication;
     const { type, message } = state.alert;
     return {
-        loggingIn, type, message
+        loggedIn, loggingIn, type, user, message
     };
 }
 const mapDispatchToProps = {

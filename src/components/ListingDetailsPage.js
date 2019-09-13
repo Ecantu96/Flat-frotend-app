@@ -13,6 +13,14 @@ import { authHeader } from '../_helpers';
 import _ from 'lodash';
 import Moment from 'moment';
 import { userActions } from '../actions';
+import { SERVICEURL } from '../config/config.js';
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
+const override = css`
+display: block;
+margin: 0 auto;
+border-color: red;
+`;	
 
 const styles = theme => ({
 
@@ -36,10 +44,13 @@ class ListingDetailsPage extends React.Component {
 		  isLoaded: false,
 		  propertyDetails: [],
 		  FavMarked: [],
-		  MarkActive: "active"
+		  MarkActive: "active",
+		  loading: true	
 		};
 
+
 	}
+
 
 	backPage = () => {
 		this.props.history.push('/Listing');
@@ -47,30 +58,40 @@ class ListingDetailsPage extends React.Component {
 
 
 	componentWillMount() {
-
 		const {list_id, propertyDetails} = this.state;
 		var id = list_id;
-		var url = `https://nooklyn-flats-backend-apis.herokuapp.com/property/${id}`;
+		var url = `${SERVICEURL}/Favproperty/${id}`;
 		let AuthToken = authHeader();
 		fetch(url, {
 			method: 'GET',
 					headers: {
-					'Authorization': AuthToken.Authorization,
-					'Content-Type': 'application/json'
+						'Authorization': AuthToken.Authorization,
+						'Content-Type': 'application/json'
 					},
 			}).then(response => response.json())
 			  .then(res => { 
-				this.setState({
-					propertyDetails: res
-				})
-				return res;
+				if(res[1] == undefined){
+					this.setState({
+						propertyDetails: res,
+						loading: false
+					});
+				}else{
+					this.setState({
+						propertyDetails: res[0],
+						favMarks: res[1],
+						loading: false,
+	
+					});
+				}
+				
+				
 		})
 		.catch(error => this.setState({
-					message: 'Something bad happened' + error
+			loading: true,
+			message: 'Something bad happened' + error
 		}));
 
-
-		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/userRole";
+		var url = `${SERVICEURL}/users/userRole`;
 		var bearer = AuthToken.Authorization;
 		fetch(url, {
 			method: 'GET',
@@ -79,48 +100,23 @@ class ListingDetailsPage extends React.Component {
 			  'Content-Type': 'application/json'
 			}
 		  }).then(response => response.json()).then(result => { 
-		   
 			  this.setState({
-				Role: result
-			   
-			   })
+				Role: result,
+				loading: false
+			})
 			 return result;
 		})
 		.catch(error => this.setState({
-			isLoading: false,
+			loading: true,
 			message: 'Something bad happened' + error
 		}));
 	}
 
-	componentDidMount(){
-		let AuthToken = authHeader();
-		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/FetchFavMarked";
-		fetch(url, {
-			method: 'GET',
-			headers: {
-			  'Authorization': AuthToken.Authorization,
-			  'Content-Type': 'application/json'
-			}
-		  }).then(response => response.json()).then(result => { 
-		   
-			  this.setState({
-				FavMarked: result
-			   
-			   })
-			  return result;
-		})
-		.catch(error => this.setState({
-			isLoading: false,
-			message: 'Something bad happened' + error
-		}));
-
-	}
-
+	
 			
-	onClickMarkFavorite = (MarkActive) => {
-	  
+	onClickMarkFavorite = (Mark, e) => {
 		this.setState({addClass: !this.state.addClass});
-		if(MarkActive == "inactive"){
+		if(Mark == "inactive" || Mark ==  undefined){
             var MarkTrue = true;
 		}else{
 			var MarkTrue = false;
@@ -137,9 +133,6 @@ class ListingDetailsPage extends React.Component {
 			}
 			dispatch(userActions.MarkFavListing(user));
 
-			
-		 
-		
 	}
 
 		
@@ -147,26 +140,9 @@ class ListingDetailsPage extends React.Component {
 				let buttonClass = ["box"];
 				if(this.state.addClass) { buttonClass.push('orange'); }
 				const {classes} = this.props;
-				const {propertyDetails, FavMarked, list_id} = this.state;
-				
-				if(_.some(FavMarked, _.isObject)){
-				var MarkActive = FavMarked.map(function(item){
-						if(list_id){
-							
-								var favMark = item.favMark;
-								if(favMark == true){
-									return "active";
-								}
-								if(favMark == false){
-								return "inactive";
-								}
-						
-						 }
-							
-				}).filter(function(item){return item;})[0];
-
-			}
-				
+				const {propertyDetails, favMarks, FavMarked, list_id} = this.state;
+               
+									
 				if(_.find(propertyDetails)) {
 					var Description = propertyDetails.Description;
 					var Address = propertyDetails.Address;
@@ -179,6 +155,23 @@ class ListingDetailsPage extends React.Component {
 					var AgentName = propertyDetails.Name;
 					
 				}
+			
+				function checkafavMark(){
+
+					if(_.find(favMarks)) {
+						var isfavmark = favMarks.favMark;
+						console.log("isfavmark");
+						console.log(favMarks);
+						if(isfavmark == true){
+						   return "active";
+						}if(isfavmark == false){
+							return "inactive";
+						}
+						
+					}
+				}
+
+				
 
 				function AmenitieAC() {
 					if(_.find(propertyDetails)) {
@@ -309,12 +302,18 @@ class ListingDetailsPage extends React.Component {
 				    }
 				}
 
-
-				
-
-    return (
+	return (
 	
       <AppProvider>
+		  <div className='sweet-loading'>
+				<ClipLoader
+				css={override}
+				sizeUnit={"px"}
+				size={150}
+				color={'#123abc'}
+				loading={this.state.loading}
+				/>
+		</div> 
         <AppContext.Consumer>
           {(context) => ( 
             
@@ -437,8 +436,8 @@ class ListingDetailsPage extends React.Component {
 					</div>
 		</div>
 			<div className="col-sm-3 side_profile">
-			<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-1-171" item xs={1}>
-							<Paper className={classes.paper + "MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2"}>
+			<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-1-171 " item xs={1}>
+							<Paper className={"MuiPaper-root-16 MuiPaper-elevation2-20 " + classes.paper}>
 							<div className="profile_variants">
 									<h5>Property Address</h5>
 									<h6 className="list_address">{Address}</h6>
@@ -452,7 +451,7 @@ class ListingDetailsPage extends React.Component {
 									<span className="squre_box">{formattedDate}</span>
 									
 									<div className="clear">
-									<Button className="schedule_btn">Schedule Showing</Button>
+									{/* <Button className="schedule_btn">Schedule Showing</Button> */}
 									</div>
 									
 									<div className="profile_part">
@@ -470,7 +469,7 @@ class ListingDetailsPage extends React.Component {
 							
 							<div className="profile_btns">
 								<Button className="profile_btn">Send Message</Button>
-								<Button data-toggle="tab" className={'profile_btn btn '+ MarkActive +' btn-default btn-sm ' + (buttonClass.join(' '))}   onClick={(event) => this.onClickMarkFavorite(MarkActive)} >Favorite</Button>
+								<Button data-toggle="tab" className={'profile_btn btn '+ checkafavMark() +' btn-default btn-sm ' + (buttonClass.join(' '))}   onClick={() => this.onClickMarkFavorite(checkafavMark())}  >Favorite</Button>
 							</div>
 							
 
@@ -509,28 +508,28 @@ class ListingDetailsPage extends React.Component {
 				<React.Fragment>
 					<div className="row">
 						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper + "MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2"}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={"MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2" + classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 							
 							</Paper>
 							
 						  </Grid>
 						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper + "MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2"}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={"MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2" + classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 														
 							</Paper>
 						  </Grid>
 						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper + "MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2"}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={"MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2" + classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 							
 							</Paper>
 						  </Grid>
 						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper + "MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2"}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={"MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2" + classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 							
 							</Paper>
 						  </Grid>
 						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper + "MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2"}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={"MuiPaper-root-16 MuiPaper-elevation2-20 MuiPaper-rounded-17 Connect-ListingDetailsPage--paper-2" + classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 							
 							</Paper>
 						   </Grid>

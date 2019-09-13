@@ -498,7 +498,7 @@ span.sub_titl {
     font-weight: 600;
 }
 .reg_form{
-	    margin: 10px 0px 30px 0;
+	    /* margin: 10px 0px 30px 0; */
 }
 
 .reg_form .form-group {

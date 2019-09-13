@@ -11,10 +11,16 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import { userActions } from '../actions';
-import Page from "../components/Page.jsx";
 import { authHeader } from '../_helpers';
 import { SERVICEURL } from '../config/config.js';
-  
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
+const override = css`
+display: block;
+margin: 0 auto;
+border-color: red;
+`;		
+
 const styles = theme => ({
 	  root: {
 		flexGrow: 1,
@@ -37,7 +43,7 @@ class RoommateFinderResult extends React.Component {
 			ProfileQuestion: [],
 			propertyLists: [],
 			viewAllRoommates: [],	
-			loading: false	
+			loading: true	
 		};
 	}
 	
@@ -53,19 +59,19 @@ class RoommateFinderResult extends React.Component {
 						}
 					  }).then(response => response.json()).then(roommates => { 
 						  this.setState({
-							viewAllRoommates: roommates
+							viewAllRoommates: roommates,
+							loading: false
 						  
 						   })
-					    	return roommates;
+					    	//return roommates;
 					})
 					.catch(error => this.setState({
-						isLoading: false,
+						loading: true,
 						message: 'Something bad happened' + error
 					}));
 
 
-      	const { history } = this.props;
-		if(this.props.location.state !== undefined){
+      		if(this.props.location.state !== undefined){
 			//Getting the user data from previous screens property
 			var recievedData = this.props.location.state.data;
 			//Setting that data in this components state
@@ -91,19 +97,16 @@ class RoommateFinderResult extends React.Component {
 						}
 					  }).then(response => response.json()).then(Userprofile => { 
 						  this.setState({
-							ProfileQuestion: Userprofile
+							ProfileQuestion: Userprofile,
+							loading: false
 						  
 						   })
-						console.log("Userprofile");
-					   console.log(Userprofile);
-						return Userprofile;
-					})
+					 })
 					.catch(error => this.setState({
-						isLoading: false,
+						loading: true,
 						message: 'Something bad happened' + error
 					}));
 				
-				const {loggedIn} = this.props;
 				const { dispatch } = this.props;
 				const {ProfileQuestion} = this.state;
 				
@@ -114,7 +117,6 @@ class RoommateFinderResult extends React.Component {
    	componentDidMount = () => {
 
 		const { dispatch } = this.props;
-		const {loggedIn} = this.props;
 		let tempData = this.state.data;
 		
 		if(tempData.username && tempData.password){
@@ -133,12 +135,14 @@ class RoommateFinderResult extends React.Component {
 					}).then(response => response.json()).then(res => { 
 						
 						this.setState({
-							propertyLists: res
+							propertyLists: res,
+							loading: false
 						})
 						
 						return res;
 				})
 				.catch(error => this.setState({
+					  loading: true,
 						message: 'Something bad happened' + error
 				}));
 	}
@@ -146,10 +150,10 @@ class RoommateFinderResult extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		const {data} = this.state;
 		var response = nextProps.message;
-		var loggedIn = nextProps.loggedIn;
-			this.setState({
+				this.setState({
 				roomMateLists:response,
-				loggedIn: nextProps.loggedIn
+				loggedIn: nextProps.loggedIn,
+				loading: false
 			});
 	}
 
@@ -262,6 +266,15 @@ class RoommateFinderResult extends React.Component {
             </div>
           )}
         </AppContext.Consumer>
+		<div className='sweet-loading'>
+				<ClipLoader
+				css={override}
+				sizeUnit={"px"}
+				size={150}
+				color={'#123abc'}
+				loading={this.state.loading}
+				/>
+		</div> 
 		<div className="container">
 			<div className="main_roomates roommatefinder_result">
 				<React.Fragment>

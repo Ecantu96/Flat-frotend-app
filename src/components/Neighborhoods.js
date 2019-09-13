@@ -10,7 +10,17 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Slider from "react-slick";
-  
+import _ from 'lodash';
+import { SERVICEURL } from '../config/config.js';
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
+		
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;		
+
 const styles = theme => ({
 	  root: {
 		flexGrow: 1,
@@ -29,18 +39,80 @@ const styles = theme => ({
       slidesToScroll: 2
     };
 class Neighborhoods extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			error: null,
+			opened: false,
+			loading: true,
+			openedArea: false,
+			propertyLists: [],
+			Location: [],
+		};
+	}
 	
+	componentWillMount() {
+
+		var url = `${SERVICEURL}/properties`;
+		fetch(url, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}).then(response => response.json()).then(res => { 
+				
+				this.setState({
+					propertyLists: res,
+					Location: res,
+					loading: false
+				})
+				
+				//return res;
+		})
+		.catch(error => this.setState({
+				message: 'Something bad happened' + error
+		}));
+			
+	}
+	
+	onClickListId = (list_id, e) => {
+		this.props.history.push('ListingDetailPage', { list_id: list_id });
+    }
 	
 	render() {
-	
 		
-    const {classes} = this.props;
+	
+	const {propertyLists} = this.state;	
+	const {classes} = this.props;
+	var PropertyListing = propertyLists;
+	if(_.find(propertyLists)) {
+		PropertyListing = propertyLists.map((item, key) =>
+		<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}  key={key}  data-id={item.id} onClick={() => this.onClickListId(item.id)}>
+			<Paper className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><img alt=""  src={require('./images/lsiting_room.jpg')} />
+			<div className="room_finder_title">	<h5>{item.Address}</h5></div>
+			<div className="profile_title">
+			<h5>{item.Name}</h5>
+				<span>{item.Beds}Beds</span>
+				<span>{item.Baths}Bath</span>
+				<span>{item.squareFeet}</span>
+				<span>{item.region}</span>
+				<span>{item.rentPrice}/mo</span>
+			</div>
+			</Paper>
+		</Grid>
+		);
+	} 
+
     debugger;
     return (
 	
+		
+	  
       <AppProvider>
         <AppContext.Consumer>
           {(context) => ( 
+			  
             
             <div>
              <ButtonAppBar></ButtonAppBar>    
@@ -60,12 +132,7 @@ class Neighborhoods extends React.Component {
 						
 							
 			            </div>
-			
-					
-		
-			            
-			
-			
+						
             </div>
 			
           )}
@@ -74,8 +141,16 @@ class Neighborhoods extends React.Component {
 		        		  
         </AppContext.Consumer>
 		
-		 
-			
+		
+		<div className='sweet-loading'>
+				<ClipLoader
+				css={override}
+				sizeUnit={"px"}
+				size={150}
+				color={'#123abc'}
+				loading={this.state.loading}
+				/>
+		</div> 
 		
 		<div className="container">
 			<div className="main_roomates neighborhoods">
@@ -103,61 +178,7 @@ class Neighborhoods extends React.Component {
 					      
 							
 				  		  <Slider {...settings}>
-								
-								            <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-													<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-													<div className="profile_title">
-													<h5>City Name</h5>
-													<span>401 <br/>Apts</span>
-													<span>185 <br/>Roommates</span>
-													<span>197 <br/>Locations</span>
-													
-													</div>
-													</Paper>
-											</Grid>
-							
-							
-						                <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-													<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-													<div className="profile_title">
-													<h5>City Name</h5>
-													<span>401 <br/>Apts</span>
-													<span>185 <br/>Roommates</span>
-													<span>197 <br/>Locations</span>
-													
-													</div>
-													</Paper>
-										</Grid>
-								
-								 <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-													<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-													<div className="profile_title">
-													<h5>City Name</h5>
-													<span>401 <br/>Apts</span>
-													<span>185 <br/>Roommates</span>
-													<span>197 <br/>Locations</span>
-													
-													</div>
-													</Paper>
-												  </Grid>
-								
-								<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-								  <Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-													<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-													<div className="profile_title">
-													<h5>City Name</h5>
-													<span>401 <br/>Apts</span>
-													<span>185 <br/>Roommates</span>
-													<span>197 <br/>Locations</span>
-													
-													</div>
-													</Paper>
-									</Grid>
-							
-        
+							{PropertyListing}        
                             </Slider>
 							
 						</div>
@@ -187,59 +208,7 @@ class Neighborhoods extends React.Component {
 							
 			                <Slider {...settings}>
 							
-            					   <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-											<Paper className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-											<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-											<div className="profile_title">
-											<h5>City Name</h5>
-											<span>401 <br/>Apts</span>
-											<span>185 <br/>Roommates</span>
-											<span>197 <br/>Locations</span>
-											
-											</div>
-											</Paper>
-									</Grid>
-					
-							
-									<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-												<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-												<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-												<div className="profile_title">
-												<h5>City Name</h5>
-												<span>401 <br/> Apts</span>
-												<span>185 <br/>Roommates</span>
-												<span>197 <br/>Locations</span>
-												
-												</div>
-												</Paper>
-									</Grid>
-								
-								   <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-										<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-										<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-										<div className="profile_title">
-										<h5>City Name</h5>
-										<span>401 <br/>Apts</span>
-										<span>185 <br/>Roommates</span>
-										<span>197 <br/>Locations</span>
-										
-										</div>
-										</Paper>
-									  </Grid>
-								
-									<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-									  <Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-														<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-														<div className="profile_title">
-														<h5>City Name</h5>
-														<span>401 <br/>Apts</span>
-														<span>185 <br/>Roommates</span>
-														<span>197 <br/>Locations</span>
-														
-														</div>
-														</Paper>
-										</Grid>
-											
+            					{PropertyListing}									
         
                             </Slider>
 						  
@@ -265,55 +234,7 @@ class Neighborhoods extends React.Component {
 						    </div>
 					  
 					<Slider {...settings}>
-					
-						<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-							<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-							<div className="profile_title">
-							<h5>Area/Location</h5>
-							<span>Business <br/>Type</span>
-							<span>Rating <br/></span>
-							
-							</div>
-							</Paper>
-						 </Grid>
-						<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-							<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-							<div className="profile_title">
-							<h5>Area/Location</h5>
-							<span>Business <br/>Type</span>
-							<span>Rating <br/></span>
-							
-							</div>
-							</Paper>
-						</Grid>
-						
-						<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-							<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-							<div className="profile_title">
-							<h5>Area/Location</h5>
-							<span>Business <br/>Type</span>
-							<span>Rating <br/></span>
-							
-							</div>
-							</Paper>
-						 </Grid>
-						 
-						 <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-5-175" item xs={5}>
-							<Paper  className={classes.paper + ' MuiPaper-root-16 MuiPaper-elevation2-20'}><a href="/"><img alt=""  src={require('./images/lsiting_room.jpg')} /></a>
-							<div className="room_finder_title">	<h5>Neighborhood Name</h5></div>
-							<div className="profile_title">
-							<h5>Area/Location</h5>
-							<span>Business <br/>Type</span>
-							<span>Rating<br/> </span>
-							
-							</div>
-							</Paper>
-						</Grid>
-						
-						
+					   {PropertyListing}
 						</Slider>
 						
 						</div>
@@ -375,16 +296,16 @@ class Neighborhoods extends React.Component {
 
 }
 
-const mapStateToPropsN = state => ({
-  //fetching: state.app.fetching,
-  //errorMessage: state.app.error
-  //loggedInUser:state.app.user
-});
+function mapStateToProps(state) {
+	const { ListLoading } = state.PropertyList;
+	const { type, message } = state.alert;
+	return {
+		ListLoading, type, message
 
+	};
+}
 
-//export default withTheme()(RoommateFinderResultVariationTwo);
-
-
-Neighborhoods = connect(mapStateToPropsN)(Neighborhoods);
-
+Neighborhoods = connect()(Neighborhoods);
 export default withStyles(styles)(Neighborhoods);
+
+

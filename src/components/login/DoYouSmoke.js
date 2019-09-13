@@ -76,7 +76,7 @@ class DoYouSmoke extends React.Component {
 		  )}
 		</AppContext.Consumer>
              
-			<div className="col-md-4 login_form reg_form" style={{ background: '#fff', margin: '0 auto' }}>
+        <div className="col-md-offset-4 col-md-4 reg_form" style={{ background: '#fff' }}>
                 
 				<div className="main_title">Do you smoke ?</div>
 				

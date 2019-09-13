@@ -16,7 +16,13 @@ import Zoom from '@material-ui/core/Zoom';
 import { authHeader } from '../_helpers';
 import _ from 'lodash';
 import { SERVICEURL } from '../config/config.js';
-  
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
+const override = css`
+display: block;
+margin: 0 auto;
+border-color: red;
+`;
 const styles = theme => ({
 	  root: {
 		flexGrow: 1,
@@ -35,6 +41,7 @@ class DashboardProfile extends React.Component {
 		this.state = {
 			checked: false,
 			ProfileView: {},
+			loading: true,
 			ImInterestedView: [],
 			Imtypeofperson: '',
 			ImBedTime: '',
@@ -45,19 +52,11 @@ class DashboardProfile extends React.Component {
 			ImRelationshipStatus: ''
 
 		};
-
 		
-			
 	}
-
-	
-
 	componentWillMount() {
-		const {loggedIn} = this.props;
-
-		let AuthToken = authHeader();
-		var { ImInterestedView  } = this.state;
-		var url = `${SERVICEURL}/FindCurrentUserList`;
+			let AuthToken = authHeader();
+		 	var url = `${SERVICEURL}/FindCurrentUserList`;
 		    	var bearer = AuthToken.Authorization;
 				fetch(url, {
 				method: 'GET',
@@ -67,15 +66,15 @@ class DashboardProfile extends React.Component {
 				}
 			}).then(response => response.json()).then(InterestedProfile => { 
 				this.setState({
-					ImInterestedView: InterestedProfile
-													
+					ImInterestedView: InterestedProfile,
+					loading: false											
 				
 				});
 			
 				return InterestedProfile;
 			})
 			.catch(error => this.setState({
-				isLoading: false,
+				loading: true,
 				message: 'Something bad happened' + error
 			}));
 
@@ -95,14 +94,13 @@ class DashboardProfile extends React.Component {
         }
       }).then(response => response.json()).then(Userprofile => { 
           this.setState({
-            ProfileView: Userprofile
-          
+            ProfileView: Userprofile,
+			loading: false
            })
-       //console.log(Userprofile);
-        return Userprofile;
+         return Userprofile;
     })
     .catch(error => this.setState({
-        isLoading: false,
+		loading: true,
         message: 'Something bad happened' + error
     }));
     
@@ -115,10 +113,44 @@ class DashboardProfile extends React.Component {
 	var UserProfile = ProfileView;
 	var user_DOB = ProfileView.DOB;
 	var User_questions = ProfileView.questions;
+	var ProfileImage = ProfileView.ProfileImage;
+	var CoverPhotoImage = ProfileView.CoverPhoto;
+	
+	if(_.find(ProfileView)) {
+		var CoverimageURIArray = [];
+		   for (var key in CoverPhotoImage) {
+   
+			 CoverimageURIArray = CoverPhotoImage.coverImagePath;
+   
+		   }	
+	}
+	
+	if(_.find(ProfileView)) {
+		var imageURIArray = [];
+		   for (var key in ProfileImage) {
+   
+			   imageURIArray = ProfileImage.imagePath;
+   
+		   }	
+	}
+	let emtyUrl = "data:image/png;base64,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"
 
-	var ImInterestQuestion = ImInterestedView.questions;
+	let $imagePreview = null;
+    if (imageURIArray) {
+      $imagePreview = imageURIArray;
+    } else {
+      $imagePreview = emtyUrl;
+	}
+
+	let $CoverimagePreview = null;
+    if (CoverimageURIArray) {
+      $CoverimagePreview = CoverimageURIArray;
+    } else {
+      $CoverimagePreview = emtyUrl;
+	}
 
 	// Functiond defined for I m interested User
+	var ImInterestQuestion = ImInterestedView.questions;
 	function ImTypeofPersonQuiet() {
 		if(_.find(ImInterestedView)) {
 
@@ -626,9 +658,17 @@ class DashboardProfile extends React.Component {
 	  return (
 	
       <AppProvider>
+			<div className='sweet-loading'>
+				<ClipLoader
+				css={override}
+				sizeUnit={"px"}
+				size={150}
+				color={'#123abc'}
+				loading={this.state.loading}
+				/>
+		</div> 
         <AppContext.Consumer>
           {(context) => ( 
-            
             <div className="profile_header dasboard_header">
 				<ButtonAppBar></ButtonAppBar> 
 				<div className="col-12 dashboard_profile_page">
@@ -710,10 +750,10 @@ class DashboardProfile extends React.Component {
 					<Grid className="profile_pic_section" item xs={1}>
 							<Paper className={classes.paper}>
 							<h5>{ProfileView.username}</h5>
-							<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
+							<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={$imagePreview} />
 							<ul className="edit_remove">
-							<li><a href="/">Edit</a></li>
-							<li><a href="/">Remove</a></li>
+							<li><a href="/Edit-DashboardProfile">Edit</a></li>
+							<li><a href="/Edit-DashboardProfile">Remove</a></li>
 							</ul>
 							</Paper>
 							
@@ -735,10 +775,10 @@ class DashboardProfile extends React.Component {
 					<Grid className="profile_cover_section" item xs={1}>
 							<Paper className={classes.paper}>
 							<h5>Cover Photo</h5>
-							<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
+							<img alt="" style={{ width: '280px', height: '150px' }}  src={$CoverimagePreview} />
 							<ul className="edit_remove">
-							<li><a href="/">Edit</a></li>
-							<li><a href="/">Remove</a></li>
+							<li><a href="/Edit-DashboardProfile">Edit</a></li>
+							<li><a href="/Edit-DashboardProfile">Remove</a></li>
 							</ul>
 							</Paper>
 							
@@ -1005,14 +1045,16 @@ class DashboardProfile extends React.Component {
 					<div className="col-lg-3 dashboard_sidebar_profile desktop_sidebar_profile">
 					
 					<Grid className="profile_pic_section" item xs={1}>
-							<Paper className={classes.paper}>
+					<Paper className={classes.paper}>
 							<a href="/Edit-DashboardProfile"><h5> Edit Your Profile</h5></a>
-							<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
+							<h5>{ProfileView.username}</h5>
+							<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={$imagePreview} />
 							<ul className="edit_remove">
-							<li><a href="/">Edit</a></li>
-							<li><a href="/">Remove</a></li>
+							<li><a href="/Edit-DashboardProfile">Edit</a></li>
+							<li><a href="/Edit-DashboardProfile">Remove</a></li>
 							</ul>
 							</Paper>
+							
 							
 				    </Grid>
 					
@@ -1032,10 +1074,10 @@ class DashboardProfile extends React.Component {
 					<Grid className="profile_cover_section" item xs={1}>
 							<Paper className={classes.paper}>
 							<h5>Cover Photo</h5>
-							<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
+							<img alt="" style={{ width: '280px', height: '150px' }}  src={$CoverimagePreview} />
 							<ul className="edit_remove">
 							<li><a href="/Edit-DashboardProfile">Edit</a></li>
-							<li><a href="/">Remove</a></li>
+							<li><a href="/Edit-DashboardProfile">Remove</a></li>
 							</ul>
 							</Paper>
 							

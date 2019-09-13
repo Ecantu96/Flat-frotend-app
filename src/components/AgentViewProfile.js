@@ -287,10 +287,6 @@ class AgentViewProfile extends React.Component {
 }
 
 
-
-//export default withTheme()(RoommateFinderResultVariationTwo);
-
-
-AgentViewProfile = connect(AgentViewProfile);
+AgentViewProfile = connect()(AgentViewProfile);
 
 export default withStyles(styles)(AgentViewProfile);
