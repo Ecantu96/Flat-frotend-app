@@ -14,7 +14,6 @@ export const userActions = {
     userupdate,
     SaveUpdateUserInterest,
     matchRoommate,
-    PropertyFilter,
     MarkFavListing,
     MarkFavRoommate,
     ProfileImageUploadAndUpdate,   
@@ -170,33 +169,6 @@ function MarkFavRoommate(user) {
     function failure(error) { return { type: userConstants.USER_FAILURE, error } }
 }
 
-function PropertyFilter(user) {
-	    
-	    return dispatch => {
-	     dispatch(request(user));
-    
-           userService.propertyFilter(user)
-	
-        .then(user => {
-                dispatch(alertActions.success(user));
-                dispatch(success());
-               // localStorage.removeItem("token")
-			    return user;
-				 
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
-                }
-                                       
-         );
-     
-    };
-
-    function request(user) { return { type: userConstants.USER_FILTER_PROPERTY_REQUEST, user } }
-    function success(user) { return { type: userConstants.USER_FILTER_PROPERTY_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.USER_FILTER_PROPERTY_FAILURE, error } }
-}
 
 function userupdate(user) {
            return dispatch => {

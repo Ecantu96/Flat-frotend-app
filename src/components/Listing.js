@@ -15,6 +15,7 @@ import Map from '../components/map';
 import { SERVICEURL } from '../config/config.js'; 
 import { ClipLoader } from 'react-spinners';
 import { css } from '@emotion/core';
+import { authHeader } from '../_helpers';
 
 const override = css`
     display: block;
@@ -47,51 +48,221 @@ class Listing extends React.Component {
 		openedArea: false,
 		propertyLists: [],
 		Location: [],
-		Beds: ""
+		Beds: 1,
+		Baths: "",
+		filterData: []
 
 		};
 
 		this.BedroomHandle = this.BedroomHandle.bind(this); 
 		this.BathroomHandle = this.BathroomHandle.bind(this);
 		this.AreaHandle = this.AreaHandle.bind(this);
-		this.BudgetHandle = this.BudgetHandle.bind(this);
+		this.BudgetHandle = this.BudgetHandle.bind(this); 
+		this.SqureFeetHandle = this.SqureFeetHandle.bind(this);
 
-		this.updateState = this.updateState.bind(this);
+		//this.onClickData = this.onClickData.bind(this);
 	}
 
 	BedroomHandle = (e) => {
        const {opened} = this.state;
-		this.setState({ opened: !opened });
+		this.setState({ 
+			opened: !opened,
+			openedBath: '',
+			openedArea: '',
+			openedBudget: '',
+			openedsqureFeet: ''
+
+		});
 	
 	}  
 	BathroomHandle = (e) => {
 		const {openedBath} = this.state;
-		 this.setState({ openedBath: !openedBath });
+		 this.setState({
+			  openedBath: !openedBath, 
+			  opened: '',
+			  openedArea: '',
+			  openedBudget: '',
+			  openedsqureFeet: ''
+			});
 	 }  
 	 AreaHandle = (e) => {
 		const {openedArea} = this.state;
-		 this.setState({ openedArea: !openedArea });
+		 this.setState({ 
+			 openedArea: !openedArea,
+			 openedBath: '', 
+			 opened: '',
+			 openedBudget: '',
+			 openedsqureFeet: ''			
+			});
 	 }
 	 BudgetHandle = (e) => {
 		const {openedBudget} = this.state;
-		 this.setState({ openedBudget: !openedBudget });
+		 this.setState({ 
+			 openedBudget: !openedBudget,
+			 openedArea: '',
+			 openedBath: '', 
+			 opened: '',
+			 openedsqureFeet: ''
+			
+		});
+	 }
+
+	 SqureFeetHandle = (e) => {
+		const {openedsqureFeet} = this.state;
+		 this.setState({ 
+			openedsqureFeet: !openedsqureFeet,
+			 openedArea: '',
+			 openedBath: '', 
+			 opened: '',
+			 openedBudget: ''
+			
+		});
 	 }
 	 
-	 updateState = (data) => {
-		let user = {
-			Beds: data
-		}
-		var user_obj = JSON.stringify(user);
-		 var user_data= user_obj.replace(/\\/g, "");
+	 
+	onclickBeds(data){
 		
-	     const { dispatch } = this.props;
-		 dispatch(userActions.PropertyFilter(user_data));
-    }
+		let AuthToken = authHeader();
+		var old_url = `${SERVICEURL}/filter/?Beds=${data}`
+		var bearer = AuthToken.Authorization;
+		fetch(old_url, {
+			method: 'GET',
+			headers: {
+			  'Authorization': bearer,
+			  'Content-Type': 'application/json'
+			}
+		  }).then(response => response.json()).then(property => { 
+			  this.setState({
+				filterData: property,
+				propertyLists: '',
+				loading: false
+			 })
+		    	//return roommates;
+		})
+		.catch(error => this.setState({
+			loading: true,
+			message: 'Something bad happened' + error
+		}));
+	}
+	onclickBaths(data){
+		let AuthToken = authHeader();
+		var old_url = `${SERVICEURL}/filter/?Baths=${data}`
+		var bearer = AuthToken.Authorization;
+		fetch(old_url, {
+			method: 'GET',
+			headers: {
+			  'Authorization': bearer,
+			  'Content-Type': 'application/json'
+			}
+		  }).then(response => response.json()).then(property => { 
+			  this.setState({
+				filterData: property,
+				propertyLists: '',
+				loading: false
+			 })
+		    	//return roommates;
+		})
+		.catch(error => this.setState({
+			loading: true,
+			message: 'Something bad happened' + error
+		}));
+	}
+	
+	onclickArea(data){
+		let AuthToken = authHeader();
+		var old_url = `${SERVICEURL}/filter/?region=${data}`
+		var bearer = AuthToken.Authorization;
+		fetch(old_url, {
+			method: 'GET',
+			headers: {
+			  'Authorization': bearer,
+			  'Content-Type': 'application/json'
+			}
+		  }).then(response => response.json()).then(property => { 
+			  this.setState({
+				filterData: property,
+				propertyLists: '',
+				loading: false
+			 })
+		    	//return roommates;
+		})
+		.catch(error => this.setState({
+			loading: true,
+			message: 'Something bad happened' + error
+		}));
+    }  
+	
+	onclickBudget(data){
+		let AuthToken = authHeader();
+		var old_url = `${SERVICEURL}/filter/?rentPrice=${data}`
+		var bearer = AuthToken.Authorization;
+		fetch(old_url, {
+			method: 'GET',
+			headers: {
+			  'Authorization': bearer,
+			  'Content-Type': 'application/json'
+			}
+		  }).then(response => response.json()).then(property => { 
+			  this.setState({
+				filterData: property,
+				propertyLists: '',
+				loading: false
+			 })
+		    	//return roommates;
+		})
+		.catch(error => this.setState({
+			loading: true,
+			message: 'Something bad happened' + error
+		}));
+	}
 
-	onclickFilter(e){
-		e.preventDefault();
-		
-    }
+	onclickSquareFeet(data){
+		let AuthToken = authHeader();
+		var old_url = `${SERVICEURL}/filter/?squareFeet=${data}`
+		var bearer = AuthToken.Authorization;
+		fetch(old_url, {
+			method: 'GET',
+			headers: {
+			  'Authorization': bearer,
+			  'Content-Type': 'application/json'
+			}
+		  }).then(response => response.json()).then(property => { 
+			  this.setState({
+				filterData: property,
+				propertyLists: '',
+				loading: false
+			 })
+		    	//return roommates;
+		})
+		.catch(error => this.setState({
+			loading: true,
+			message: 'Something bad happened' + error
+		}));
+	}
+	
+	ClearState(e){
+
+		var url = `${SERVICEURL}/properties`;
+				fetch(url, {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json'
+						}
+					}).then(response => response.json()).then(res => { 
+						
+						this.setState({
+							propertyLists: res,
+							Location: res,
+							loading: false
+						})
+						
+						//return res;
+				})
+				.catch(error => this.setState({
+					   loading: true,
+						message: 'Something bad happened' + error
+				}));
+	}
 
 	componentWillMount() {
 
@@ -124,10 +295,31 @@ class Listing extends React.Component {
     }
 
 render() {
-	const { propertyLists, opened, openedBath, openedArea, openedBudget} = this.state;
+	const { propertyLists, opened, openedBath, openedArea, openedBudget, openedsqureFeet, filterData} = this.state;
 	const {classes } = this.props;
+
 	var PropertyListing = propertyLists;
-			
+	let FilterData = filterData;
+
+	   
+	if(_.find(filterData)) {
+		FilterData = filterData.map((item, key) =>
+		<Grid className="MuiGrid-item-143" item xs={5}  key={key}  data-id={item.id} onClick={() => this.onClickListId(item.id)}>
+			<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><img alt=""  src={require('./images/lsiting_room.jpg')} />
+			<div className="room_finder_title">	<h5>{item.Address}</h5></div>
+			<div className="profile_title">
+			{/* <h5>{item.Name}</h5> */}
+				<span>{item.Beds}Beds</span>
+				<span>{item.Baths}Bath</span>
+				<span>{item.squareFeet}</span>
+				<span>{item.region}</span>
+				<span>{item.rentPrice}/mo</span>
+			</div>
+			</Paper>
+		</Grid>
+		);
+	} 
+   		
 	if(_.find(propertyLists)) {
 		PropertyListing = propertyLists.map((item, key) =>
 		<Grid className="MuiGrid-item-143" item xs={5}  key={key}  data-id={item.id} onClick={() => this.onClickListId(item.id)}>
@@ -144,7 +336,9 @@ render() {
 			</Paper>
 		</Grid>
 		);
-	} 
+	 } 
+
+
 	
    //debugger;
     return (
@@ -173,11 +367,12 @@ render() {
 									      <Button className="bedrooms" onClick={this.BedroomHandle}>Bedrooms </Button>
 											{opened && (					
 											<div className="beds flex-row">
-												<div onClick={() => this.updateState(1)} className="bed-div flex-col">1</div>
-												<div onClick={() => this.updateState(2)} className="bed-div flex-col">2</div>
-												<div onClick={() => this.updateState(3)} className="bed-div flex-col">3</div>
-												<div onClick={() => this.updateState(4)} className="bed-div flex-col">4</div>
-												<div onClick={() => this.updateState(5)} className="bed-div flex-col">5+</div>
+												<div onClick={() => this.onclickBeds(1)} className="bed-div flex-col">1</div>
+												<div onClick={() => this.onclickBeds(2)} className="bed-div flex-col">2</div>
+												<div onClick={() => this.onclickBeds(3)} className="bed-div flex-col">3</div>
+												<div onClick={() => this.onclickBeds(4)} className="bed-div flex-col">4</div>
+												<div onClick={() => this.onclickBeds(5)} className="bed-div flex-col">5+</div>
+												<div onClick={() => this.ClearState()} className="bed-div flex-col">Clear</div>
 											</div> 
 										)}
 									  </li>
@@ -185,11 +380,12 @@ render() {
 									  	<Button className="bathrooms" onClick={this.BathroomHandle}>Bathrooms</Button>
 											{openedBath && (					
 												<div className="bath flex-row">
-													<div className="bed-div flex-col">1</div>
-													<div className="bed-div flex-col">2</div>
-													<div className="bed-div flex-col">3</div>
-													<div className="bed-div flex-col">4</div>
-													<div className="bed-div flex-col">5+</div>
+													<div onClick={() => this.onclickBaths(1)} className="bed-div flex-col">1</div>
+													<div onClick={() => this.onclickBaths(2)}className="bed-div flex-col">2</div>
+													<div onClick={() => this.onclickBaths(3)}className="bed-div flex-col">3</div>
+													<div onClick={() => this.onclickBaths(4)} className="bed-div flex-col">4</div>
+													<div onClick={() => this.onclickBaths(5)} className="bed-div flex-col">5+</div>
+													<div onClick={() => this.ClearState()} className="bed-div flex-col">Clear</div>
 												</div> 
 											)}
 											
@@ -197,28 +393,40 @@ render() {
 									     <li>
 										 <Button className="area_chicago" onClick={this.AreaHandle}>Area of Chicago</Button>
 											{openedArea && (					
-												<div className="bath flex-row">
-													<div className="bed-div flex-col">Lakeview</div>
-													<div className="bed-div flex-col">Lincoln Park</div>
-													<div className="bed-div flex-col">Wicker Park</div>
-													<div className="bed-div flex-col">River North</div>
-													<div className="bed-div flex-col">Gold Coast</div>
+												<div className="areas flex-row">
+													<div  onClick={() => this.onclickArea('Seaview')} className="areas-div flex-col">Seaview</div>
+													<div onClick={() => this.onclickArea('Lakeview')} className="areas-div flex-col">Lakeview</div>
+													<div  onClick={() => this.onclickArea('Lincoln')} className="areas-div flex-col">Lincoln Park</div>
+													<div  onClick={() => this.onclickArea('Wicker')} className="areas-div flex-col">Wicker Park</div>
+													<div  onClick={() => this.onclickArea('River')} className="areas-div flex-col">River North</div>
+													<div  onClick={() => this.onclickArea('Gold Coast')} className="areas-div flex-col">Gold Coast</div>
+													<div onClick={() => this.ClearState()} className="bed-div flex-col">Clear</div>
 												</div> 
 											)}
 										 </li>
 									  <li> 
 										  <Button className="budget" onClick={this.BudgetHandle}>Budget</Button>
 											{openedBudget && (					
-												<div className="bath flex-row">
-													<div className="budget-div flex-col">Under $2,000	</div>
-													<div className="budget-div flex-col">$2,000 - $2,500</div>
-													<div className="budget-div flex-col">$2,500 - $3,500</div>
-													<div className="budget-div flex-col">$3,500+</div>
+												<div  className="budgets flex-row">
+													<div onClick={() => this.onclickBudget('$200')} className="budget-div flex-col">Under $500</div>
+													<div onClick={() => this.onclickBudget('')} className="budget-div flex-col">$1,000 - $1500</div>
+													<div onClick={() => this.onclickBudget('')} className="budget-div flex-col">$1500 - $2000</div>
+													<div onClick={() => this.onclickBudget('')} className="budget-div flex-col">$2500+</div>
+													<div onClick={() => this.ClearState()} className="bed-div flex-col">Clear</div>
 												</div> 
 											)}
 											
 											</li>
-											<li><Button>Sq Feet</Button></li>
+											<li><Button className="squre_feet" onClick={this.SqureFeetHandle}>Sq Feet</Button></li>
+											{openedsqureFeet && (					
+												<div  className="squareFeet flex-row">
+													<div onClick={() => this.onclickSquareFeet('300')} className="budget-div flex-col">Under 500</div>
+													<div onClick={() => this.onclickSquareFeet('')} className="budget-div flex-col">1,000 - 1500</div>
+													<div onClick={() => this.onclickSquareFeet('')} className="budget-div flex-col">1500 - 2000</div>
+													<div onClick={() => this.onclickSquareFeet('')} className="budget-div flex-col">2500+</div>
+													<div onClick={() => this.ClearState()} className="bed-div flex-col">Clear</div>
+												</div> 
+											)}
 									</ul>	
 					     		    
 								</div>
@@ -246,9 +454,11 @@ render() {
 				<div className="col-sm-12">
 					<div className="col-sm-6">
 					    <div className="row">
-						{ (this.state.loading) ? <div className="loading-page">
-						<i className="fa fa-spinner fa-spin fa-3x fa-fw"  aria-hidden="true"  /> <br /> <br />         <span>Loading...</span>
-					</div> : PropertyListing }   
+
+						{PropertyListing}  
+
+						{FilterData}
+
 						</div>	
 					
 					{/* <div className="next_pre">

@@ -91,7 +91,7 @@ class BedTime extends React.Component {
                             <button onClick={() => this.updateState('10-11pm')} data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">10-11pm</button>
                             <button onClick={() => this.updateState('12-1am')} data-toggle="tab" data-target="#page2" className="btn btn-default btn-sm">12-1am</button>
                         </div>
-                        <a href="/" className="prv_question" >Previous Question</a>
+                        <a href="/register" className="prv_question" >Previous Question</a>
                         <button onClick={() => this.goToNext()} className="btn btn-default btn-sm">Next Question</button>
                     </div>
 

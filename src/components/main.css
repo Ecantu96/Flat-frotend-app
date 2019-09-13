@@ -366,6 +366,10 @@ ul.main_menu li {
 	max-height: 100%;
 	margin-bottom: -50px;
 }
+a.btn.go_btn {
+    background-color: #F9790E;
+    color: #fff;
+}
 .listing_banner {
     background: url(./images/listing_banner.jpg);
     display: -webkit-box;
@@ -461,19 +465,6 @@ ul.main_menu li {
     font-family: Happy Monkey;
     text-shadow: 0px 3px 5px #000;
 }
-.banner_text_roomate_profile  .type_of_person button{
-	background-color: #F9790E !important;
-    margin: 0px 10px 0 10px; 
-    border-radius: 20px;
-    padding: 11px 40px 10px 40px;
-    color: #fff;
-    font-family: Montserrat;
-    font-weight: 600;
-    text-transform: capitalize;
-    font-size: 10px;
-    min-width: 160px;
-    height: 40px;
-}
 .banner_text_roomate_profile .type_of_person{
 	width: 75%
 }
@@ -519,7 +510,7 @@ ul.main_menu li {
 
 .type_of_person button {
    background-color: #F9790E !important;
-    margin: 0px 10px 0 10px;
+    margin: 0px 10px 0 0px;
     border-radius: 20px;
     padding: 11px 40px 10px 40px;
     color: #fff;
@@ -537,9 +528,10 @@ ul.main_menu li {
 .type_of_person li {
     float: left;
     position: relative;
+    list-style: none;
 }
 
-.bathrooms,.bedrooms{
+.bathrooms,.bedrooms, .LookingInRoomate{
     position: relative;
 }
 .pre_page:before {
@@ -1310,15 +1302,34 @@ min-height: 32px;
     width: auto;
     background-color: rgb(0, 0, 0);
     padding: 2px 10px 10px;
-    top: 64px;
+    top: 54px;
 }  
-.bath {
+.bath, .areas, .budgets {
+    position: absolute;
+    width: auto;
+    background-color: rgb(0, 0, 0);
+    padding: 2px 10px 10px;
+    top: 54px;
+    left: 0;
+    border: 1px solid #fff;
+} 
+.lookingroomates {
     position: absolute;
     width: auto;
     background-color: rgb(0, 0, 0);
     padding: 2px 10px 10px;
     top: 64px;
-    left: 0;
+    left: 40px;
+    border: 1px solid #fff;
+    width: 160px;
+} 
+.squareFeet {
+    position: absolute;
+    width: auto;
+    background-color: rgb(0, 0, 0);
+    padding: 2px 10px 10px;
+    top: 64px;
+    right: 85px;
     border: 1px solid #fff;
 } 
  
@@ -1329,6 +1340,25 @@ min-height: 32px;
     color: #fff;
     border: 1px solid #fff;
     cursor: pointer;
+    width: 50%;
+} 
+.areas-div.flex-col {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 14px;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    width: 100%;
+}
+.looking-div.flex-col {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 14px;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    width: 100%;
 }
 .budget-div {
     display: block;
@@ -1337,6 +1367,7 @@ min-height: 32px;
     color: #fff;
     border: 1px solid #fff;
     cursor: pointer;
+    margin: 7px 0;
 }
 .main_roomates.listing_page {
     text-align: left;
@@ -3677,7 +3708,7 @@ input.type_msg{
     /* bottom: 16px; */
     z-index: 99999999999999;
     top: 30px;
-	display: block;
+	display: none;
 }
 .side_dashboard_list_mobile .MuiPaper-root-16 {
     padding: 0;
@@ -3735,22 +3766,11 @@ ul.MuiList-root-265.MuiList-padding-266 {
 .MuiDialog-paper-132{
 	margin: 20px !important;
 }
-.footer_menu {
-    width: 100%;
-    text-align: center;
-    float: left;
-}
+
 .Footer .footer_inner {
-    min-height: 150px !important;
-	display: block !important;
+    display: block !important;
 }
-.left_footer {
-    float: left;
-    display: block;
-    width: 100%;
-    margin: 15px 0 0 15px;
-    text-align: center;
-}
+
 .main_roomates.neighborhoods{
 	    margin: 0px auto;
     text-align: center;

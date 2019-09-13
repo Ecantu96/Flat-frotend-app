@@ -51,7 +51,6 @@ class ListingDetailsPage extends React.Component {
 
 	}
 
-
 	backPage = () => {
 		this.props.history.push('/Listing');
 	}
@@ -343,17 +342,17 @@ class ListingDetailsPage extends React.Component {
 					<div className="listProfileTopImg">
 						<React.Fragment>
 								<ul>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
-										<li><a href="/"><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></a></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
+										<li><img alt="" width="100px" height="100px"  src={require('./images/roommate_pr_picture.jpg')} /></li>
 								</ul>
 								
 						</React.Fragment>
@@ -549,16 +548,11 @@ class ListingDetailsPage extends React.Component {
 		</div>
 				
 	
-	     
-		 
-		<div className="row">
 			<div className="loader-container ListingDetailPage_banner">
 										
 							
 							<div className="listing_details_text banner_text">
-								   
 							   <div style={{display:"block"}}>
-										
 								<Typography variant="title" color="inherit" >
 									Check out XYZ
 								  </Typography>
@@ -567,12 +561,11 @@ class ListingDetailsPage extends React.Component {
 								  </Typography>
 								   									
 								</div>
-								
-								<Button>Go Now!</Button>
+								<a className="btn go_btn" href="/Neighborhoods">Go Now!</a>
 							</div>
 														
 			</div>	
-		</div>
+		
 		
 	</div>		
 	 )}

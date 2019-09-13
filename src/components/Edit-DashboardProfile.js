@@ -197,11 +197,6 @@ class EditDashboardProfile extends React.Component {
 			
 		}  //End of Cover upload Images Functions
 
-
-	
-
-
-   
 	ontypeofperson(e) {
 		const target = e.target;
 		    this.setState({typeofperson: e.currentTarget.value });
@@ -662,15 +657,7 @@ class EditDashboardProfile extends React.Component {
 	  return (
 	
       <AppProvider>
-		  <div className='sweet-loading'>
-				<ClipLoader
-				css={override}
-				sizeUnit={"px"}
-				size={150}
-				color={'#123abc'}
-				loading={this.state.loading}
-				/>
-		</div> 
+		 
         <AppContext.Consumer>
           {(context) => ( 
 
@@ -886,6 +873,16 @@ class EditDashboardProfile extends React.Component {
 							</Typography>
 						</div>
 					</div>
+
+					<div className='sweet-loading'>
+						<ClipLoader
+						css={override}
+						sizeUnit={"px"}
+						size={150}
+						color={'#123abc'}
+						loading={this.state.loading}
+						/>
+					</div> 
 					
 					<div className="dashboard_profile_grid">
 					<Typography className="dash_profile_title"  component="h2" variant="h1" gutterBottom>

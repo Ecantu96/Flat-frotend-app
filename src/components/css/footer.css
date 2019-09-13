@@ -11,12 +11,9 @@
 .left_footer {
     float: left;
     display: block;
-    width: 100%;
-    margin: 15px 0 0 15px;
+     margin: 15px 0 0 15px;
 }
-.footer_menu ul {
-    margin: 15px 0;
-}
+
 .left_footer span {
     color: #fff;
     font-family: Montserrat;
@@ -27,6 +24,7 @@
 .footer_menu {
       width: 100%;
     text-align: right;
+    padding: 15px 0;
 } 
 
 .footer_menu ul li {
