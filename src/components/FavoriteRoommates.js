@@ -14,6 +14,7 @@ import Switch from '@material-ui/core/Switch';
 import Zoom from '@material-ui/core/Zoom';
 import { authHeader } from '../_helpers'; 
 import _ from 'lodash';
+import { SERVICEURL } from '../config/config.js';
   
 const styles = theme => ({
 	  root: {
@@ -41,7 +42,7 @@ class FavoriteRoommates extends React.Component {
   componentWillMount() {
 
 	let AuthToken = authHeader();
-	var url = "https://nooklyn-flats-backend-apis.herokuapp.com/FavMarkedRoommateMatchResult";
+	var url = `${SERVICEURL}/FavMarkedRoommateMatchResult`;
 	var bearer = AuthToken.Authorization;
 	fetch(url, {
 			method: 'GET',

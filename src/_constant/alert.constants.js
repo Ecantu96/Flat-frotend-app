@@ -1,5 +1,5 @@
 export const alertConstants = {
-    SUCCESS: 'ALERT_SUCCESS',
+    SUCCESS: '',
     ERROR: 'ALERT_ERROR',
     CLEAR: 'ALERT_CLEAR'
 };

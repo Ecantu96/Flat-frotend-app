@@ -16,6 +16,7 @@ import Switch from '@material-ui/core/Switch';
 import Zoom from '@material-ui/core/Zoom';
 import { authHeader } from '../_helpers';
 import _ from 'lodash';
+import { SERVICEURL } from '../config/config.js';
   
 const styles = theme => ({
 	  root: {
@@ -40,6 +41,7 @@ class EditDashboardProfile extends React.Component {
 			DOB: '',
 			Bio: '',
 			submitted: false,
+			Interestsubmitted: false,
 			ProfileView: {},
 			Facebook: '',
 			Socials:{
@@ -47,28 +49,135 @@ class EditDashboardProfile extends React.Component {
 				Twitter: '',
 				Instagram: '',
 				LinkedIN: '',
-			}
+			},
+			typeofperson: 'Quiet',
+			DoYouDrink: 'true',
+			DoYouSmoke: 'true',
+			LikeGoOut: 'true',
+			Workhours: 'FullTime',
+			BedTime: '9-10pm',
+			RelationshipStatus: 'Single',
+			file: null
 		};
 
 		this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+
+		this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+
+		this.ontypeofperson = this.ontypeofperson.bind(this);
+		this.onDoYouDrink = this.onDoYouDrink.bind(this);
+		this.onDoYouSmoke = this.onDoYouSmoke.bind(this);
+		this.onLikeGoOut = this.onLikeGoOut.bind(this);
+		this.onWorkhours = this.onWorkhours.bind(this);
+		this.onBedTime = this.onBedTime.bind(this);
+		this.onRelationshipStatus = this.onRelationshipStatus.bind(this);
+
+		this.handleClickSubmit = this.handleClickSubmit.bind(this);
 	}
 
-	
- handleChange(e) {
-       // alert(e.target);
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
+	onChange(e) {
+		const {files} = e.target;
+		this.setState({
+		       file: files[0]
+	      }
+		);
+						
+	  }
+
+	onFormSubmit(e){
+		e.preventDefault();
+		const {file} = this.state;
+		console.log(file);
+		const { dispatch } = this.props;
+		var imageName = file.name;
+		var imageType = file.type;
+		var imagePath = file.webkitRelativePath;
+		let ProfileImage = {
+			imageName, imageType, imagePath
+		}
+		console.log("ProfileImage Object");
+		console.log(ProfileImage);
+
+		 dispatch(userActions.ProfileImageUploadAndUpdate(ProfileImage));
     }
-
-//     handleSubmit(data) {
-// 	alert("hello");
-//    var {ProfileUserData} = this.state;
-// 	ProfileUserData(this.state.ProfileView, data);
-// }
+   
 
 
+	ontypeofperson(e) {
+		const target = e.target;
+		    this.setState({typeofperson: e.currentTarget.value });
+	 }
 
+	 onDoYouDrink(e) {
+		const target = e.target;
+		    this.setState({DoYouDrink: e.currentTarget.value });
+	 }
+
+	 onDoYouSmoke(e) {
+		const target = e.target;
+		    this.setState({DoYouSmoke: e.currentTarget.value });
+	 }
+	 
+	 onLikeGoOut(e) {
+		 const target = e.target;
+		    this.setState({LikeGoOut: e.currentTarget.value });
+	 }
+
+	 onWorkhours(e) {
+		 const target = e.target;
+		    this.setState({Workhours: e.currentTarget.value });
+	 }
+
+	 onBedTime(e) {
+		 const target = e.target;
+		    this.setState({BedTime: e.currentTarget.value });
+	 }
+	
+	 onRelationshipStatus(e) {
+		 const target = e.target;
+		    this.setState({RelationshipStatus: e.currentTarget.value });
+	 }
+
+
+	
+		
+	handleClickSubmit(e) {
+		e.preventDefault();
+		this.setState({ Interestsubmitted: true });
+		//console.log("typeofperson");
+		const { typeofperson, DoYouDrink, DoYouSmoke, LikeGoOut, Workhours, BedTime, RelationshipStatus} = this.state;
+			const { dispatch } = this.props;
+		
+		let questions = {
+			questions: {
+				typeofperson: typeofperson,
+				DoYouDrink: DoYouDrink,
+				DoYouSmoke: DoYouSmoke,
+				LikeGoOut: LikeGoOut,
+				Workhours: Workhours,
+				BedTime: BedTime,
+				RelationshipStatus: RelationshipStatus
+
+
+			}
+		};
+	   //console.log(questions);
+	  
+		setTimeout(() =>  dispatch(userActions.SaveUpdateUserInterest(questions)), 100);
+
+		setTimeout(() => this.props.history.push("/DashboardProfile"), 1000);
+
+	}
+
+ handleChange(e) {
+	   // alert(e.target);
+	   const { name, value } = e.target;
+	   this.setState({ [name]: value });
+	          
+	}
+	
  handleSubmit(e) {
         e.preventDefault();
         this.setState({ submitted: true });
@@ -91,29 +200,12 @@ class EditDashboardProfile extends React.Component {
          setTimeout(() => this.props.history.push("/DashboardProfile"), 1000);
   }
 
- //  function ProfileUserData(data) {
-
-	// 	let AuthToken = authHeader();
-	// 	var url = "http://localhost:4000/users/update";
-	// 	var bearer = AuthToken.Authorization;
-	//    fetch(url,
-	// 	   {
-	// 		method: 'PUT',
-	// 		headers: {
-	// 		  'Authorization': bearer,
-	// 		  'Content-Type': 'application/json'
-	// 		}
-	// 	}).then(res => {
-	// 		return res;
-	// 	}).catch(err => err);
-	// }
-
 
   componentWillMount() {
      
-    let AuthToken = authHeader();
-    var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/current";
-    var bearer = AuthToken.Authorization;
+	let AuthToken = authHeader();
+	var url = `${SERVICEURL}/users/current`;
+     var bearer = AuthToken.Authorization;
     fetch(url, {
         method: 'GET',
         headers: {
@@ -142,19 +234,21 @@ class EditDashboardProfile extends React.Component {
         isLoading: false,
         message: 'Something bad happened' + error
 	}));
-	
 
-	   
+     
 }
 
 
 
 	render() {
-	 
+	
     const {classes } = this.props;
     const { updating, type, message } = this.props;
-	const { checked, ProfileView, data } = this.state;
+	const { checked, ProfileView, data, Quiet, Loud, Tidy, Messy, InterstedUpdating, Interestsubmitted, FullTime, PartTime, StudentFullTime, StudentPartTime, Single, onRelationship, Married, Yes, No  } = this.state;
 	const { username, password, Bio, submitted, gender, DOB, questions, Facebook, Socials, Twitter, Instagram, LinkedIN  } = this.state;
+
+	Moment.locale('en');
+    var dt = DOB;
 	
 	var UserProfile = ProfileView;
 	var user_DOB = ProfileView.DOB;
@@ -431,8 +525,7 @@ class EditDashboardProfile extends React.Component {
 		}
 		
 		
-	Moment.locale('en');
-    var dt = user_DOB;
+	
 	
 	  return (
 	
@@ -445,7 +538,7 @@ class EditDashboardProfile extends React.Component {
             <div className="profile_header dasboard_header">
 				<ButtonAppBar></ButtonAppBar> 
 				<div className="col-12 dashboard_profile_page">
-				<form name="form" onSubmit={this.handleSubmit}>
+				
 			        <div className="col-sm-2 side_dashboard_profile_list side_dashboard_list_desktop"> 
 						<Grid item xs={1}>
 						    <Paper className={classes.paper}> 
@@ -487,6 +580,8 @@ class EditDashboardProfile extends React.Component {
 										    
 										</div>
 										
+							
+										
 								<div className="togle_mobile_menu">		
 								<div className={classes.root}>
 												<Switch checked={checked} onChange={this.handleChange} aria-label="Collapse" />
@@ -518,72 +613,123 @@ class EditDashboardProfile extends React.Component {
 						
 					</div>
 												
-					
+				
 					<div className="col-lg-3 dashboard_sidebar_profile mobile_sidebar_profile">
 					
-					<Grid className="profile_pic_section" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>{ProfileView.username}</h5>
-							<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
-							<ul className="edit_remove">
-							<li><a href="/">Edit</a></li>
-							<li><a href="/">Remove</a></li>
-							</ul>
-							</Paper>
+							<Grid className="profile_pic_section" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>{ProfileView.username}</h5>
+									<form action="/profile" method="post" enctype="multipart/form-data">
+										<input type="file" name="avatar" />
+									</form>
+									<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
+									<ul className="edit_remove">
+									<li><a href="/">Edit</a></li>
+									<li><a href="/">Remove</a></li>
+									</ul>
+									</Paper>
+									
+							</Grid>
 							
-				    </Grid>
+							<Grid className="profile_dash_gallery" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>Update Info</h5>
+
+
+									<ul className="social_media_profile">
+										<li>
+										<label>Name</label>
+										
+										<input 
+										type="text" 
+										className="form-control" 
+										placeholder="Please enter your name"
+										name="username" 
+										value={this.state.username} 
+										onChange={this.handleChange} 
+										/>
+
+									
+										</li>
+										<li>
+										      <label>Password</label>
+											  
+											  <input type="password" className="form-control" placeholder="......" name="password" value={password} onChange={this.handleChange} />
+										</li>
+										<li>
+										   <label>DOB</label>
+										   										   
+										    <input type="text" className="form-control" placeholder="Please enter your DOB" name="DOB" value={DOB}
+                                            onChange={this.handleChange} />
+										   
+										 </li>
+										<li>
+										
+										    <label>Gender</label>
+											
+											 <select name="gender" onChange={this.handleChange} value={this.state.gender}>
+												<option value="Male">Male</option>
+												<option value="Female">Female</option>
+											</select>
+										   
+										   </li>
+										</ul>
+									
+									</Paper>
+									
+							</Grid>
+							
+							<Grid className="profile_cover_section" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>Cover Photo</h5>
+									<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
+									<ul className="edit_remove">
+									<li><a href="/">Edit</a></li>
+									<li><a href="/">Remove</a></li>
+									</ul>
+									</Paper>
+									
+							</Grid>
+							<Grid className="profile_dash_gallery" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>Social Media</h5> 
+									<ul className="social_media_profile">
+										<li>
+										    <label>Facebook</label>
+										    <input type="text" className="form-control" placeholder="Please Enter the Facebook Link" name="Facebook" value={this.state.Facebook} onChange={this.handleChange} />
+
+										 </li>
+										<li><label>Twitter</label>
+
+										 <input type="text" className="form-control" placeholder="Please Enter the Twitter Link" name="Twitter" value={this.state.Twitter} onChange={this.handleChange} />
+										</li>
+										<li><label>Instagram</label>
+											<input type="text" className="form-control" placeholder="Please Enter the Instagram Link" name="Instagram" value={this.state.Instagram} onChange={this.handleChange} />
+										</li>
+										<li><label>LinkedIN</label>
+										<input type="text" className="form-control" placeholder="Please Enter the LinkedIN Link" name="LinkedIN" value={this.state.LinkedIN} onChange={this.handleChange} />
+										</li>
+									</ul>
+									</Paper>
+									
+							</Grid>
+							<Grid className="profile_dash_gallery" item xs={1}>
+									<Paper className={classes.paper}>
+									<h5>Photo Gallery</h5>
+									<ul className="profile_galleries">
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
+									<li className="edit_gallery_btn"><a href="/"><span>Edit Gallery</span></a></li>
+															
+									</ul>
+									</Paper>
+									
+							</Grid>
 					
-					<Grid className="profile_dash_gallery" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>Update Info</h5>
-							<ul className="social_media_profile">
-							<li><label>Name</label><a href="/">{UserProfile.username}</a></li>
-							<li><label>Password</label><input  type="password" disabled class="pswd" value="......" /></li>
-							<li><label>DOB</label><a href="/">{Moment(dt).format('d MMM YYYY')}</a></li>
-							<li><label>Gender</label><a href="/">{UserProfile.gender}</a></li>
-							</ul>
-							</Paper>
-							
-				    </Grid>
 					
-					<Grid className="profile_cover_section" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>Cover Photo</h5>
-							<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
-							<ul className="edit_remove">
-							<li><a href="/">Edit</a></li>
-							<li><a href="/">Remove</a></li>
-							</ul>
-							</Paper>
-							
-				    </Grid>
-					<Grid className="profile_dash_gallery" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>Social Media</h5>
-							<ul className="social_media_profile">
-								<li><label>Facebook</label><a href={User_socials ? User_Facebook : ''}>{User_Facebook}</a></li>
-								<li><label>Twitter</label><a href={User_socials ? User_Twitter : ''}>{User_Twitter}</a></li>
-								<li><label>Instagram</label><a href={User_socials ? User_Instagram: '' }>{User_Instagram}</a></li>
-								<li><label>LinkedIN</label><a href={User_socials ? User_LinkedIN: ''}>{User_LinkedIN}</a></li>
-							</ul>
-							</Paper>
-							
-				    </Grid>
-					<Grid className="profile_dash_gallery" item xs={1}>
-							<Paper className={classes.paper}>
-							<h5>Photo Gallery</h5>
-							<ul className="profile_galleries">
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li><img alt="" style={{ width: '80px', height: '80px' }}  src={require('./images/roommate_pr_picture-80x80.jpg')} /></li>
-							<li className="edit_gallery_btn"><a href="/"><span>Edit Gallery</span></a></li>
-													
-							</ul>
-							</Paper>
-							
-				    </Grid>
 					</div>
 					
 					
@@ -705,7 +851,7 @@ class EditDashboardProfile extends React.Component {
 					
 						  
 					</div>
-					
+				 <form name="form" >	
 					<div className="dashboard_profile_grid">
 					<Typography className="dash_profile_title"  component="h2" variant="h1" gutterBottom>
 							I’m interested in…
@@ -716,10 +862,53 @@ class EditDashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Type of Person</h4>
 							<div className="type_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Quiet</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Loud</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Tidy</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Messy</Button>
+
+							    <label>
+								Quiet
+								<input  
+									type="radio" 
+									id="Quiet"  
+									name="typeofperson" 
+									value={'Quiet'}
+									onChange={this.ontypeofperson.bind(this)} 
+									checked={this.state.typeofperson === 'Quiet'}
+									/>
+								</label>
+								
+								<label>
+								Loud
+								<input  
+									type="radio" 
+									id="Loud" 
+									name="typeofperson"    
+									value={'Loud'}
+									onChange={this.ontypeofperson.bind(this)} 
+									checked={this.state.typeofperson === 'Loud'}
+								/>
+								</label>
+
+								<label>
+								Tidy
+								<input type="radio" 
+									id="Tidy"
+									name="typeofperson"
+									value={'Tidy'}
+									onChange={this.ontypeofperson.bind(this)} 
+									checked={this.state.typeofperson === 'Tidy'}
+								/>
+								</label>
+
+								<label>
+								Messy
+								<input
+									type="radio"
+									id="Messy"
+									name="typeofperson"
+									value={'Messy'}
+									onChange={this.ontypeofperson.bind(this)} 
+									checked={this.state.typeofperson === 'Messy'} 
+								/>
+								</label> 
 							</div>
 						    </Paper>
 							
@@ -728,19 +917,60 @@ class EditDashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Do you drink?</h4>
 							<div className="drink_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Yes</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">No</Button>
-							
+
+							<label>
+							  Yes
+								<input 
+									    type="radio" 
+									    name="DoYouDrink"
+										value={'true'}
+									    onChange={this.onDoYouDrink.bind(this)} 
+									    checked={this.state.DoYouDrink === 'true'}   
+									/>
+							</label> 
+							<label>
+							No
+								<input
+								    type="radio"
+								    name="DoYouDrink"
+									value={'false'}
+									onChange={this.onDoYouDrink.bind(this)} 
+									checked={this.state.DoYouDrink === 'false'}   
+								/>
+							</label> 
+
+																			
 							</div>
 						    </Paper>
 							
 						  </Grid>
 						  <Grid className="abt_me_grid" item xs={3}>
 							<Paper className={classes.paper}>
-							<h4>Do you smoke?</h4>
+							<h4>Do you smoke?</h4> 
 							<div className="drink_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Yes</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">No</Button>
+
+							<label>
+								Yes
+								<input
+								  type="radio"
+								  name="DoYouSmoke"
+								  value={'true'}
+									onChange={this.onDoYouSmoke.bind(this)} 
+									checked={this.state.DoYouSmoke === 'true'}
+								/>
+							</label> 
+							<label>
+								No
+								<input 
+								 type="radio" 
+								  name="DoYouSmoke"
+								  value={'false'}
+									onChange={this.onDoYouSmoke.bind(this)} 
+									checked={this.state.DoYouSmoke === 'false'}
+								 />
+							</label> 
+
+							
 							</div>
 						    </Paper>
 							
@@ -754,9 +984,30 @@ class EditDashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Likes to go out?</h4>
 							<div className="drink_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Yes</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">No</Button>
-							
+
+							<label>
+								Yes
+								<input
+								  type="radio" 
+								  name="LikeGoOut" 
+								  value={'true'}
+								  onChange={this.onLikeGoOut.bind(this)} 
+								  checked={this.state.LikeGoOut === 'true'}
+								/>
+							</label> 
+							<label>
+								No
+								<input  
+								type="radio"  
+								name="LikeGoOut" 
+								value={'false'}
+								  onChange={this.onLikeGoOut.bind(this)} 
+								  checked={this.state.LikeGoOut === 'false'}
+							/>
+							</label> 
+
+
+														
 							</div>
 						    </Paper>
 							
@@ -766,10 +1017,56 @@ class EditDashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Work Hours</h4>
 							<div className="type_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Full-time</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Part-time</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Student <br/> (Full-time)</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Student<br/>(Part-time)</Button>
+
+							<label>
+							Full-time 
+								<input 
+									type="radio"
+									id="FullTime" 
+									name="Workhours" 
+									value={'FullTime'}
+									onChange={this.onWorkhours.bind(this)} 
+									checked={this.state.Workhours === 'FullTime'} 
+								/>
+							</label>
+							
+							
+							<label>
+							Part-time
+								<input
+								  type="radio"
+								  id="PartTime" 
+								  name="Workhours"
+								  value={'PartTime'}
+								  onChange={this.onWorkhours.bind(this)} 
+								  checked={this.state.Workhours === 'PartTime'} 
+								/>
+							</label>
+
+							<label>
+							Student <br /> (Full-Time)
+								<input 
+								  type="radio"
+								  id="StudentFullTime"
+								  name="Workhours"
+								  value={'StudentFullTime'}
+								  onChange={this.onWorkhours.bind(this)} 
+								  checked={this.state.Workhours === 'StudentFullTime'} 
+								/>
+							</label>
+
+							<label>
+							Student <br /> (Part-Time)
+								<input 
+								   type="radio" 
+								   id="StudentPartTime"
+								   name="Workhours" 
+								   value={'StudentPartTime'}
+								  onChange={this.onWorkhours.bind(this)} 
+								  checked={this.state.Workhours === 'StudentPartTime'}  
+								/>
+							</label>
+							
 							</div> 
 						    </Paper>
 							
@@ -779,59 +1076,142 @@ class EditDashboardProfile extends React.Component {
 							<Paper className={classes.paper}>
 							<h4>Bed Time</h4>
 							<div className="type_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">9-10pm</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">10-11pm</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">12-1am</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">I work <br/>nights</Button>
-							</div>
+
+							<label>
+							9-10pm
+								<input 
+								  type="radio" 
+								  id="9-10pm"  
+								  name="BedTime" 
+								  value={'9-10pm'}
+								  onChange={this.onBedTime.bind(this)} 
+								  checked={this.state.BedTime === '9-10pm'}  
+								/>
+							</label>
+
+							
+							<label>
+							10-11pm
+								<input 
+								   type="radio" 
+								   id="10-11pm"  
+								   name="BedTime" 
+								   value={'10-11pm'}
+								   onChange={this.onBedTime.bind(this)} 
+								   checked={this.state.BedTime === '10-11pm'}  
+								/>
+							</label>
+
+							<label>
+							12-1am
+								<input
+								   type="radio" 
+								   id="12-1am"  
+								   name="BedTime" 
+								   value={'12-1am'}
+								   onChange={this.onBedTime.bind(this)} 
+								   checked={this.state.BedTime === '12-1am'}  
+								/>
+							</label>
+
+					    </div>
 						    </Paper>
 							
 						  </Grid>
 						  
 					</div>	
 					
-					<div className="row" style={{textAlign:"center", }}>
+				    <div className="row" style={{textAlign:"center", }}>
 					    
 						   <Grid className="abt_me_grid" item xs={3}>
 							<Paper className={classes.paper}>
 							<h4>Relationship Status</h4>
 							<div className="type_grid">
-							<Button data-toggle="tab" data-target="#page0" className="type_btn btn btn-default btn-sm">Single</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">In a <br/>Relationship</Button>
-							<Button data-toggle="tab" data-target="#page0" className="type_btn  btn btn-default btn-sm">Married</Button>
-							
+
+							<label>
+								Single
+									<input 
+										type="radio" 
+										id="Single"  
+										name="RelationshipStatus" 
+										value={'Single'}
+										onChange={this.onRelationshipStatus.bind(this)} 
+										checked={this.state.RelationshipStatus === 'Single'}  
+									/>
+								</label>
+
+								<label>
+								In a <br/>Relationship
+									<input  type="radio"
+									   id="onRelationship"  
+									   name="RelationshipStatus" 
+									   value={'onRelationship'}
+										onChange={this.onRelationshipStatus.bind(this)} 
+										checked={this.state.RelationshipStatus === 'onRelationship'}    
+									/>
+								</label>
+
+								<label>
+								Married
+									<input 
+										type="radio" 
+										id="Married"  
+										name="RelationshipStatus" 
+										value={'Married'}
+										onChange={this.onRelationshipStatus.bind(this)} 
+										checked={this.state.RelationshipStatus === 'Married'}    
+									/>
+								</label>
+
+
+												
 							</div>
 						    </Paper>
 							
 						  </Grid>
 						  
-					</div>	
+					    </div>	
 					
 					
 						  
 					</div>
 					
+					<div className="form-group text-center">
+                                <button  onClick={this.handleClickSubmit} className="btn btn-primary reg_btn">Update</button>
+                                
+                                {InterstedUpdating &&
+                                    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                }
+
+                                <div>
+                                    {Interestsubmitted && type=='alert-danger' &&
+                                        <div className="help-block">{message}</div>
+                                    }
+                                </div>
+                            </div>
+                </form>	
+					
 					
 					</div>
 					
-					{/* <form onSubmit={this.handleSubmit}
-					Facebook={this.state.ProfileView.User_Facebook}
-					body={this.state.ProfileView.body}>
-                  <input type="text" value={data} />
-                  <Button type="submit">Facebook</Button> 
-					</form> */}
-
+					
+					
+					
+					<div className="col-lg-3 dashboard_sidebar_profile desktop_sidebar_profile">
 
 					
 					
-							<div className="col-lg-3 dashboard_sidebar_profile desktop_sidebar_profile">
+					    <form name="form" onSubmit={this.handleSubmit}>	
 							
 							<Grid className="profile_pic_section" item xs={1}>
 									<Paper className={classes.paper}>
 									<h5>{ProfileView.username}</h5>
 									<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
 									<ul className="edit_remove">
-									<li><a href="/">Edit</a></li>
+									
+									
+
+									
 									<li><a href="/">Remove</a></li>
 									</ul>
 									</Paper>
@@ -864,18 +1244,20 @@ class EditDashboardProfile extends React.Component {
 											  <input type="password" className="form-control" placeholder="......" name="password" value={password} onChange={this.handleChange} />
 										</li>
 										<li>
-										   <label>DOB</label>
+										   <label>DOB Nk</label>
 										   										   
-										    <input type="text" className="form-control" placeholder="Please enter your DOB" name="DOB" value={this.state.DOB}
+										    <input type="text" className="form-control" placeholder="Please enter your DOB" name="DOB" value={dt}
                                             onChange={this.handleChange} />
 										   
 										 </li>
 										<li>
 										
 										    <label>Gender</label>
-											
-											 <input type="text" className="form-control" placeholder="Please enter your Gender" name="gender" value={this.state.gender}
-                                            onChange={this.handleChange} />
+											 <select name="gender" onChange={this.handleChange} value={this.state.gender}>
+												<option value="">Select Option</option>
+											   <option value="Male">Male</option>
+											   <option value="Female">Female</option>
+										   </select>
 										   
 										   </li>
 										</ul>
@@ -933,9 +1315,9 @@ class EditDashboardProfile extends React.Component {
 									</Paper>
 									
 							</Grid>
-							</div>
-					
-						 <div className="form-group text-center">
+							
+							
+						<div className="form-group text-center">
                                 <button className="btn btn-primary reg_btn">Update</button>
                                 
                                 {updating &&
@@ -949,6 +1331,13 @@ class EditDashboardProfile extends React.Component {
                                 </div>
                             </div>
                         </form>		
+					</div>
+					
+					<form onSubmit={this.onFormSubmit} action="" className="update_profile" method="post" enctype="multipart/form-data">
+									
+						<input type="file" webkitRelativePath name="avatar" accept=".gif,.jpg,.jpeg,.png" onChange= {this.onChange}  />
+						<button type="submit">Upload</button>
+					  </form>		 	
 					
 					
 				</div>	
@@ -973,10 +1362,10 @@ class EditDashboardProfile extends React.Component {
 
 
 function mapStateToProps(state) {
-    const { updating } = state.authentication;
+    const { updating, InterstedUpdating } = state.authentication;
     const { type, message } = state.alert;
     return {
-        updating, type, message
+        updating, InterstedUpdating, type, message
     };
 }
 

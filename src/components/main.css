@@ -530,6 +530,9 @@ ul.main_menu li {
     min-width: 160px;
     height: 40px;
 }
+.bathrooms,.bedrooms{
+    position: relative;
+}
 .pre_page:before {
     content: "<";
     margin: 0 3px 0 0;
@@ -1027,7 +1030,7 @@ ul.rent_list {
     cursor: pointer;
 }
 
-.room_finder_title h5 {
+.roommatefinder_result .room_finder_title h5 {
         font-size: 12px;
     font-family: Montserrat;
     color: #F9790E;
@@ -1041,7 +1044,24 @@ ul.rent_list {
     overflow: hidden;
     border-radius: 20px 0px 0px 20px;
     max-width: 145px;
+    min-height: auto;
      
+}
+.FavoriteRoommates .room_finder_title h5{
+    font-size: 12px;
+    font-family: Montserrat;
+    color: #F9790E;
+    font-weight: 600;
+    padding: 3px 15px 3px 15px;
+    text-align: center;
+    position: relative;
+     bottom: 55px;
+    background-color: #fff;
+    float: right;
+    overflow: hidden;
+    border-radius: 20px 0px 0px 20px;
+    max-width: 145px;
+    min-height: auto;
 }
 
 .favorit_list_rooms .room_finder_title h5 {
@@ -1275,6 +1295,29 @@ min-height: 32px;
 }
 /******Listing Page********/
 
+/*********Listing Filter ********/
+.beds {
+    position: absolute;
+    width: auto;
+    background-color: rgb(0, 0, 0);
+    padding: 2px 10px 10px;
+    top: 64px;
+}  
+.bath {
+    position: absolute;
+    width: auto;
+    background-color: rgb(0, 0, 0);
+    padding: 2px 10px 10px;
+    top: 64px;
+    left: 20%;
+}  
+.bed-div.flex-col {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 14px;
+    color: #fff;
+    border: 1px solid #fff;
+}
 .main_roomates.listing_page {
     text-align: left;
 }
@@ -1350,6 +1393,42 @@ min-height: 32px;
 }
 
 /************Main Roommate Profile Page**************/
+.roommateProfile .MuiPaper-elevation2-20 img {
+    cursor: pointer;
+}
+.roommateProfile .MuiPaper-elevation2-18 {
+ box-shadow: unset;
+}
+/* .update_profile input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  .update_profile {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .update_profile .btn {
+      color: #000;
+    background-color: white;
+    padding: 0;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+     top: 4px;
+    line-height: 0;
+    position: relative;
+    font-family: Montserrat;
+    cursor: pointer;
+     z-index: 1; 
+  } */
+
+
 .profile_full .col-sm-9 {
     margin: 0;
     padding: 0;
