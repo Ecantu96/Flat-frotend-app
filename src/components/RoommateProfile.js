@@ -13,6 +13,7 @@ import { authHeader } from '../_helpers';
 import _ from 'lodash';
 import Moment from 'moment';
 import { userActions } from '../actions';
+import { SERVICEURL } from '../config/config.js';
   
 const styles = theme => ({
 	  root: {
@@ -34,15 +35,47 @@ class RoommateProfile extends React.Component {
 		  error: null,
 		  isLoaded: false,
 		  RoommateDetails: [],
-		  FavRoomateMarked: [],
+		  MatchRoommate: [],
 		  MarkActive: "active"
 		};
-						
+
+							
+	}
+
+	onClickRoommateId = (Roommate_Id, e) => {
+		var id = Roommate_Id;
+		var url = `${SERVICEURL}/users/viewRoommateProfile/${id}`;
+		let AuthToken = authHeader();
+		fetch(url, {
+			method: 'GET',
+					headers: {
+					'Authorization': AuthToken.Authorization,
+					'Content-Type': 'application/json'
+					},
+			}).then(response => response.json())
+			  .then(res => { 
+					if(res[1] == undefined){
+					this.setState({
+						RoommateDetails: res,
+					});
+				}else{
+					this.setState({
+						RoommateDetails: res[0],
+						favouriteRoommate_res: res[1]
+	
+					});
+				}
+				
+				//return res;
+				
+		})
+		.catch(error => this.setState({
+					message: 'Something bad happened' + error
+		}));
 	}
 
 	componentWillMount() {
-
-		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/userRole";
+		var url = `${SERVICEURL}/users/userRole`;
 		let AuthToken = authHeader();
 		fetch(url, {
 			method: 'GET',
@@ -63,9 +96,10 @@ class RoommateProfile extends React.Component {
 			message: 'Something bad happened' + error
 		}));
 
+
 		const {Roommate_Id} = this.state;
 		var id = Roommate_Id;
-		var url = `https://nooklyn-flats-backend-apis.herokuapp.com/users/viewRoommateProfile/${id}`;
+		var url = `${SERVICEURL}/users/viewRoommateProfile/${id}`;
 		//let AuthToken = authHeader();
 		fetch(url, {
 			method: 'GET',
@@ -75,16 +109,28 @@ class RoommateProfile extends React.Component {
 					},
 			}).then(response => response.json())
 			  .then(res => { 
-				this.setState({
-					RoommateDetails: res
-				})
+					if(res[1] == undefined){
+					this.setState({
+						RoommateDetails: res,
+					});
+					console.log("viewRoommateProfile");
+					console.log(res);
+				}else{
+					this.setState({
+						RoommateDetails: res[0],
+						favouriteRoommate_res: res[1]
+	
+					});
+				}
 				
-				return res;
+				//return res;
 				
 		})
 		.catch(error => this.setState({
 					message: 'Something bad happened' + error
 		}));
+
+		
 
 	}
 
@@ -95,33 +141,38 @@ class RoommateProfile extends React.Component {
 
 	componentDidMount(){
 		let AuthToken = authHeader();
-		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/FavMarkedRoommate";
-		fetch(url, {
+		
+		var fetchRoommateURI =  `${SERVICEURL}/fetchUserinterestQuestions`;
+		fetch(fetchRoommateURI, {
 			method: 'GET',
 			headers: {
-			  'Authorization': AuthToken.Authorization,
+			  'Authorization':  AuthToken.Authorization,
 			  'Content-Type': 'application/json'
 			}
-		  }).then(response => response.json()).then(result => { 
+		  }).then(response => response.json()).then(Roommate => { 
 		   
 			  this.setState({
-				FavRoomateMarked: result
+				MatchRoommate: Roommate
 			   
 			   })
-			   return result;
+
+			//console.log(Roommate);
 		})
 		.catch(error => this.setState({
 			isLoading: false,
 			message: 'Something bad happened' + error
 		}));
 
+
 	}
+
+		
+
 	
 
-	onClickMarkFavoriteRoommate = (MarkActive) => {
+	onClickMarkFavoriteRoommate = (Mark) => {
 		this.setState({addClass: !this.state.addClass});
-		console.log(MarkActive);
-		if(MarkActive == "inactive"){
+		if(Mark == "inactive" || Mark ==  undefined){
             var MarkTrue = true;
 		}else{
 			var MarkTrue = false;
@@ -138,32 +189,44 @@ class RoommateProfile extends React.Component {
 			dispatch(userActions.MarkFavRoommate(user));
 		
 	}
+
+	
+	
 		
 	render() {
 
 			let buttonClass = ["box"];
 			if(this.state.addClass) { buttonClass.push('orange'); }
 			const {classes, errorMessage} = this.props;
-			const {RoommateDetails, FavRoomateMarked, Roommate_Id} = this.state;
-			
-			if(_.some(FavRoomateMarked, _.isObject)){
-					var MarkActive = FavRoomateMarked.map(function(item){
+			const {RoommateDetails,favouriteRoommate_res, MatchRoommate, Roommate_Id} = this.state;
+			var MatchRoommateReult = MatchRoommate;
+			 
+			function checkafavMark(){
 
-						console.log(Roommate_Id);
-						console.log(item.favouriteRoommate);
-							if(Roommate_Id){
-								var favMark = item.favouriteRoommate;
-								if(favMark == true){
-									return "active";
-								}
-								if(favMark == false){
-								   return "inactive";
-								}
-						 }
-							
-				}).filter(function(item){return item;})[0];
-
+				if(_.find(favouriteRoommate_res)) {
+					var isfavmark = favouriteRoommate_res.favouriteRoommate;
+					if(isfavmark == true){
+					   return "active";
+					}if(isfavmark == false){
+						return "inactive";
+					}
+					
+				}
 			}
+			
+			if(_.some(MatchRoommate, _.isObject)){
+				
+              MatchRoommateReult = MatchRoommate.map((items, key) =>
+				<Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" items xs={4}  key={key}  xs={4} onClick={() => this.onClickRoommateId(items._id)}>
+							<Paper className={classes.paper}><img alt="" src={require('./images/profile-3.jpg')} />
+							
+							</Paper>
+							
+				</Grid>
+			   );
+			}
+			
+				
 			
 			if(_.some(RoommateDetails, _.isObject)){
 				var name = RoommateDetails.username;
@@ -234,7 +297,7 @@ class RoommateProfile extends React.Component {
 			   					   
 							   <div style={{display:"block"}}>
 								  <Typography variant="title" color="inherit">
-									Hey there, my name is Joe…
+									Hey there, my name is {name}
 								  </Typography>
 								  								   
 								</div>
@@ -271,7 +334,7 @@ class RoommateProfile extends React.Component {
 							<div className="profile_btns">
 							<Button className="profile_btn">Send Message</Button>
 							
-							<Button data-toggle="tab" className={'profile_btn btn '+ MarkActive +' btn-default btn-sm ' + (buttonClass.join(' '))}   onClick={(event) => this.onClickMarkFavoriteRoommate(MarkActive)} >Favorite</Button>
+						     <Button data-toggle="tab" className={'profile_btn btn '+ checkafavMark() +' btn-default btn-sm ' + (buttonClass.join(' '))}   onClick={() => this.onClickMarkFavoriteRoommate(checkafavMark())}  >Favorite</Button>
 
 							</div>
 							<div className="pro_social_media">
@@ -330,39 +393,10 @@ class RoommateProfile extends React.Component {
 			<div className="roommateProfile">
 				<React.Fragment>
 				
-				
-				
-				
 					<div className="row">
-						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
-							
-							</Paper>
-							
-						  </Grid>
-						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
-														
-							</Paper>
-						  </Grid>
-						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
-							
-							</Paper>
-						  </Grid>
-						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
-							
-							</Paper>
-						  </Grid>
-						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt=""  src={require('./images/roommate_pr_picture.jpg')} /></a>
-							
-							</Paper>
-						   </Grid>
-						   
-						   
-						  
+
+					{MatchRoommateReult}
+						 
 					</div>
 				</React.Fragment>
 			</div>
@@ -405,6 +439,7 @@ class RoommateProfile extends React.Component {
 			<div className="main_roomates">
 				<React.Fragment>
 					<div className="row">
+						
 						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
 							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
 							
@@ -427,7 +462,7 @@ class RoommateProfile extends React.Component {
 							</Paper>
 						  </Grid>
 						  <Grid className="MuiGrid-item-143 MuiGrid-grid-xs-4-174" item xs={4}>
-							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/profile-3.jpg')} /></a>
+							<Paper className={classes.paper}><a href="/"><img alt="" className="profile_suggest_img"  src={require('./images/roommate_pr_picture.jpg')}  /></a>
 							
 							</Paper>
 						   </Grid>

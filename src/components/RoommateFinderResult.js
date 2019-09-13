@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { userActions } from '../actions';
 import Page from "../components/Page.jsx";
 import { authHeader } from '../_helpers';
+import { SERVICEURL } from '../config/config.js';
   
 const styles = theme => ({
 	  root: {
@@ -35,16 +36,14 @@ class RoommateFinderResult extends React.Component {
 			roomMateLists: [],
 			ProfileQuestion: [],
 			propertyLists: [],
-			viewAllRoommates: [],		
+			viewAllRoommates: [],	
+			loading: false	
 		};
 	}
 	
 	componentWillMount = () => {
-
-		
-		
 		let AuthToken = authHeader();
-					var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/viewAllRoommates";
+		            var url = `${SERVICEURL}/users/viewAllRoommates`;
 					var bearer = AuthToken.Authorization;
 					fetch(url, {
 						method: 'GET',
@@ -82,8 +81,7 @@ class RoommateFinderResult extends React.Component {
 			}
 			localStorage.setItem('userCompleteProfile', JSON.stringify(tempData));
 	    	}else{
-					
-					var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/current";
+				    var url = `${SERVICEURL}/users/current`;
 					var bearer = AuthToken.Authorization;
 					fetch(url, {
 						method: 'GET',
@@ -126,8 +124,7 @@ class RoommateFinderResult extends React.Component {
 			
 		}
 		setTimeout(() => this.setState({ loading: false }), 3000);
-
-		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/properties";
+		var url = `${SERVICEURL}/properties`;
 				fetch(url, {
 						method: 'GET',
 						headers: {
@@ -269,7 +266,10 @@ class RoommateFinderResult extends React.Component {
 			<div className="main_roomates roommatefinder_result">
 				<React.Fragment>
 				<div className="row">
-					{defaultroommates} {items}
+				{ (this.state.loading) ? <div className="loading-page">
+						<i className="fa fa-spinner fa-spin fa-3x fa-fw"  aria-hidden="true"  /> <br /> <br />         <span>Loading...</span>
+					</div> : defaultroommates  }   
+					{items}
 				</div>
 				
 				{registering &&

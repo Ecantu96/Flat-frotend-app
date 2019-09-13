@@ -18,7 +18,7 @@ class Map extends Component {
     if (!window.google) {
       var s = document.createElement('script');
       s.type = 'text/javascript';
-      s.src = 'https://maps.googleapis.com/maps/api/js?sensor=SET_TO_TRUE_OR_FALSE';
+      s.src = 'https://maps.googleapis.com/maps/api/js?key:AIzaSyDhrG0nOMCvG1fAfg4drhYVkLOY01HoHK0';
       var x = document.getElementsByTagName('script')[0];
       x.parentNode.insertBefore(s, x);
       s.addEventListener('load', e => {

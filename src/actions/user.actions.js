@@ -14,8 +14,10 @@ export const userActions = {
     userupdate,
     SaveUpdateUserInterest,
     matchRoommate,
+    PropertyFilter,
     MarkFavListing,
     MarkFavRoommate,
+    ProfileImageUploadAndUpdate,   
 	getAll,
 	delete: _delete
 };
@@ -28,7 +30,7 @@ function login(username, password) {
             .then(
                 user => { 
 				   					
-                    //console.log('return error==user'+JSON.stringify(user));
+                    
 					dispatch(success(user));
 					//dispatch(alertActions.success('Loggein in successfully'));
 										
@@ -36,7 +38,7 @@ function login(username, password) {
 					
                 },
                 error => {
-                    //console.log('return error=='+error)
+                   
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                 }
@@ -62,7 +64,7 @@ function register(user) {
         userService.register(user)
             .then(
                 user => { 
-				 //console.log('return error==user'+JSON.stringify(user));
+				
                     dispatch(success());
 					//if(interstedRoommate){
                      //  history.push('/RoommateFinderResult');
@@ -140,10 +142,10 @@ function MarkFavListing(user) {
 }
 
 function MarkFavRoommate(user) {
-	console.log(user);
+	
 	    return dispatch => {
 	     dispatch(request(user));
-		//alert(user);
+		
         userService.MarkFavRoommates(user)
 		
         .then(user => {
@@ -167,41 +169,83 @@ function MarkFavRoommate(user) {
     function failure(error) { return { type: userConstants.USER_FAILURE, error } }
 }
 
-function userupdate(user) {
-     //console.log("Nadeem User Details"  +user);
-        return dispatch => {
-         dispatch(request(user));
-        //alert(user);
-        userService.UserUpdate(user)
-        
+function PropertyFilter(user) {
+	     //console.log(user);
+	    return dispatch => {
+	     dispatch(request(user));
+    
+           userService.propertyFilter(user)
+		
         .then(user => {
-                
-                    dispatch(alertActions.success(user));
-                   dispatch(success());
-                 localStorage.removeItem("token")
-                 return user;
-                 
+			    dispatch(alertActions.success(user));
+			    dispatch(success());
+                localStorage.removeItem("token")
+			    return user;
+				 
                 },
                 error => {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                 }
-         
                                        
          );
      
     };
 
+    function request(user) { return { type: userConstants.USER_FILTER_PROPERTY_REQUEST, user } }
+    function success(user) { return { type: userConstants.USER_FILTER_PROPERTY_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.USER_FILTER_PROPERTY_FAILURE, error } }
+}
+
+function userupdate(user) {
+           return dispatch => {
+           dispatch(request(user));
+           userService.UserUpdate(user)
+          .then(user => {
+                   dispatch(alertActions.success(user));
+                   dispatch(success());
+                   localStorage.removeItem("token")
+                   return user;
+                  },
+                    error => {
+                        dispatch(failure(error.toString()));
+                        dispatch(alertActions.error(error.toString()));
+                }
+         );
+     
+    };
     function request(user) { return { type: userConstants.USER_REQUEST, user } }
     function success(user) { return { type: userConstants.USER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.USER_FAILURE, error } }
 }
 
+function ProfileImageUploadAndUpdate(user) {
+        return dispatch => {
+        dispatch(request(user));
+        userService.profileImageUploadandUpdate(user)
+        .then(user => {
+                dispatch(alertActions.success(user));
+                dispatch(success());
+                localStorage.removeItem("token")
+                return user;
+            },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+            }
+        );
+
+    };
+    function request(user) { return { type: userConstants.USER_UPDATE_REQUEST, user } }
+    function success(user) { return { type: userConstants.USER_UPDATE_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.USER_UPDATE_FAILURE, error } }
+}
+
 function SaveUpdateUserInterest(user) {
-      // console.log("Nadeem User Details"  +JSON.stringify(user));
+     
        return dispatch => {
         dispatch(request(user));
-       //alert(user);
+       
        userService.SaveUpdateUserInterested(user)
        
        .then(user => {

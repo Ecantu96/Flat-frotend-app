@@ -14,7 +14,7 @@ import Switch from '@material-ui/core/Switch';
 import Zoom from '@material-ui/core/Zoom';
 import { authHeader } from '../_helpers'; 
 import _ from 'lodash';
-  
+import { SERVICEURL } from '../config/config.js';   
 const styles = theme => ({
 	  root: {
 		flexGrow: 1,
@@ -39,7 +39,7 @@ class FavoriteListings extends React.Component {
 	componentDidMount() {
 
 		let AuthToken = authHeader();
-		var url = "https://nooklyn-flats-backend-apis.herokuapp.com/FetchFavMarked";
+		var url = `${SERVICEURL}/FindFavrouiteMarkedPropertyList`;
 		var bearer = AuthToken.Authorization;
 		fetch(url, {
 				method: 'GET',
@@ -78,6 +78,8 @@ render() {
   const { checked } = this.state;
 
   var FavListing = FavLists;
+  console.log("FavListing");
+  console.log(FavListing);
 
   if(_.find(FavLists)) {
 	FavListing = FavLists.map((item, key) =>

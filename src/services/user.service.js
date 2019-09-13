@@ -57,9 +57,11 @@ export const userService = {
   matchRoommates,
   MarkFavListings,
   MarkFavRoommates,
+  propertyFilter,
   getAll,
   getById,
   UserUpdate,
+  profileImageUploadandUpdate,
   SaveUpdateUserInterested,
   delete: _delete
 };
@@ -72,6 +74,8 @@ const USERUPDATE = '/users/update';
 const SAVEUPDATEUSERINTERESTED = '/SaveUpdateUserInterested';
 const MARKFAVLISTING = '/MarkFavouriteProperty';
 const MARKFAVROOMMATE = '/MarkfavouriteRoomate';
+const PROFILEIMAGEUPLOAD = '/users/photoUpload';
+const PROPERTYFILTER = '/filter';
 
 function login(username, password) {
   const requestOptions = {
@@ -133,6 +137,26 @@ function register(user) {
 
     });
 }
+//Filter For Search Property
+function propertyFilter(user){
+  //console.log(user);
+  const requestOptions = {
+		method: 'GET',  
+    headers: authHeader(),
+    body: JSON.stringify(user)
+		
+	};
+     return fetch(API_ROOT + PROPERTYFILTER, requestOptions)
+      .then(handleResponse).then(user => {
+      
+        return user;
+    
+      }).catch(error => {
+        return Promise.reject(error);;
+
+      });
+
+}
 
 function update(user) {
   const requestOptions = {
@@ -151,9 +175,7 @@ function UserUpdate(user){
     body: JSON.stringify(user)
     
   };
-     //console.log('this is request body');
-     // console.log(requestOptions);
-     return fetch(API_ROOT + USERUPDATE, requestOptions)
+      return fetch(API_ROOT + USERUPDATE, requestOptions)
       .then(handleResponse).then(user => {
       
         return user;
@@ -162,8 +184,24 @@ function UserUpdate(user){
         return Promise.reject(error);;
 
       });
-
+}
+//Function for Profile Image Upload And Update
+function profileImageUploadandUpdate(user){
+  const requestOptions = {
+  method: 'POST',  
+  headers: { ...authHeader(), 'Content-Type': 'multipart/form-data' },
+  body: JSON.stringify(user)
   
+};
+    return fetch(API_ROOT + PROFILEIMAGEUPLOAD, requestOptions)
+    .then(handleResponse).then(user => {
+    
+      return user;
+  
+    }).catch(error => {
+      return Promise.reject(error);;
+
+    });
 }
 
 function SaveUpdateUserInterested(user){
@@ -173,9 +211,7 @@ function SaveUpdateUserInterested(user){
      body: JSON.stringify(user)
    
  };
-  //  console.log('this is request body');
-    // console.log(requestOptions);
-    return fetch(API_ROOT + SAVEUPDATEUSERINTERESTED, requestOptions)
+     return fetch(API_ROOT + SAVEUPDATEUSERINTERESTED, requestOptions)
      .then(handleResponse).then(user => {
      
        return user;
@@ -195,8 +231,7 @@ function MarkFavListings(user){
     body: JSON.stringify(user)
   
 };
- //  console.log('this is request body');
-   // console.log(requestOptions);
+ 
    return fetch(API_ROOT + MARKFAVLISTING, requestOptions)
     .then(handleResponse).then(user => {
     
@@ -215,8 +250,7 @@ function MarkFavRoommates(user){
     body: JSON.stringify(user)
   
 };
- //  console.log('this is request body');
-   // console.log(requestOptions);
+ 
    return fetch(API_ROOT + MARKFAVROOMMATE, requestOptions)
     .then(handleResponse).then(user => {
     
@@ -237,8 +271,7 @@ function matchRoommates(user){
 		headers: authHeader()
 		
 	};
-    // console.log('this is request body');
-     // console.log(requestOptions);
+ 
      return fetch(API_ROOT + MATCHROOMMATES, requestOptions)
       .then(handleResponse).then(user => {
       
@@ -264,9 +297,9 @@ function _delete(id) {
 function handleResponse(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
-    //console.log('error data' + JSON.stringify(response))
+   
     if (!response.ok) {
-      //console.log('error code' + response.status)
+     
       if (response.status === 401) {
         // auto logout if 401 response returned from api
         logout();

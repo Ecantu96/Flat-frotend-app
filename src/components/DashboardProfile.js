@@ -15,6 +15,7 @@ import Switch from '@material-ui/core/Switch';
 import Zoom from '@material-ui/core/Zoom';
 import { authHeader } from '../_helpers';
 import _ from 'lodash';
+import { SERVICEURL } from '../config/config.js';
   
 const styles = theme => ({
 	  root: {
@@ -56,9 +57,9 @@ class DashboardProfile extends React.Component {
 
 		let AuthToken = authHeader();
 		var { ImInterestedView  } = this.state;
-		var findUrl = "https://nooklyn-flats-backend-apis.herokuapp.com/FindCurrentUserList";
-		var bearer = AuthToken.Authorization;
-				fetch(findUrl, {
+		var url = `${SERVICEURL}/FindCurrentUserList`;
+		    	var bearer = AuthToken.Authorization;
+				fetch(url, {
 				method: 'GET',
 				headers: {
 				'Authorization': bearer,
@@ -83,9 +84,9 @@ class DashboardProfile extends React.Component {
 
   componentDidMount() {
      
-    let AuthToken = authHeader();
-    var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/current";
-    var bearer = AuthToken.Authorization;
+	let AuthToken = authHeader();
+	var url = `${SERVICEURL}/users/current`;
+     var bearer = AuthToken.Authorization;
     fetch(url, {
         method: 'GET',
         headers: {

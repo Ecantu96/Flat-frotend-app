@@ -26,6 +26,7 @@ import './css/header.css';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { authHeader } from '../_helpers';   
+import { SERVICEURL } from '../config/config.js';
 
 const ITEM_HEIGHT = 48;
 
@@ -95,7 +96,7 @@ componentWillMount() {
   var home_uri = window.location.href;
   if(loggedIn == true){
       let AuthToken = authHeader();
-      var url = "https://nooklyn-flats-backend-apis.herokuapp.com/users/userRole";
+      var url = `${SERVICEURL}/users/userRole`;
       var bearer = AuthToken.Authorization;
       fetch(url, {
           method: 'GET',
