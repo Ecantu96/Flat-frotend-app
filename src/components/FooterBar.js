@@ -51,7 +51,7 @@ class FooterBar extends React.Component {
 				
 				<Toolbar className="footer_inner">
 					
-					<div class="left_footer">
+					<div className="left_footer">
 					 <span>2019 © @Flats, LLC</span>
 					</div>
 					<div className="footer_menu" >

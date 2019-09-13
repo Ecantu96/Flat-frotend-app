@@ -18,6 +18,7 @@ export const userActions = {
     MarkFavListing,
     MarkFavRoommate,
     ProfileImageUploadAndUpdate,   
+    CoverImageUploadAndUpdate,
 	getAll,
 	delete: _delete
 };
@@ -170,16 +171,16 @@ function MarkFavRoommate(user) {
 }
 
 function PropertyFilter(user) {
-	     //console.log(user);
+	    
 	    return dispatch => {
 	     dispatch(request(user));
     
            userService.propertyFilter(user)
-		
+	
         .then(user => {
-			    dispatch(alertActions.success(user));
-			    dispatch(success());
-                localStorage.removeItem("token")
+                dispatch(alertActions.success(user));
+                dispatch(success());
+               // localStorage.removeItem("token")
 			    return user;
 				 
                 },
@@ -239,6 +240,28 @@ function ProfileImageUploadAndUpdate(user) {
     function request(user) { return { type: userConstants.USER_UPDATE_REQUEST, user } }
     function success(user) { return { type: userConstants.USER_UPDATE_SUCCESS, user } }
     function failure(error) { return { type: userConstants.USER_UPDATE_FAILURE, error } }
+}
+
+function CoverImageUploadAndUpdate(user) {
+    return dispatch => {
+    dispatch(request(user));
+    userService.coverImageUploadAndUpdate(user)
+    .then(user => {
+            dispatch(alertActions.success(user));
+            dispatch(success());
+            localStorage.removeItem("token")
+            return user;
+        },
+            error => {
+                dispatch(failure(error.toString()));
+                dispatch(alertActions.error(error.toString()));
+        }
+    );
+
+};
+function request(user) { return { type: userConstants.USER_UPDATE_REQUEST, user } }
+function success(user) { return { type: userConstants.USER_UPDATE_SUCCESS, user } }
+function failure(error) { return { type: userConstants.USER_UPDATE_FAILURE, error } }
 }
 
 function SaveUpdateUserInterest(user) {

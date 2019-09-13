@@ -62,6 +62,7 @@ export const userService = {
   getById,
   UserUpdate,
   profileImageUploadandUpdate,
+  coverImageUploadAndUpdate,
   SaveUpdateUserInterested,
   delete: _delete
 };
@@ -75,6 +76,7 @@ const SAVEUPDATEUSERINTERESTED = '/SaveUpdateUserInterested';
 const MARKFAVLISTING = '/MarkFavouriteProperty';
 const MARKFAVROOMMATE = '/MarkfavouriteRoomate';
 const PROFILEIMAGEUPLOAD = '/users/photoUpload';
+const COVERIMAGEUPLOAD = '/users/CoverPhotoUpload';
 const PROPERTYFILTER = '/filter';
 
 function login(username, password) {
@@ -139,22 +141,22 @@ function register(user) {
 }
 //Filter For Search Property
 function propertyFilter(user){
-  //console.log(user);
+  console.log("Request Body");
   const requestOptions = {
-		method: 'GET',  
-    headers: authHeader(),
-    body: JSON.stringify(user)
-		
-	};
+   method: 'GET',
+   headers: {'Content-Type': 'application/json' },
+   
+};
+  const fetch = window.fetch.bind(window);
      return fetch(API_ROOT + PROPERTYFILTER, requestOptions)
       .then(handleResponse).then(user => {
-      
-        return user;
+           return user;
     
       }).catch(error => {
         return Promise.reject(error);;
 
       });
+      
 
 }
 
@@ -165,7 +167,7 @@ function update(user) {
     body: JSON.stringify(user)
   };
 
-  return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
+  return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
 }
 
 function UserUpdate(user){
@@ -187,20 +189,38 @@ function UserUpdate(user){
 }
 //Function for Profile Image Upload And Update
 function profileImageUploadandUpdate(user){
-  const requestOptions = {
-  method: 'POST',  
-  headers: { ...authHeader(), 'Content-Type': 'multipart/form-data' },
-  body: JSON.stringify(user)
   
-};
+  console.log(user);
+  const requestOptions = {
+    method: 'POST',  
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    body: user
+  };
+  
     return fetch(API_ROOT + PROFILEIMAGEUPLOAD, requestOptions)
     .then(handleResponse).then(user => {
-    
       return user;
-  
     }).catch(error => {
-      return Promise.reject(error);;
+      return Promise.reject(error);
+    });
+}
 
+
+//Function for Cover Image Upload And Update
+function coverImageUploadAndUpdate(user){
+  
+  console.log(user);
+  const requestOptions = {
+    method: 'POST',  
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    body: user
+  };
+  
+    return fetch(API_ROOT + COVERIMAGEUPLOAD, requestOptions)
+    .then(handleResponse).then(user => {
+      return user;
+    }).catch(error => {
+      return Promise.reject(error);
     });
 }
 
@@ -221,7 +241,6 @@ function SaveUpdateUserInterested(user){
 
      });
 
- 
 }
 
 function MarkFavListings(user){

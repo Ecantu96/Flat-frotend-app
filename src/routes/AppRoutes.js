@@ -22,6 +22,7 @@ import RelationshipStatus from "../components/login/RelationshipStatus";
 import RoommateFinderResultVariationTwo from "../components/RoommateFinderResultVariationTwo";
 import RoommateFinderResult from "../components/RoommateFinderResult";
 import Listing from "../components/Listing";
+import ListingDetailsPage from "../components/ListingDetailsPage";
 import RoommateProfile from "../components/RoommateProfile";
 import Dashboard from "../components/Dashboard";
 import DashboardProfile from "../components/DashboardProfile";
@@ -63,6 +64,7 @@ const AppRoutes = () => {
           <Route path="/RoommateFinderResultVariationTwo" component={RoommateFinderResultVariationTwo} />
           <Route path="/RoommateFinderResult" component={RoommateFinderResult} />
           <Route path="/Listing" component={Listing} />
+          <Route path="/ListingDetailPage" component={ListingDetailsPage} />
           <Route path="/RoommateProfile" component={RoommateProfile} />
           <Route path="/Dashboard" component={Dashboard} />
           <Route path="/DashboardProfile" component={DashboardProfile} />

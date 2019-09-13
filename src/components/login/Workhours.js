@@ -60,6 +60,7 @@ class WorkHours extends React.Component {
         const { dispatch } = this.props;
         let tempData = data;
         tempData.questions.Workhours = Workhours;
+        
         console.log('data===Workhours' + JSON.stringify(tempData))
                    
              this.props.history.push('RoommateFinderResult', { data: tempData });
@@ -87,7 +88,7 @@ class WorkHours extends React.Component {
                         )}
                     </AppContext.Consumer>
 
-                    <div className="col-md-4 reg_form" style={{ background: '#fff', margin: '0 auto' }}>
+                    <div className="col-md-offset-4 col-md-4 reg_form" style={{ background: '#fff' }}>
 
                         <div className="main_title">Work hours</div>
 

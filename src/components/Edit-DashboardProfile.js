@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Moment from 'moment';
 import {connect} from "react-redux";
+// import {base64Img} from "base64-img";
 import { AppContext } from '../provider/AppContext';
 import AppProvider from "../provider/AppContext";
 import { userActions } from '../actions';
@@ -17,7 +18,13 @@ import Zoom from '@material-ui/core/Zoom';
 import { authHeader } from '../_helpers';
 import _ from 'lodash';
 import { SERVICEURL } from '../config/config.js';
-  
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
+const override = css`
+display: block;
+margin: 0 auto;
+border-color: red;
+`;	
 const styles = theme => ({
 	  root: {
 		flexGrow: 1,
@@ -36,7 +43,8 @@ class EditDashboardProfile extends React.Component {
 		this.state = {
 			checked: false,
 			username: '',
-            password: '',
+			password: '',
+			ConfirmPassword: '',
             gender: '',
 			DOB: '',
 			Bio: '',
@@ -57,14 +65,19 @@ class EditDashboardProfile extends React.Component {
 			Workhours: 'FullTime',
 			BedTime: '9-10pm',
 			RelationshipStatus: 'Single',
-			file: null
+			file: '',
+			imagePreviewUrl: '',
+			coverPreviwUrl: '',
+			previewUrl: '',
+			loading: true,
+			CoverPhotoImage: [],
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 
 		this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
+        this.onCoverImageSubmit = this.onCoverImageSubmit.bind(this);
 
 		this.ontypeofperson = this.ontypeofperson.bind(this);
 		this.onDoYouDrink = this.onDoYouDrink.bind(this);
@@ -77,34 +90,118 @@ class EditDashboardProfile extends React.Component {
 		this.handleClickSubmit = this.handleClickSubmit.bind(this);
 	}
 
-	onChange(e) {
-		const {files} = e.target;
-		this.setState({
-		       file: files[0]
-	      }
-		);
-						
-	  }
 
+	  onProfile = (file,image) =>{
+			const newfile = file;
+			const newimage = image;
+			const { dispatch } = this.props;
+			var filename = newfile.name;
+			var mimetype = newfile.type;
+			var path = newimage;
+			let ProfileImage = {
+				filename, mimetype, path
+			}
+			//console.log(ProfileImage);
+			dispatch(userActions.ProfileImageUploadAndUpdate(JSON.stringify(ProfileImage)));
+
+			window.location.reload();
+	  	}
+
+	
 	onFormSubmit(e){
 		e.preventDefault();
-		const {file} = this.state;
-		console.log(file);
-		const { dispatch } = this.props;
-		var imageName = file.name;
-		var imageType = file.type;
-		var imagePath = file.webkitRelativePath;
-		let ProfileImage = {
-			imageName, imageType, imagePath
+		let reader = new FileReader();
+		let file = e.target.files[0];
+		reader.onloadend = () => {
+		  this.setState({
+			file: file,
+			imagePreviewUrl: reader.result
+		  });
+		  this.onProfile(file,reader.result);
 		}
-		console.log("ProfileImage Object");
-		console.log(ProfileImage);
+		reader.readAsDataURL(file);
 
-		 dispatch(userActions.ProfileImageUploadAndUpdate(ProfileImage));
-    }
+		
+	}
+	
+	removeProfilePicture = (e) =>{
+		e.preventDefault();
+	
+		const { dispatch } = this.props;
+		var filename = "";
+		var mimetype = "";
+		var path = "";
+		let ProfileImage = {
+			filename, mimetype, path
+		}
+		
+	dispatch(userActions.ProfileImageUploadAndUpdate(JSON.stringify(ProfileImage)));
+		this.setState({
+			profileImage:ProfileImage
+		});
+
+		
+	}
+
+	//Start Cover Image Upload functions
+
+			oncoverImage = (file,image) =>{
+				const newfile = file;
+				const newimage = image;
+				const { dispatch } = this.props;
+				var filename = newfile.name;
+				var mimetype = newfile.type;
+				var path = newimage;
+				let CoverPhoto = {
+					filename, mimetype, path
+				}
+				//console.log(ProfileImage);
+				dispatch(userActions.CoverImageUploadAndUpdate(JSON.stringify(CoverPhoto)));
+
+				window.location.reload();
+			}
+
+
+		onCoverImageSubmit(e){
+			e.preventDefault();
+			let reader = new FileReader();
+			let file = e.target.files[0];
+			reader.onloadend = () => {
+			this.setState({
+				file: file,
+				coverPreviwUrl: reader.result
+			});
+			this.oncoverImage(file,reader.result);
+			}
+			reader.readAsDataURL(file);
+
+			
+		}
+
+		removeCoverImage = (e) =>{
+			e.preventDefault();
+
+			const { dispatch } = this.props;
+			var filename = "";
+			var mimetype = "";
+			var path = "";
+			let CoverPhoto = {
+				filename, mimetype, path
+			}
+			
+		dispatch(userActions.ProfileImageUploadAndUpdate(JSON.stringify(CoverPhoto)));
+			this.setState({
+				CoverPhotoImage:CoverPhoto
+			});
+
+			
+		}  //End of Cover upload Images Functions
+
+
+	
+
+
    
-
-
 	ontypeofperson(e) {
 		const target = e.target;
 		    this.setState({typeofperson: e.currentTarget.value });
@@ -140,14 +237,10 @@ class EditDashboardProfile extends React.Component {
 		    this.setState({RelationshipStatus: e.currentTarget.value });
 	 }
 
-
-	
-		
 	handleClickSubmit(e) {
 		e.preventDefault();
 		this.setState({ Interestsubmitted: true });
-		//console.log("typeofperson");
-		const { typeofperson, DoYouDrink, DoYouSmoke, LikeGoOut, Workhours, BedTime, RelationshipStatus} = this.state;
+			const { typeofperson, DoYouDrink, DoYouSmoke, LikeGoOut, Workhours, BedTime, RelationshipStatus} = this.state;
 			const { dispatch } = this.props;
 		
 		let questions = {
@@ -163,8 +256,7 @@ class EditDashboardProfile extends React.Component {
 
 			}
 		};
-	   //console.log(questions);
-	  
+	     
 		setTimeout(() =>  dispatch(userActions.SaveUpdateUserInterest(questions)), 100);
 
 		setTimeout(() => this.props.history.push("/DashboardProfile"), 1000);
@@ -172,32 +264,36 @@ class EditDashboardProfile extends React.Component {
 	}
 
  handleChange(e) {
-	   // alert(e.target);
+	e.preventDefault();
 	   const { name, value } = e.target;
 	   this.setState({ [name]: value });
-	          
+	  // alert(value);   
 	}
 	
  handleSubmit(e) {
         e.preventDefault();
         this.setState({ submitted: true });
-        const { username, password, gender, Bio, DOB,  Facebook, Twitter, Instagram, LinkedIN} = this.state;
+        const { username, password, ConfirmPassword, gender,  Bio, DOB,  Facebook, Twitter, Instagram, LinkedIN} = this.state;
      	const { dispatch } = this.props;
      	let Socials = {
 			Facebook:Facebook,
 			Twitter:Twitter,
 			Instagram:Instagram,
 			LinkedIN:LinkedIN
-     	};
+		 };
+		
+		 if (password == ConfirmPassword) {
+			let user = {
+				username, password, gender, DOB, Bio, Socials
+			}
 
-      	let user = {
-            username, password, gender, DOB, Bio, Socials
-    	}
+			//console.log(user) ;
+			setTimeout(() =>  dispatch(userActions.userupdate(user)), 100);
 
-          //console.log(user) ;
-         setTimeout(() =>  dispatch(userActions.userupdate(user)), 100);
-
-         setTimeout(() => this.props.history.push("/DashboardProfile"), 1000);
+			setTimeout(() => this.props.history.push("/DashboardProfile"), 1000);
+	   }else{
+		     alert("Password is not Matched");
+	   }
   }
 
 
@@ -214,7 +310,8 @@ class EditDashboardProfile extends React.Component {
         }
       }).then(response => response.json()).then(Userprofile => { 
           this.setState({
-            ProfileView: Userprofile,
+			ProfileView: Userprofile,
+			    loading: false,
                 username:Userprofile.username,
                 Bio:Userprofile.Bio,
             	gender: Userprofile.gender,
@@ -223,7 +320,9 @@ class EditDashboardProfile extends React.Component {
             	Facebook: Userprofile.Socials.Facebook,
             	Twitter: Userprofile.Socials.Twitter,
             	Instagram: Userprofile.Socials.Instagram,
-            	LinkedIN: Userprofile.Socials.LinkedIN
+				LinkedIN: Userprofile.Socials.LinkedIN,
+				profileImage: Userprofile.ProfileImage,
+				CoverPhotoImage: Userprofile.CoverPhoto,
             	            	 
           
            });
@@ -231,21 +330,55 @@ class EditDashboardProfile extends React.Component {
         return Userprofile;
     })
     .catch(error => this.setState({
-        isLoading: false,
+        loading: true,
         message: 'Something bad happened' + error
 	}));
 
      
 }
 
-
-
 	render() {
 	
     const {classes } = this.props;
     const { updating, type, message } = this.props;
-	const { checked, ProfileView, data, Quiet, Loud, Tidy, Messy, InterstedUpdating, Interestsubmitted, FullTime, PartTime, StudentFullTime, StudentPartTime, Single, onRelationship, Married, Yes, No  } = this.state;
-	const { username, password, Bio, submitted, gender, DOB, questions, Facebook, Socials, Twitter, Instagram, LinkedIN  } = this.state;
+	const { checked, ProfileView, imagePreviewUrl,  profileImage, CoverPhotoImage, InterstedUpdating, Interestsubmitted  } = this.state;
+	const {  password, ConfirmPassword,  submitted, DOB  } = this.state;
+ 
+
+	var CoverImageURI = CoverPhotoImage;
+	if(_.find(ProfileView)) {
+		var coverURIArray = [];
+		   for (var key in CoverImageURI) {
+   
+			  coverURIArray = CoverImageURI.coverImagePath
+
+			   }
+		}
+		
+	var ProfileImgURI = profileImage;
+	 if(_.find(ProfileView)) {
+	 var imageURIArray = [];
+		for (var key in ProfileImgURI) {
+
+			imageURIArray = ProfileImgURI.imagePath
+			}
+	 }
+	 
+	
+	let emtyUrl = "data:image/png;base64,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"
+	let $CoverimagePreview = null;
+    if (coverURIArray) {
+      $CoverimagePreview = coverURIArray;
+    } else {
+      $CoverimagePreview = emtyUrl;
+	}
+	
+	let $imagePreview = null;
+    if (imageURIArray) {
+      $imagePreview = imageURIArray;
+    } else {
+      $imagePreview = emtyUrl;
+    }
 
 	Moment.locale('en');
     var dt = DOB;
@@ -416,7 +549,6 @@ class EditDashboardProfile extends React.Component {
 			if(_.find(ProfileView)) {
 
 				var Workhours = User_questions.Workhours;
-					
 					if (Workhours == "PartTime") {
 					return "active";
 					}
@@ -530,11 +662,18 @@ class EditDashboardProfile extends React.Component {
 	  return (
 	
       <AppProvider>
+		  <div className='sweet-loading'>
+				<ClipLoader
+				css={override}
+				sizeUnit={"px"}
+				size={150}
+				color={'#123abc'}
+				loading={this.state.loading}
+				/>
+		</div> 
         <AppContext.Consumer>
           {(context) => ( 
 
-		
-            
             <div className="profile_header dasboard_header">
 				<ButtonAppBar></ButtonAppBar> 
 				<div className="col-12 dashboard_profile_page">
@@ -617,15 +756,16 @@ class EditDashboardProfile extends React.Component {
 					<div className="col-lg-3 dashboard_sidebar_profile mobile_sidebar_profile">
 					
 							<Grid className="profile_pic_section" item xs={1}>
-									<Paper className={classes.paper}>
+							<Paper className={classes.paper}>
+
 									<h5>{ProfileView.username}</h5>
-									<form action="/profile" method="post" enctype="multipart/form-data">
-										<input type="file" name="avatar" />
-									</form>
-									<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
-									<ul className="edit_remove">
-									<li><a href="/">Edit</a></li>
-									<li><a href="/">Remove</a></li>
+										
+									<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={imageURIArray? $imagePreview : imagePreviewUrl} />
+									
+										<ul className="edit_remove update_profile">
+										<input type="file" webkitRelativePath name="avatar" accept=".gif,.jpg,.jpeg,.png" onChange={(e)=>this.onFormSubmit(e)} encType="multipart/form-data"/>
+										<label>Edit</label>
+										<li><Button onClick={this.removeProfilePicture}>Remove</Button></li>
 									</ul>
 									</Paper>
 									
@@ -682,11 +822,13 @@ class EditDashboardProfile extends React.Component {
 							<Grid className="profile_cover_section" item xs={1}>
 									<Paper className={classes.paper}>
 									<h5>Cover Photo</h5>
-									<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
-									<ul className="edit_remove">
-									<li><a href="/">Edit</a></li>
-									<li><a href="/">Remove</a></li>
+									<img alt="" style={{ width: '280px', height: '150px' }} className=""  src={$CoverimagePreview} />
+									<ul className="edit_remove update_profile">
+										<input type="file" webkitRelativePath name="coverImage" accept=".gif,.jpg,.jpeg,.png" onChange={(e)=>this.onCoverImageSubmit(e)} encType="multipart/form-data"/>
+										<label>Edit</label>
+										<li><Button onClick={this.removeCoverImage}>Remove</Button></li>
 									</ul>
+
 									</Paper>
 									
 							</Grid>
@@ -1206,13 +1348,11 @@ class EditDashboardProfile extends React.Component {
 							<Grid className="profile_pic_section" item xs={1}>
 									<Paper className={classes.paper}>
 									<h5>{ProfileView.username}</h5>
-									<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={require('./images/profile-3.jpg')} />
-									<ul className="edit_remove">
-									
-									
-
-									
-									<li><a href="/">Remove</a></li>
+									<img alt="" style={{ width: '150px', height: '150px' }} className="dash_picture"  src={$imagePreview} />
+									<ul className="edit_remove update_profile">
+										<input type="file" webkitRelativePath name="avatar" accept=".gif,.jpg,.jpeg,.png" onChange={(e)=>this.onFormSubmit(e)} encType="multipart/form-data"/>
+										<label>Edit</label>
+										<li><Button onClick={this.removeProfilePicture}>Remove</Button></li>
 									</ul>
 									</Paper>
 									
@@ -1239,12 +1379,15 @@ class EditDashboardProfile extends React.Component {
 									
 										</li>
 										<li>
-										      <label>Password</label>
-											  
-											  <input type="password" className="form-control" placeholder="......" name="password" value={password} onChange={this.handleChange} />
+										      
+											  <label>Password</label>
+											  <input type="password" className="form-control" placeholder="......" name="password" value={password} onChange={this.handleChange} />											  
+											  <label>Confirm Password</label>
+											  <input type="password" className="form-control" placeholder="......" name="ConfirmPassword" value={ConfirmPassword} onChange={this.handleChange} />
+											 
 										</li>
 										<li>
-										   <label>DOB Nk</label>
+										   <label>DOB</label>
 										   										   
 										    <input type="text" className="form-control" placeholder="Please enter your DOB" name="DOB" value={dt}
                                             onChange={this.handleChange} />
@@ -1269,11 +1412,14 @@ class EditDashboardProfile extends React.Component {
 							<Grid className="profile_cover_section" item xs={1}>
 									<Paper className={classes.paper}>
 									<h5>Cover Photo</h5>
-									<img alt="" style={{ width: '280px', height: '150px' }}  src={require('./images/abstract-background-PUZKTEQ.jpg')} />
-									<ul className="edit_remove">
-									<li><a href="/">Edit</a></li>
-									<li><a href="/">Remove</a></li>
+									<img alt="" style={{ width: '280px', height: '150px' }} className=""  src={$CoverimagePreview} />
+									<ul className="edit_remove update_profile">
+										<input type="file" webkitRelativePath name="coverImage" accept=".gif,.jpg,.jpeg,.png" onChange={(e)=>this.onCoverImageSubmit(e)} encType="multipart/form-data"/>
+										<label>Edit</label>
+										<li><Button onClick={this.removeCoverImage}>Remove</Button></li>
 									</ul>
+
+									
 									</Paper>
 									
 							</Grid>
@@ -1332,13 +1478,6 @@ class EditDashboardProfile extends React.Component {
                             </div>
                         </form>		
 					</div>
-					
-					<form onSubmit={this.onFormSubmit} action="" className="update_profile" method="post" enctype="multipart/form-data">
-									
-						<input type="file" webkitRelativePath name="avatar" accept=".gif,.jpg,.jpeg,.png" onChange= {this.onChange}  />
-						<button type="submit">Upload</button>
-					  </form>		 	
-					
 					
 				</div>	
 

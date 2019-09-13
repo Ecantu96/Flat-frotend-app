@@ -527,9 +527,18 @@ ul.main_menu li {
     font-weight: 600;
     text-transform: capitalize;
     font-size: 10px;
-    min-width: 160px;
+    min-width: 150px;
     height: 40px;
 }
+
+.type_of_person ul {
+    clear: both;
+}
+.type_of_person li {
+    float: left;
+    position: relative;
+}
+
 .bathrooms,.bedrooms{
     position: relative;
 }
@@ -1309,22 +1318,31 @@ min-height: 32px;
     background-color: rgb(0, 0, 0);
     padding: 2px 10px 10px;
     top: 64px;
-    left: 20%;
-}  
+    left: 0;
+    border: 1px solid #fff;
+} 
+ 
 .bed-div.flex-col {
     display: inline-block;
     padding: 4px 10px;
     font-size: 14px;
     color: #fff;
     border: 1px solid #fff;
+    cursor: pointer;
+}
+.budget-div {
+    display: block;
+    padding: 4px 10px;
+    font-size: 14px;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
 }
 .main_roomates.listing_page {
     text-align: left;
 }
 .listing_page .MuiGrid-item-143 {
      display: inline-block;
-    /* display: flex; */
-    /* width: 100%; */
     margin: 0 5px 0 0;
     text-align: center;
     background: transparent;
@@ -1399,7 +1417,7 @@ min-height: 32px;
 .roommateProfile .MuiPaper-elevation2-18 {
  box-shadow: unset;
 }
-/* .update_profile input[type=file] {
+.update_profile input[type=file] {
     font-size: 100px;
     position: absolute;
     left: 0;
@@ -1426,7 +1444,7 @@ min-height: 32px;
     font-family: Montserrat;
     cursor: pointer;
      z-index: 1; 
-  } */
+  }
 
 
 .profile_full .col-sm-9 {
@@ -2255,6 +2273,21 @@ input.type_msg::placeholder {
 }
 .dash_picture {
     border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+ul.edit_remove.update_profile {
+    margin-left: 30px;
+}
+ul.edit_remove.update_profile label,ul.edit_remove.update_profile button {
+    color: #000;
+    font-size: 12px;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: none;
+    text-decoration: none;
+    cursor: pointer;
+   
 }
  .col-lg-3.dashboard_sidebar_profile h5{ 
 	 color: #000;
@@ -2364,7 +2397,15 @@ ul.social_media_profile label {
     font-family: Montserrat;
     margin: 0 10px 3px 3px;
     display: inline-block;
-    width: 55px;
+    width: 60px;
+}
+ul.social_media_profile select {
+    color: #000;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    padding: 9px 5px 7px 30px;
 }
 .social_media_profile li a {
      color: #5D5D5D;
@@ -2601,6 +2642,10 @@ ul.profile_galleries li {
     float: left;
     width: 100%;
     max-width: 99% !important;
+}
+
+.neighborhoods .MuiGrid-item-143 img {
+    cursor: pointer;
 }
 
 .neighborhoods .profile_title {
@@ -3458,6 +3503,10 @@ div#myMap {
 	padding: 0px;
 	min-width: 165px;
 }
+}
+.type_of_person ul {
+    clear: both;
+}
 .MuiButton-label-102{
 	width: auto !important;
 }
@@ -3718,10 +3767,6 @@ ul.MuiList-root-265.MuiList-padding-266 {
 .neighborhoods .Footer{ 
 	margin: 0px !important;
 }
- 
-  
-}
-
 .slick-prev::before {
     content: "←";
 }
