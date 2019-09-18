@@ -42,9 +42,9 @@ class RelationshipStatus extends React.Component {
         tempData.questions.RelationshipStatus = RelationshipStatus;
         this.props.history.push('/DoYouDrink', { data: tempData });
     }
-    goToBack = () => {
-        this.props.history.pop();
-    }
+    // goToBack = () => {
+    //     this.props.history.pop();
+    // }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -89,8 +89,8 @@ class RelationshipStatus extends React.Component {
                             <button onClick={() => this.updateState('onRelationship')} data-toggle="tab" data-target="#page1" className="btn btn-default btn-sm">On a Relationship</button>
                             <button onClick={() => this.updateState('Married')} data-toggle="tab" data-target="#page2" className="btn btn-default btn-sm">Married</button>
                         </div>
-                        {/* <a href="/" className="prv_question" >Previous Question</a> */}
-                        <button onClick={() => this.goToBack()} className="btn btn-default btn-sm">Prev Question</button>
+                        <a href="/BedTime" className="prv_question" >Previous Question</a>
+                        {/* <button onClick={() => this.goToBack()} className="btn btn-default btn-sm">Prev Question</button> */}
                         <button onClick={() => this.goToNext()} className="btn btn-default btn-sm">Next Question</button>
                     </div>
 

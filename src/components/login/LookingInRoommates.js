@@ -88,7 +88,7 @@ class LookingInRoommates extends React.Component {
                             <button onClick={() => this.updateState('Tidy')} data-toggle="tab" data-target="#page2" className="btn btn-default  btn-sm">TIDY</button>
                             <button onClick={() => this.updateState('Messy')} data-toggle="tab" data-target="#page3" className="btn btn-default btn-sm">MESSY</button>
                         </div>
-                        <a href="/" className="prv_question" >Previous Question</a>
+                        <a href="/LookingRoommate" className="prv_question" >Previous Question</a>
                         <button onClick={() => this.goToNext()} className="btn btn-default btn-sm">Next Question</button>
                     </div>
 

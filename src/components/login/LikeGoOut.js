@@ -85,7 +85,7 @@ class LikeGoOut extends React.Component {
 				<button  onClick={() => this.updateState('true')} data-toggle="tab" data-target="#page0" className="btn btn-default  btn-sm">Yes</button>
 		        <button  onClick={() => this.updateState('false')} data-toggle="tab" data-target="#page1" className="btn btn-default  btn-sm">No</button>
 				</div>
-				<a href="/" className="prv_question" >Previous Question</a>
+				<a href="/DoYouSmoke" className="prv_question" >Previous Question</a>
                 <button onClick={() => this.goToNext()} className="btn btn-default btn-sm">Next Question</button>
             </div>
 			 

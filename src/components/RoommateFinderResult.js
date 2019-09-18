@@ -42,10 +42,87 @@ class RoommateFinderResult extends React.Component {
 			roomMateLists: [],
 			ProfileQuestion: [],
 			propertyLists: [],
-			viewAllRoommates: [],	
-			loading: true	
+			viewAllRoommates: [],
+			filterRoommateData: [],	
+			loading: true,
+			LookingRoommateopened: false
+			
 		};
+
+		this.LookingRoommateroomHandle = this.LookingRoommateroomHandle.bind(this); 
+		this.TypePersonRoommateroomHandle = this.TypePersonRoommateroomHandle.bind(this); 
 	}
+
+	LookingRoommateroomHandle = (e) => {
+		const {LookingRoommateopened} = this.state;
+		 this.setState({ 
+			LookingRoommateopened: !LookingRoommateopened,
+		});
+	 
+	 } 
+	 TypePersonRoommateroomHandle = (e) => {
+		const {LookingRoommateopened} = this.state;
+		 this.setState({ 
+			LookingRoommateopened: '',
+		});
+	 
+	 }
+
+	 ClearLookinRoomateState(e){
+		          let AuthToken = authHeader();
+		            var url = `${SERVICEURL}/users/viewAllRoommates`;
+					var bearer = AuthToken.Authorization;
+					fetch(url, {
+						method: 'GET',
+						headers: {
+						  'Authorization': bearer,
+						  'Content-Type': 'application/json'
+						}
+					  }).then(response => response.json()).then(roommates => { 
+						  this.setState({
+							viewAllRoommates: roommates,
+							filterRoommateData: '',
+							loading: false
+						  
+						   })
+					    	//return roommates;
+					})
+					.catch(error => this.setState({
+						loading: true,
+						message: 'Something bad happened' + error
+					}));
+
+	 }
+	 
+	 onLookingRoomate(info){
+		  	let AuthToken = authHeader();
+			var old_url = `${SERVICEURL}/roommate-filter/?LookingRoommate=${info}`
+
+			var bearer = AuthToken.Authorization;
+			console.log(old_url);
+			fetch(old_url, {
+				method: 'GET',
+				headers: {
+				'Authorization': bearer,
+				'Content-Type': 'application/json'
+				}
+			}).then(response => response.json()).then(result => { 
+				console.log("result");
+                console.log(result);
+				this.setState({
+					filterRoommateData: result,
+					viewAllRoommates: '',
+					roomMateLists: '',
+					loading: false
+				})
+
+					//return roommates;
+			})
+			.catch(error => this.setState({
+				loading: true,
+				message: 'Something bad happened' + error
+			}));
+	 }
 	
 	componentWillMount = () => {
 		let AuthToken = authHeader();
@@ -58,7 +135,7 @@ class RoommateFinderResult extends React.Component {
 						  'Content-Type': 'application/json'
 						}
 					  }).then(response => response.json()).then(roommates => { 
-						  this.setState({
+							  this.setState({
 							viewAllRoommates: roommates,
 							loading: false
 						  
@@ -115,12 +192,15 @@ class RoommateFinderResult extends React.Component {
     }
 
    	componentDidMount = () => {
-
+		const {loggedIn} = this.props;
 		const { dispatch } = this.props;
 		let tempData = this.state.data;
 		
 		if(tempData.username && tempData.password){
-			setTimeout(() => dispatch(userActions.login(tempData.username, tempData.password)), 1000);
+            if(!loggedIn){
+			  setTimeout(() => dispatch(userActions.register(tempData)), 200);
+			}
+			 setTimeout(() => dispatch(userActions.login(tempData.username, tempData.password)), 1000);
 			
 				setTimeout(() => dispatch(userActions.matchRoommate(tempData.questions)), 2500);
 			
@@ -170,11 +250,33 @@ class RoommateFinderResult extends React.Component {
 	render() {
 		
 		const {classes, errorMessage} = this.props;
-		var { roomMateLists, propertyLists, viewAllRoommates } = this.state;
+		var { roomMateLists, propertyLists, viewAllRoommates, LookingRoommateopened, filterRoommateData } = this.state;
 		var items = roomMateLists;
 		const { registering} = this.props;
 		var PropertyListing = propertyLists;
 		var defaultroommates = viewAllRoommates;
+		var LookingInrroomateFilter = filterRoommateData;
+		var profilePicture = viewAllRoommates.ProfileImage;
+		console.log("ProfileImage");
+		console.log(profilePicture);
+			
+		if(_.some(filterRoommateData, _.isObject)){
+			LookingInrroomateFilter = filterRoommateData.map((item, key) =>
+			<Grid className="MuiGrid-item-143" item xs={4}  key={key} data-id={item._id} onClick={() => this.onClickRoommateId(item._id)}>
+				<Paper className={classes.paper + ' MuiPaper-elevation2-20'}><img alt="" className="profile_img" src={require('./images/profile-3.jpg')} />
+				<div className="room_finder_title">	<h5>{item.username}</h5></div>
+				<div className="profile_title">
+				<span>{item.questions.LookingRoommate}</span>
+				<span>{item.questions.LookingInRoommates}</span>
+				<span>{item.questions.typeofperson}</span>
+				<span>{item.questions.BedTime}</span>
+				<span>{item.questions.RelationshipStatus}</span>
+				<span>{item.questions.Workhours}</span>
+				</div>
+				</Paper>
+			</Grid>
+			);
+      	}
 
 		if(_.some(viewAllRoommates, _.isObject)){
 			defaultroommates = viewAllRoommates.map((item, key) =>
@@ -252,13 +354,23 @@ class RoommateFinderResult extends React.Component {
 								</div>
 								
 								<div className="type_of_person">
+								<ul>
+									  <li><Button className="LookingInRoomate" onClick={this.LookingRoommateroomHandle} variant="title" color="#F9790E">Type of Person</Button></li>
+									  {LookingRoommateopened && (					
+											<div className="lookingroomates flex-row">
+												<div onClick={() => this.onLookingRoomate('Quiet')} className="looking-div flex-col">Quiet</div>
+												<div onClick={() => this.onLookingRoomate('Loud')} className="looking-div flex-col">Loud</div>
+												<div onClick={() => this.onLookingRoomate('Tidy')} className="looking-div flex-col">Tidy</div>
+												<div onClick={() => this.onLookingRoomate('Messy')} className="looking-div flex-col">Messy</div>
+												<div onClick={() => this.ClearLookinRoomateState()} className="looking-div flex-col">Clear</div>
+										 </div> 
+										)}
+								      <li><Button onClick={this.TypePersonRoommateroomHandle}>Type of Person</Button></li>
+									  <li><Button onClick={this.TypePersonRoommateroomHandle}>Type of Person</Button></li>
+									  <li><Button onClick={this.TypePersonRoommateroomHandle}>Type of Person</Button></li>
+									  <li><Button onClick={this.TypePersonRoommateroomHandle}>Type of Person</Button></li>
 								  
-								  <Button variant="title" color="#F9790E">Type of Person</Button>
-								  <Button>Type of Person</Button>
-								  <Button>Type of Person</Button>
-								  <Button>Type of Person</Button>
-								  <Button>Type of Person</Button>
-								
+								</ul>								
 								</div>
 			                </div>
 			</div>
@@ -282,7 +394,7 @@ class RoommateFinderResult extends React.Component {
 				{ (this.state.loading) ? <div className="loading-page">
 						<i className="fa fa-spinner fa-spin fa-3x fa-fw"  aria-hidden="true"  /> <br /> <br />         <span>Loading...</span>
 					</div> : defaultroommates  }   
-					{items}
+					{items} {LookingInrroomateFilter}
 				</div>
 				
 				{registering &&
@@ -330,9 +442,9 @@ class RoommateFinderResult extends React.Component {
 					<div className="row">
 						 {PropertyListing}
 					</div>
-					 <div className="view_more">
+					 {/* <div className="view_more">
 								<Button className="view_more_btn" variant="title" color="#F9790E">View More</Button>
-					</div>
+					</div> */}
 					
 					
 				</React.Fragment>
