@@ -98,13 +98,7 @@ class AppContainer extends Component {
 				<div className="home_description">
 					
 					<Typography variant="body1" >
-					  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id pretium tellus. Praesent eget posuere ante. Mauris sit amet lacus sapien. Morbi bibendum tellus in venenatis dapibus. Suspendisse accumsan a ante mollis semper. Quisque sem tortor, semper malesuada interdum vitae, vehicula eget ligula. Cras in augue a turpis commodo tempor vitae ac odio. Quisque accumsan orci lorem, ac venenatis enim vulputate sed. Donec blandit efficitur ex vitae pellentesque. Etiam fringilla scelerisque ligula, imperdiet tristique sapien efficitur non. Donec a ex magna. Pellentesque imperdiet tristique felis, non pretium quam sagittis quis.
-					  
-					  Quisque dictum mi eget ultrices dapibus. Proin id porta nibh. Vestibulum placerat lacus eu ultrices sollicitudin. Suspendisse congue vulputate nisi, ut tristique lectus vulputate a. Nunc nec sollicitudin sem. Sed a finibus ipsum. Ut vestibulum venenatis nunc ut posuere. Morbi sed nulla facilisis, dapibus quam a, accumsan velit. Fusce a ipsum eu orci dignissim venenatis nec non nunc. Vestibulum pellentesque id ligula efficitur auctor.
-					  
-					  Quisque dictum mi eget ultrices dapibus. Proin id porta nibh. Vestibulum placerat lacus eu ultrices sollicitudin. Suspendisse congue vulputate nisi, ut tristique lectus vulputate a. Nunc nec sollicitudin sem. Sed a finibus ipsum. Ut vestibulum venenatis nunc ut posuere. Morbi sed nulla facilisis, dapibus quam a, accumsan velit. Fusce a ipsum eu orci dignissim venenatis nec non nunc. Vestibulum pellentesque id ligula efficitur auctor.
-					  
-					   Fusce a ipsum eu orci dignissim venenatis nec non nunc. Vestibulum pellentesque id ligula efficitur auctor.
+					  @Flats is a fun and easy way to search for apartments near you! With the easy to navigate apartment searcher, you can find a room that best fits your budget and needs. The apartment searcher allows you to search neighborhoods around Chicago to find a room that supports your lifestyle. While exploring Chicagoland neighborhoods, the apartment searcher lets you look at restaurants, bars, coffee shops, and places to go so you can select an apartment close to the locations that matter to you.
 					   
 					   
                     </Typography>
