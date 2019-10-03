@@ -1,5 +1,35 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## React File Structures
+[File Structures](https://reactjs.org/docs/faq-structure.html)
+
+Flat-react-App/src/components/
+AgentDashboard.js                   
+AgentInquiries.js                   
+AgentListings.js                    
+AgentMessages.js                    
+AgentProfile.js                     
+AgentViewProfile.js                 
+Dashboard.js                        
+DashboardMessage.js                 
+DashboardProfile.js                
+Edit-DashboardProfile.js            
+FavoriteListings.js                 
+FavoriteRoommates.js                
+FooterBar.js                        
+Listing.js                          
+ListingDetailsPage.js               
+Neighborhoods.js                    
+Page.jsx
+RoommateFinderResult.js
+RoommateFinderResultVariationTwo.js
+RoommateProfile.js
+TopBar.js
+Welcome.js
+WelcomeContent.js
+
+  
 ## Available Scripts
 
 In the project directory, you can run:
