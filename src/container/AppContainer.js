@@ -176,13 +176,7 @@ class AppContainer extends Component {
 				<div className="home_description">
 					
 					<Typography variant="body1" >
-					  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id pretium tellus. Praesent eget posuere ante. Mauris sit amet lacus sapien. Morbi bibendum tellus in venenatis dapibus. Suspendisse accumsan a ante mollis semper. Quisque sem tortor, semper malesuada interdum vitae, vehicula eget ligula. Cras in augue a turpis commodo tempor vitae ac odio. Quisque accumsan orci lorem, ac venenatis enim vulputate sed. Donec blandit efficitur ex vitae pellentesque. Etiam fringilla scelerisque ligula, imperdiet tristique sapien efficitur non. Donec a ex magna. Pellentesque imperdiet tristique felis, non pretium quam sagittis quis.
-					  
-					  Quisque dictum mi eget ultrices dapibus. Proin id porta nibh. Vestibulum placerat lacus eu ultrices sollicitudin. Suspendisse congue vulputate nisi, ut tristique lectus vulputate a. Nunc nec sollicitudin sem. Sed a finibus ipsum. Ut vestibulum venenatis nunc ut posuere. Morbi sed nulla facilisis, dapibus quam a, accumsan velit. Fusce a ipsum eu orci dignissim venenatis nec non nunc. Vestibulum pellentesque id ligula efficitur auctor.
-					  
-					  Quisque dictum mi eget ultrices dapibus. Proin id porta nibh. Vestibulum placerat lacus eu ultrices sollicitudin. Suspendisse congue vulputate nisi, ut tristique lectus vulputate a. Nunc nec sollicitudin sem. Sed a finibus ipsum. Ut vestibulum venenatis nunc ut posuere. Morbi sed nulla facilisis, dapibus quam a, accumsan velit. Fusce a ipsum eu orci dignissim venenatis nec non nunc. Vestibulum pellentesque id ligula efficitur auctor.
-					  
-					   Fusce a ipsum eu orci dignissim venenatis nec non nunc. Vestibulum pellentesque id ligula efficitur auctor.
+					  Are you looking for a new apartment in the Chicagoland area, but don’t have a roommate to share it with? Have no fear because @Flats has an all in one solution that helps you not only find the perfect room, but eases the process of seeking a roommate. When you create an account with @Flats, you complete a survey that shows you apartments that fit your requirements and are matched with potential roommate who you can chat with through our site. This process will make sure you find a roommate who shares in your lifestyle and is seeking an apartment with the same requirements as you. With this fun and easy process, you’ll wonder why you ever considered using any other roommate matching site.
                     </Typography>
 					
 				<Button className="search_btn">FAQS????</Button>	
@@ -231,8 +225,7 @@ class AppContainer extends Component {
 							<div className="list_property_desc">
 							<div className="col-lg-7">
 								<Typography variant="body1" >
-								  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id pretium tellus. Praesent eget posuere ante. Mauris sit amet lacus sapien. Morbi bibendum tellus in venenatis dapibus. Suspendisse accumsan a ante mollis semper. Quisque sem tortor, semper malesuada interdum vitae, vehicula eget ligula. Cras in augue a turpis commodo tempor vitae ac odio. Quisque accumsan orci lorem, ac venenatis enim vulputate sed. Donec blandit efficitur ex vitae pellentesque. 
-								  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum elit ligula, hendrerit ut luctus eget, molestie at tortor. 
+								  Are you a property owner or manager looking to list properties in the Chicagoland area? @Flats is a free, easy, and fast way to advertise and list your properties that helps you fill your vacant properties. With our site, you can list as many properties as you want while avoiding the hefty fees that other sites and services typically charge. @Flats has plenty of users looking to rent apartments in the greater Chicago area, which will help your property have a quick turn-around time from posting it on the @Flats site.
 								  								  
 								</Typography>
 								
@@ -259,7 +252,7 @@ class AppContainer extends Component {
 								ABOUT
 							  </Typography>  
 								<Typography variant="body1" >
-								  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum elit ligula, hendrerit ut luctus eget, molestie at tortor. Sed euismod auctor lacus vitae sollicitudin. Praesent vel ipsum vel enim maximus vestibulum vestibulum quis ex. Aenean ullamcorper elit a magna sodales tincidunt. Nulla luctus lacus quis scelerisque fermentum. Ut augue sapien, lobortis ut ante et, consectetur interdum orci. Maecenas finibus finibus dolor, id fringilla elit lobortis vitae. Vestibulum pulvinar orci non gravida tristique. In at mi venenatis, placerat mi id, aliquam sapien. Nulla condimentum vitae mauris a ultrices. Mauris mollis metus vel ligula fermentum mollis. Vivamus ornare nulla a felis lobortis rhoncus.
+								  @Flats was established in 2019 with the sole purpose of creating a service that makes roommate, neighborhood, and apartment searching fast, easy, and secure. What separates @Flats from other apartment listing sites is the way that it serves as a centralized site for users to find their perfect apartment and roommate in the exact area of Chicago that best fits their individual needs. The apartment hunting process is simplified through @Flats as users can navigate through Chicago neighborhoods, locate nearby restaurants and bars, and find a roommate who shares in their lifestyle.
 								</Typography>
 							   <Typography variant="body1" >
 								<Button className="furth_sect_btn">ABOUT @Flats</Button>	
