@@ -23,19 +23,7 @@ FooterBar.js
 Listing.js                          
 ListingDetailsPage.js               
 Neighborhoods.js                    
-Page.jsx
-
-RoommateFinderResult.js
-
-RoommateFinderResultVariationTwo.js
-
-RoommateProfile.js
-
 TopBar.js
-
-Welcome.js
-
-WelcomeContent.js
 
 If you need to know which Component refers to which route inside the App, please reference the AppRoutes.js https://github.com/jeffchiucp/Flat-react-App/blob/master/src/routes/AppRoutes.js
   
