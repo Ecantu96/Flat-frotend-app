@@ -1,30 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-A popular way to structure projects is to group similar files together. 
-
-## React File Structures
-[File Structures](https://reactjs.org/docs/faq-structure.html)
-
-Flat-react-App/src/components/
-
-AgentDashboard.js                   
-AgentInquiries.js                   
-AgentListings.js                    
-AgentMessages.js                    
-AgentProfile.js                     
-AgentViewProfile.js                 
-Dashboard.js                        
-DashboardMessage.js                 
-DashboardProfile.js                
-Edit-DashboardProfile.js            
-FavoriteListings.js                 
-FavoriteRoommates.js                
-FooterBar.js                        
-Listing.js                          
-ListingDetailsPage.js               
-Neighborhoods.js                    
-TopBar.js
-
 If you need to know which Component refers to which route inside the App, please reference the AppRoutes.js https://github.com/jeffchiucp/Flat-react-App/blob/master/src/routes/AppRoutes.js
   
 ## Available Scripts
