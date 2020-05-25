@@ -37,7 +37,7 @@
     "react-toastify": "^4.5.2",
     "recompose": "^0.30.0",
     "reducers": "^3.0.0-alpha",
-    "redux": "^4.0.1",
+    "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-orm": "^0.12.2",
     "redux-saga": "^1.0.1",
